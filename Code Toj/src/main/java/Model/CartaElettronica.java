@@ -3,7 +3,7 @@ package Model;
 public class CartaElettronica {
 
     //Dati della Carta di pagamento
-    private String IDcarta, descrizione;
+    private String IDcarta, descrizione, email;
 
     //Constructor
     public CartaElettronica(){
@@ -11,6 +11,14 @@ public class CartaElettronica {
     }
 
     //Getter & Setter
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getIDcarta() {
         return IDcarta;
     }

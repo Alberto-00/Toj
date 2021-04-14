@@ -57,7 +57,6 @@ public class UtenteDAO {
         }
     }
 
-
     public ArrayList<Categoria> doRetrieveAll(){
         try (Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("SELECT * FROM categoria");
@@ -99,11 +98,11 @@ public class UtenteDAO {
         }
     }
 
-    public void doUpdateCategoria(Categoria categoria){
+    public void doUpdateUser(Utente user){
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "UPDATE categoria SET nome='" + categoria.getNome() + "', descrizione='" +
-                            categoria.getDescrizione() + "' WHERE id=" + categoria.getId());
+                    "UPDATE account_user SET Password_User='" + user.getPassword() +
+                            "' WHERE Email=" + user.getEmail());
             ps.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
