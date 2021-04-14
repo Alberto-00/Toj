@@ -5,6 +5,10 @@ import java.util.ArrayList;
 
 public class ArticoloDAO {
 
+    public ArticoloDAO(){
+        super();
+    }
+
     public Articolo doRetrieveByIdArticolo(int id) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps =
@@ -21,8 +25,12 @@ public class ArticoloDAO {
                 articolo.setSesso(rs.getString("Sesso"));
                 articolo.setTaglia(rs.getString("Taglia"));
                 articolo.setTipo(rs.getString("Tipo"));
+                ps.close();
+                rs.close();
                 return articolo;
             }
+            ps.close();
+            rs.close();
             return null;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -46,6 +54,8 @@ public class ArticoloDAO {
                 articolo.setTipo(rs.getString("Tipo"));
                 articoli.add(articolo);
             }
+            ps.close();
+            rs.close();
             return articoli;
         } catch (SQLException e){
             throw new RuntimeException(e);
@@ -73,6 +83,22 @@ public class ArticoloDAO {
             rs.next();
             int id = rs.getInt(1);
             articolo.setIDarticolo(id);
+            ps.close();
+            rs.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void doDelete(int id) {
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(
+                    "DELETE FROM articolo WHERE ID_articolo=" + id +
+                    Statement.RETURN_GENERATED_KEYS);
+            if (ps.executeUpdate() != 1) {
+                throw new RuntimeException("INSERT error.");
+            }
+            ps.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -87,6 +113,7 @@ public class ArticoloDAO {
                             +", Taglia='" + articolo.getTaglia()+ "', Sesso='" + articolo.getSesso()
                             + "', WHERE ID_articolo=" + articolo.getIDarticolo());
             ps.execute();
+            ps.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
