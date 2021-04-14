@@ -4,15 +4,14 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.GregorianCalendar;
-
+import java.util.Date;
 
 public class Utente {
 
     //Dati Anagrafici dell'utente
     private String cognome;
     private String nome;
-    private GregorianCalendar dataDiNascita;
+    private Date dataDiNascita;
     private String via;
     private String numeroCivico;
     private String CAP;
@@ -43,11 +42,11 @@ public class Utente {
         this.nome = nome;
     }
 
-    public GregorianCalendar getDataDiNascita() {
+    public Date getDataDiNascita() {
         return dataDiNascita;
     }
 
-    public void setDataDiNascita(GregorianCalendar dataDiNascita) {
+    public void setDataDiNascita(Date dataDiNascita) {
         this.dataDiNascita = dataDiNascita;
     }
 

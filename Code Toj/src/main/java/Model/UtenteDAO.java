@@ -2,101 +2,112 @@ package Model;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 
 public class UtenteDAO {
 
-    public Utente doRetrieveByMailAccount(String email) {
+    public UtenteDAO(){
+        super();
+    }
+
+    public Utente doRetrieveByEmailUser(String email) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps =
-                    con.prepareStatement("SELECT * FROM account_user WHERE email=?");
+                    con.prepareStatement("SELECT * FROM account_user A, dati_cliente D WHERE email=?");
             ps.setString(1, email);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                Utente d = new Utente();
-                d.setEmail(rs.getString(1));
-                d.setPassword(rs.getString(2));
-                return d;
+                Utente user = new Utente();
+                user.setEmail(rs.getString("Email"));
+                user.setPassword(rs.getString("Password_User"));
+                user.setNome(rs.getString("Nome"));
+                user.setCognome(rs.getString("Cognome"));
+                user.setDataDiNascita(rs.getDate("ddn"));
+                user.setNumeroTelefonico(rs.getString("Telefono"));
+                user.setVia(rs.getString("Via"));
+                user.setNumeroCivico(rs.getString("N_civico"));
+                user.setCAP(rs.getString("CAP"));
+                ps.close();
+                rs.close();
+                return user;
             }
+            ps.close();
+            rs.close();
             return null;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private GregorianCalendar toCalendar(java.sql.Date date){
-        GregorianCalendar cal = new GregorianCalendar();
-        cal.setTimeInMillis(date.getTime());
-        return cal;
-    }
-
-    public UtenteDAO doRetrieveByMailDatiAnagrafici(String email) {
+    public ArrayList<Utente> doRetrieveAllByMailDatiAnagrafici() {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps =
                     con.prepareStatement("SELECT * FROM account_user A, dati_cliente D WHERE A.Email=D.Email");
             ResultSet rs = ps.executeQuery();
+            ArrayList<Utente> users = new ArrayList<>();
             if (rs.next()) {
-                Utente d = new Utente();
-                d.setEmail(rs.getString("Email"));
-                d.setPassword(rs.getString("Password_User"));
-                d.setNome(rs.getString("Nome"));
-                d.setCognome(rs.getString("Cognome"));
-
-                //Translazione da SQLDate A GregorianCalendar
-                java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
-                d.setDataDiNascita(toCalendar(date));
-
-                d.setNumeroTelefonico(rs.getString("Telefono"));
-                d.setVia(rs.getString("Via"));
-                d.setNumeroCivico(rs.getString("N_civico"));
-                d.setCAP(rs.getString("CAP"));
+                Utente user = new Utente();
+                user.setEmail(rs.getString("Email"));
+                user.setPassword(rs.getString("Password_User"));
+                user.setNome(rs.getString("Nome"));
+                user.setCognome(rs.getString("Cognome"));
+                user.setDataDiNascita(rs.getDate("ddn"));
+                user.setNumeroTelefonico(rs.getString("Telefono"));
+                user.setVia(rs.getString("Via"));
+                user.setNumeroCivico(rs.getString("N_civico"));
+                user.setCAP(rs.getString("CAP"));
+                users.add(user);
             }
-            return null;
+            ps.close();
+            rs.close();
+            return users;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public ArrayList<Categoria> doRetrieveAll(){
-        try (Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM categoria");
-            ResultSet rs = ps.executeQuery();
-            ArrayList<Categoria> categorie = new ArrayList<>();
-            while (rs.next()){
-                Categoria categoria = new Categoria();
-                categoria.setId(rs.getInt("id"));
-                categoria.setNome(rs.getString("nome"));
-                categoria.setDescrizione(rs.getString("descrizione"));
-                categorie.add(categoria);
-            }
-            return categorie;
-        } catch (SQLException e){
-            throw new RuntimeException(e);
-        }
-    }
-
-    // la funzione seguente è inutile perchè il DB è riempito tramite tool esterno
-    // sarebbe utile se l'applicazione fornisse un form per riempirlo. IDEA! aggiungi questa feature all'applicazione
-    // è un buon modo per verificare la sua correttezza
-    public void doSave(Categoria categoria) {
+    public void doSave(Utente user) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO categoria (id, nome, descrizione) VALUES(?,?,?)",
-                    Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, categoria.getId());
-            ps.setString(2, categoria.getNome());
-            ps.setString(3, categoria.getDescrizione());
+                    "INSERT INTO account_user (Email, Password_User) VALUES(?,?)");
+            ps.setString(1, user.getEmail());
+            ps.setString(2, user.getPassword());
             if (ps.executeUpdate() != 1) {
                 throw new RuntimeException("INSERT error.");
             }
-            ResultSet rs = ps.getGeneratedKeys();
-            rs.next();
-            int id = rs.getInt(1);
-            categoria.setId(id);
+            ps.close();
+            PreparedStatement ps1 = con.prepareStatement(
+                    "INSERT INTO dati_cliente (Nome, Cognome, ddn, Telefono, Via, N_civico, CAP) " +
+                            "VALUES(?,?,?,?,?,?,?)");
+            ps1.setString(1, user.getNome());
+            ps1.setString(2, user.getCognome());
+            ps1.setDate(3, (Date) user.getDataDiNascita());
+            ps1.setString(4, user.getNumeroTelefonico());
+            ps1.setString(5, user.getVia());
+            ps1.setString(6, user.getNumeroCivico());
+            ps1.setString(7, user.getCAP());
+            if (ps.executeUpdate() != 1) {
+                throw new RuntimeException("INSERT error.");
+            }
+            ps1.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
+    public void doDelete(String email) {
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(
+                    "DELETE FROM account_user ac, dati_cliente dc " +
+                            "WHERE ac.Email = dc.Email AND Email='" + email + "'");
+            if (ps.executeUpdate() != 1) {
+                throw new RuntimeException("INSERT error.");
+            }
+            ps.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     public void doUpdateUser(Utente user){
         try (Connection con = ConPool.getConnection()) {
@@ -104,6 +115,7 @@ public class UtenteDAO {
                     "UPDATE account_user SET Password_User='" + user.getPassword() +
                             "' WHERE Email=" + user.getEmail());
             ps.execute();
+            ps.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
