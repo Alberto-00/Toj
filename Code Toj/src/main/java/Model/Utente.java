@@ -9,10 +9,6 @@ import java.util.GregorianCalendar;
 
 public class Utente {
 
-    public Utente(){
-        super();
-    }
-
     //Dati Anagrafici dell'utente
     private String cognome;
     private String nome;
@@ -25,6 +21,10 @@ public class Utente {
     //Dati dell'Account
     private String email;
     private String password;
+
+    public Utente(){
+        super();
+    }
 
     //Getter & Setter
     public String getCognome() {
