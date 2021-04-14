@@ -5,8 +5,8 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "Login", value = "/Login")
-public class Login extends HttpServlet {
+@WebServlet(name = "MostraArticoli", value = "/MostraArticoli")
+public class MostraArticoli extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

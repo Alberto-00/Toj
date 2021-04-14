@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "CarrelloServlet", value = "/CarrelloServlet")
+@WebServlet(name = "Carrello", value = "/Carrello")
 public class Carrello extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

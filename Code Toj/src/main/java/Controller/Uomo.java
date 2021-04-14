@@ -9,7 +9,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(name = "UomoServlet", value = "/UomoServlet")
+@WebServlet(name = "Uomo", value = "/Uomo")
 public class Uomo extends HttpServlet {
 
     @Override
