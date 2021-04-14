@@ -9,7 +9,7 @@ public class ArticoloDAO {
         super();
     }
 
-    public Articolo doRetrieveByIdArticolo(int id) {
+    public Articolo doRetrieveById(int id) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps =
                     con.prepareStatement("SELECT * FROM articolo WHERE ID_articolo=?");
@@ -32,6 +32,33 @@ public class ArticoloDAO {
             ps.close();
             rs.close();
             return null;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public ArrayList<Articolo> doRetrieveBySex(String sex) {
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps =
+                    con.prepareStatement("SELECT * FROM articolo WHERE Sesso=?");
+            ps.setString(1, sex);
+            ResultSet rs = ps.executeQuery();
+            ArrayList<Articolo> articoli = new ArrayList<>();
+            if (rs.next()) {
+                Articolo articolo = new Articolo();
+                articolo.setIDarticolo(rs.getInt("ID_articolo"));
+                articolo.setColore(rs.getString("Colore"));
+                articolo.setDescrizione(rs.getString("Descrizione"));
+                articolo.setPrezzo(rs.getDouble("Prezzo"));
+                articolo.setQuantita(rs.getInt("Quantita"));
+                articolo.setSesso(rs.getString("Sesso"));
+                articolo.setTaglia(rs.getString("Taglia"));
+                articolo.setTipo(rs.getString("Tipo"));
+                articoli.add(articolo);
+            }
+            ps.close();
+            rs.close();
+            return articoli;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
