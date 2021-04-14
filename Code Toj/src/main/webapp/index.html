@@ -1,18 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <title>Tøj</title>
 </head>
 <body style="background-color: #ffffff">
-    <a href="uomo.jsp">Uomo</a>
-    <a href="donna.jsp">Donna</a>
-    <form action="donna" method="post">
+    <a href="UomoServlet">Uomo</a>
+    <a href="DonnaServlet">Donna</a>
+    <a href="index.html">Tøj</a>
+    <a href="CarrelloServlet">Carrello</a>
+
+    <form action="Donna" method="post">
         <input type="submit" name="tastoDonna" value="Donna">
     </form>
-    <form action="uomo" method="post">
+    <form action="Uomo" method="post">
         <input type="submit" name="tastoUomo" value="Uomo">
     </form>
+
     <form>
         <input type="text" value="" placeholder="Cerca" name="searchTerm">
     </form>
