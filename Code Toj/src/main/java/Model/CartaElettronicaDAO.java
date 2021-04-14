@@ -5,6 +5,10 @@ import java.util.ArrayList;
 
 public class CartaElettronicaDAO {
 
+    public CartaElettronicaDAO(){
+        super();
+    }
+
     public CartaElettronica doRetrieveByUserPay(String email) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps =
@@ -16,8 +20,12 @@ public class CartaElettronicaDAO {
                 payCard.setIDcarta(rs.getString("Codice_carta"));
                 payCard.setDescrizione(rs.getString("Descrizione"));
                 payCard.setEmail(rs.getString("Email"));
+                ps.close();
+                rs.close();
                 return payCard;
             }
+            ps.close();
+            rs.close();
             return null;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -36,6 +44,8 @@ public class CartaElettronicaDAO {
                 payCard.setEmail(rs.getString("Email"));
                 payCards.add(payCard);
             }
+            ps.close();
+            rs.close();
             return payCards;
         } catch (SQLException e){
             throw new RuntimeException(e);
@@ -46,18 +56,27 @@ public class CartaElettronicaDAO {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
                     "INSERT INTO carta_elettronica (Codice_carta, Descrizione, Email) " +
-                            "VALUES(?,?,?)",
-                    Statement.RETURN_GENERATED_KEYS);
+                            "VALUES(?,?,?)");
             ps.setString(1, payCard.getIDcarta());
             ps.setString(2, payCard.getDescrizione());
             ps.setString(3, payCard.getEmail());
             if (ps.executeUpdate() != 1) {
                 throw new RuntimeException("INSERT error.");
             }
-            ResultSet rs = ps.getGeneratedKeys();
-            rs.next();
-            String id = rs.getString(1);
-            payCard.setIDcarta(id);
+            ps.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void doDelete(String payCod) {
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(
+                    "DELETE FROM carta_elettronica WHERE Codice_carta='" + payCod + "'");
+            if (ps.executeUpdate() != 1) {
+                throw new RuntimeException("INSERT error.");
+            }
+            ps.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -70,6 +89,7 @@ public class CartaElettronicaDAO {
                             payCard.getDescrizione() + "', Email='" + payCard.getEmail()
                             + "', WHERE Codice_carta=" + payCard.getIDcarta());
             ps.execute();
+            ps.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
