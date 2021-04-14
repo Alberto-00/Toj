@@ -1,27 +1,26 @@
 package Controller;
 
 import Model.Articolo;
-import Model.ArticoloDAO;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
-@WebServlet(name = "UomoServlet", value = "/UomoServlet")
-public class UomoServlet extends HttpServlet {
-
+@WebServlet(name = "CarrelloServlet", value = "/CarrelloServlet")
+public class Carrello extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        ArticoloDAO service = new ArticoloDAO();
-        ArrayList<Articolo> articoli = service.doRetrieveBySex("M");
-        request.setAttribute("articoliUomo", articoli);
+        HttpSession session = request.getSession();
+        List<Articolo> articoli = (List<Articolo>) session.getAttribute("articoliCarrello");
+        if(articoli == null){
+            articoli = new ArrayList<>();
+        }
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/uomo.jsp");
-        dispatcher.forward(request, response);
     }
 
     @Override
