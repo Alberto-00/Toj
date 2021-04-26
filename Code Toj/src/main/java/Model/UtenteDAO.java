@@ -26,6 +26,7 @@ public class UtenteDAO {
                 user.setVia(rs.getString("Via"));
                 user.setNumeroCivico(rs.getString("N_civico"));
                 user.setCAP(rs.getString("CAP"));
+                user.setAdmin(rs.getBoolean("Admin_user"));
                 ps.close();
                 rs.close();
                 return user;
@@ -55,6 +56,7 @@ public class UtenteDAO {
                 user.setVia(rs.getString("Via"));
                 user.setNumeroCivico(rs.getString("N_civico"));
                 user.setCAP(rs.getString("CAP"));
+                user.setAdmin(rs.getBoolean("Admin_user"));
                 users.add(user);
             }
             ps.close();
@@ -68,9 +70,10 @@ public class UtenteDAO {
     public void doSave(Utente user) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO account_user (Email, Password_User) VALUES(?,?)");
+                    "INSERT INTO account_user (Email, Password_User, Admin_user) VALUES(?,?,?,?)");
             ps.setString(1, user.getEmail());
             ps.setString(2, user.getPassword());
+            ps.setBoolean(3, user.isAdmin());
             if (ps.executeUpdate() != 1) {
                 throw new RuntimeException("INSERT error.");
             }

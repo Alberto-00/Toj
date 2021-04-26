@@ -25,6 +25,7 @@ public class ArticoloDAO {
                 articolo.setSesso(rs.getString("Sesso"));
                 articolo.setTaglia(rs.getString("Taglia"));
                 articolo.setTipo(rs.getString("Tipo"));
+                articolo.setSconto(rs.getDouble("sconto"));
                 ps.close();
                 rs.close();
                 return articolo;
@@ -54,6 +55,7 @@ public class ArticoloDAO {
                 articolo.setSesso(rs.getString("Sesso"));
                 articolo.setTaglia(rs.getString("Taglia"));
                 articolo.setTipo(rs.getString("Tipo"));
+                articolo.setSconto(rs.getDouble("sconto"));
                 articoli.add(articolo);
             }
             ps.close();
@@ -79,6 +81,7 @@ public class ArticoloDAO {
                 articolo.setSesso(rs.getString("Sesso"));
                 articolo.setTaglia(rs.getString("Taglia"));
                 articolo.setTipo(rs.getString("Tipo"));
+                articolo.setSconto(rs.getDouble("sconto"));
                 articoli.add(articolo);
             }
             ps.close();
@@ -93,7 +96,7 @@ public class ArticoloDAO {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
                     "INSERT INTO articolo (ID_articolo, Colore, Prezzo, Quantita, " +
-                            "Tipo, Taglia, Sesso, Descrizione) VALUES(?,?,?,?,?,?,?,?)",
+                            "Tipo, Taglia, Sesso, Descrizione, sconto) VALUES(?,?,?,?,?,?,?,?,?)",
                     Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, articolo.getIDarticolo());
             ps.setString(2, articolo.getColore());
@@ -103,6 +106,7 @@ public class ArticoloDAO {
             ps.setString(6, articolo.getTaglia());
             ps.setString(7, articolo.getSesso());
             ps.setString(8, articolo.getDescrizione());
+            ps.setDouble(9, articolo.getSconto());
             if (ps.executeUpdate() != 1) {
                 throw new RuntimeException("INSERT error.");
             }
@@ -138,7 +142,8 @@ public class ArticoloDAO {
                             articolo.getDescrizione() + "', Colore='" +articolo.getColore()
                             + "', Prezzo=" + articolo.getPrezzo()+ ", Quantita=" + articolo.getQuantita()
                             +", Taglia='" + articolo.getTaglia()+ "', Sesso='" + articolo.getSesso()
-                            + "', WHERE ID_articolo=" + articolo.getIDarticolo());
+                            + "',sconto=" + articolo.getSconto() +
+                            ", WHERE ID_articolo=" + articolo.getIDarticolo());
             ps.execute();
             ps.close();
         } catch (SQLException e) {

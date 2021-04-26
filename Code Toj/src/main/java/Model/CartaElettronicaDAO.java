@@ -19,7 +19,7 @@ public class CartaElettronicaDAO {
                 CartaElettronica payCard = new CartaElettronica();
                 payCard.setIDcarta(rs.getString("Codice_carta"));
                 payCard.setDescrizione(rs.getString("Descrizione"));
-                payCard.setEmail(rs.getString("Email"));
+                payCard.setEmailUser(rs.getString("Email"));
                 ps.close();
                 rs.close();
                 return payCard;
@@ -41,7 +41,7 @@ public class CartaElettronicaDAO {
                 CartaElettronica payCard = new CartaElettronica();
                 payCard.setIDcarta(rs.getString("Codice_carta"));
                 payCard.setDescrizione(rs.getString("Descrizione"));
-                payCard.setEmail(rs.getString("Email"));
+                payCard.setEmailUser(rs.getString("Email"));
                 payCards.add(payCard);
             }
             ps.close();

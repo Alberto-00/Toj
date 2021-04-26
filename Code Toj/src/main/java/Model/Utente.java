@@ -8,6 +8,11 @@ import java.util.Date;
 
 public class Utente {
 
+    //Dati dell'Account
+    private String email;
+    private String password;
+    private boolean admin;
+
     //Dati Anagrafici dell'utente
     private String cognome;
     private String nome;
@@ -16,14 +21,6 @@ public class Utente {
     private String numeroCivico;
     private String CAP;
     private String numeroTelefonico;
-
-    //Dati dell'Account
-    private String email;
-    private String password;
-
-    public Utente(){
-        super();
-    }
 
     //Getter & Setter
     public String getCognome() {
@@ -82,6 +79,10 @@ public class Utente {
         this.numeroTelefonico = numeroTelefonico;
     }
 
+    public Utente(){
+        super();
+    }
+
     public String getEmail() {
         return email;
     }
@@ -105,7 +106,11 @@ public class Utente {
         }
     }
 
+    public boolean isAdmin() {
+        return admin;
+    }
 
-
-
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
 }

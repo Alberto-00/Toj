@@ -6,6 +6,7 @@ public class Articolo {
     private String colore, tipo, sesso, descrizione, taglia;
     private double prezzo;
     private int IDarticolo, quantita;
+    private double sconto;
 
     //Constructor
     public Articolo(){
@@ -75,5 +76,13 @@ public class Articolo {
 
     public void setQuantita(int quantita) {
         this.quantita = quantita;
+    }
+
+    public double getSconto() {
+        return sconto;
+    }
+
+    public void setSconto(double sconto) {
+        this.sconto = sconto;
     }
 }
