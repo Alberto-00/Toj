@@ -2,16 +2,40 @@ DROP database if exists toj_sitoweb;
 CREATE DATABASE toj_sitoweb;
 USE toj_sitoweb;
 
+CREATE TABLE Categoria(
+	ID_categoria INT UNSIGNED PRIMARY KEY,
+    Nome VARCHAR(20)
+); 
+
 CREATE TABLE Articolo(
-	ID_articolo INT UNSIGNED auto_increment PRIMARY KEY,
-	Colore VARCHAR(15) NOT NULL,
+	ID_articolo INT UNSIGNED PRIMARY KEY,
     Prezzo DOUBLE(5,2) default 0.00,
     Quantita INT UNSIGNED default 0,
-    Tipo VARCHAR(50) NOT NULL,
     Taglia VARCHAR(4) NOT NULL,
     Sesso CHAR(1) NOT NULL,
     Descrizione TEXT,
-    sconto DOUBLE default 0
+    sconto DOUBLE default 0,
+    ID_categoria INT UNSIGNED NOT NULL,
+    foreign key (ID_categoria) references Categoria (ID_categoria)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+); 
+
+CREATE TABLE Colore(
+	cod_esadecimale VARCHAR(10) PRIMARY KEY,
+    Nome VARCHAR(20) NOT NULL
+); 
+
+CREATE TABLE Tinta(
+	cod_esadecimale VARCHAR(10) NOT NULL,
+    ID_articolo INT UNSIGNED NOT NULL,
+    foreign key (cod_esadecimale) references Colore (cod_esadecimale)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE,
+    foreign key (ID_articolo) references Articolo (ID_articolo)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE,
+	PRIMARY KEY(ID_articolo, cod_esadecimale)
 ); 
 
 CREATE TABLE Account_User(
@@ -37,13 +61,17 @@ CREATE TABLE Cod_sconto(
     data_scadenza DATE NOT NULL,
 	sconto DOUBLE default 0 NOT NULL,
     ID_ordine VARCHAR(10) NOT NULL,
+    Email VARCHAR(100) NOT NULL,
     foreign key (ID_ordine) references Ordine (ID_ordine)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE,
+    foreign key (Email) references Account_User (Email)
     ON UPDATE CASCADE
     ON DELETE CASCADE
 );
 
 CREATE TABLE Composizione(
-	ID_articolo INT UNSIGNED auto_increment NOT NULL,
+	ID_articolo INT UNSIGNED NOT NULL,
     ID_ordine VARCHAR(10) NOT NULL,
     Quantita_articolo INT UNSIGNED DEFAULT 0,
 	foreign key (ID_articolo) references Articolo (ID_articolo)
