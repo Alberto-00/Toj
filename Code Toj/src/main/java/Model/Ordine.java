@@ -11,6 +11,11 @@ public class Ordine {
     private String descrizione;
     private Utente user;
 
+    public Ordine(){
+        super();
+        user = new Utente();
+    }
+
     public String getID_ordine() {
         return ID_ordine;
     }

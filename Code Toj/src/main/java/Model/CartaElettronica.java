@@ -9,6 +9,7 @@ public class CartaElettronica {
     //Constructor
     public CartaElettronica(){
         super();
+        user = new Utente();
     }
 
     //Getter & Setter

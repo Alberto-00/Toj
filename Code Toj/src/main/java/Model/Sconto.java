@@ -11,6 +11,7 @@ public class Sconto {
 
     public Sconto(){
         super();
+        ordine = new Ordine();
     }
 
     public String getOrdineID(){
