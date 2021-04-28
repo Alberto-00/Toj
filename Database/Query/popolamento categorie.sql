@@ -1,3 +1,4 @@
+USE toj_sitoweb;
 INSERT INTO categoria (ID_categoria, Nome) VALUES (1, 'Cappotti');
 INSERT INTO categoria (ID_categoria, Nome) VALUES (2, 'Giacche');
 INSERT INTO categoria (ID_categoria, Nome) VALUES (3, 'Costumi');

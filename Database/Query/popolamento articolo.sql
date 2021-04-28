@@ -1,3 +1,4 @@
+USE toj_sitoweb;
 INSERT INTO articolo (ID_articolo, Prezzo, Quantita, Sesso, Descrizione, sconto, ID_categoria) VALUES (1, 38, 325, 'M', 'Cappotti da uomo Tasca Colore unico Ufficio', 0, 1);
 INSERT INTO articolo (ID_articolo, Prezzo, Quantita, Sesso, Descrizione, sconto, ID_categoria) VALUES (2, 38, 325, 'M', 'Cappotti da uomo Tasca Colore unico Ufficio', 0, 1);
 INSERT INTO articolo (ID_articolo, Prezzo, Quantita, Sesso, Descrizione, sconto, ID_categoria) VALUES (3, 41, 325, 'M', 'Cappotto a quadri con bottone da uomo', 0, 1);

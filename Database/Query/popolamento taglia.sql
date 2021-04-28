@@ -1,3 +1,4 @@
+USE toj_sitoweb;
 INSERT INTO taglia (id_nome) VALUES ('L');
 INSERT INTO taglia (id_nome) VALUES ('M');
 INSERT INTO taglia (id_nome) VALUES ('S');
