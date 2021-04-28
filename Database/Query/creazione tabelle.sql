@@ -11,7 +11,6 @@ CREATE TABLE Articolo(
 	ID_articolo INT UNSIGNED PRIMARY KEY,
     Prezzo DOUBLE(5,2) default 0.00,
     Quantita INT UNSIGNED default 0,
-    Taglia VARCHAR(4) NOT NULL,
     Sesso CHAR(1) NOT NULL,
     Descrizione TEXT,
     sconto DOUBLE default 0,
@@ -27,8 +26,8 @@ CREATE TABLE Colore(
 ); 
 
 CREATE TABLE Tinta(
-	cod_esadecimale VARCHAR(10) NOT NULL,
-    ID_articolo INT UNSIGNED NOT NULL,
+	cod_esadecimale VARCHAR(10),
+    ID_articolo INT UNSIGNED,
     foreign key (cod_esadecimale) references Colore (cod_esadecimale)
     ON UPDATE CASCADE
     ON DELETE CASCADE,
@@ -36,6 +35,22 @@ CREATE TABLE Tinta(
     ON UPDATE CASCADE
     ON DELETE CASCADE,
 	PRIMARY KEY(ID_articolo, cod_esadecimale)
+); 
+
+CREATE TABLE Taglia(
+	id_nome VARCHAR(5) PRIMARY KEY
+); 
+
+CREATE TABLE Size(
+	id_nome VARCHAR(5),
+    ID_articolo INT UNSIGNED,
+    foreign key (id_nome) references Taglia (id_nome)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE,
+    foreign key (ID_articolo) references Articolo (ID_articolo)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE,
+    PRIMARY KEY(ID_articolo, id_nome)
 ); 
 
 CREATE TABLE Account_User(
@@ -71,8 +86,8 @@ CREATE TABLE Cod_sconto(
 );
 
 CREATE TABLE Composizione(
-	ID_articolo INT UNSIGNED NOT NULL,
-    ID_ordine VARCHAR(10) NOT NULL,
+	ID_articolo INT UNSIGNED,
+    ID_ordine VARCHAR(10),
     Quantita_articolo INT UNSIGNED DEFAULT 0,
 	foreign key (ID_articolo) references Articolo (ID_articolo)
     ON UPDATE CASCADE
