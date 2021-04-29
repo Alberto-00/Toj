@@ -1324,68 +1324,73 @@ ID_ordine</ColNames>
       <DataType>int unsigned|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="363" parent="295" name="id_nome">
+    <column id="363" parent="295" name="Quantita">
+      <Position>3</Position>
+      <DataType>int unsigned|0s</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <index id="364" parent="295" name="id_nome">
       <ColNames>id_nome</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="364" parent="295" name="PRIMARY">
+    <key id="365" parent="295" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID_articolo
 id_nome</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="365" parent="295" name="size_ibfk_1">
+    <foreign-key id="366" parent="295" name="size_ibfk_1">
       <ColNames>id_nome</ColNames>
       <RefTableName>taglia</RefTableName>
       <RefColNames>id_nome</RefColNames>
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="366" parent="295" name="size_ibfk_2">
+    <foreign-key id="367" parent="295" name="size_ibfk_2">
       <ColNames>ID_articolo</ColNames>
       <RefTableName>articolo</RefTableName>
       <RefColNames>ID_articolo</RefColNames>
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="367" parent="296" name="id_nome">
+    <column id="368" parent="296" name="id_nome">
       <Position>1</Position>
       <DataType>varchar(5)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="368" parent="296" name="PRIMARY">
+    <key id="369" parent="296" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id_nome</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="369" parent="297" name="cod_esadecimale">
+    <column id="370" parent="297" name="cod_esadecimale">
       <Position>1</Position>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="370" parent="297" name="ID_articolo">
+    <column id="371" parent="297" name="ID_articolo">
       <Position>2</Position>
       <DataType>int unsigned|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="371" parent="297" name="cod_esadecimale">
+    <index id="372" parent="297" name="cod_esadecimale">
       <ColNames>cod_esadecimale</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="372" parent="297" name="PRIMARY">
+    <key id="373" parent="297" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID_articolo
 cod_esadecimale</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="373" parent="297" name="tinta_ibfk_1">
+    <foreign-key id="374" parent="297" name="tinta_ibfk_1">
       <ColNames>cod_esadecimale</ColNames>
       <RefTableName>colore</RefTableName>
       <RefColNames>cod_esadecimale</RefColNames>
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="374" parent="297" name="tinta_ibfk_2">
+    <foreign-key id="375" parent="297" name="tinta_ibfk_2">
       <ColNames>ID_articolo</ColNames>
       <RefTableName>articolo</RefTableName>
       <RefColNames>ID_articolo</RefColNames>
