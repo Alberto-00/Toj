@@ -239,7 +239,7 @@ INSERT INTO articolo (ID_articolo, Prezzo, Quantita, Sesso, Descrizione, sconto,
 INSERT INTO articolo (ID_articolo, Prezzo, Quantita, Sesso, Descrizione, sconto, ID_categoria) VALUES (238, 27, 325, 'F', 'Cappotti Tasca Colore unico Casual', 0, 1);
 INSERT INTO articolo (ID_articolo, Prezzo, Quantita, Sesso, Descrizione, sconto, ID_categoria) VALUES (239, 27, 325, 'F', 'Cappotti Tasca Colore unico Casual', 0, 1);
 INSERT INTO articolo (ID_articolo, Prezzo, Quantita, Sesso, Descrizione, sconto, ID_categoria) VALUES (240, 20, 325, 'F', 'Cappotto a quadri con spalle cadenti e orlo curvo', 0, 1);
-INSERT INTO toj_sitoweb.articolo (ID_articolo, Prezzo, Quantita, Sesso, Descrizione, sconto, ID_categoria) VALUES (241, 27, 325, 'F', 'Cappotto a quadri con tasca e orlo curvo', 0, 1);
+INSERT INTO articolo (ID_articolo, Prezzo, Quantita, Sesso, Descrizione, sconto, ID_categoria) VALUES (241, 27, 325, 'F', 'Cappotto a quadri con tasca e orlo curvo', 0, 1);
 INSERT INTO articolo (ID_articolo, Prezzo, Quantita, Sesso, Descrizione, sconto, ID_categoria) VALUES (242, 27, 325, 'F', 'Cappotto a quadri con tasca e orlo curvo', 0, 1);
 INSERT INTO articolo (ID_articolo, Prezzo, Quantita, Sesso, Descrizione, sconto, ID_categoria) VALUES (243, 27, 325, 'F', 'Cappotto a quadri con tasca e orlo curvo', 0, 1);
 INSERT INTO articolo (ID_articolo, Prezzo, Quantita, Sesso, Descrizione, sconto, ID_categoria) VALUES (244, 9, 325, 'F', 'Cappotto aperto frontale con dettaglio tasca', 0, 1);
