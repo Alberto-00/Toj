@@ -10,7 +10,6 @@ CREATE TABLE Categoria(
 CREATE TABLE Articolo(
 	ID_articolo INT UNSIGNED PRIMARY KEY,
     Prezzo DOUBLE(5,2) default 0.00,
-    Quantita INT UNSIGNED default 0,
     Sesso CHAR(1) NOT NULL,
     Descrizione TEXT,
     sconto DOUBLE default 0,
@@ -44,6 +43,7 @@ CREATE TABLE Taglia(
 CREATE TABLE Size(
 	id_nome VARCHAR(5),
     ID_articolo INT UNSIGNED,
+    Quantita INT UNSIGNED default 0,
     foreign key (id_nome) references Taglia (id_nome)
     ON UPDATE CASCADE
     ON DELETE CASCADE,
