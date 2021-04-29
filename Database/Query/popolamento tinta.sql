@@ -1,3 +1,4 @@
+USE toj_sitoweb;
 INSERT INTO tinta (cod_esadecimale, ID_articolo) VALUES ('#000000', 2);
 INSERT INTO tinta (cod_esadecimale, ID_articolo) VALUES ('#000000', 8);
 INSERT INTO tinta (cod_esadecimale, ID_articolo) VALUES ('#000000', 13);

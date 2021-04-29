@@ -1,3 +1,4 @@
+USE toj_sitoweb;
 INSERT INTO colore (cod_esadecimale, Nome) VALUES ('#000000', 'Nero');
 INSERT INTO colore (cod_esadecimale, Nome) VALUES ('#000080', 'Blu');
 INSERT INTO colore (cod_esadecimale, Nome) VALUES ('#006400', 'Verde scuro');
