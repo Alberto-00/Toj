@@ -4,7 +4,7 @@ USE toj_sitoweb;
 
 CREATE TABLE Categoria(
 	ID_categoria INT UNSIGNED PRIMARY KEY,
-    Nome VARCHAR(20)
+    Nome VARCHAR(20) NOT NULL
 ); 
 
 CREATE TABLE Articolo(
@@ -62,10 +62,10 @@ CREATE TABLE Account_User(
 CREATE TABLE Ordine(
 	ID_ordine VARCHAR(10) PRIMARY KEY,
 	data_acquisto DATE NOT NULL,
-    pacchetto_regalo BOOLEAN DEFAULT false,
+    pacchetto_regalo BOOLEAN DEFAULT false NOT NULL,
     data_spedizione DATE NOT NULL,
     Descrizione TEXT,
-    Email VARCHAR(100) NOT NULL,
+    Email VARCHAR(100),
     foreign key (Email) references Account_User (Email)
     ON UPDATE CASCADE
     ON DELETE CASCADE
@@ -74,15 +74,31 @@ CREATE TABLE Ordine(
 CREATE TABLE Cod_sconto(
 	codice VARCHAR(10) PRIMARY KEY,
     data_scadenza DATE NOT NULL,
-	sconto DOUBLE default 0 NOT NULL,
-    ID_ordine VARCHAR(10) NOT NULL,
-    Email VARCHAR(100) NOT NULL,
+	sconto DOUBLE default 0 NOT NULL
+);
+
+CREATE TABLE Posseduto(
+	codice VARCHAR(10),
+    ID_ordine VARCHAR(100),
+    foreign key (codice) references Cod_sconto (codice)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE,
     foreign key (ID_ordine) references Ordine (ID_ordine)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE,
+    PRIMARY KEY (codice)
+);
+
+CREATE TABLE Applicato(
+	codice VARCHAR(10),
+    Email VARCHAR(100),
+    foreign key (codice) references Cod_sconto (codice)
     ON UPDATE CASCADE
     ON DELETE CASCADE,
     foreign key (Email) references Account_User (Email)
     ON UPDATE CASCADE
-    ON DELETE CASCADE
+    ON DELETE CASCADE,
+    PRIMARY KEY (codice)
 );
 
 CREATE TABLE Composizione(
@@ -101,7 +117,7 @@ CREATE TABLE Composizione(
 CREATE TABLE Carta_elettronica(
 	Codice_carta VARCHAR(25) PRIMARY KEY,
     Descrizione VARCHAR(30) NOT NULL,
-    Email VARCHAR(100) NOT NULL,
+    Email VARCHAR(100),
     foreign key (Email) references Account_User (Email)
     ON UPDATE CASCADE
     ON DELETE CASCADE
@@ -115,7 +131,7 @@ CREATE TABLE Dati_cliente(
     Via VARCHAR(100) NOT NULL,
     N_civico VARCHAR(10) NOT NULL,
     CAP CHAR(10) NOT NULL,
-    Email CHAR(100) NOT NULL,
+    Email CHAR(100),
     foreign key (Email) references Account_User (Email)
     ON UPDATE CASCADE
     ON DELETE CASCADE
