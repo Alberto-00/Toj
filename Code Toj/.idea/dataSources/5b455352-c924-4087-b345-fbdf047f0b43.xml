@@ -1070,14 +1070,14 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <DataType>double|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="315" parent="288" name="ID_categoria">
+    <column id="315" parent="288" name="data_inserimento">
       <Position>6</Position>
-      <DataType>int unsigned|0s</DataType>
+      <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="316" parent="288" name="data_inserimento">
+    <column id="316" parent="288" name="ID_categoria">
       <Position>7</Position>
-      <DataType>date|0s</DataType>
+      <DataType>int unsigned|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <index id="317" parent="288" name="ID_categoria">
