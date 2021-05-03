@@ -1,18 +1,21 @@
 package Model.Articolo;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface ArticoloDAO <E extends Exception>{
 
-    List<Articolo> fetchArticolo(String attribute) throws E;
+    List<Articolo> fetchArticolo(String sesso) throws E;
 
-    List<Articolo> fetchArticolo(int id_categoria) throws E;
+    List<Articolo> fetchArticolo(String sesso, int id_categoria) throws E;
 
-    List<Articolo> fetchArticolo(String categoria, String sesso) throws E;
+    List<Articolo> fetchArticolo(String sesso, double prezzo) throws E;
 
-    List<Articolo> fetchArticolo(String taglia, String sesso, String categoria) throws E;
+    List<Articolo> fetchArticolo(String taglia, String sesso) throws E;
 
-    Articolo fetchArticolo(String ... field) throws E;
+    List<Articolo> fetchArticolo(String sesso, LocalDate date) throws E;
+
+    List<Articolo> fetchArticolo(String descrizione) throws E;
 
     boolean createArticolo(Articolo articolo) throws E;
 

@@ -1,13 +1,9 @@
 package Model.Ordine;
 
-import Model.Carta_Elettronica.CartaElettronica;
-import Model.Carta_Elettronica.CartaElettronicaExtractor;
-import Model.Utente.Utente;
 import Model.storage.ConPool;
 import Model.storage.QueryBuilder;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 

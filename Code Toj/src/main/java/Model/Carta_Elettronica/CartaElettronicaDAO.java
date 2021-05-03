@@ -1,8 +1,5 @@
 package Model.Carta_Elettronica;
 
-import Model.Articolo.Articolo;
-import Model.Utente.Utente;
-
 import java.util.List;
 
 public interface CartaElettronicaDAO<E extends Exception>{
