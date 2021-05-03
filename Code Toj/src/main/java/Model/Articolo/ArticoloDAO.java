@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface ArticoloDAO <E extends Exception>{
 
-    List<Articolo> fetchArticolo(String sesso) throws E;
+    List<Articolo> fetchArticoloBySex(String sesso) throws E;
 
     List<Articolo> fetchArticolo(String sesso, int id_categoria) throws E;
 
@@ -15,7 +15,7 @@ public interface ArticoloDAO <E extends Exception>{
 
     List<Articolo> fetchArticolo(String sesso, LocalDate date) throws E;
 
-    List<Articolo> fetchArticolo(String descrizione) throws E;
+    List<Articolo> fetchArticoloByDesc(String descrizione) throws E;
 
     boolean createArticolo(Articolo articolo) throws E;
 
