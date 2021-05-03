@@ -1,4 +1,4 @@
-package Model;
+package Model.Colore;
 
 import Model.Articolo.Articolo;
 

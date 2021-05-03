@@ -1,4 +1,6 @@
-package Model;
+package Model.Carta_Elettronica;
+
+import Model.Utente.Utente;
 
 public class CartaElettronica {
 

@@ -1,8 +1,8 @@
 package Model.Articolo;
 
-import Model.Categoria;
-import Model.Colore;
-import Model.Taglia;
+import Model.Categoria.Categoria;
+import Model.Colore.Colore;
+import Model.Taglia.Taglia;
 
 import java.util.List;
 

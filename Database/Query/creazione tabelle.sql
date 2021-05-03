@@ -13,6 +13,7 @@ CREATE TABLE Articolo(
     Sesso CHAR(1) NOT NULL,
     Descrizione TEXT,
     sconto DOUBLE default 0,
+    data_inserimento DATE NOT NULL,
     ID_categoria INT UNSIGNED NOT NULL,
     foreign key (ID_categoria) references Categoria (ID_categoria)
     ON UPDATE CASCADE

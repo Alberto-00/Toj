@@ -1,4 +1,4 @@
-package Model;
+package Model.Taglia;
 
 import Model.Articolo.Articolo;
 

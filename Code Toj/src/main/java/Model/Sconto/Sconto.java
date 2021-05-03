@@ -1,4 +1,7 @@
-package Model;
+package Model.Sconto;
+
+import Model.Ordine.Ordine;
+import Model.Utente.Utente;
 
 import java.time.LocalDate;
 

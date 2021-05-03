@@ -1,6 +1,8 @@
-package Model;
+package Model.Ordine;
 
 import Model.Articolo.Articolo;
+import Model.Sconto.Sconto;
+import Model.Utente.Utente;
 
 import java.time.LocalDate;
 import java.util.List;

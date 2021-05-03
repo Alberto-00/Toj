@@ -1,12 +1,14 @@
-package Model;
+package Model.Categoria;
 
 import Model.Articolo.Articolo;
+
+import java.util.List;
 
 public class Categoria {
 
     private int id_categoria;
     private String nome;
-    private Articolo articolo;
+    private List<Articolo> articolo;
 
     public Categoria(){
         super();
@@ -28,11 +30,11 @@ public class Categoria {
         this.nome = nome;
     }
 
-    public Articolo getArticolo() {
+    public List<Articolo> getArticolo() {
         return articolo;
     }
 
-    public void setArticolo(Articolo articolo) {
+    public void setArticolo(List<Articolo> articolo) {
         this.articolo = articolo;
     }
 }

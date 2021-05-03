@@ -1,6 +1,7 @@
 package Model;
 
 import Model.Articolo.Articolo;
+import Model.storage.ConPool;
 
 import java.sql.*;
 import java.util.ArrayList;

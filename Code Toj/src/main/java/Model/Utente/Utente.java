@@ -1,11 +1,14 @@
-package Model;
+package Model.Utente;
+
+import Model.Carta_Elettronica.CartaElettronica;
+import Model.Dati_utente.DatiUtente;
+import Model.Ordine.Ordine;
+import Model.Sconto.Sconto;
 
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.time.LocalDate;
-import java.util.List;
+import java.security.NoSuchAlgorithmException;import java.util.List;
 
 public class Utente {
 
@@ -16,72 +19,7 @@ public class Utente {
     private List<Ordine> ordini;
     private List<Sconto> codSconto;
     private List<CartaElettronica> cartePay;
-
-    //Dati Anagrafici dell'utente
-    private String cognome;
-    private String nome;
-    private LocalDate dataDiNascita;
-    private String via;
-    private String numeroCivico;
-    private String CAP;
-    private String numeroTelefonico;
-
-    //Getter & Setter
-    public String getCognome() {
-        return cognome;
-    }
-
-    public void setCognome(String cognome) {
-        this.cognome = cognome;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public LocalDate getDataDiNascita() {
-        return dataDiNascita;
-    }
-
-    public void setDataDiNascita(LocalDate dataDiNascita) {
-        this.dataDiNascita = dataDiNascita;
-    }
-
-    public String getVia() {
-        return via;
-    }
-
-    public void setVia(String via) {
-        this.via = via;
-    }
-
-    public String getNumeroCivico() {
-        return numeroCivico;
-    }
-
-    public void setNumeroCivico(String numeroCivico) {
-        this.numeroCivico = numeroCivico;
-    }
-
-    public String getCAP() {
-        return CAP;
-    }
-
-    public void setCAP(String CAP) {
-        this.CAP = CAP;
-    }
-
-    public String getNumeroTelefonico() {
-        return numeroTelefonico;
-    }
-
-    public void setNumeroTelefonico(String numeroTelefonico) {
-        this.numeroTelefonico = numeroTelefonico;
-    }
+    private DatiUtente dtUser;
 
     public Utente(){
         super();
@@ -140,5 +78,13 @@ public class Utente {
 
     public void setCartePay(List<CartaElettronica> cartePay) {
         this.cartePay = cartePay;
+    }
+
+    public DatiUtente getDtUser() {
+        return dtUser;
+    }
+
+    public void setDtUser(DatiUtente dtUser) {
+        this.dtUser = dtUser;
     }
 }

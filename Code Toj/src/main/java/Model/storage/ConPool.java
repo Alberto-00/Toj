@@ -1,4 +1,4 @@
-package Model;
+package Model.storage;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
