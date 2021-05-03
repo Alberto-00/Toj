@@ -20,7 +20,7 @@ body {
     display: grid;
     grid-template-areas:
     'header header header header header header'
-    'left left middle middle right right'
+    'left left left right right right'
     'footer footer footer footer footer footer';
     /* grid-column-gap: 10px; - gap tra colonne se necessario */
 }
