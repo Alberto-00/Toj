@@ -1,0 +1,17 @@
+package Model.Carta_Elettronica;
+
+import Model.Articolo.Articolo;
+import Model.Utente.Utente;
+
+import java.util.List;
+
+public interface CartaElettronicaDAO<E extends Exception>{
+
+    List<CartaElettronica> fetchCartaElettronica(Utente user) throws E;
+
+    boolean createCartaElettronica(CartaElettronica payCard) throws E;
+
+    boolean updateCartaElettronica(CartaElettronica payCard) throws E;
+
+    boolean deleteCartaElettronica(CartaElettronica payCard) throws E;
+}

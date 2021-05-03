@@ -3,10 +3,9 @@ package Model.Articolo;
 import Model.Categoria.Categoria;
 import Model.storage.ConPool;
 import Model.storage.QueryBuilder;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,7 +84,8 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
     public boolean updateArticolo(Articolo articolo) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
             QueryBuilder queryBuilder = new QueryBuilder("articolo", "ar");
-            queryBuilder.update("ID_articolo", "Prezzo", "Sesso", "Descrizione", "sconto").where("ar.ID_articolo=?");
+            queryBuilder.update("ID_articolo", "Prezzo", "Sesso", "Descrizione", "sconto", "data_inserimento",
+                    "ID_categoria").where("ar.ID_articolo=?");
             try (PreparedStatement ps = con.prepareStatement(queryBuilder.generateQuery())) {
                 ps.setInt(1, articolo.getIDarticolo());
                 ps.setDouble(2, articolo.getPrezzo());
@@ -93,6 +93,8 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
                 ps.setString(4, articolo.getDescrizione());
                 ps.setDouble(5, articolo.getSconto());
                 ps.setDouble(6, articolo.getIDarticolo());
+                ps.setDate(7, Date.valueOf(articolo.getData_inserimento()));
+                ps.setInt(8, articolo.getCategoria().getId_categoria());
                 int rows = ps.executeUpdate();
                 return rows == 1;
             }

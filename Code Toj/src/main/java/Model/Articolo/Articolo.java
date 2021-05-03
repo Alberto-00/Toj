@@ -4,6 +4,7 @@ import Model.Categoria.Categoria;
 import Model.Colore.Colore;
 import Model.Taglia.Taglia;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class Articolo {
@@ -12,6 +13,7 @@ public class Articolo {
     private String sesso, descrizione;
     private double prezzo, sconto;
     private int IDarticolo;
+    private LocalDate data_inserimento;
     private Categoria categoria;
     private List<Taglia> taglie;
     private List<Colore> colori;
@@ -84,5 +86,13 @@ public class Articolo {
 
     public void setColori(List<Colore> colori) {
         this.colori = colori;
+    }
+
+    public LocalDate getData_inserimento() {
+        return data_inserimento;
+    }
+
+    public void setData_inserimento(LocalDate data_inserimento) {
+        this.data_inserimento = data_inserimento;
     }
 }

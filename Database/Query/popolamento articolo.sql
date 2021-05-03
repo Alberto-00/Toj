@@ -1,7 +1,7 @@
+USE toj_sitoweb;
 INSERT INTO toj_sitoweb.articolo (ID_articolo, Prezzo, Sesso, Descrizione, sconto, ID_categoria, data_inserimento) VALUES (1, 38, 'M', 'Cappotti da uomo Tasca Colore unico Ufficio', 0, 1, '2021-05-03');
 INSERT INTO toj_sitoweb.articolo (ID_articolo, Prezzo, Sesso, Descrizione, sconto, ID_categoria, data_inserimento) VALUES (2, 38, 'M', 'Cappotti da uomo Tasca Colore unico Ufficio', 0, 1, '2021-05-03');
 INSERT INTO toj_sitoweb.articolo (ID_articolo, Prezzo, Sesso, Descrizione, sconto, ID_categoria, data_inserimento) VALUES (3, 41, 'M', 'Cappotto a quadri con bottone da uomo', 0, 1, '2021-05-03');
-USE toj_sitoweb;
 INSERT INTO toj_sitoweb.articolo (ID_articolo, Prezzo, Sesso, Descrizione, sconto, ID_categoria, data_inserimento) VALUES (4, 30, 'M', 'Cappotto a quadri con bottone e collo a V dentellato', 0, 1, '2021-05-03');
 INSERT INTO toj_sitoweb.articolo (ID_articolo, Prezzo, Sesso, Descrizione, sconto, ID_categoria, data_inserimento) VALUES (5, 27, 'M', 'Cappotto a quadri con doppia tasca', 0, 1, '2021-05-03');
 INSERT INTO toj_sitoweb.articolo (ID_articolo, Prezzo, Sesso, Descrizione, sconto, ID_categoria, data_inserimento) VALUES (6, 44, 'M', 'Cappotto con cappuccio con doppio petto da uomo', 0, 1, '2021-05-03');
