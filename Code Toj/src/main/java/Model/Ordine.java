@@ -59,8 +59,4 @@ public class Ordine {
     private String getEmailUser(){
         return user.getEmail();
     }
-
-    private void setEmailUser(String email){
-        this.user.setEmail(email);
-    }
 }

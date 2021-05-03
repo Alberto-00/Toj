@@ -3,33 +3,18 @@ package Model;
 public class Articolo {
 
     //Dati dell'articolo
-    private String colore, tipo, sesso, descrizione, taglia;
-    private double prezzo;
-    private int IDarticolo, quantita;
-    private double sconto;
+    private String sesso, descrizione;
+    private double prezzo, sconto;
+    private int IDarticolo;
+    private final Categoria categoria;
 
     //Constructor
     public Articolo(){
         super();
+        categoria = new Categoria();
     }
 
     //Getter & Setter
-    public String getColore() {
-        return colore;
-    }
-
-    public void setColore(String colore) {
-        this.colore = colore;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
     public String getSesso() {
         return sesso;
     }
@@ -44,14 +29,6 @@ public class Articolo {
 
     public void setDescrizione(String descrizione) {
         this.descrizione = descrizione;
-    }
-
-    public String getTaglia() {
-        return taglia;
-    }
-
-    public void setTaglia(String taglia) {
-        this.taglia = taglia;
     }
 
     public double getPrezzo() {
@@ -70,14 +47,6 @@ public class Articolo {
         this.IDarticolo = IDarticolo;
     }
 
-    public int getQuantita() {
-        return quantita;
-    }
-
-    public void setQuantita(int quantita) {
-        this.quantita = quantita;
-    }
-
     public double getSconto() {
         return sconto;
     }
@@ -85,4 +54,9 @@ public class Articolo {
     public void setSconto(double sconto) {
         this.sconto = sconto;
     }
+
+    public int getIdCategoria(){
+        return categoria.getId_categoria();
+    }
+
 }

@@ -17,10 +17,6 @@ public class CartaElettronica {
         return user.getEmail();
     }
 
-    public void setEmailUser(String email) {
-        user.setEmail(email);
-    }
-
     public String getIDcarta() {
         return IDcarta;
     }

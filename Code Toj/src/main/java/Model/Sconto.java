@@ -7,19 +7,9 @@ public class Sconto {
     private String codice;
     private Date dataScadenza;
     private double sconto;
-    private Ordine ordine;
 
     public Sconto(){
         super();
-        ordine = new Ordine();
-    }
-
-    public String getOrdineID(){
-        return ordine.getID_ordine();
-    }
-
-    public void setOrdineID(String id){
-        this.ordine.setID_ordine(id);
     }
 
     public String getCodice() {
