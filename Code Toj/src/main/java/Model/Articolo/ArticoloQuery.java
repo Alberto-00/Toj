@@ -1,4 +1,5 @@
 package Model.Articolo;
 
-public class ArticoloQuery {
+public class ArticoloQuery extends {
+
 }
