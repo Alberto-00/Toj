@@ -9,7 +9,7 @@ public class ScontoDAO {
         super();
     }
 
-    public Sconto doRetrieveAllByID(String codice) {
+   /* public Sconto doRetrieveAllByID(String codice) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps =
                     con.prepareStatement("SELECT * FROM cod_sconto, ordine " +
@@ -59,5 +59,5 @@ public class ScontoDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
+    }*/
 }

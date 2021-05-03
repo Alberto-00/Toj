@@ -9,7 +9,7 @@ public class OrdineDAO {
         super();
     }
 
-    public List<Ordine> doRetrieveAll(String email) {
+   /* public List<Ordine> doRetrieveAll(String email) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps =
                     con.prepareStatement("SELECT * FROM ordine");
@@ -83,5 +83,5 @@ public class OrdineDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
+    }*/
 }

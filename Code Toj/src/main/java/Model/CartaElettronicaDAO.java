@@ -19,7 +19,7 @@ public class CartaElettronicaDAO {
                 CartaElettronica payCard = new CartaElettronica();
                 payCard.setIDcarta(rs.getString("Codice_carta"));
                 payCard.setDescrizione(rs.getString("Descrizione"));
-                payCard.setEmailUser(rs.getString("Email"));
+                //payCard.setEmailUser(rs.getString("Email"));
                 ps.close();
                 rs.close();
                 return payCard;
@@ -41,7 +41,7 @@ public class CartaElettronicaDAO {
                 CartaElettronica payCard = new CartaElettronica();
                 payCard.setIDcarta(rs.getString("Codice_carta"));
                 payCard.setDescrizione(rs.getString("Descrizione"));
-                payCard.setEmailUser(rs.getString("Email"));
+                //payCard.setEmailUser(rs.getString("Email"));
                 payCards.add(payCard);
             }
             ps.close();
@@ -59,7 +59,7 @@ public class CartaElettronicaDAO {
                             "VALUES(?,?,?)");
             ps.setString(1, payCard.getIDcarta());
             ps.setString(2, payCard.getDescrizione());
-            ps.setString(3, payCard.getEmail());
+            //ps.setString(3, payCard.getEmail());
             if (ps.executeUpdate() != 1) {
                 throw new RuntimeException("INSERT error.");
             }
@@ -82,7 +82,7 @@ public class CartaElettronicaDAO {
         }
     }
 
-    public void doUpdatePayCard(CartaElettronica payCard){
+   /* public void doUpdatePayCard(CartaElettronica payCard){
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
                     "UPDATE carta_elettronica SET Descrizione='" + payCard.getDescrizione() + "', Descrizione='" +
@@ -93,5 +93,5 @@ public class CartaElettronicaDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
+    }*/
 }

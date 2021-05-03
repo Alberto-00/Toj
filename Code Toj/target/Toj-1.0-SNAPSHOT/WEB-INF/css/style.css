@@ -1,0 +1,34 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+/* header */
+.header{
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+}
+
+/* top navigator */
+.top-nav{
+    overflow: hidden;
+    background-color: gold;
+}
+
+.top-nav a{
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.top-nav a:hover{
+    background-color: #ddd;
+    color: black;
+}
