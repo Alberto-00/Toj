@@ -3,23 +3,78 @@
 }
 
 body {
-    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* header */
-.header{
+.header {
+    grid-area: header;
     background-color: #f1f1f1;
-    padding: 20px;
+    padding: 30px;
+    text-align: center;
+    font-size: 15px;
+}
+
+/* container */
+.grid-container {
+    display: grid;
+    grid-template-areas:
+    'header header header header header header'
+    'left left middle middle right right'
+    'footer footer footer footer footer footer';
+    /* grid-column-gap: 10px; - gap tra colonne se necessario */
+}
+
+.left,
+.middle,
+.right {
+    padding: 10px;
+    height: 300px; /*testing */
+}
+
+/* left column */
+.left {
+    grid-area: left;
+}
+
+/* middle column */
+.middle {
+    grid-area: middle;
+}
+
+/* right column */
+.right {
+    grid-area: right;
+}
+
+/* footer */
+.footer {
+    grid-area: footer;
+    background-color: #f1f1f1;
+    padding: 10px;
     text-align: center;
 }
 
-/* top navigator */
-.top-nav{
-    overflow: hidden;
-    background-color: gold;
+/* Responsive layout - colonne l'una sopra l'altra */
+@media (max-width: 600px) {
+    .grid-container  {
+        grid-template-areas:
+      'header header header header header header'
+      'left left left left left left'
+      'middle middle middle middle middle middle'
+      'right right right right right right'
+      'footer footer footer footer footer footer';
+    }
 }
 
-.top-nav a{
+
+/* topnav */
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+}
+
+.topnav a {
     float: left;
     display: block;
     color: #f2f2f2;
@@ -28,7 +83,39 @@ body {
     text-decoration: none;
 }
 
-.top-nav a:hover{
+.topnav a:hover {
     background-color: #ddd;
     color: black;
+}
+
+/* search */
+
+.topnav #search {
+    float: left;
+}
+
+.topnav #search input[type=text] {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+}
+
+.topnav #search button {
+    padding: 6px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+
+.topnav #search button:hover {
+    background: #ccc;
+}
+
+/* right-topnav */
+.topnav .right-topnav{
+    float: right;
 }

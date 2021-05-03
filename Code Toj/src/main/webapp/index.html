@@ -3,37 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="./css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
     <title>Tøj</title>
 </head>
 <body>
-    <div class="header">
-        test header
+    <div class="grid-container">
+        <div class="header">
+            <div class="topnav">
+                <!--Logo -->
+                <a href="index.html">Tøj(LOGO)</a>
+                <a href="Uomo">Uomo</a>
+                <a href="Donna">Donna</a>
+                <form action="MostraArticoli" id="search">
+                    <input type="text" placeholder="Cerca" name="searchTerm">
+                    <button type="submit">Invia</button>
+                </form>
+                <div class="right-topnav">
+                    <a href="#"> Accedi/Registrati </a>
+                    <a href="#">Carrello</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="left" style="background: black">left</div>
+        <div class="middle" style="background: gray">center</div>
+        <div class="right" style="background: white">right</div>
+
+        <div class="footer" >footer</div>
     </div>
-    <div class="top-nav">
-        <a href="Uomo">Uomo</a>
-        <a href="Donna">Donna</a>
-        <!--Logo -->
-        <a href="index.html">Tøj</a>
-        <a href="Carrello">Carrello</a>
-    </div>
-
-
-
-
-    <form action="Donna">
-        <input type="submit" name="tastoDonna" value="Donna">
-    </form>
-
-    <form action="Uomo">
-        <input type="submit" name="tastoUomo" value="Uomo">
-    </form>
-
-    <form action="MostraArticoli">
-        <input type="text" value="" placeholder="Cerca" name="searchTerm">
-    </form>
-
-    <img src="WEB-INF/images/homepage.jpg" width="1606.8" height="770.64">
 
 </body>
 </html>
