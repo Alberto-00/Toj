@@ -1,5 +1,7 @@
 package Model;
 
+import Model.Articolo.Articolo;
+
 public class Categoria {
 
     private int id_categoria;

@@ -1,6 +1,6 @@
 package Controller;
 
-import Model.Articolo;
+import Model.Articolo.Articolo;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

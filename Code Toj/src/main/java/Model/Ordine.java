@@ -1,5 +1,7 @@
 package Model;
 
+import Model.Articolo.Articolo;
+
 import java.time.LocalDate;
 import java.util.List;
 

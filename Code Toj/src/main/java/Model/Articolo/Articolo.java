@@ -1,4 +1,8 @@
-package Model;
+package Model.Articolo;
+
+import Model.Categoria;
+import Model.Colore;
+import Model.Taglia;
 
 import java.util.List;
 

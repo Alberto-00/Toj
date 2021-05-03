@@ -1,5 +1,7 @@
 package Model;
 
+import Model.Articolo.Articolo;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -22,7 +24,6 @@ public class ArticoloDAO {
                 articolo.setPrezzo(rs.getDouble("Prezzo"));
                 articolo.setSesso(rs.getString("Sesso"));
                 articolo.setSconto(rs.getDouble("sconto"));
-                articolo.set
                 ps.close();
                 rs.close();
                 return articolo;

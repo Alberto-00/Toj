@@ -1,5 +1,7 @@
 package Model;
 
+import Model.Articolo.Articolo;
+
 import java.util.List;
 
 public class Colore {

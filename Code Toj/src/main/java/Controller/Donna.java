@@ -1,6 +1,6 @@
 package Controller;
 
-import Model.Articolo;
+import Model.Articolo.Articolo;
 import Model.ArticoloDAO;
 
 import javax.servlet.*;
