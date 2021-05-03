@@ -1,6 +1,7 @@
 package Model.Carta_Elettronica;
 
 import Model.Utente.Utente;
+import Model.Utente.UtenteExtractor;
 import Model.storage.ConPool;
 import Model.storage.QueryBuilder;
 
@@ -15,16 +16,21 @@ public class SQLCartaElettronicaDAO implements CartaElettronicaDAO<SQLException>
     }
 
     @Override
-    public List<CartaElettronica> fetchCartaElettronica(Utente user) throws SQLException {
+    public List<CartaElettronica> fetchCartaElettronica(CartaElettronica payCard) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
             QueryBuilder queryBuilder = new QueryBuilder("carta_elettronica", "card");
             String query = queryBuilder.select().innerJoin("account_user", "ac")
                     .on("card.Email = ac.Email").where("ac.Email=?").generateQuery();
             try (PreparedStatement ps = con.prepareStatement(query)) {
-                ps.setString(1, user.getEmail());
+                ps.setString(1, payCard.getUser().getEmail());
                 ResultSet rs = ps.executeQuery();
                 CartaElettronicaExtractor cartaElettronicaExtractor = new CartaElettronicaExtractor();
                 List<CartaElettronica> payCards = new ArrayList<>();
+                if(rs.next()){
+                    UtenteExtractor utenteExtractor = new UtenteExtractor();
+                    payCards.get(0).setUser(new Utente());;
+                    payCards.get(0).setUser(utenteExtractor.extract(rs));
+                }
                 while (rs.next()){
                     payCards.add(cartaElettronicaExtractor.extract(rs));
                 }

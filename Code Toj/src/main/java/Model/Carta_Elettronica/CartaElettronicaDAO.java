@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CartaElettronicaDAO<E extends Exception>{
 
-    List<CartaElettronica> fetchCartaElettronica(Utente user) throws E;
+    List<CartaElettronica> fetchCartaElettronica(CartaElettronica payCard) throws E;
 
     boolean createCartaElettronica(CartaElettronica payCard) throws E;
 
