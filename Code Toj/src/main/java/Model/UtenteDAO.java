@@ -21,7 +21,7 @@ public class UtenteDAO {
                 user.setPassword(rs.getString("Password_User"));
                 user.setNome(rs.getString("Nome"));
                 user.setCognome(rs.getString("Cognome"));
-                user.setDataDiNascita(rs.getDate("ddn"));
+               // user.setDataDiNascita(rs.getDate("ddn"));
                 user.setNumeroTelefonico(rs.getString("Telefono"));
                 user.setVia(rs.getString("Via"));
                 user.setNumeroCivico(rs.getString("N_civico"));
@@ -51,7 +51,7 @@ public class UtenteDAO {
                 user.setPassword(rs.getString("Password_User"));
                 user.setNome(rs.getString("Nome"));
                 user.setCognome(rs.getString("Cognome"));
-                user.setDataDiNascita(rs.getDate("ddn"));
+                //user.setDataDiNascita(rs.getDate("ddn"));
                 user.setNumeroTelefonico(rs.getString("Telefono"));
                 user.setVia(rs.getString("Via"));
                 user.setNumeroCivico(rs.getString("N_civico"));
@@ -83,7 +83,7 @@ public class UtenteDAO {
                             "VALUES(?,?,?,?,?,?,?)");
             ps1.setString(1, user.getNome());
             ps1.setString(2, user.getCognome());
-            ps1.setDate(3, (Date) user.getDataDiNascita());
+            //ps1.setDate(3, (Date) user.getDataDiNascita());
             ps1.setString(4, user.getNumeroTelefonico());
             ps1.setString(5, user.getVia());
             ps1.setString(6, user.getNumeroCivico());
