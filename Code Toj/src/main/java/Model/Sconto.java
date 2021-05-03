@@ -1,12 +1,14 @@
 package Model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Sconto {
 
     private String codice;
-    private Date dataScadenza;
+    private LocalDate dataScadenza;
     private double sconto;
+    private Ordine ordine;
+    private Utente user;
 
     public Sconto(){
         super();
@@ -20,11 +22,11 @@ public class Sconto {
         this.codice = codice;
     }
 
-    public Date getDataScadenza() {
+    public LocalDate getDataScadenza() {
         return dataScadenza;
     }
 
-    public void setDataScadenza(Date dataScadenza) {
+    public void setDataScadenza(LocalDate dataScadenza) {
         this.dataScadenza = dataScadenza;
     }
 
@@ -34,5 +36,21 @@ public class Sconto {
 
     public void setSconto(double sconto) {
         this.sconto = sconto;
+    }
+
+    public Ordine getOrdine() {
+        return ordine;
+    }
+
+    public void setOrdine(Ordine ordine) {
+        this.ordine = ordine;
+    }
+
+    public Utente getUser() {
+        return user;
+    }
+
+    public void setUser(Utente user) {
+        this.user = user;
     }
 }

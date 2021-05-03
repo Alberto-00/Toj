@@ -1,8 +1,11 @@
 package Model;
 
+import java.util.List;
+
 public class Taglia {
 
     private String id_nome;
+    private List<Articolo> articoli;
 
     public Taglia(){
         super();
@@ -14,5 +17,13 @@ public class Taglia {
 
     public void setId_nome(String id_nome) {
         this.id_nome = id_nome;
+    }
+
+    public List<Articolo> getArticoli() {
+        return articoli;
+    }
+
+    public void setArticoli(List<Articolo> articoli) {
+        this.articoli = articoli;
     }
 }

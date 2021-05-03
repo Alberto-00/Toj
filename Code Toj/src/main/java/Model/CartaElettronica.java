@@ -9,14 +9,9 @@ public class CartaElettronica {
     //Constructor
     public CartaElettronica(){
         super();
-        user = new Utente();
     }
 
     //Getter & Setter
-    public String getEmail() {
-        return user.getEmail();
-    }
-
     public String getIDcarta() {
         return IDcarta;
     }
@@ -31,5 +26,13 @@ public class CartaElettronica {
 
     public void setDescrizione(String descrizione) {
         this.descrizione = descrizione;
+    }
+
+    public Utente getUser() {
+        return user;
+    }
+
+    public void setUser(Utente user) {
+        this.user = user;
     }
 }

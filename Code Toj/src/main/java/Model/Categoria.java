@@ -4,6 +4,7 @@ public class Categoria {
 
     private int id_categoria;
     private String nome;
+    private Articolo articolo;
 
     public Categoria(){
         super();
@@ -23,5 +24,13 @@ public class Categoria {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Articolo getArticolo() {
+        return articolo;
+    }
+
+    public void setArticolo(Articolo articolo) {
+        this.articolo = articolo;
     }
 }

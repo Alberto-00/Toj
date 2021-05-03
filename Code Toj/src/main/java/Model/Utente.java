@@ -4,7 +4,8 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.List;
 
 public class Utente {
 
@@ -12,11 +13,14 @@ public class Utente {
     private String email;
     private String password;
     private boolean admin;
+    private List<Ordine> ordini;
+    private List<Sconto> codSconto;
+    private List<CartaElettronica> cartePay;
 
     //Dati Anagrafici dell'utente
     private String cognome;
     private String nome;
-    private Date dataDiNascita;
+    private LocalDate dataDiNascita;
     private String via;
     private String numeroCivico;
     private String CAP;
@@ -39,11 +43,11 @@ public class Utente {
         this.nome = nome;
     }
 
-    public Date getDataDiNascita() {
+    public LocalDate getDataDiNascita() {
         return dataDiNascita;
     }
 
-    public void setDataDiNascita(Date dataDiNascita) {
+    public void setDataDiNascita(LocalDate dataDiNascita) {
         this.dataDiNascita = dataDiNascita;
     }
 
@@ -112,5 +116,29 @@ public class Utente {
 
     public void setAdmin(boolean admin) {
         this.admin = admin;
+    }
+
+    public List<Ordine> getOrdini() {
+        return ordini;
+    }
+
+    public void setOrdini(List<Ordine> ordini) {
+        this.ordini = ordini;
+    }
+
+    public List<Sconto> getCodSconto() {
+        return codSconto;
+    }
+
+    public void setCodSconto(List<Sconto> codSconto) {
+        this.codSconto = codSconto;
+    }
+
+    public List<CartaElettronica> getCartePay() {
+        return cartePay;
+    }
+
+    public void setCartePay(List<CartaElettronica> cartePay) {
+        this.cartePay = cartePay;
     }
 }

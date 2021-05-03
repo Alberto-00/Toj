@@ -1,14 +1,17 @@
 package Model;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.List;
 
 public class Ordine {
 
     private String ID_ordine;
-    private Date data_acquisto;
+    private LocalDate data_acquisto;
     private boolean pacchetto_regalo;
-    private Date data_spedizione;
+    private LocalDate data_spedizione;
     private String descrizione;
+    private List<Articolo> articoli;
+    private List<Sconto> codSconto;
     private Utente user;
 
     public Ordine(){
@@ -24,11 +27,11 @@ public class Ordine {
         this.ID_ordine = ID_ordine;
     }
 
-    public Date getData_acquisto() {
+    public LocalDate getData_acquisto() {
         return data_acquisto;
     }
 
-    public void setData_acquisto(Date data_acquisto) {
+    public void setData_acquisto(LocalDate data_acquisto) {
         this.data_acquisto = data_acquisto;
     }
 
@@ -40,11 +43,11 @@ public class Ordine {
         this.pacchetto_regalo = pacchetto_regalo;
     }
 
-    public Date getData_spedizione() {
+    public LocalDate getData_spedizione() {
         return data_spedizione;
     }
 
-    public void setData_spedizione(Date data_spedizione) {
+    public void setData_spedizione(LocalDate data_spedizione) {
         this.data_spedizione = data_spedizione;
     }
 
@@ -56,7 +59,27 @@ public class Ordine {
         this.descrizione = descrizione;
     }
 
-    private String getEmailUser(){
-        return user.getEmail();
+    public List<Articolo> getArticoli() {
+        return articoli;
+    }
+
+    public void setArticoli(List<Articolo> articoli) {
+        this.articoli = articoli;
+    }
+
+    public List<Sconto> getCodSconto() {
+        return codSconto;
+    }
+
+    public void setCodSconto(List<Sconto> codSconto) {
+        this.codSconto = codSconto;
+    }
+
+    public Utente getUser() {
+        return user;
+    }
+
+    public void setUser(Utente user) {
+        this.user = user;
     }
 }
