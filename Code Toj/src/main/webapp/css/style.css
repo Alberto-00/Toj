@@ -1,8 +1,16 @@
-* {
+/** {
     box-sizing: border-box;
-}
+}*/
 
 body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+p {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -10,7 +18,7 @@ body {
 .header {
     grid-area: header;
     background-color: #f1f1f1;
-    padding: 6px;
+    /*padding: 6px;*/
     text-align: center;
     font-size: 17px;
 }
@@ -26,10 +34,8 @@ body {
     /* grid-column-gap: 10px; - gap tra colonne se necessario */
 }
 
-.middle,
-.left,
-.right {
-    font-family:  Cambria;
+.middle, .left, .right {
+    font-family: Arial, Helvetica, sans-serif;
     padding: 6px;
     background-color: #f1f1f1;
 }
@@ -101,7 +107,6 @@ body {
 .topnav {
     overflow: hidden;
     background-color: #333;
-
 }
 
 .topnav a {
