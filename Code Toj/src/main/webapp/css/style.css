@@ -6,15 +6,6 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* header */
-.header {
-    grid-area: header;
-    background-color: #f1f1f1;
-    padding: 6px;
-    text-align: center;
-    font-size: 17px;
-}
-
 /* container */
 .grid-container {
     display: grid;
@@ -24,6 +15,28 @@ body {
     'middle middle middle middle middle middle'
     'footer footer footer footer footer footer';
     /* grid-column-gap: 10px; - gap tra colonne se necessario */
+}
+
+/* header */
+.header {
+    grid-area: header;
+    background-color: #f1f1f1;
+    padding: 6px;
+    text-align: center;
+    font-size: 17px;
+    display: inline-block;
+    position:relative;
+}
+
+.header img{
+    width: 80px;
+    height: auto;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.header a{
+
 }
 
 .middle,
@@ -71,7 +84,6 @@ body {
 }
 
 /* buttons */
-/* Styles ticket buttons used on film description pages*/
 
 .left,.right{
     display:inline-block;
