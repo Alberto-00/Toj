@@ -16,6 +16,13 @@ body {
     font-size: 1em;
 }
 
+.logo{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 19%;
+}
+
 .sticky{
     position: -webkit-sticky;
     position: sticky;
