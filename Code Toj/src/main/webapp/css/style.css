@@ -3,6 +3,7 @@
 }
 
 body {
+    font-size: 100%;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -12,7 +13,7 @@ body {
     background-color: #f1f1f1;
     padding: 6px;
     text-align: center;
-    font-size: 17px;
+    font-size: 1em;
 }
 
 /* container */
@@ -26,10 +27,8 @@ body {
     /* grid-column-gap: 10px; - gap tra colonne se necessario */
 }
 
-.middle,
-.left,
-.right {
-    font-family:  Cambria;
+.middle, .left, .right {
+    font-family:  Arial, Helvetica, sans-serif;
     padding: 6px;
     background-color: #f1f1f1;
 }
