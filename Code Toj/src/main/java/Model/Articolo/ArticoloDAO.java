@@ -5,21 +5,25 @@ import java.util.List;
 
 public interface ArticoloDAO <E extends Exception>{
 
-    List<Articolo> fetchArticoloBySex(String sesso) throws E;
+    List<Articolo> doRetrieveAll() throws E;
 
-    List<Articolo> fetchArticolo(String sesso, int id_categoria) throws E;
+    List<Articolo> doRetrieveBySex(String sesso) throws E;
 
-    List<Articolo> fetchArticolo(String sesso, double prezzo) throws E;
+    List<Articolo> doRetriveBySexAndCat(String sesso, int id_categoria) throws E;
 
-    List<Articolo> fetchArticolo(String taglia, String sesso) throws E;
+    List<Articolo> doRetrieveBySexAndPrice(String sesso, double prezzoMin, double prezzoMax) throws E;
 
-    List<Articolo> fetchArticolo(String sesso, LocalDate date) throws E;
+    List<Articolo> doRetrieveBySexAndSize(String taglia, String sesso) throws E;
 
-    List<Articolo> fetchArticoloByDesc(String descrizione) throws E;
+    List<Articolo> doRetrieveBySexAndDate(String sesso, LocalDate data) throws E;
 
-    boolean createArticolo(Articolo articolo) throws E;
+    List<Articolo> doRetrieveBySexAndDate(String sesso, String colore) throws E;
 
-    boolean updateArticolo(Articolo articolo) throws E;
+    List<Articolo> doRetrieveByDesc(String descrizione) throws E;
 
-    boolean deleteArticolo(Articolo articolo) throws E;
+    boolean doCreateArticolo(Articolo articolo) throws E;
+
+    boolean doUpdateArticolo(Articolo articolo) throws E;
+
+    boolean doDeleteArticolo(Articolo articolo) throws E;
 }

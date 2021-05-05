@@ -1,7 +1,8 @@
 package Model.Articolo;
 
-import Model.Categoria.Categoria;
 import Model.Categoria.CategoriaExtractor;
+import Model.Colore.ColoreExtractor;
+import Model.Taglia.TagliaExtractor;
 import Model.storage.ConPool;
 import Model.storage.QueryBuilder;
 
@@ -17,60 +18,70 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
     }
 
     @Override
-    public List<Articolo> fetchArticoloBySex(String sesso) throws SQLException {
+    public List<Articolo> doRetrieveAll() throws SQLException {
         try(Connection con = ConPool.getConnection()) {
-            String query = "SELECT a.*, t.id_nome, c.Nome " +
-                    "FROM articolo a, taglia t, colore c, size s, tinta t1\n" +
-                    "WHERE a.Sesso=? AND a.ID_articolo = s.ID_articolo AND s.id_nome = t.id_nome" +
-                    "  AND t1.ID_articolo = a.ID_articolo AND t1.cod_esadecimale = c.cod_esadecimale;";
-            try (PreparedStatement ps = con.prepareStatement(query)) {
-                ps.setString(1, sesso);
+            QueryBuilder queryBuilder = new QueryBuilder("articolo", "a");
+            queryBuilder.select("a.*", "s.Quantita", "s.id_nome", "c.nome").innerJoin("size", "s")
+                    .on("s.ID_articolo = a.ID_articolo").innerJoin("tinta", "t")
+                    .on("a.ID_articolo = t.ID_articolo").innerJoin("colore", "c")
+                    .on("c.cod_esadecimale = t.cod_esadecimale");
+            try (PreparedStatement ps = con.prepareStatement(queryBuilder.generateQuery());){
                 ResultSet rs = ps.executeQuery();
-                ArticoloExtractor articoloExtractor = new ArticoloExtractor();
                 List<Articolo> articoli = new ArrayList<>();
-                Categoria categoria = null;
-                while (rs.next()){
-                    int i = 0;
+                CategoriaExtractor categoriaExtractor = new CategoriaExtractor();
+                TagliaExtractor tagliaExtractor = new TagliaExtractor();
+                ColoreExtractor coloreExtractor = new ColoreExtractor();
+                ArticoloExtractor articoloExtractor = new ArticoloExtractor();
+                for(int i = 0; rs.next(); i++){
                     articoli.add(i, articoloExtractor.extract(rs));
-                    articoli.get(i).setCategoria(new Categoria());
-                    CategoriaExtractor categoriaExtractor = new CategoriaExtractor();
-                    categoria = categoriaExtractor.extract(rs);
-                    articoli.get(i).setCategoria(categoria);
-                    i++;
+                    articoli.get(i).setCategoria(categoriaExtractor.extract(rs));
+                    articoli.get(i).setColori(new ArrayList<>());
+                    articoli.get(i).getColori().add(coloreExtractor.extract(rs));
+                    articoli.get(i).setTaglie(new ArrayList<>());
+                    articoli.get(i).getTaglie().add(tagliaExtractor.extract(rs));
                 }
-
                 return articoli;
             }
         }
     }
 
     @Override
-    public List<Articolo> fetchArticolo(String sesso, int id_categoria) throws SQLException {
+    public List<Articolo> doRetrieveBySex(String sesso) throws SQLException {
         return null;
     }
 
     @Override
-    public List<Articolo> fetchArticolo(String sesso, double prezzo) throws SQLException {
+    public List<Articolo> doRetriveBySexAndCat(String sesso, int id_categoria) throws SQLException {
         return null;
     }
 
     @Override
-    public List<Articolo> fetchArticolo(String taglia, String sesso) throws SQLException {
+    public List<Articolo> doRetrieveBySexAndPrice(String sesso, double prezzoMin, double prezzoMax) throws SQLException {
         return null;
     }
 
     @Override
-    public List<Articolo> fetchArticolo(String sesso, LocalDate date) throws SQLException {
+    public List<Articolo> doRetrieveBySexAndSize(String taglia, String sesso) throws SQLException {
         return null;
     }
 
     @Override
-    public List<Articolo> fetchArticoloByDesc(String descrizione) throws SQLException {
+    public List<Articolo> doRetrieveBySexAndDate(String sesso, LocalDate data) throws SQLException {
         return null;
     }
 
     @Override
-    public boolean createArticolo(Articolo articolo) throws SQLException {
+    public List<Articolo> doRetrieveBySexAndDate(String sesso, String colore) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public List<Articolo> doRetrieveByDesc(String descrizione) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public boolean doCreateArticolo(Articolo articolo) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
             QueryBuilder queryBuilder = new QueryBuilder("articolo", "ar");
            queryBuilder.insert("ID_articolo", "Prezzo", "Sesso", "Descrizione", "sconto");
@@ -87,7 +98,7 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
     }
 
     @Override
-    public boolean updateArticolo(Articolo articolo) throws SQLException {
+    public boolean doUpdateArticolo(Articolo articolo) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
             QueryBuilder queryBuilder = new QueryBuilder("articolo", "ar");
             queryBuilder.update("ID_articolo", "Prezzo", "Sesso", "Descrizione", "sconto", "data_inserimento",
@@ -108,7 +119,7 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
     }
 
     @Override
-    public boolean deleteArticolo(Articolo articolo) throws SQLException {
+    public boolean doDeleteArticolo(Articolo articolo) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
             QueryBuilder queryBuilder = new QueryBuilder("articolo", "ar");
             queryBuilder.delete().where("ar.ID_articolo=?");
