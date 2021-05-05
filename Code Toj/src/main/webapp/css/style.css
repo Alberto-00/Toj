@@ -16,6 +16,13 @@ body {
     font-size: 1em;
 }
 
+.sticky{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
 /* container */
 .grid-container {
     display: grid;
@@ -100,7 +107,6 @@ body {
 .topnav {
     overflow: hidden;
     background-color: #333;
-
 }
 
 .topnav a {
