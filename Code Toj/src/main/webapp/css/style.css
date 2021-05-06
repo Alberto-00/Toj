@@ -81,7 +81,7 @@ li {
     background-color: #242424;
 }
 
- .dropbtn {
+.dropbtn {
     display: inline-block;
     color: white;
     border: none;
@@ -103,6 +103,7 @@ li a{
    padding: 0;
     margin-right: 15px;
 }
+
 li.dropdown {
     display: inline-block;
 }
