@@ -12,7 +12,7 @@ body{
     color: #747474;
     margin: 0;
 }
-
+/* header-top start */
 .header-top{
     background: #242424;
     padding: 7px 0;
@@ -139,3 +139,20 @@ li.dropdown {
     padding-left: 5px;
     margin-left: auto;
 }
+/* header-top end */
+
+/* header-middle start */
+.header-middle{
+    padding: 40px 0 18px;
+    position: relative;
+}
+
+.logo{
+    text-align: left;
+    position: unset;
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* header-middle end */
