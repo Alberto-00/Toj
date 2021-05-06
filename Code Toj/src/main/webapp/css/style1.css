@@ -1,212 +1,167 @@
-* {
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
 body {
-    background-color: #FFFFFF;
-    font-weight: 500;
-    font-size: 0.9em;
-    font-family: Arial, Helvetica, sans-serif;
-    letter-spacing: 0.025em;
-    line-height: 1.6;
-    text-rendering: optimizeSpeed;
-    color: #222;
-    margin: 0;
-}
-
-/* parte di sinistra della navigation bar*/
-.header-left{
-    /*height: 70px;
-    display: inline;*/
-    top: 15px;
-    text-align: left;
-    width: 41.66666667%;
-    float: left;
-    position: relative;
-    /*min-height: 1px;
-    padding-right: 10px;
-    margin: 0;
-    */
-}
-
-/* sezione Uomo e Donna */
-.nav-left{
-    font-weight: 700;
-    background-color: #fff;
-    color: #000;
-    /*cursor: pointer;*/
-    text-decoration: none;
-    display: table-cell;
-    height: 70px;
-    /*max-width: 200px;*/
-    padding: 0 10px;
-    vertical-align: middle;
-    font-size: 18px;
-    /*white-space: nowrap;*/
+    font-size: 100%;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.nav-left-searchBar{
-    position: absolute;
-    width: 60%;
-    height: 30px;
-    top: 50%;
-    left: 65%;
-    transform: translate(-50%, -50%);
-    display: inline;
-}
-
-input.search {
-    position: relative;
-    display: inline;
-    height: 30px;
-    width: calc(100% - 40px);
-    max-width: 500px;
-    border-radius: 15px;
-    border: none;
-    float: left;
-    padding: 0px 15px 0px 15px;
-}
-
-input.search:focus{
-    outline: none;
-}
-
-button.button{
-    position: relative;
-    display: inline;
-    height: 30px;
-    width: 30px;
-    border-radius: 15px;
-    border: none;
-    float: right;
-    background-color: white;
-}
-
-button.button:focus{
-    outline: none;
-}
-
-button.button:hover{
-    border-radius: 5px;
-    transition: .2s;
-    transition-timing-function: ease-in;
-}
-
-.topnav {
-    overflow: hidden;
-    background-color: #D2D2D2;
-    height: 20%;
-}
-
-.topnav a:link {
-    text-decoration: none;
-    color: grey;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.125em;
+/* header */
+.header {
+    background-color: green;
     text-align: center;
+    font-size: 1em;
+    margin: 0 auto;
 }
 
-.topnav a:visited {
-    color: grey;
+
+
+.middle, .left, .right {
+    font-family:  Arial, Helvetica, sans-serif;
+    padding: 6px;
+    background-color: #f1f1f1;
 }
 
-.topnav a:hover{
-    color: black;
-}
-
-.header-right{
-    position: relative;
-    float: right;
-    display: block;
-
-    /*position: relative;
-    height: 70px;
-    padding-right: 30px;
-    font-size: 12px;
-    white-space: nowrap;
-    width: 23.9%;
-    float: right ;
-    min-height: 1px;
-    padding-left: 10px;
-    text-align: right;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #222;*/
-
-}
-
-.nav-right{
-    font-weight: 700;
-    background-color: #fff;
-    color: #000;
-    cursor: pointer;
-    text-decoration: none;
-    display: table-cell;
-    /*height: 70px;*/
-    padding: 20px 20px;
-    vertical-align: middle;
-    font-size: 18px;
-    white-space: nowrap;
-}
-
-.sticky{
-    position: -webkit-sticky;
-    position: sticky;
-    height: 13px;
-    text-align: center;
-    max-width: 58%;
-    top: 3px;
-}
-
-.content {
-    background-color: #FFFFFF;
-    padding: 4.5px;
-    height: 200px;
-}
-
-.right img{
-    display: table-cell;
+/* left column */
+.left {
+    grid-area: left;
     overflow: hidden;
-    max-width:49%;
-    max-height:49%;
-    border: #333 solid 2px;
-    float: right;
-    margin: 3px;
+    align-content: center;
+
 }
 
 .left img{
-    display: table-cell;
     overflow: hidden;
-    width: 49%;
-    height: 49%;
-    border: #333 solid 2px;
+    max-width:50%;
+    max-height:50%;
+    border: #333 solid 3px;
     float: left;
-    margin: 3px;
 }
 
-.buttom{
-    background-color: #000;
-    border: none;
-    color: white;
-    padding: 15px 32px;
+/* middle column */
+.middle {
+    grid-area: middle;
+    overflow: hidden;
+}
+
+/* right column */
+.right {
+    grid-area: right;
+    overflow: hidden;
+    align-content: center;
+}
+
+.right img{
+    overflow: hidden;
+    max-width:50%;
+    max-height:50%;
+    border: #333 solid 3px;
+    float: right;
+}
+
+/* buttons */
+/* Styles ticket buttons used on film description pages*/
+
+.left,.right{
+    display:inline-block;
+    position:relative;
+}
+
+.left a,.right a{
+    position: absolute;
+    bottom:1em;
+    right:1em;
+    background-color:#8F0005;
+    border-radius:0.5em;
+    color:white;
+    text-transform:uppercase;
+    padding:1em 1.5em;
+}
+
+/* footer */
+.footer {
+    background-color: #f1f1f1;
+    padding: 6px;
     text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 12px;
 }
 
-.bottom a:hover {
+/* topnav */
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+}
+
+.topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.topnav a:hover {
     background-color: #ddd;
     color: black;
 }
 
-/* Style the footer */
-.footer {
-    background-color: #FFFFFF;
-    padding: 10px;
+/* search */
+
+.topnav #search {
+    float: left;
+}
+
+.topnav #search input[type=text] {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+}
+
+.topnav #search button {
+    padding: 6px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+
+.topnav #search button:hover {
+    background: #ccc;
+}
+
+/* right-topnav */
+.topnav .right-topnav{
+    float: right;
+}
+
+/* bottom-nav */
+.bottom-nav{
+    overflow: hidden;
+    background-color: #333;
+}
+
+.bottom-nav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.bottom-nav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Responsive layout - colonne l'una sopra l'altra */
+@media (max-width: 600px) {
+    .grid-container  {
+        grid-template-areas:
+      'header header header header header header'
+      'left left left left left left'
+      'right right right right right right'
+      'middle middle middle middle middle middle'
+      'footer footer footer footer footer footer';
+    }
 }
