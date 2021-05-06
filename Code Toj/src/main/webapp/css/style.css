@@ -134,25 +134,93 @@ li.dropdown {
     display: block;
 }
 
-.icon{
+.icon-left{
     size: 3px;
-    padding-left: 5px;
+    padding-left: 8px;
     margin-left: auto;
 }
 /* header-top end */
 
 /* header-middle start */
 .header-middle{
-    padding: 40px 0 18px;
+    height: 125px;
     position: relative;
 }
 
 .logo{
+    /*padding-left: 3rem; modifica la distanza da sinistra del logo*/
     text-align: left;
-    position: unset;
-    max-width: 100%;
     height: auto;
+    max-width: 100%;
+    padding-top: 15px;
+}
+
+.top-left{
+    display: inline;
+    float: right;
+    padding-right: 0rem; /* Modifica la riga di destra "accedi - registrati e carrello*/
+    padding-top: 40px;
+    margin-top: auto;
+    margin-right: auto;
+}
+
+.top-left a{
+    text-decoration: none;
+    padding-right: 5px;
+    font-size: 13px;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 28px;
+    color: #242424;
+    text-decoration: rgb(36, 36, 36);
+}
+
+.top-left a:visited{
+    color: #242424;
+}
+
+.top-left a:hover{
+    color: #fd7e14;
+}
+
+.cart-link{
+    display: inline;
+    margin-left: 16px;
+    position: relative;
+    border: 1px solid rgba(116, 116, 116, 0.4);
+    border-radius: 12px;
+    padding: 10px 15px;
+}
+
+.icon-right{
+    size: 3px;
+    padding-right: 8px;
+    margin-right: auto;
+}
+/* header-middle end */
+
+/* header-bottom start */
+.header-bottom{
+    background-color: #242424;
+    overflow: hidden;
+    margin-left: 7.9rem;
+    margin-right: 8rem;
+    padding: 25px;
+}
+/* header-bottom end */
+
+.middle{
+    padding: 0 0 55px;
+}
+
+.images-center img{
+    display: inline;
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 49%;
+}
+
+div.images-center:hover {
 }
 
 
-/* header-middle end */
