@@ -155,19 +155,20 @@ li.dropdown {
     position: relative;
 }
 
-.logo{
+.logo img{
     /*padding-left: 3rem; modifica la distanza da sinistra del logo*/
     text-align: left;
     height: auto;
     max-width: 100%;
     padding-top: 15px;
+    margin: auto;
 }
 
 .top-left{
     display: inline;
     float: right;
     padding-right: 0; /* Modifica la riga di destra "accedi - registrati e carrello*/
-    padding-top: 40px;
+    padding-top: 50px;
     margin-top: auto;
     margin-right: auto;
 }
