@@ -73,7 +73,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #242424; /*verificare*/
 }
 
 li {
@@ -92,7 +92,6 @@ li {
 
 li a{
     display: inline-block;
-    color: white;
     border: none;
     text-align: center;
     padding: 14px 16px;
@@ -113,12 +112,12 @@ li.dropdown {
     position: absolute;
     background-color: #f9f9f9;
     min-width: 130px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     z-index: 1;
 }
 
 .dropdown-content a{
-    color: #747474;
+    color: #747474 !important;
     padding: 8px 12px;
     text-decoration: none;
     display: block;
@@ -127,8 +126,12 @@ li.dropdown {
     border-bottom: 1px solid darkgray;
 }
 
+.dropdown-content a:visited {
+    color: #747474 !important;
+}
+
 .dropdown-content a:hover {
-    color: #fd7e14;
+    color: #fd7e14 !important;
 }
 
 .dropdown:hover .dropdown-content {
@@ -136,7 +139,6 @@ li.dropdown {
 }
 
 .icon-left{
-    size: 3px;
     padding-left: 8px;
     margin-left: auto;
 }
@@ -159,7 +161,7 @@ li.dropdown {
 .top-left{
     display: inline;
     float: right;
-    padding-right: 0rem; /* Modifica la riga di destra "accedi - registrati e carrello*/
+    padding-right: 0; /* Modifica la riga di destra "accedi - registrati e carrello*/
     padding-top: 40px;
     margin-top: auto;
     margin-right: auto;
@@ -193,7 +195,6 @@ li.dropdown {
 }
 
 .icon-right{
-    size: 3px;
     padding-right: 8px;
     margin-right: auto;
 }
@@ -205,23 +206,55 @@ li.dropdown {
     overflow: hidden;
     margin-left: 7.9rem;
     margin-right: 8rem;
-    padding: 25px;
+    padding: 17px;
+}
+
+.nav-bottom{
+    align-items: center;
+    margin-left: 13rem;
+
+}
+
+.nav-bottom a{
+    color: white;
+    padding-right: 3.4rem;
+    margin: auto;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+
+}
+
+.nav-bottom a:visited{
+    color: #ffffff;
+}
+
+.nav-bottom a:hover{
+    color: #fd7e14;
 }
 /* header-bottom end */
 
+/* middle-start */
 .middle{
     padding: 0 0 55px;
 }
 
 .images-center img{
     display: inline;
-    margin: 5px;
+    margin: 37px 5px;
     border: 1px solid #ccc;
     float: left;
     width: 49%;
+    vertical-align: middle;
+    max-width: 100%;
+    height: auto;
 }
 
 div.images-center:hover {
 }
+/* middle-end */
+
+/* footer start */
+/* footer end */
 
 
