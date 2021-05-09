@@ -73,7 +73,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #242424; /*verificare*/
+    background-color: white; /*verificare*/
 }
 
 li {
@@ -86,6 +86,15 @@ li {
     color: white;
     border: none;
     background-color: #242424;
+    text-align: center;
+    text-decoration: none;
+}
+
+.dropbtnNav {
+    display: inline-block;
+    color: white;
+    border: none;
+    background-color: white;
     text-align: center;
     text-decoration: none;
 }
@@ -207,7 +216,7 @@ li.dropdown {
 
 /* header-bottom start */
 .header-bottom{
-    background-color: #242424;
+    background-color: lightgrey;
     overflow: hidden;
     margin-left: 7.9rem;
     margin-right: 8rem;
@@ -242,11 +251,11 @@ li.dropdown {
 }
 
 .dropdown-content-bottom a:link {
-    color: #242424 ;
+    color: black ;
 }
 
 .dropdown-content-bottom a:visited {
-    color: #242424 ;
+    color: black ;
 }
 
 .dropdown-content-bottom a:hover {
@@ -256,17 +265,7 @@ li.dropdown {
 
 /* middle-start */
 .middle-top{
-    padding: 100px 0 55px;
-
-
-}
-
-.images-center img{
-    margin: 37px 5px;
-    float: right;
-    width: 30%;
-    vertical-align: middle;
-    height: auto;
+    padding: 30px 0px 55px;
 }
 
 .banner-text text{
@@ -278,6 +277,16 @@ li.dropdown {
     transform: translatey(-50%);
 
 }
+
+.images-center img{
+    margin: 7px 5px;
+    float: right;
+    width: 30%;
+    vertical-align: middle;
+    height: auto;
+}
+
+
 
 .middle-center{
     padding: 0 0 55px;
@@ -293,17 +302,17 @@ li.dropdown {
 
 .banner2-text text{
     float: right;
-
     display: table-cell;
     vertical-align: middle;
-
     text-align: left;
     position: absolute;
-
     transform: translatey(-50%);
+
 }
 
-p {
+
+
+.p1 {
     text-indent: 50px;
     font-size: 20px;
     text-align: justify;
