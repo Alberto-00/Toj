@@ -51,6 +51,7 @@ body{
     float: right;
     padding-right: 0;
     margin-right: auto;
+
 }
 
 .top-right a{
@@ -95,6 +96,10 @@ li a{
     border: none;
     text-align: center;
     text-decoration: none;
+}
+
+.dropdownTop{
+    background-color: green;
 }
 
 .dropdown a{
@@ -241,12 +246,16 @@ li.dropdown {
 }
 
 .dropbtnNav {
+    background-color: white;
     display: inline-block;
     color: white;
     border: none;
-    background-color: white;
     text-align: center;
     text-decoration: none;
+}
+
+.navEle{
+    background-color: white;
 }
 
 .dropdown-content-bottom a:link {
@@ -263,6 +272,18 @@ li.dropdown {
 /* header-bottom end */
 
 /* middle-start */
+
+.home {
+    text-decoration: none;
+    color: #242424;
+}
+
+.aboutUs {
+    color: #242424;
+    font-family: bold;
+    font-size: 50px;
+}
+
 .middle-top{
     padding: 0 0 55px;
 }
@@ -297,6 +318,7 @@ li.dropdown {
     width: 30%;
     vertical-align: middle;
     height: auto;
+
 }
 
 .banner2-text text{
@@ -306,10 +328,7 @@ li.dropdown {
     text-align: left;
     position: absolute;
     transform: translatey(-50%);
-
 }
-
-
 
 .p1 {
     text-indent: 50px;
@@ -321,6 +340,8 @@ li.dropdown {
     padding: 0 0 55px;
     width: 100%;
 }
+
+
 
 .square1{
     float:left;
@@ -336,8 +357,6 @@ li.dropdown {
     height:13vw;
     background-color: lightgrey;
 }
-
-
 
 h3{
     font-size: 20px;
