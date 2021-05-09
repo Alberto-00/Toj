@@ -73,7 +73,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: white; /*verificare*/
+    background-color: white; /*questa è lo spazio alla fine della barra navigazionale*/
 }
 
 li {
@@ -86,15 +86,6 @@ li {
     color: white;
     border: none;
     background-color: #242424;
-    text-align: center;
-    text-decoration: none;
-}
-
-.dropbtnNav {
-    display: inline-block;
-    color: white;
-    border: none;
-    background-color: white;
     text-align: center;
     text-decoration: none;
 }
@@ -216,25 +207,24 @@ li.dropdown {
 
 /* header-bottom start */
 .header-bottom{
-    background-color: lightgrey;
+    background-color: white;
     overflow: hidden;
     margin-left: 7.9rem;
     margin-right: 8rem;
     padding: 17px;
+
 }
 
 .nav-bottom{
     overflow: hidden;
     display: block;
     width: 100%;
-
     text-decoration: none;
     align-items: center;
-    margin-left: 13rem ;
 }
 
 .nav-bottom a{
-    color: white;
+    color: black;
     padding-right: 3.4rem;
     margin: auto;
     text-decoration: none;
@@ -243,11 +233,20 @@ li.dropdown {
 }
 
 .nav-bottom a:visited{
-    color: #ffffff;
+    color: black;
 }
 
 .nav-bottom a:hover{
     color: #fd7e14;
+}
+
+.dropbtnNav {
+    display: inline-block;
+    color: white;
+    border: none;
+    background-color: white;
+    text-align: center;
+    text-decoration: none;
 }
 
 .dropdown-content-bottom a:link {
@@ -265,7 +264,7 @@ li.dropdown {
 
 /* middle-start */
 .middle-top{
-    padding: 30px 0px 55px;
+    padding: 0 0 55px;
 }
 
 .banner-text text{
