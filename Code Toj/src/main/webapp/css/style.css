@@ -23,6 +23,7 @@ body{
     overflow: hidden;
     max-width: 1140px;
     width: 100%;
+    height: auto;
     padding-right:1rem;
     padding-left: 1rem;
     margin-right: auto;
@@ -117,14 +118,14 @@ li.dropdown {
 
 .dropdown-content a{
     color: #747474;
-    padding-top: 7px !important;
+    padding-top: 7px;
     padding-bottom: 7px;
     text-decoration: none;
     display: block;
     text-align: left;
     font-size: 13px;
-    margin-left: 16px!important;
-    margin-right: 18px!important;
+    margin-left: 16px;
+    margin-right: 18px;
 }
 
 .border-content{
@@ -153,15 +154,14 @@ li.dropdown {
 .header-middle{
     height: 125px; /*modifica l'altezza del header-middle bianco*/
     position: relative;
+    display: inline;
 }
 
 .logo img{
-    /*padding-left: 3rem; modifica la distanza da sinistra del logo*/
-    text-align: left;
     height: auto;
     max-width: 100%;
     padding-top: 15px;
-    margin: auto;
+    margin-left: 9px;
 }
 
 .top-left{
@@ -209,25 +209,19 @@ li.dropdown {
 .header-bottom{
     background-color: #242424;
     overflow: hidden;
-    margin-left: 7.9rem;
-    margin-right: 8rem;
-    padding: 17px;
+    display: inline;
 }
 
 .nav-bottom{
-    overflow: hidden;
-    display: block;
-    width: 100%;
-
     text-decoration: none;
-    align-items: center;
-    margin-left: 13rem ;
+    padding: 15px 260px;
+    background-color: #242424;
 }
 
 .nav-bottom a{
+    padding-right: 23px;
     color: white;
-    padding-right: 3.4rem;
-    margin: auto;
+    font-weight: bold;
     text-decoration: none;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 13px;
@@ -256,21 +250,35 @@ li.dropdown {
 
 /* middle-start */
 .middle{
-    padding: 0 0 55px;
+    display: inline;
+    max-width: 100%;
+    height: auto;
 }
 
-.images-center img{
-    margin: 37px 5px;
+.images-center-left img{
+    padding-right: 12px;
+    padding-top: 37px;
     float: left;
-    width: 49%;
+    width:50%;
     vertical-align: middle;
     height: auto;
-    /*box-shadow: 10px 10px 5px #747474;
-    -moz-box-shadow: 10px 10px 5px #747474;
-    -webkit-box-shadow: 5px 10px 5px #747474;*/
 }
 
-.images-center:hover img{
+.images-center-right img{
+    padding-top: 37px;
+    float: right;
+    padding-left: 12px;
+    width:50%;
+    vertical-align: middle;
+    height: auto;
+}
+
+.images-center-left:hover img{
+    transition: all 0.3s ease 0s;
+    opacity: 1%;
+}
+
+.images-center-right:hover img{
     transition: all 0.3s ease 0s;
     opacity: 1%;
 }
