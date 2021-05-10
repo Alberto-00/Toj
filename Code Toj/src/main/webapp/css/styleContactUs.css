@@ -1,4 +1,4 @@
-* {
+*{
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -12,6 +12,7 @@ body{
     color: #747474;
     margin: 0;
 }
+
 /* header-top start */
 .header-top{
     background: #242424;
@@ -23,6 +24,7 @@ body{
     overflow: hidden;
     max-width: 1140px;
     width: 100%;
+    height: auto;
     padding-right:1rem;
     padding-left: 1rem;
     margin-right: auto;
@@ -66,6 +68,7 @@ body{
 }
 
 .top-right a:hover{
+    transition: all 0.2s ease 0s;
     color: #fd7e14;
 }
 
@@ -98,10 +101,6 @@ li a{
     text-decoration: none;
 }
 
-.dropdownTop{
-    background-color: green;
-}
-
 .dropdown a{
     padding: 0 ;
     margin-right: 15px;
@@ -122,14 +121,14 @@ li.dropdown {
 
 .dropdown-content a{
     color: #747474;
-    padding-top: 7px !important;
+    padding-top: 7px;
     padding-bottom: 7px;
     text-decoration: none;
     display: block;
     text-align: left;
     font-size: 13px;
-    margin-left: 16px!important;
-    margin-right: 18px!important;
+    margin-left: 16px;
+    margin-right: 18px;
 }
 
 .border-content{
@@ -141,6 +140,7 @@ li.dropdown {
 }
 
 .dropdown-content a:hover {
+    transition: all 0.2s ease 0s;
     color: #fd7e14;
 }
 
@@ -158,15 +158,14 @@ li.dropdown {
 .header-middle{
     height: 125px; /*modifica l'altezza del header-middle bianco*/
     position: relative;
+    display: inline;
 }
 
 .logo img{
-    /*padding-left: 3rem; modifica la distanza da sinistra del logo*/
-    text-align: left;
     height: auto;
     max-width: 100%;
     padding-top: 15px;
-    margin: auto;
+    margin-left: 9px;
 }
 
 .top-left{
@@ -192,6 +191,7 @@ li.dropdown {
 }
 
 .top-left a:hover{
+    transition: all 0.2s ease 0s;
     color: #fd7e14;
 }
 
@@ -214,75 +214,48 @@ li.dropdown {
 .header-bottom{
     background-color: white;
     overflow: hidden;
-    margin-left: 7.9rem;
-    margin-right: 8rem;
-    padding: 17px;
-
+    display: inline;
 }
 
 .nav-bottom{
-    overflow: hidden;
-    display: block;
-    width: 100%;
     text-decoration: none;
-    align-items: center;
+    padding: 16px;
+    background-color: #FFFFFF;
 }
 
 .nav-bottom a{
-    color: black;
-    padding-right: 3.4rem;
+    color: #242424;
+    padding-right: 50px;
     margin: auto;
     text-decoration: none;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .nav-bottom a:visited{
-    color: black;
+    color: #242424;
 }
 
 .nav-bottom a:hover{
+    transition: all 0.3s ease 0s;
     color: #fd7e14;
 }
 
 .dropbtnNav {
     background-color: white;
     display: inline-block;
-    color: white;
+    color: #FFFFFF;
     border: none;
     text-align: center;
     text-decoration: none;
 }
 
 .navEle{
-    background-color: white;
+    background-color: #FFFFFF;
 }
 
-.dropdown-content-bottom a:link {
-    color: black ;
-}
-
-.dropdown-content-bottom a:visited {
-    color: black ;
-}
-
-.dropdown-content-bottom a:hover {
-    color: #fd7e14 ;
-}
-/* header-bottom end */
 
 /* middle-start */
-
-.home {
-    text-decoration: none;
-    color: #242424;
-}
-
-.aboutUs {
-    color: #242424;
-    font-family: bold;
-    font-size: 50px;
-}
 
 .middle-top{
     padding: 0 0 55px;
@@ -295,40 +268,8 @@ li.dropdown {
     text-align: left;
     position: absolute;
     transform: translatey(-50%);
-
 }
 
-.images-center img{
-    margin: 7px 5px;
-    float: right;
-    width: 30%;
-    vertical-align: middle;
-    height: auto;
-}
-
-
-
-.middle-center{
-    padding: 0 0 55px;
-}
-
-.images2-center img{
-    margin: 10px 5px;
-    float: left;
-    width: 30%;
-    vertical-align: middle;
-    height: auto;
-
-}
-
-.banner2-text text{
-    float: right;
-    display: table-cell;
-    vertical-align: middle;
-    text-align: left;
-    position: absolute;
-    transform: translatey(-50%);
-}
 
 .p1 {
     text-indent: 50px;
@@ -336,30 +277,5 @@ li.dropdown {
     text-align: justify;
 }
 
-.middle-bottom{
-    padding: 0 0 55px;
-    width: 100%;
-}
 
-
-
-.square1{
-    float:left;
-    width:13vw;
-    height:13vw;
-    margin-right: 4vw;
-    background-color: lightgrey;
-}
-
-.square{
-    float:left;
-    width:13vw;
-    height:13vw;
-    background-color: lightgrey;
-}
-
-h3{
-    font-size: 20px;
-    text-align: center;
-}
 /* middle-end */
