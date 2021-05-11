@@ -1,4 +1,4 @@
-package Controller;
+/*package Controller;
 
 import Model.Articolo.Articolo;
 import Model.ArticoloDAO;
@@ -30,3 +30,4 @@ public class Uomo extends HttpServlet {
 
     }
 }
+*/
