@@ -343,6 +343,62 @@ li.dropdown {
     color: #fd7e14;
 }
 
+#scrollUp {
+    background: #242424 none repeat scroll 0 0;
+    bottom: 85px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 20px;
+    height: 45px;
+    line-height: 43px;
+    right: 12px;
+    text-align: center;
+    width: 45px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    transition: 0.3s;
+    position: fixed;
+    z-index: 2147483647;
+    display: block;
+}
+
+#scrollUp:hover i{
+    animation-name: fadeInUp;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes fadeInUp {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+.fadeInUp {
+    -webkit-animation-name: fadeInUp;
+    animation-name: fadeInUp;
+}
 /*product grid*/
 
 /* middle-end */
