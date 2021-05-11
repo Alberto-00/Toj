@@ -1,7 +1,7 @@
-/*package Controller;
+package Controller;
 
 import Model.Articolo.Articolo;
-import Model.ArticoloDAO;
+import Model.Articolo.ArticoloDAO;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -15,12 +15,6 @@ public class Donna extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        ArticoloDAO service = new ArticoloDAO();
-        ArrayList<Articolo> articoli = service.doRetrieveBySex("F");
-        request.setAttribute("articoliDonna", articoli);
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/donna.jsp");
-        dispatcher.forward(request, response);
     }
 
     @Override
@@ -28,4 +22,4 @@ public class Donna extends HttpServlet {
             throws ServletException, IOException {
 
     }
-}*/
+}

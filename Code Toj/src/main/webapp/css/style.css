@@ -1,236 +1,19 @@
-* {
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-body{
-    line-height: 24px;
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 400;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #747474;
-    margin: 0;
-}
-/* header-top start */
-.header-top{
-    background: #242424;
-    padding: 7px 0;
-    overflow: hidden;
-}
-
-.container-top{
-    overflow: hidden;
-    max-width: 1140px;
-    width: 100%;
-    height: auto;
-    padding-right:1rem;
-    padding-left: 1rem;
-    margin-right: auto;
-    margin-left: auto;
-}
-
-.container-top span{
-    color: #FFFFFF;
-    padding-right: 0.2rem;
-    margin-right: auto;
-}
-
-.container-top p{
-    display: inline;
-    padding-right: 1rem;
-    margin-right: auto;
-}
-
-.border{
-    border-left: 1px solid #747474;
-    padding-left: 1rem;
-    margin-left: auto;
-}
-
-.top-right {
-    float: right;
-    padding-right: 0;
-    margin-right: auto;
-}
-
-.top-right a{
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-.top-right a:visited{
-    color: #ffffff;
-}
-
-.top-right a:hover{
-    transition: all 0.2s ease 0s;
-    color: #fd7e14;
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #242424; /*verificare*/
-}
-
-li {
-    float: left;
-    background-color: #242424;
-}
-
-.dropbtn {
-    display: inline-block;
-    color: white;
-    border: none;
-    background-color: #242424;
-    text-align: center;
-    text-decoration: none;
-}
-
-li a{
-    display: inline-block;
-    border: none;
-    text-align: center;
-    text-decoration: none;
-}
-
-.dropdown a{
-    padding: 0 ;
-    margin-right: 15px;
-}
-
-li.dropdown {
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    width: 120px;
-    /*min-width: 130px;*/
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-.dropdown-content a{
-    color: #747474;
-    padding-top: 7px;
-    padding-bottom: 7px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-    font-size: 13px;
-    margin-left: 16px;
-    margin-right: 18px;
-}
-
-.border-content{
-    border-bottom: 1px solid darkgray;
-}
-
-.dropdown-content a:visited {
-    color: #747474;
-}
-
-.dropdown-content a:hover {
-    transition: all 0.2s ease 0s;
-    color: #fd7e14;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.icon-left{
-    padding-left: 8px;
-    margin-left: auto;
-}
-
-.image-lang{
-    width: 25%;
-    height: auto;
-    padding-right: 4px;
-}
-/* header-top end */
-
-/* header-middle start */
-.header-middle{
-    height: 125px; /*modifica l'altezza del header-middle bianco*/
-    position: relative;
-    display: inline;
-}
-
-.logo img{
-    height: auto;
-    max-width: 100%;
-    padding-top: 15px;
-    margin-left: 9px;
-}
-
-.top-left{
-    display: inline;
-    float: right;
-    padding-right: 1rem; /* Modifica la riga di destra "accedi - registrati e carrello*/
-    padding-top: 50px;
-    margin-top: auto;
-    margin-right: auto;
-}
-
-.top-left a{
-    text-decoration: none;
-    padding-right: 5px;
-    font-size: 13px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #242424;
-    text-decoration: rgb(36, 36, 36);
-}
-
-.top-left a:visited{
-    color: #242424;
-}
-
-.top-left a:hover{
-    transition: all 0.2s ease 0s;
-    color: #fd7e14;
-}
-
-.cart-link{
-    display: inline;
-    margin-left: 16px;
-    position: relative;
-    border: 1px solid rgba(116, 116, 116, 0.4);
-    border-radius: 12px;
-    padding: 10px 15px;
-}
-
-.icon-right{
-    padding-right: 8px;
-    margin-right: auto;
-}
-/* header-middle end */
-
 /* header-bottom start */
 .header-bottom{
-    background-color: #242424;
+    background-color: #FFFFFF;
     overflow: hidden;
-    display: inline;
+    display: block;
 }
 
 .nav-bottom{
-    overflow: hidden;
-    text-decoration: none;
-    padding: 16px 255px;
+    padding-top: 16px;
+    padding-left: 255px;
+    padding-bottom: 40px;
     background-color: #242424;
 }
 
 .nav-bottom a{
-    padding-right: 24px;
+    padding-right: 35px;
     color: white;
     text-decoration: none;
     font-family: Arial, Helvetica, sans-serif;
@@ -249,9 +32,12 @@ li.dropdown {
 .sticky {
     position: fixed;
     top: 0;
+    left:0;
+    padding-bottom: 18px;
     width: 100%;
-    opacity: 0.5;
-    z-index: 5;
+    background-color: rgba(36,36,36,0.7);
+    z-index: 2;
+
 }
 
 .dropdown-content-bottom a:link {
@@ -418,5 +204,7 @@ li.dropdown {
 /*product grid*/
 
 /* middle-end */
+
+
 
 
