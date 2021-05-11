@@ -29,8 +29,10 @@
                 <li class="dropdown border">
                     <a href="javascript:void(0)" class="dropbtn">Language<i class="fas fa-angle-down icon-left"></i></a>
                     <div class="dropdown-content">
-                        <a class="border-content" href="#">Ita</a>
-                        <a href="#">Eng</a>
+                        <a class="border-content" href="#">
+                            <img src="images/it.png" class="image-lang">Ita
+                        </a>
+                        <a href="#"><img src="images/en.png" class="image-lang">Eng</a>
                     </div>
                 </li>
                 <li class="dropdown border">
@@ -59,7 +61,7 @@
 </div>
 <div class="header-bottom">
     <div class="container-top">
-        <div class="nav-bottom">
+        <div class="nav-bottom" id="nav-bottom">
             <ul>
                 <li class="dropdown">
                     <a href="index.html">Home</a>
@@ -102,7 +104,6 @@
         </div>
     </div>
 </div>
-
 <!--Content middle-->
 <div class="container-top">
     <div class="image image-left">
@@ -118,11 +119,10 @@
         <div class="banner-text centered">
             <h1>Men's</h1>
             <p>Big Sale Off Final Items. Caught in the moment!</p>
-            <a href="Donna">Acquista Ora</a>
+            <a href="Uomo">Acquista Ora</a>
         </div>
     </div>
 </div>
-
 <!--Footer-->
 <div class="container-top">
     <div class="row">
@@ -188,11 +188,23 @@
         const popup = document.getElementById("myPopup");
         popup.classList.toggle("show");
     }
-
     function nascondi() {
         document.getElementById("myPopup").style.display="none";
     }
     setTimeout("nascondi()", 4000);
+</script>
+<script>
+    window.onscroll = function() {prova()};
+    var navbar = document.getElementById("nav-bottom");
+    var sticky = navbar.offsetTop;
+
+    function prova() {
+        if (window.pageYOffset >= sticky) {
+            navbar.classList.add("sticky")
+        } else {
+            navbar.classList.remove("sticky");
+        }
+    }
 </script>
 <a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: inline;">
     <i class="fas fa-angle-double-up"></i>

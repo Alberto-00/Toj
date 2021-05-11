@@ -112,7 +112,8 @@ li.dropdown {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 130px;
+    width: 120px;
+    /*min-width: 130px;*/
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     z-index: 1;
 }
@@ -149,6 +150,12 @@ li.dropdown {
 .icon-left{
     padding-left: 8px;
     margin-left: auto;
+}
+
+.image-lang{
+    width: 25%;
+    height: auto;
+    padding-right: 4px;
 }
 /* header-top end */
 
@@ -216,6 +223,7 @@ li.dropdown {
 }
 
 .nav-bottom{
+    overflow: hidden;
     text-decoration: none;
     padding: 16px 255px;
     background-color: #242424;
@@ -238,6 +246,14 @@ li.dropdown {
     color: #fd7e14;
 }
 
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    opacity: 0.5;
+    z-index: 5;
+}
+
 .dropdown-content-bottom a:link {
     color: #242424 ;
 }
@@ -257,7 +273,7 @@ li.dropdown {
     margin-top: 37px;
     position:relative;
     width:49%;
-    height:auto;
+    height: auto;
     display: inline-block;
 }
 
