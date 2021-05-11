@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/library.css" type="text/css">
     <title>Tøj | Clothing Store</title>
     <link rel="shortcut icon" type="image/png" sizes="16x16" href="images/logo2.png">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
@@ -154,13 +155,16 @@
                 in Europa sul tuo primo ordine.
             </p>
             <div class="subscribe-form">
-                <form action="#" method="post"> <!--Inserire action-->
+                <form action="javascript:void(0)" method="post"> <!--Inserire action-->
                     <label for="newsletter"></label>
                     <input type="email" id="newsletter" name="newsletter"
                            placeholder="Inserisci la tua email qui...">
-                    <button type="submit" name="newsletterSubmit" class="button">
-                        <span>SUBSCRIBE</span>
-                    </button>
+                    <div class="popup" onclick="myFunction()">
+                        <button type="submit" name="newsletterSubmit" class="button">
+                            <span>SUBSCRIBE</span>
+                        </button>
+                        <span class="popuptext" id="myPopup">Email inviata. Grazie!</span>
+                    </div>
                 </form>
             </div>
         </div>
@@ -179,5 +183,16 @@
         </div>
     </div>
 </div>
+<script>
+    function myFunction() {
+        const popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+    }
+
+    function nascondi() {
+        document.getElementById("myPopup").style.display="none";
+    }
+    setTimeout("nascondi()", 4000);
+</script>
 </body>
 </html>

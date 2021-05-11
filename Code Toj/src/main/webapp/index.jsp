@@ -4,7 +4,6 @@
     <jsp:include page="WEB-INF/views/partials/head.jsp">
         <jsp:param name="title" value="Tøj | Clothing Store"/>
         <jsp:param name="style" value="style.css"/>
-        <jsp:param name="style" value="library.css"/>
     </jsp:include>
 </head>
 <body>
@@ -153,13 +152,16 @@
                 in Europa sul tuo primo ordine.
             </p>
             <div class="subscribe-form">
-                <form action="#" method="post"> <!--Inserire action-->
+                <form action="javascript:void(0)" method="post"> <!--Inserire action-->
                     <label for="newsletter"></label>
                     <input type="email" id="newsletter" name="newsletter"
                            placeholder="Inserisci la tua email qui...">
-                    <button type="submit" name="newsletterSubmit" class="button">
-                        <span>SUBSCRIBE</span>
-                    </button>
+                    <div class="popup" onclick="myFunction()">
+                        <button type="submit" name="newsletterSubmit" class="button">
+                            <span>SUBSCRIBE</span>
+                        </button>
+                        <span class="popuptext" id="myPopup">Email inviata. Grazie!</span>
+                    </div>
                 </form>
             </div>
         </div>
