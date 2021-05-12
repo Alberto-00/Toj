@@ -1,7 +1,7 @@
 package Model.Sconto;
 
 import Model.Ordine.Ordine;
-import Model.Utente.Utente;
+import Model.Account.Account;
 
 import java.time.LocalDate;
 
@@ -11,7 +11,7 @@ public class Sconto {
     private LocalDate dataScadenza;
     private double sconto;
     private Ordine ordine;
-    private Utente user;
+    private Account user;
 
     public Sconto(){
         super();
@@ -49,11 +49,11 @@ public class Sconto {
         this.ordine = ordine;
     }
 
-    public Utente getUser() {
+    public Account getUser() {
         return user;
     }
 
-    public void setUser(Utente user) {
+    public void setUser(Account user) {
         this.user = user;
     }
 }

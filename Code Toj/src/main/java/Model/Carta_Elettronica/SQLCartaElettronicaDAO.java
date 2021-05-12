@@ -1,7 +1,7 @@
 package Model.Carta_Elettronica;
 
-import Model.Utente.Utente;
-import Model.Utente.UtenteExtractor;
+import Model.Account.Account;
+import Model.Account.AccountExtractor;
 import Model.storage.ConPool;
 import Model.storage.QueryBuilder;
 
@@ -26,9 +26,9 @@ public class SQLCartaElettronicaDAO implements CartaElettronicaDAO<SQLException>
                 CartaElettronicaExtractor cartaElettronicaExtractor = new CartaElettronicaExtractor();
                 List<CartaElettronica> payCards = new ArrayList<>();
                 if(rs.next()){
-                    UtenteExtractor utenteExtractor = new UtenteExtractor();
-                    payCards.get(0).setUser(new Utente());;
-                    payCards.get(0).setUser(utenteExtractor.extract(rs));
+                    AccountExtractor accountExtractor = new AccountExtractor();
+                    payCards.get(0).setUser(new Account());;
+                    payCards.get(0).setUser(accountExtractor.extract(rs));
                 }
                 while (rs.next()){
                     payCards.add(cartaElettronicaExtractor.extract(rs));

@@ -1,15 +1,15 @@
-package Model.Utente;
+package Model.Account;
 
 import Model.storage.ResultSetExtractor;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UtenteExtractor implements ResultSetExtractor<Utente> {
+public class AccountExtractor implements ResultSetExtractor<Account> {
 
     @Override
-    public Utente extract(ResultSet rs) throws SQLException {
-        Utente user = new Utente();
+    public Account extract(ResultSet rs) throws SQLException {
+        Account user = new Account();
         user.setEmail(rs.getString("Email"));
         user.setPassword(rs.getString("Password_User"));
         user.setAdmin(rs.getBoolean("Admin_user"));

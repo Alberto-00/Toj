@@ -78,7 +78,7 @@ CREATE TABLE Cod_sconto(
 	sconto DOUBLE default 0 NOT NULL
 );
 
-CREATE TABLE Posseduto(
+CREATE TABLE Applicato(
 	codice VARCHAR(10),
     ID_ordine VARCHAR(100),
     foreign key (codice) references Cod_sconto (codice)
@@ -90,7 +90,7 @@ CREATE TABLE Posseduto(
     PRIMARY KEY (codice)
 );
 
-CREATE TABLE Applicato(
+CREATE TABLE Posseduto(
 	codice VARCHAR(10),
     Email VARCHAR(100),
     foreign key (codice) references Cod_sconto (codice)

@@ -1,12 +1,12 @@
 package Model.Carta_Elettronica;
 
-import Model.Utente.Utente;
+import Model.Account.Account;
 
 public class CartaElettronica {
 
     //Dati della Carta di pagamento
     private String IDcarta, descrizione;
-    private Utente user;
+    private Account user;
 
     //Constructor
     public CartaElettronica(){
@@ -30,11 +30,11 @@ public class CartaElettronica {
         this.descrizione = descrizione;
     }
 
-    public Utente getUser() {
+    public Account getUser() {
         return user;
     }
 
-    public void setUser(Utente user) {
+    public void setUser(Account user) {
         this.user = user;
     }
 }

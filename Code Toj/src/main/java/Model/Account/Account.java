@@ -1,4 +1,4 @@
-package Model.Utente;
+package Model.Account;
 
 import Model.Carta_Elettronica.CartaElettronica;
 import Model.Dati_utente.DatiUtente;
@@ -10,7 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;import java.util.List;
 
-public class Utente {
+public class Account {
 
     //Dati dell'Account
     private String email;
@@ -21,7 +21,7 @@ public class Utente {
     private List<CartaElettronica> cartePay;
     private DatiUtente dtUser;
 
-    public Utente(){
+    public Account(){
         super();
     }
 

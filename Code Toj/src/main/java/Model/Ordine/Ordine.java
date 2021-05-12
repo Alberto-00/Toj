@@ -2,7 +2,7 @@ package Model.Ordine;
 
 import Model.Articolo.Articolo;
 import Model.Sconto.Sconto;
-import Model.Utente.Utente;
+import Model.Account.Account;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -16,11 +16,11 @@ public class Ordine {
     private String descrizione;
     private List<Articolo> articoli;
     private List<Sconto> codSconto;
-    private Utente user;
+    private Account user;
 
     public Ordine(){
         super();
-        user = new Utente();
+        user = new Account();
     }
 
     public String getID_ordine() {
@@ -79,11 +79,11 @@ public class Ordine {
         this.codSconto = codSconto;
     }
 
-    public Utente getUser() {
+    public Account getUser() {
         return user;
     }
 
-    public void setUser(Utente user) {
+    public void setUser(Account user) {
         this.user = user;
     }
 }

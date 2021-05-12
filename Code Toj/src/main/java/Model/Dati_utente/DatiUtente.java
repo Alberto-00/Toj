@@ -1,6 +1,6 @@
 package Model.Dati_utente;
 
-import Model.Utente.Utente;
+import Model.Account.Account;
 
 import java.time.LocalDate;
 
@@ -13,7 +13,7 @@ public class DatiUtente {
     private String numeroCivico;
     private String CAP;
     private String numeroTelefonico;
-    private Utente user;
+    private Account user;
 
     public DatiUtente(){
         super();
@@ -75,11 +75,11 @@ public class DatiUtente {
         this.numeroTelefonico = numeroTelefonico;
     }
 
-    public Utente getUser() {
+    public Account getUser() {
         return user;
     }
 
-    public void setUser(Utente user) {
+    public void setUser(Account user) {
         this.user = user;
     }
 }

@@ -1,7 +1,5 @@
 package Model.Ordine;
 
-import Model.Utente.Utente;
-
 import java.util.List;
 
 public interface OrdineDAO  <E extends Exception>{

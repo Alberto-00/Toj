@@ -6,3 +6,8 @@
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+/dataSources/82835e20-dcb2-45cf-ab40-e77d32864dca.xml
+/dataSources/82835e20-dcb2-45cf-ab40-e77d32864dca/storage_v2/_src_/schema/information_schema.FNRwLQ.meta
+/dataSources/82835e20-dcb2-45cf-ab40-e77d32864dca/storage_v2/_src_/schema/mysql.osA4Bg.meta
+/dataSources/82835e20-dcb2-45cf-ab40-e77d32864dca/storage_v2/_src_/schema/performance_schema.kIw0nw.meta
+/dataSources/82835e20-dcb2-45cf-ab40-e77d32864dca/storage_v2/_src_/schema/sys.zb4BAA.meta
