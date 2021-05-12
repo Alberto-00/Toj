@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+    <title>Tøj | Clothing Store</title>
+    <script type="text/javascript" src="js/jquery-3.6.0.js"></script>
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="shortcut icon" type="image/png" sizes="16x16" href="images/logo2.png">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="header-top">
+    <div class="container-top">
+        <span>Consegna gratuita:</span>
+        <p>approfittane per fare i tuoi acquisti</p>
+        <span class="border">Resi gratuiti * </span>
+        <p>Soddisfatti o rimborsati</p>
+        <div class="top-right">
+            <ul>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">My Account<i class="fas fa-angle-down icon-left"></i></a>
+                    <div class="dropdown-content">
+                        <a class="border-content" href="#">My Account</a>
+                        <a class="border-content" href="#">Sign in</a>
+                        <a href="#">Qualcosa</a>
+                    </div>
+                </li>
+                <li class="dropdown border">
+                    <a href="javascript:void(0)" class="dropbtn">Language<i class="fas fa-angle-down icon-left"></i></a>
+                    <div class="dropdown-content">
+                        <a class="border-content" href="#">
+                            <img src="images/it.png" class="image-lang">Ita
+                        </a>
+                        <a href="#"><img src="images/en.png" class="image-lang">Eng</a>
+                    </div>
+                </li>
+                <li class="dropdown border">
+                    <a href="#">Termini e condizioni</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="header-middle">
+    <div class="container-top">
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/logo.png" alt="" width="100" height="100">
+            </a>
+            <div class="top-left">
+                <a href="Login">Accedi</a>
+                <span style="color: #747474">/</span>
+                <a href="Registrati">Registrati</a>
+                <div class="cart-link">
+                    <a href="Carrello">
+                        <i class="fas fa-shopping-cart icon-right"></i>Carrello
+                        <span class="num-cart-product">2</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <form action="#">
+        <div class="container">
+            <div class="form-group">
+                <div class="dropdown-middle">
+                    <!-- <div class="default-option">Tutte le categorie<i class="fas fa-angle-down icon-left"></i></div>-->
+                    <div class="dropdown-list">
+                        <label for="categoria"></label>
+                        <select id="categoria" name="categoria">
+                            <option value="Tutte le categorie" selected>Tutte le categorie</option>
+                            <option value="Cappotti">Cappotti</option>
+                            <option value="Giacche">Giacche</option>
+                            <option value="Maglie">Maglie</option>
+                            <option value="Costumi">Costumi</option>
+                            <option value="Gonne">Gonne</option>
+                        </select>
+                        <!--<ul>
+                            <li>&nbsp;Tutte le categorie</li>
+                            <li>&nbsp;Cappotti</li>
+                            <li>&nbsp;Giacche</li>
+                            <li>&nbsp;Maglie</li>
+                            <li>&nbsp;Costumi</li>
+                            <li>&nbsp;Gonne</li>
+                        </ul>-->
+                    </div>
+                </div>
+                <div class="search">
+                    <label for="search-input"></label>
+                    <input type="text" id="search-input" name="search-input" class="search-input" placeholder="Cerca i prodotti qui...">
+                </div>
+                <button class="btn" type="submit"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+        </form>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script defer>
+            $(document).ready(function (){
+                $(".dropdwon-middle").click(function (){
+                    $(".dropdown-list ul").toggleClass("active");
+                });
+                /**
+                 * Ora selezioniamo la categoria dalla lista dropdown
+                 */
+                $(".dropdown-list ul li").click(function (){
+                    var icon_text = $(this).html();
+                    $(".default-option").html(icon_text);
+                });
+                /**
+                 * la lista dropdown si nasconde quando clicco sulla search bar o altrove
+                 */
+                $(document).on("click", function (event){
+                    if(!$(event.target).closest(".dropdwon-middle").length){
+                        $(".dropdown-list ul").removeClass("active");
+                    }
+                });
+            });
+        </script>
+    </div>
+</div>
+<div class="header-bottom">
+    <div class="container-top">
+        <div class="nav-bottom" id="nav-bottom">
+            <ul>
+                <li class="dropdown">
+                    <a href="index.html">Home</a>
+                </li>
+                <li class="dropdown">
+                    <a href="Uomo" class="dropbtn">Uomo<i class="fas fa-angle-down icon-left"></i></a>
+                    <div class="dropdown-content dropdown-content-bottom">
+                        <a href="#">Cappotti</a>
+                        <a href="#">Giacche</a>
+                        <a href="#">Maglie</a>
+                        <a href="#">Costumi</a>
+                        <a href="#">Pantaloni</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="Donna" class="dropbtn">Donna<i class="fas fa-angle-down icon-left"></i></a>
+                    <div class="dropdown-content dropdown-content-bottom">
+                        <a href="#">Cappotti</a>
+                        <a href="#">Giacche</a>
+                        <a href="#">Magliette</a>
+                        <a href="#">Costumi</a>
+                        <a href="#">Pantaloni</a>
+                        <a href="#">Gonne</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">Nuovi Arrivi<i class="fas fa-angle-down icon-left"></i></a>
+                    <div class="dropdown-content dropdown-content-bottom">
+                        <a href="#">Uomo</a>
+                        <a href="#">Donna</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="AboutUs.html">About Us</a>
+                </li>
+                <li class="dropdown">
+                    <a href="contactUs.html">Contattaci</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--Content middle-->
+<div class="container-top">
+    <div class="image image-left" id="overlay-image-woman">
+        <a href="Donna"><img src="images/woman.jpg" alt=""></a>
+        <div class="banner-text centered">
+            <h1>Women's</h1>
+            <p>Big Sale Off Final Items. Caught in the moment!</p>
+            <a href="Donna">Acquista Ora</a>
+        </div>
+    </div>
+    <div class="image image-right" id="overlay-image-man">
+        <a href="Uomo"><img src="images/boy.jpg" alt=""></a>
+        <div class="banner-text centered">
+            <h1>Men's</h1>
+            <p>Big Sale Off Final Items. Caught in the moment!</p>
+            <a href="Uomo">Acquista Ora</a>
+        </div>
+    </div>
+    <div class="title-middle">
+        <h2>Nuovi arrivi</h2>
+        <p>Design contemporanei, minimali e moderni per essere sempre al passo con la moda</p>
+        <ul>
+            <li class="dropdown"><a href="#" class="hover">Women's</a></li>
+            <li class="dropdown"> <a href="#" class="hover">Men's</a></li>
+        </ul>
+    </div>
+    <script>
+        document.getElementById("overlay-image-woman").addEventListener("click", function (){
+            window.location.href = "./Donna";
+        })
+        document.getElementById("overlay-image-man").addEventListener("click", function (){
+            window.location.href = "./Uomo";
+        })
+    </script>
+</div>
+<div class="new-arrival" id="menu">
+    <!--products----------------------->
+    <div class="product-container">
+        <!--product-box-1---------->
+        <div class="product-box">
+            <!--product-img------------>
+            <div class="product-img">
+                <!--add-cart---->
+                <a href="#" class="add-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                <!--img------>
+                <img src="images/boy.jpg">
+            </div>
+            <!--product-details-------->
+            <div class="product-details">
+                <a href="#" class="p-name">Drawstring T-Shirt</a>
+                <span class="p-price">$22.00</span>
+            </div>
+        </div>
+        <!--product-box-2---------->
+        <div class="product-box">
+            <!--product-img------------>
+            <div class="product-img">
+                <!--add-cart---->
+                <a href="#" class="add-cart"><i class="fas fa-shopping-cart"></i></a>
+                <!--img------>
+                <img src="images/boy.jpg">
+            </div>
+            <!--product-details-------->
+            <div class="product-details">
+                <a href="#" class="p-name">Drawstring T-Shirt</a>
+                <span class="p-price">$22.00</span>
+            </div>
+        </div>
+        <!--product-box-3---------->
+        <div class="product-box">
+            <!--product-img------------>
+            <div class="product-img">
+                <!--add-cart---->
+                <a href="#" class="add-cart"><i class="fas fa-shopping-cart"></i></a>
+                <!--img------>
+                <img src="images/boy.jpg">
+            </div>
+            <!--product-details-------->
+            <div class="product-details">
+                <a href="#" class="p-name">Drawstring T-Shirt</a>
+                <span class="p-price">$22.00</span>
+            </div>
+        </div>
+        <!--product-box-4---------->
+        <div class="product-box">
+            <!--product-img------------>
+            <div class="product-img">
+                <!--add-cart---->
+                <a href="#" class="add-cart"><i class="fas fa-shopping-cart"></i></a>
+                <!--img------>
+                <img src="images/boy.jpg" width="30%">
+            </div>
+            <!--product-details-------->
+            <div class="product-details">
+                <a href="#" class="p-name">Drawstring T-Shirt</a>
+                <span class="p-price">$22.00</span>
+            </div>
+        </div>
+        <!--product-box-5---------->
+        <div class="product-box">
+            <!--product-img------------>
+            <div class="product-img">
+                <!--add-cart---->
+                <a href="#" class="add-cart"><i class="fas fa-shopping-cart"></i></a>
+                <!--img------>
+                <img src="images/p-6.png">
+            </div>
+            <!--product-details-------->
+            <div class="product-details">
+                <a href="#" class="p-name">Drawstring T-Shirt</a>
+                <span class="p-price">$22.00</span>
+            </div>
+        </div>
+        <!--product-box-6---------->
+        <div class="product-box">
+            <!--product-img------------>
+            <div class="product-img">
+                <!--add-cart---->
+                <a href="#" class="add-cart"><i class="fas fa-shopping-cart"></i></a>
+                <!--img------>
+                <img src="images/p-6.png">
+            </div>
+            <!--product-details-------->
+            <div class="product-details">
+                <a href="#" class="p-name">Drawstring T-Shirt</a>
+                <span class="p-price">$22.00</span>
+            </div>
+        </div>
+        <!--product-box-7---------->
+        <div class="product-box">
+            <!--product-img------------>
+            <div class="product-img">
+                <!--add-cart---->
+                <a href="#" class="add-cart"><i class="fas fa-shopping-cart"></i></a>
+                <!--img------>
+                <img src="images/p-6.png">
+            </div>
+            <!--product-details-------->
+            <div class="product-details">
+                <a href="#" class="p-name">Drawstring T-Shirt</a>
+                <span class="p-price">$22.00</span>
+            </div>
+        </div>
+        <!--product-box-8---------->
+        <div class="product-box">
+            <!--product-img------------>
+            <div class="product-img">
+                <!--add-cart---->
+                <a href="#" class="add-cart"><i class="fas fa-shopping-cart"></i></a>
+                <!--img------>
+                <img src="images/p-6.png">
+            </div>
+            <!--product-details-------->
+            <div class="product-details">
+                <a href="#" class="p-name">Drawstring T-Shirt</a>
+                <span class="p-price">$22.00</span>
+            </div>
+        </div>
+        <div class="product-box">
+            <!--product-img------------>
+            <div class="product-img">
+                <!--add-cart---->
+                <a href="#" class="add-cart"><i class="fas fa-shopping-cart"></i></a>
+                <!--img------>
+                <img src="images/p-6.png">
+            </div>
+            <!--product-details-------->
+            <div class="product-details">
+                <a href="#" class="p-name">Drawstring T-Shirt</a>
+                <span class="p-price">$22.00</span>
+            </div>
+        </div>
+    </div>
+    <div id="nav">
+        <div id="prev"><i class="fas fa-chevron-left"></i></div>
+        <div id="next"><i class="fas fa-chevron-right"></i></div>
+    </div>
+</div>
+</div>
+<script>
+    $('#prev').on('click', function() {
+        $('#menu .product-container').animate({
+            scrollLeft: '-=300'
+        }, 500, 'swing');
+    });
+
+    $('#next').on('click', function() {
+        $('#menu .product-container').animate({
+            scrollLeft: '+=300'
+        }, 500, 'swing');
+    });
+</script>
+<hr>
+<!--Footer-->
+<div class="container-top">
+    <div class="row">
+        <div class="column">
+            <h3>Informazioni</h3>
+            <a href="AboutUs.html" class="hover">About Us</a>
+            <a href="#" class="hover">Spedizioni</a>
+            <a href="#" class="hover">Privacy Policy</a>
+            <a href="#" class="hover">Termini e condizioni</a>
+            <a href="#" class="hover">Contattaci</a>
+            <a href="index.html" class="hover">Ritorna all'HomePage</a>
+        </div>
+        <div class="column2">
+            <h3>Contattaci</h3>
+            <p>Indirizzo: Via Santa Maria Maggiore, 54, Salerno, Campania</p>
+            <p>84086, IT</p>
+            <p>Numero: (+39) 338 4546 448</p>
+            <p>Email: Tøj@gmail.com</p>
+            <div class="icon">
+                <a href="#" title="twitter" class="hover"><i class="fab fa-twitter"></i></a>
+                <a href="#" title="googlePlus" class="hover"><i class="fab fa-google-plus"></i></a>
+                <a href="#" title="facebook" class="hover"><i class="fab fa-facebook"></i></a>
+                <a href="#" title="youtube" class="hover"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        <div class="column3">
+            <h3>Registrati alla Newsletter</h3>
+            <p>Qualità eccezionale. Fabbriche etiche. Iscriviti gratis
+                per usufruire  della spedizione e dei resi gratuiti
+                in Europa sul tuo primo ordine.
+            </p>
+            <div class="subscribe-form">
+                <form action="javascript:void(0)" method="post"> <!--Inserire action-->
+                    <label for="newsletter"></label>
+                    <input type="email" id="newsletter" name="newsletter"
+                           placeholder="Inserisci la tua email qui...">
+                    <div class="popup">
+                        <button type="button" onclick="popupFunction()" name="newsletterSubmit" class="button">
+                            <span>SUBSCRIBE</span>
+                        </button>
+                        <span class="popuptext" id="myPopup">Email inviata. Grazie!</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer-bottom">
+    <div class="container-footer-bottom">
+        <div class="row">
+            <div class="column4">
+                <p>© 2021 Made with ❤️ by <span style="font-weight: bold">Tøj | Clothing Store.</span></p>
+            </div>
+            <div class="column5">
+                <p>Felici acquisti a tutti i nostri clienti. La qualità
+                    e precisione è da <span style="font-weight: bold">Tøj | Clothing Store.</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function popupFunction() {
+        const popup = document.getElementById("myPopup");
+        popup.classList.add("show");;
+        setTimeout(nascondi, 1700);
+    }
+    function nascondi() {
+        const popup = document.getElementById("myPopup");
+        popup.classList.remove("show");
+    }
+
+</script>
+<script>
+    window.onscroll = function() {stickyEffect()};
+    var navbar = document.getElementById("nav-bottom");
+    var sticky = navbar.offsetTop;
+
+    function stickyEffect() {
+        if (window.pageYOffset >= sticky) {
+            navbar.classList.add("sticky")
+        } else {
+            navbar.classList.remove("sticky");
+        }
+    }
+</script>
+<a id="scrollUp" href="#top" class="scroll"><i class="fas fa-angle-double-up"></i></a>
+</body>
+</html>

@@ -5,7 +5,7 @@
 function popupFunction() {
     const popup = document.getElementById("myPopup");
     popup.classList.add("show");
-    setTimeout(nascondi, 1800);
+    setTimeout(nascondi, 1700);
 }
 function nascondi() {
     const popup = document.getElementById("myPopup");
@@ -43,3 +43,25 @@ document.getElementById("overlay-image-woman").addEventListener("click", functio
 document.getElementById("overlay-image-man").addEventListener("click", function (){
     window.location.href = "./Uomo";
 })
+
+
+$(document).ready(function (){
+    $(".dropdwon-middle").click(function (){
+        $(".dropdown-list ul").toggleClass("active");
+    });
+    /**
+     * Ora selezioniamo la categoria dalla lista dropdown
+     */
+    $(".dropdown-list ul li").click(function (){
+        var icon_text = $(this).html();
+        $(".default-option").html(icon_text);
+    });
+    /**
+     * la lista dropdown si nasconde quando clicco sulla search bar o altrove
+     */
+    $(document).on("click", function (event){
+        if(!$(event.target).closest(".dropdwon-middle").length){
+            $(".dropdown-list ul").removeClass("active");
+        }
+    });
+});
