@@ -15,6 +15,7 @@ CREATE TABLE Articolo(
     sconto DOUBLE default 0,
     data_inserimento DATE NOT NULL,
     ID_categoria INT UNSIGNED NOT NULL,
+    Nome text NOT NULL,
     foreign key (ID_categoria) references Categoria (ID_categoria)
     ON UPDATE CASCADE
     ON DELETE CASCADE
