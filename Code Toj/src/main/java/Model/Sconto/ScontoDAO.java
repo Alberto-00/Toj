@@ -1,8 +1,5 @@
 package Model.Sconto;
 
-
-import Model.Articolo.Articolo;
-
 import java.util.List;
 
 public interface ScontoDAO <E extends Exception> {

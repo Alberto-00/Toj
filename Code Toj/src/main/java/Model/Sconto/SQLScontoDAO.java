@@ -10,10 +10,7 @@ import Model.Taglia.TagliaExtractor;
 import Model.storage.ConPool;
 import Model.storage.QueryBuilder;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,16 +44,44 @@ public class SQLScontoDAO implements ScontoDAO<SQLException>{
 
     @Override
     public boolean doCreateSconto(Sconto sconto) throws SQLException {
-        return false;
+        try(Connection con = ConPool.getConnection()) {
+            QueryBuilder queryBuilder = new QueryBuilder("sconto", "s");
+            queryBuilder.insert("codice","data_scadenza","sconto");
+            try (PreparedStatement ps = con.prepareStatement(queryBuilder.generateQuery())) {
+                ps.setString(1,sconto.getCodice());
+                ps.setDate(2, Date.valueOf(sconto.getDataScadenza()));
+                ps.setDouble(3,sconto.getSconto());
+                int rows = ps.executeUpdate();
+                return rows == 1;
+            }
+        }
     }
 
     @Override
     public boolean doUpdateSconto(Sconto sconto) throws SQLException {
-        return false;
+        try(Connection con = ConPool.getConnection()) {
+            QueryBuilder queryBuilder = new QueryBuilder("sconto", "s");
+            queryBuilder.update("codice", "data_scadenza", "sconto").where("s.codice = "+sconto.getCodice());
+            try (PreparedStatement ps = con.prepareStatement(queryBuilder.generateQuery())) {
+                ps.setString(1, sconto.getCodice());
+                ps.setDate(2, Date.valueOf(sconto.getDataScadenza()));
+                ps.setDouble(3,sconto.getSconto());
+                int rows = ps.executeUpdate();
+                return rows == 1;
+            }
+        }
     }
 
     @Override
     public boolean doDeleteSconto(Sconto sconto) throws SQLException {
-        return false;
+        try(Connection con = ConPool.getConnection()) {
+            QueryBuilder queryBuilder = new QueryBuilder("sconto", "s");
+            queryBuilder.delete().where("s.codice = " + sconto.getCodice());
+            try (PreparedStatement ps = con.prepareStatement(queryBuilder.generateQuery())) {
+                ps.setString(1, sconto.getCodice());
+                int rows = ps.executeUpdate();
+                return rows == 1;
+            }
+        }
     }
 }
