@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <link rel="shortcut icon" type="image/png" sizes="16x16" href="images/logo2.png">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
 <div class="header-top">
@@ -56,7 +56,7 @@
                 <div class="cart-link">
                     <a href="Carrello">
                         <i class="fas fa-shopping-cart icon-right"></i>Carrello
-                        <span class="num-cart-product">2</span>
+                        <span class="num-cart-product">0</span>
                     </a>
                 </div>
             </div>
@@ -162,9 +162,6 @@
                 </li>
             </ul>
         </div>
-        <a href="javascript:void(0);" class="icon-responsive-nav-bottom" onclick="myFunction()">
-            <i class="fa fa-bars"></i>
-        </a>
     </div>
 </div>
 <!--Content middle-->
@@ -215,7 +212,12 @@
                 </a>
                 <span class="add-sconto">5%</span>
                 <!--img------>
-                <img src="images/boy.jpg">
+                <div class="cf">
+                    <a href="#">
+                        <img src="images/woman.jpg">
+                        <img src="images/boy.jpg" class="top-image">
+                    </a>
+                </div>
             </div>
             <!--product-details-------->
             <div class="product-details">
@@ -231,7 +233,12 @@
                 <a href="#" class="add-cart"><i class="fas fa-shopping-cart"></i></a>
                 <span class="add-sconto">5%</span>
                 <!--img------>
-                <img src="images/boy.jpg">
+                <div class="cf">
+                    <a href="#">
+                        <img src="images/woman.jpg">
+                        <img src="images/boy.jpg" class="top-image">
+                    </a>
+                </div>
             </div>
             <!--product-details-------->
             <div class="product-details">
@@ -247,7 +254,12 @@
                 <a href="#" class="add-cart"><i class="fas fa-shopping-cart"></i></a>
                 <span class="add-sconto">5%</span>
                 <!--img------>
-                <img src="images/boy.jpg">
+                <div class="cf">
+                    <a href="#">
+                        <img src="images/woman.jpg">
+                        <img src="images/boy.jpg" class="top-image">
+                    </a>
+                </div>
             </div>
             <!--product-details-------->
             <div class="product-details">
@@ -263,7 +275,12 @@
                 <a href="#" class="add-cart"><i class="fas fa-shopping-cart"></i></a>
                 <span class="add-sconto">5%</span>
                 <!--img------>
-                <img src="images/boy.jpg" width="30%">
+                <div class="cf">
+                    <a href="#">
+                        <img src="images/woman.jpg">
+                        <img src="images/boy.jpg" class="top-image">
+                    </a>
+                </div>
             </div>
             <!--product-details-------->
             <div class="product-details">
@@ -279,7 +296,12 @@
                 <a href="#" class="add-cart"><i class="fas fa-shopping-cart"></i></a>
                 <span class="add-sconto">5%</span>
                 <!--img------>
-                <img src="images/p-6.png">
+                <div class="cf">
+                    <a href="#">
+                        <img src="images/woman.jpg">
+                        <img src="images/boy.jpg" class="top-image">
+                    </a>
+                </div>
             </div>
             <!--product-details-------->
             <div class="product-details">
@@ -295,7 +317,12 @@
                 <a href="#" class="add-cart"><i class="fas fa-shopping-cart"></i></a>
                 <span class="add-sconto">5%</span>
                 <!--img------>
-                <img src="images/p-6.png">
+                <div class="cf">
+                    <a href="#">
+                        <img src="images/woman.jpg">
+                        <img src="images/boy.jpg" class="top-image">
+                    </a>
+                </div>
             </div>
             <!--product-details-------->
             <div class="product-details">
@@ -311,7 +338,12 @@
                 <a href="#" class="add-cart"><i class="fas fa-shopping-cart"></i></a>
                 <span class="add-sconto">5%</span>
                 <!--img------>
-                <img src="images/p-6.png">
+                <div class="cf">
+                    <a href="#">
+                        <img src="images/woman.jpg">
+                        <img src="images/boy.jpg" class="top-image">
+                    </a>
+                </div>
             </div>
             <!--product-details-------->
             <div class="product-details">
@@ -327,7 +359,12 @@
                 <a href="#" class="add-cart"><i class="fas fa-shopping-cart"></i></a>
                 <span class="add-sconto">5%</span>
                 <!--img------>
-                <img src="images/p-6.png">
+                <div class="cf">
+                    <a href="#">
+                        <img src="images/woman.jpg">
+                        <img src="images/boy.jpg" class="top-image">
+                    </a>
+                </div>
             </div>
             <!--product-details-------->
             <div class="product-details">
@@ -335,13 +372,20 @@
                 <span class="p-price">$22.00</span>
             </div>
         </div>
+        <!--product-box-9---------->
         <div class="product-box">
             <!--product-img------------>
             <div class="product-img">
                 <!--add-cart---->
                 <a href="#" class="add-cart"><i class="fas fa-shopping-cart"></i></a>
+                <span class="add-sconto">5%</span>
                 <!--img------>
-                <img src="images/p-6.png">
+                <div class="cf">
+                    <a href="#">
+                        <img src="images/woman.jpg">
+                        <img src="images/boy.jpg" class="top-image">
+                    </a>
+                </div>
             </div>
             <!--product-details-------->
             <div class="product-details">
@@ -433,7 +477,7 @@
 <script>
     function popupFunction() {
         const popup = document.getElementById("myPopup");
-        popup.classList.add("show");;
+        popup.classList.add("show");
         setTimeout(nascondi, 1700);
     }
     function nascondi() {
@@ -456,17 +500,5 @@
     }
 </script>
 <a id="scrollUp" href="#top" class="scroll"><i class="fas fa-angle-double-up"></i></a>
-
-<!-- Responsive -->
-<script>
-    function myFunction() {
-        var x = document.getElementById("myTopnav");
-        if (x.className === "header-bottom") {
-            x.className += " responsive";
-        } else {
-            x.className = "header-bottom";
-        }
-    }
-</script>
 </body>
 </html>

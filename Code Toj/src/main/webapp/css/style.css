@@ -345,6 +345,13 @@ input, button:focus{
     padding: 10px 15px;
 }
 
+.cart-link span{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    padding-left: 2px;
+    padding-top: 1px;
+}
+
 .icon-right{
     padding-right: 8px;
     margin-right: auto;
@@ -868,7 +875,30 @@ input, button:focus{
     border: 1px solid lightgrey;
     border-radius: 10px;
     margin: 22px;
+    animation: fade 0.3s;
+    transition: all ease 0.3s;
 }
+
+/*effetto doppia foto in "nuovi arrivi"*/
+.cf {
+    position:relative;
+    height:290px;
+    width:290px;
+}
+
+.cf img{
+    position:absolute;
+    left:0;
+    -webkit-transition: opacity 0.4s ease-in-out;
+    -moz-transition: opacity 0.4s ease-in-out;
+    -o-transition: opacity 0.4s ease-in-out;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.cf img.top-image:hover {
+    opacity:0;
+}
+
 .product-img{
     width: 290px;
     height: 290px;
@@ -876,12 +906,14 @@ input, button:focus{
     cursor: pointer;
     position: relative;
 }
+
 .product-img img{
     width:100%;
     height: 100%;
     object-fit: contain;
     object-position: center;
 }
+
 .product-details{
     display: flex;
     flex-direction: column;
@@ -897,6 +929,7 @@ input, button:focus{
 }
 
 .p-name:hover {
+    transition: all ease 0.3s;
     color: #fd7e14;
 }
 
@@ -921,7 +954,8 @@ input, button:focus{
     color: #ffffff;
     box-shadow: 2px 2px 30px rgba(0,0,0,0.1);
     animation: fade 0.3s;
-
+    transition: all ease 0.3s;
+    z-index: 1;
 }
 
 .add-sconto{
@@ -936,11 +970,12 @@ input, button:focus{
 }
 .add-cart:hover{
     background-color: #f76b6a;
-    transition: all ease 0.3s;
 }
+
 .product-box:hover .add-cart{
     display: flex;
 }
+
 .new-arrival{
     display: flex;
     flex-direction: row;
@@ -1015,30 +1050,4 @@ html{
 /*320px - 480px: Mobile devices*/
 @media screen and (max-width: 769px){
 
-}
-
-@media screen and (max-width: 600px) {
-    .header-bottom a:not(:first-child) {display: none;}
-    .header-bottom a.icon-responsive-nav-bottom {
-        float: right;
-        display: block;
-    }
-}
-
-@media screen and (max-width: 769px) {
-    .header-top{display: none}
-    .header-bottom.responsive {position: relative;}
-    .header-bottom.responsive .icon-responsive-nav-bottom {
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
-    .header-bottom.responsive a {
-        float: none;
-        display: block;
-        text-align: left;
-    }
-}
-.icon-responsive-nav-bottom{
-    display: none;
 }
