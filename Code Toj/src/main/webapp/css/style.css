@@ -172,8 +172,8 @@ li.dropdown {
 
 .container{
     position: absolute;
-    top: 50%;
-    left: 800px;
+    top: 60%;
+    left: 525px;
     transform: translate(-50%, -50%);
 }
 
@@ -643,7 +643,6 @@ input, button:focus{
     width: 100%;
     background-color: rgba(36,36,36,0.7);
     z-index: 2;
-
 }
 
 .dropdown-content-bottom a:link {
@@ -871,9 +870,9 @@ input, button:focus{
     margin: 22px;
 }
 .product-img{
-    width: 200px;
-    height: 200px;
-    margin: 20px;
+    width: 290px;
+    height: 290px;
+    margin: 23px;
     cursor: pointer;
     position: relative;
 }
@@ -909,9 +908,9 @@ input, button:focus{
 .product-box:hover{
     box-shadow: 2px 2px 30px rgba(0,0,0,0.1);
 }
-.add-cart{
+
+.add-sconto, .add-cart{
     position: absolute;
-    right: -20px;
     top: 10px;
     width:50px;
     height: 50px;
@@ -920,11 +919,20 @@ input, button:focus{
     justify-content: center;
     align-items: center;
     color: #ffffff;
-    background-color: orange;
     box-shadow: 2px 2px 30px rgba(0,0,0,0.1);
-    display: none;
     animation: fade 0.3s;
 
+}
+
+.add-sconto{
+    left: -20px;
+    background-color: #007A58;
+}
+
+.add-cart{
+    right: -20px;
+    background-color: orange;
+    display: none;
 }
 .add-cart:hover{
     background-color: #f76b6a;
@@ -969,17 +977,16 @@ html{
 
 #prev {
     margin-left: -28rem;
-    margin-top: 7rem;
     left: 0;
 }
 
 #next{
     margin-right: -28rem;
-    margin-top: 7rem;
     right: 0;
 }
 
 #next, #prev{
+    margin-top: 10rem;
     font-size: 30px;
     display: inline-block;
     padding: 5px;
@@ -994,4 +1001,44 @@ html{
     color: #fd7e14;
 }
 
+/*responsive*/
+/*769px - In poi: Small screens, laptops, TV*/
+@media screen and (max-width: 769px){
 
+}
+
+/*481px - 768px: iPads, Tablets*/
+@media screen and (max-width: 769px){
+
+}
+
+/*320px - 480px: Mobile devices*/
+@media screen and (max-width: 769px){
+
+}
+
+@media screen and (max-width: 600px) {
+    .header-bottom a:not(:first-child) {display: none;}
+    .header-bottom a.icon-responsive-nav-bottom {
+        float: right;
+        display: block;
+    }
+}
+
+@media screen and (max-width: 769px) {
+    .header-top{display: none}
+    .header-bottom.responsive {position: relative;}
+    .header-bottom.responsive .icon-responsive-nav-bottom {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .header-bottom.responsive a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+}
+.icon-responsive-nav-bottom{
+    display: none;
+}

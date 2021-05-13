@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <link rel="shortcut icon" type="image/png" sizes="16x16" href="images/logo2.png">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <div class="header-top">
@@ -118,7 +119,7 @@
         </script>
     </div>
 </div>
-<div class="header-bottom">
+<div class="header-bottom" id="myTopnav">
     <div class="container-top">
         <div class="nav-bottom" id="nav-bottom">
             <ul>
@@ -161,6 +162,9 @@
                 </li>
             </ul>
         </div>
+        <a href="javascript:void(0);" class="icon-responsive-nav-bottom" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
     </div>
 </div>
 <!--Content middle-->
@@ -209,6 +213,7 @@
                 <a href="#" class="add-cart">
                     <i class="fas fa-shopping-cart"></i>
                 </a>
+                <span class="add-sconto">5%</span>
                 <!--img------>
                 <img src="images/boy.jpg">
             </div>
@@ -224,6 +229,7 @@
             <div class="product-img">
                 <!--add-cart---->
                 <a href="#" class="add-cart"><i class="fas fa-shopping-cart"></i></a>
+                <span class="add-sconto">5%</span>
                 <!--img------>
                 <img src="images/boy.jpg">
             </div>
@@ -239,6 +245,7 @@
             <div class="product-img">
                 <!--add-cart---->
                 <a href="#" class="add-cart"><i class="fas fa-shopping-cart"></i></a>
+                <span class="add-sconto">5%</span>
                 <!--img------>
                 <img src="images/boy.jpg">
             </div>
@@ -254,6 +261,7 @@
             <div class="product-img">
                 <!--add-cart---->
                 <a href="#" class="add-cart"><i class="fas fa-shopping-cart"></i></a>
+                <span class="add-sconto">5%</span>
                 <!--img------>
                 <img src="images/boy.jpg" width="30%">
             </div>
@@ -269,6 +277,7 @@
             <div class="product-img">
                 <!--add-cart---->
                 <a href="#" class="add-cart"><i class="fas fa-shopping-cart"></i></a>
+                <span class="add-sconto">5%</span>
                 <!--img------>
                 <img src="images/p-6.png">
             </div>
@@ -284,6 +293,7 @@
             <div class="product-img">
                 <!--add-cart---->
                 <a href="#" class="add-cart"><i class="fas fa-shopping-cart"></i></a>
+                <span class="add-sconto">5%</span>
                 <!--img------>
                 <img src="images/p-6.png">
             </div>
@@ -299,6 +309,7 @@
             <div class="product-img">
                 <!--add-cart---->
                 <a href="#" class="add-cart"><i class="fas fa-shopping-cart"></i></a>
+                <span class="add-sconto">5%</span>
                 <!--img------>
                 <img src="images/p-6.png">
             </div>
@@ -314,6 +325,7 @@
             <div class="product-img">
                 <!--add-cart---->
                 <a href="#" class="add-cart"><i class="fas fa-shopping-cart"></i></a>
+                <span class="add-sconto">5%</span>
                 <!--img------>
                 <img src="images/p-6.png">
             </div>
@@ -347,13 +359,13 @@
 <script>
     $('#prev').on('click', function() {
         $('#menu .product-container').animate({
-            scrollLeft: '-=300'
+            scrollLeft: '-=380' /*300*/
         }, 500, 'swing');
     });
 
     $('#next').on('click', function() {
         $('#menu .product-container').animate({
-            scrollLeft: '+=300'
+            scrollLeft: '+=380' /*290*/
         }, 500, 'swing');
     });
 </script>
@@ -444,5 +456,17 @@
     }
 </script>
 <a id="scrollUp" href="#top" class="scroll"><i class="fas fa-angle-double-up"></i></a>
+
+<!-- Responsive -->
+<script>
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "header-bottom") {
+            x.className += " responsive";
+        } else {
+            x.className = "header-bottom";
+        }
+    }
+</script>
 </body>
 </html>
