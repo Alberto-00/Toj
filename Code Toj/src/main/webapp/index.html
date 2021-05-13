@@ -50,7 +50,7 @@
             <div class="login__forms">
                 <form action="" class="login__registre close-icon" id="login-in">
                     <h1 class="login__title">Sign In</h1>
-                    <a onclick="closeForm()" class="icon-close-popup"><i class="fas fa-times"></i></a>
+                    <a onclick="closeForm()" class="icon-close-popup-sigIn"><i class="fas fa-times"></i></a>
 
                     <div class="login__box">
                         <i class='bx bx-user login__icon'></i>
@@ -72,9 +72,9 @@
                     </div>
                 </form>
 
-                <form action="" class="login__create none" id="login-up">
+                <form action="" class="login__create none close-icon" id="login-up">
                     <h1 class="login__title">Create Account</h1>
-
+                    <a onclick="closeForm()" class="icon-close-popup-sigUp"><i class="fas fa-times"></i></a>
                     <div class="login__box">
                         <i class='bx bx-user login__icon'></i>
                         <input type="text" placeholder="Username" class="login__input">
@@ -89,9 +89,7 @@
                         <i class='bx bx-lock-alt login__icon'></i>
                         <input type="password" placeholder="Password" class="login__input">
                     </div>
-
                     <a href="#" class="login__button">Sign Up</a>
-
                     <div>
                         <span class="login__account">Already have an Account ?</span>
                         <span class="login__signup" id="sign-in">Sign In</span>

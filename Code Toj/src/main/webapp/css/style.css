@@ -1230,14 +1230,21 @@ html{
     display: inline;
 }
 
-.icon-close-popup i{
+.icon-close-popup-sigIn i, .icon-close-popup-sigUp i{
     font-size: 30px;
-    transform: translate(485%, -60%);
     animation: fade 0.3s;
     transition: all ease 0.3s;
 }
 
-.icon-close-popup:hover i{
+.icon-close-popup-sigIn i{
+    transform: translate(485%, -60%);
+}
+
+.icon-close-popup-sigUp i{
+    transform: translate(250%, -60%);
+}
+
+.icon-close-popup-sigIn:hover i, .icon-close-popup-sigUp:hover i{
     color: #fd7e14;
 }
 
