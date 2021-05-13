@@ -1217,7 +1217,7 @@ html{
 }
 
 /* The popup form - hidden by default */
-.popup {
+.popup-login{
     display: none;
     position: absolute;
     z-index: 5;
