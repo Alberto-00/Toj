@@ -170,23 +170,81 @@ li.dropdown {
     margin-left: 9px;
 }
 
-.container{
-    position: absolute;
-    top: 60%;
-    left: 525px;
-    transform: translate(-50%, -50%);
-}
-
 .form-group{
-    transform: translate(10%, 125%);
+    position: absolute;
+    transform: translate(30%, -170%);
     font-size: 13px;
     background-color: #f6f6f6;
     display: flex;
-    width: 700px;
+    width: 600px;
     height: 50px;
     padding: 7px;
     border-radius: 30px;
     box-shadow: 0 2px 4px 0 rgba(12,18,18,0.4);
+}
+
+
+.custom-select {
+    right: 5px;
+    position: relative;
+}
+
+.custom-select select {
+    display: none; /*hide original SELECT element:*/
+}
+
+.select-selected {
+    background-color: #f6f6f6;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+    position: absolute;
+    content: "";
+    top: 17px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 5px solid transparent;
+    border-color: #242424 transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+    border-color: transparent transparent #242424 transparent;
+    top: 7px;
+}
+
+.select-selected{
+    font-weight: bold;
+    color: #242424 !important;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+    color: #747474;
+    padding: 6px 14px;
+    cursor: pointer;
+    user-select: none;
+}
+
+/*style items (options):*/
+.select-items {
+    position: absolute;
+    background-color: #f6f6f6;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+    display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .dropdown-middle{
@@ -197,84 +255,6 @@ li.dropdown {
     border-right: 1.5px solid rgba(36,36,36,0.4);
     cursor: pointer;
 }
-
-.dropdown-list select{
-    background-color: #f6f6f6;
-    color: #242424;
-    position: relative;
-    font-size: 13px;
-    font-weight: bold;
-    top: 0;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    right: 3px;
-    border: none;
-}
-
-.dropdown-list option{
-    background-color: #f6f6f6;
-    color: #747474;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 13px;
-}
-
-/*.default-option{
-    font-weight: bold;
-    padding: 4px 10px;
-    width: 145px;
-}
-
-.dropdown-list ul{
-    list-style: none;
-    background-color: #f6f6f6;
-    color: #242424;
-    position: absolute;
-    top: 50px;
-    left: 0;
-    width: 150px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px 0 rgba(12,18,18,0.4);
-    display: none;
-}
-
-.dropdown-list ul.active{
-    display: block;
-}
-
-.dropdown-list ul li{
-    padding: 10px 10px 10px 20px;
-}
-
-.dropdown-list ul li i{
-    margin-right: 5px;
-}
-
-.dropdown-middle::before{
-    content: "";
-    border-width: 6px 6px 0 6px;
-    border-style: solid;
-    border-color: #242424 transparent;
-    position: absolute;
-    right: 10px;
-    top: 50%;
-}
-
-.dropdown-list ul li::before{
-    content: "";
-    border-width: 0 8px 8px 8px;
-    border-style: solid;
-    border-color: #f6f6f6 transparent;
-    position: absolute;
-    bottom: 100%;
-    right: 20px;
-}
-
-.dropdown-list ul li:hover{
-    background-color: #FFFFFF;
-    color: #fd7e14;
-    font-weight: bold;
-    border-radius: 5px;
-}*/
 
 .search{
     width: 1000px;
@@ -773,7 +753,7 @@ input, button:focus{
     border: 2px solid #fff;
     transition: 0.3s;
     position: fixed;
-    z-index: 2147483647;
+    z-index: 99;
     display: block;
 }
 
@@ -995,7 +975,7 @@ html{
 
 .scroll{
     position: fixed;
-    z-index: 2147483647;
+    z-index: 99;
     display: inline;
     scroll-behavior: smooth;
 }
@@ -1247,4 +1227,22 @@ html{
 .icon-close-popup-sigIn:hover i, .icon-close-popup-sigUp:hover i{
     color: #fd7e14;
 }
+
+/*MEDIA QUERY*/
+/*Mobile devices*/
+@media screen and (min-width: 320px) and (max-width: 480px){
+    
+}
+
+/*iPads, Tablets*/
+@media screen and (min-width: 481px) and (max-width: 480px){
+
+}
+
+/*Small screens, laptops, TV*/
+@media screen and (min-width: 769px){
+
+}
+
+
 
