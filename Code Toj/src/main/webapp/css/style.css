@@ -195,6 +195,7 @@ li.dropdown {
 
 .select-selected {
     background-color: #f6f6f6;
+
 }
 
 /*style the arrow inside the select element:*/
@@ -834,7 +835,6 @@ input, button:focus{
 }
 
 /*new product*/
-/*DA QUA E' IL NUOVO!!!!!!!*/
 .product-container{
     width:1140px;
     height: auto;
@@ -1015,21 +1015,6 @@ html{
     color: #fd7e14;
 }
 
-/*responsive*/
-/*769px - In poi: Small screens, laptops, TV*/
-@media screen and (max-width: 769px){
-
-}
-
-/*481px - 768px: iPads, Tablets*/
-@media screen and (max-width: 769px){
-
-}
-
-/*320px - 480px: Mobile devices*/
-@media screen and (max-width: 769px){
-
-}
 
 /*POPUP Accedi registrati*/
 /*===== LOGIN =====*/
@@ -1230,6 +1215,10 @@ html{
 /*MEDIA QUERY*/
 /*Mobile devices*/
 @media screen and (min-width: 320px) and (max-width: 480px){
+
+    .container-top{
+        width: 320px;
+    }
     .header-top{display: none;}
     .header-bottom{display: none;}
     .header-middle{
@@ -1257,26 +1246,163 @@ html{
     }
 
     .image{
-        margin-top: 0;
+        margin-top: 10px;
+        width: 100%;
     }
 
-    .title-middle h2{
-        margin-top: 14rem;
+    .title-middle text{
+        margin-top: 100px;
         font-size: 20px;
         padding-top: 20px;
         padding-bottom: 0;
     }
+
+    /*ultimi arrivi*/
+
+    .new-arrival{
+        width: 100%;
+    }
+
+    .product-container{
+        margin-top: 20px;
+        width: 90%;
+        flex-direction: column;
+        height: 450px;
+    }
+
+    #prev, #next{
+        display: none;
+    }
+
+
+    .product-box{
+        width: 90%;
+    }
+
+    .product-img{
+        width: 60%;
+    }
+
+    .cf {
+        width: 200px;
+        height:230px;
+    }
+
+
+    /*footer*/
+    .column2, .column3{
+        float: left;
+        margin: 0;
+        width: 100%;
+    }
+
+    #newsletter {
+        width: 250px;
+    }
+
+    .subscribe-form button {
+        width: 250px;
+    }
+
+    .subscribe-form{
+       float: left;
+    }
+
+
+
+
 }
 
 /*iPads, Tablets*/
 @media screen and (min-width: 481px) and (max-width: 768px){
 
+    .header-top{display: none;}
+    .header-bottom{display: none;}
+    .header-middle{
+        height: 78px;
+    }
+    .top-left, .form-group{
+        display: none;
+    }
+    .logo img{
+        width: 18%;
+        height: 18%;
+    }
+    .centered{
+        left: 2px;
+    }
+    .centered h1{
+        font-size: 17px;
+    }
+    .centered p{
+        font-size: 7px;
+    }
+    .centered a{
+        line-height: 0 !important;
+        font-size: 7px;
+    }
+
+    .image{
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    .title-middle text{
+        margin-top: 100px;
+        font-size: 20px;
+        padding-top: 20px;
+        padding-bottom: 0;
+    }
+
+    /*ultimi arrivi*/
+
+    .new-arrival{
+        width: 100%;
+    }
+
+    .product-container{
+        margin-top: 20px;
+        width: 90%;
+        flex-direction: row;
+        height: 450px;
+    }
+
+
+
+    .product-box{
+        width: 90%;
+    }
+
+    .product-img{
+        width: 60%;
+    }
+
+    .cf {
+        width: 200px;
+        height:230px;
+    }
+
+
+    /*footer*/
+    .column2, .column3{
+        float: left;
+        margin: 0;
+        width: 100%;
+    }
+
+    #newsletter {
+        width: 305px;
+        margin-left: 25px;
+    }
+    .subscribe-form{
+       float: left;
+    }
+
+
 }
 
-/*Small screens, laptops, TV*/
-@media screen and (min-width: 769px){
 
-}
+
 
 .sidenav {
     height: 100%;
