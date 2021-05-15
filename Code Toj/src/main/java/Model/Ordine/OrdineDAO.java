@@ -8,9 +8,9 @@ public interface OrdineDAO  <E extends Exception>{
 
     Ordine fetchOrdine(Ordine ordine, String idOrdine) throws E;
 
-    boolean createOrdine(Ordine ordine) throws E;
+    boolean doCreateOrdine(Ordine ordine) throws E;
 
-    boolean updateOrdine(Ordine ordine) throws E;
+    boolean doUpdateOrdine(Ordine ordine) throws E;
 
-    boolean deleteOrdine(Ordine ordine) throws E;
+    boolean doDeleteOrdine(Ordine ordine) throws E;
 }

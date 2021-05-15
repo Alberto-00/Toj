@@ -52,7 +52,7 @@ public class SQLOrdineDAO implements OrdineDAO<SQLException> {
     }
 
     @Override
-    public boolean createOrdine(Ordine ordine) throws SQLException {
+    public boolean doCreateOrdine(Ordine ordine) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
             QueryBuilder queryBuilder = new QueryBuilder("ordine", "o");
             queryBuilder.insert("ID_ordine", "data_acquisto", "pacchetto_regalo", "data_spedizione",
@@ -71,7 +71,7 @@ public class SQLOrdineDAO implements OrdineDAO<SQLException> {
     }
 
     @Override
-    public boolean updateOrdine(Ordine ordine) throws SQLException {
+    public boolean doUpdateOrdine(Ordine ordine) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
             QueryBuilder queryBuilder = new QueryBuilder("ordine", "o");
             queryBuilder.update("ID_ordine", "data_acquisto", "pacchetto_regalo", "data_spedizione",
@@ -91,7 +91,7 @@ public class SQLOrdineDAO implements OrdineDAO<SQLException> {
     }
 
     @Override
-    public boolean deleteOrdine(Ordine ordine) throws SQLException {
+    public boolean doDeleteOrdine(Ordine ordine) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
             QueryBuilder queryBuilder = new QueryBuilder("ordine", "o");
             queryBuilder.delete().where("o.ID_ordine=?");
