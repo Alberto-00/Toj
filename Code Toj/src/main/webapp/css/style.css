@@ -1018,22 +1018,22 @@ html{
 
 /*POPUP Accedi registrati*/
 /*===== LOGIN =====*/
-
-.login{
+/*.login{
     display: grid;
     grid-template-columns: 100%;
     height: 100px;
     margin-left: 1.5rem;
     margin-right: 1.5rem;
-}
+}*/
 
 .login__content{
     display: grid;
+    margin-right: 20rem;
+    margin-top: 33rem;
 }
 
 .login__forms{
     position: relative;
-    height: 368px;
 }
 
 .login__registre, .login__create{
@@ -1307,10 +1307,6 @@ html{
     .subscribe-form{
        float: left;
     }
-
-
-
-
 }
 
 /*iPads, Tablets*/
@@ -1400,9 +1396,6 @@ html{
 
 
 }
-
-
-
 
 .sidenav {
     height: 100%;
