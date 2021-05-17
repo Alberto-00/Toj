@@ -271,6 +271,15 @@ li.dropdown {
 /* header-bottom end */
 
 /* middle-start */
+
+@media screen and (min-width: 320px) and (max-width: 480px){
+
+    .square{
+        width: 100%;
+        flex-direction: column;
+    }
+}
+
 .home {
     text-decoration: none;
     color: #242424;
@@ -334,27 +343,21 @@ li.dropdown {
 
 .middle-bottom{
     padding: 0 0 55px;
-    width: 100%;
-}
-
-.square1{
-    float:left;
-    width: 265px;
-    height:265px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    background-color: lightgrey;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
 }
 
 .square{
     float:left;
-    width:265px;
-    height:265px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    width: 24%;
+    height:auto;
     background-color: lightgrey;
 }
 
-.square img,
-.square1 img{
+.square img{
     display: block;
     margin-left: auto;
     margin-right: auto;
