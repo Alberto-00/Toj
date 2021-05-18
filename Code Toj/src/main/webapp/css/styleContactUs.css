@@ -20,7 +20,7 @@ body{
     overflow: hidden;
 }
 
-.container-top{
+.container-first{
     overflow: hidden;
     max-width: 1140px;
     width: 100%;
@@ -31,13 +31,13 @@ body{
     margin-left: auto;
 }
 
-.container-top span{
+.container-first span{
     color: #FFFFFF;
     padding-right: 0.2rem;
     margin-right: auto;
 }
 
-.container-top p{
+.container-first p{
     display: inline;
     padding-right: 1rem;
     margin-right: auto;

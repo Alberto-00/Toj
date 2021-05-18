@@ -95,4 +95,5 @@ public class Articolo {
     public void setData_inserimento(LocalDate data_inserimento) {
         this.data_inserimento = data_inserimento;
     }
+
 }

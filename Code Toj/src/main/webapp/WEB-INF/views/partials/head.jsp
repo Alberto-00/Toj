@@ -4,23 +4,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>${param.title}</title>
 <meta name="description" content="T&#x000F8;j | Clothing Store">
-<link rel="icon" type="image/png" href="images/logo2.png">
+<link rel="icon" type="image/png" href="icons/logo2.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="format-detection" content="telephone-no">
 <meta name="apple-mobile-web-app-title" content="T&#x000F8;j | Clothing Store">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<link rel="apple-touch-icon" href="images/logo2.png">
-<link rel="apple-touch-startup-image" href="images/logo2.png">
+<link rel="apple-touch-icon" href="icons/logo2.png">
+<link rel="apple-touch-startup-image" href="icons/logo2.png">
 <meta name="theme-color" content="#FFFFFF">
-<link href="css/reset.css" rel="stylesheet">
-<link href="css/library.css" rel="stylesheet">
+<link href="./css/reset.css" rel="stylesheet">
+<link href="./css/library.css" rel="stylesheet">
 <c:if test="${not empty param.style}">
-    <link rel="stylesheet" href="css/${param.style}">
+    <link rel="stylesheet" href="./css/${param.style}.css">
 </c:if>
-<script src="js/library.js" defer></script>
-<!-- con defer scarichiamo prima tutti i contenuti e poi eseguiamo gli script. Se ci sono più script
-verrano eseguiti in ordine. In questo modo gli script sono "non bloccanti".-->
+
+<script type="text/javascript" src="./js/jquery-3.6.0.js"></script>
+<script src="./js/library.js" defer></script>
 <c:if test="${not empty param.script}">
-    <script src="js/${param.script}" defer></script>
+    <script src="./js/${param.script}.js" defer></script>
 </c:if>
+<link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
