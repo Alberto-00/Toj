@@ -180,24 +180,20 @@ document.getElementById("overlay-image-man").addEventListener("click", function 
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
     document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-}
+
+    $(document).on("click", function(event){
+        if($(".sidenav") !== event.target && !$(".sidenav").has(event.target).length){
+            closeNav();
+        }
+    });
+};
+
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.body.style.backgroundColor = "white";
-}
+};
 
-const $menu = $('.sidenav');
-$(document).mouseup(e => {
-    if (!$menu.is(e.target)
-        && $menu.has(e.target).length === 0)
-    {
-        $menu.removeClass('mySidenav');
-    }
-});
 
-$('.toggle').on('click', () => {
-    $menu.toggleClass('mySidenav');
-});
 
 
 /**

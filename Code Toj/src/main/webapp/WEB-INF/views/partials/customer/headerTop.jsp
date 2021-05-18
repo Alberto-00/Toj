@@ -98,10 +98,10 @@
                         </a>
                     </div>
 
-                    <span>Consegna gratuita:</span>
-                    <p>approfittane per fare i tuoi acquisti</p><br>
+                   <br> <span>Consegna gratuita:</span>
+                    <p>approfittane per fare i tuoi acquisti</p><br><br>
                     <span>Resi gratuiti * </span>
-                    <p>Soddisfatti o rimborsati</p><br>
+                    <p>Soddisfatti o rimborsati</p><br><br>
 
                     <a href="#">Accedi / Registrati</a>
                     <hr>

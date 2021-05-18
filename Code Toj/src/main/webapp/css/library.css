@@ -914,11 +914,6 @@ html{
     transform: translate(0, -25px);
 }
 
-@media screen and (max-height: 720px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-}
-
 .search-sidenav input{
     margin-bottom: 18px;
     padding-top: 8px;
@@ -1048,4 +1043,27 @@ html{
     .form-group{display: none}
     .cart-link{display: none}
     #hide{display: none}
+
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+
+
+
+    .column2, .column3{
+        float: left;
+        margin: 0;
+        width: 100%;
+    }
+
+    #newsletter {
+        width: 250px;
+    }
+
+    .subscribe-form button {
+        width: 250px;
+    }
+
+    .subscribe-form{
+        float: left;
+    }
 }
