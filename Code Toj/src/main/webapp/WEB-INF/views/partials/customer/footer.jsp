@@ -47,6 +47,7 @@
             </div>
         </div>
     </div>
+
     <div class="footer-bottom">
         <div class="container-footer-bottom">
             <div class="row2">
@@ -60,6 +61,8 @@
             </div>
         </div>
     </div>
+
+    <!-- freccia che riporta al top della pagina-->
     <a id="scrollUp" href="#top" class="scroll">
         <i class="fas fa-angle-double-up"></i>
     </a>

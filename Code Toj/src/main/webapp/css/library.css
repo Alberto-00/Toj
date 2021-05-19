@@ -187,7 +187,7 @@ li.dropdown {
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 999999999;
+    z-index: 2;
     top: 0;
     left: 0;
     background-color: var(--black);
@@ -644,7 +644,6 @@ input, button:focus{
     display: none;
 }
 
-/* ===== MEDIA QUERIES =====*/
 @media screen and (min-width: 576px){
     .login__forms{
         width: 348px;

@@ -11,6 +11,7 @@
 <!--headerTop-->
 <%@include file="WEB-INF/views/partials/customer/headerTop.jsp"%>
 
+<!-- header bottom -->
 <div id="myTopnav">
         <div class="container-top">
             <div class="nav-bottom" id="nav-bottom">
@@ -57,6 +58,7 @@
         </div>
     </div>
 
+<!-- immagini "uomo" "donna" centrali -->
 <div class="container-top">
     <div class="image image-left" id="overlay-image-woman">
         <a href="#"><img src="images/woman.jpg" alt=""></a>
@@ -74,15 +76,19 @@
             <a href="#">Acquista Ora</a>
         </div>
     </div>
+</div>
+
+<!-- banner centrale prima dei nuovi arrivi-->
+<div class="container-top">
     <div class="title-middle">
         <h2>Nuovi arrivi</h2>
-        <p>Design contemporanei, minimali e moderni per essere sempre al passo con la moda</p>
-        <ul>
-            <li class="dropdown"><a href="#" class="hover">Women's</a></li>
-            <li class="dropdown"> <a href="#" class="hover">Men's</a></li>
-        </ul>
+        <p>Design contemporanei, minimali e moderni per essere sempre al passo con la moda</p><br><br>
+        <a href="#" class="hover">Women's</a>
+        <a href="#" class="hover">Men's</a>
     </div>
 </div>
+
+<!-- nuovi arrivi-->
 <div class="container-top">
     <div class="new-arrival" id="menu">
         <!--products----------------------->
@@ -120,8 +126,7 @@
     </div>
 </div>
 
-
-
+<!-- footer-->
 <%@include file="WEB-INF/views/partials/customer/footer.jsp"%>
 </body>
 </html>

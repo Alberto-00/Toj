@@ -31,6 +31,8 @@
             </div>
         </div>
     </div>
+
+    <!-- popup accedi registrati -->
     <div class="popup-login" id="myForm">
         <div class="login__content">
             <div class="login__forms">
@@ -86,6 +88,7 @@
             </div>
         </div>
     </div>
+
     <div class="header-middle">
         <div class="container-top">
             <div class="logo">
