@@ -3,150 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-  <link rel="stylesheet" href="css/library.css">
+    <link rel="stylesheet" href="css/library.css">
+  <link rel="stylesheet" href="css/homePage.css">
+    <script type="text/javascript" src="./js/jquery-3.6.0.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-
-<div id="mySidenav" class="sidenav">
-    <div class="closebtn">
-        <a href="javascript:void(0)" onclick="closeNav()">
-            <i class="fas fa-times"></i>
-        </a>
-    </div>
-
-    <span>Consegna gratuita:</span>
-    <p>approfittane per fare i tuoi acquisti</p><br>
-    <span>Resi gratuiti * </span>
-    <p>Soddisfatti o rimborsati</p><br>
-
-    <a href="#">Accedi / Registrati</a>
-    <hr>
-
-    <form action="#">
-        <label for="categoria">
-            <div class="select-sidenav">
-                <select id="categoria" name="categoria">
-                    <option value="default option" selected>Tutte le categorie</option>
-                    <option value="Tutte le categorie" selected>Tutte le categorie</option>
-                    <option value="Cappotti">Cappotti</option>
-                    <option value="Giacche">Giacche</option>
-                    <option value="Maglie">Maglie</option>
-                    <option value="Costumi">Costumi</option>
-                    <option value="Gonne">Gonne</option>
-                </select>
+<div class="container-top">
+    <hr class="new">
+    <div class="row">
+        <div class="column">
+            <h3 class="footer-h">Informazioni</h3>
+            <a href="AboutUs.html" class="hover">About Us</a>
+            <a href="#" class="hover">Spedizioni</a>
+            <a href="#" class="hover">Privacy Policy</a>
+            <a href="#" class="hover">Termini e condizioni</a>
+            <a href="#" class="hover">Contattaci</a>
+            <a href="index.html" class="hover">Ritorna all'HomePage</a>
+        </div>
+        <div class="column2">
+            <h3 class="footer-h">Contattaci</h3>
+            <p class="footer-p">Indirizzo: Via Santa Maria Maggiore, 54, Salerno, Campania</p>
+            <p class="footer-p">84086, IT</p>
+            <p class="footer-p">Numero: (+39) 338 4546 448</p>
+            <p class="footer-p">Email: Tøj@gmail.com</p>
+            <div class="icon">
+                <a href="#" title="twitter" class="hover"><i class="fab fa-twitter"></i></a>
+                <a href="#" title="googlePlus" class="hover"><i class="fab fa-google-plus"></i></a>
+                <a href="#" title="facebook" class="hover"><i class="fab fa-facebook"></i></a>
+                <a href="#" title="youtube" class="hover"><i class="fab fa-youtube"></i></a>
             </div>
-        </label>
-        <label for="search-input">
-        <div class="search-sidenav">
-            <input type="text" id="search-input" name="search-input" placeholder="Cerca i prodotti qui...">
         </div>
-        </label>
-    </form>
-
-    <div class="sidenav-btn">
-        <a href="index.jsp" style="border-bottom: 1px solid #747474;">
-            Home<i class="fas fa-home"></i>
-        </a>
-
-        <button class="dropdown-btn">Uomo
-            <i class="fas fa-angle-down"></i>
-        </button>
-        <div class="dropdown-container-sidenav">
-            <a href="#">Cappotti</a>
-            <a href="#">Giacche</a>
-            <a href="#">Maglie<i class="fas fa-tshirt"></i></a>
-            <a href="#">Costumi<i class="fas fa-swimmer"></i></a>
-            <a href="#">Pantaloni</a>
+        <div class="column3">
+            <h3 class="footer-h">Registrati alla Newsletter</h3>
+            <p class="footer-p">Qualità eccezionale. Fabbriche etiche. Iscriviti gratis
+                per usufruire  della spedizione e dei resi gratuiti
+                in Europa sul tuo primo ordine.
+            </p>
+            <div class="subscribe-form">
+                <form action="javascript:void(0)" method="post"> <!--Inserire action-->
+                    <label for="newsletter"></label>
+                    <input type="email" id="newsletter" name="newsletter"
+                           placeholder="Inserisci la tua email qui...">
+                    <div class="popup">
+                        <button type="button" onclick="popupFunction()" name="newsletterSubmit" class="button">
+                            <span>SUBSCRIBE</span>
+                        </button>
+                        <span class="popup popuptext" id="myPopup">Email inviata. Grazie!</span>
+                    </div>
+                </form>
+            </div>
         </div>
-
-        <button class="dropdown-btn">Donna
-            <i class="fas fa-angle-down"></i>
-        </button>
-        <div class="dropdown-container-sidenav">
-            <a href="#">Cappotti</a>
-            <a href="#">Giacche</a>
-            <a href="#">Maglie<i class="fas fa-tshirt"></i></a>
-            <a href="#">Costumi<i class="fas fa-swimmer"></i></a>
-            <a href="#">Pantaloni</a>
-            <a href="#">Gonne</a>
-        </div>
-
-        <button class="dropdown-btn">Nuovi Arrivi
-            <i class="fas fa-angle-down"></i>
-        </button>
-        <div class="dropdown-container-sidenav">
-            <a href="#">Uomo<i class="fas fa-male"></i></a>
-            <a href="#">Donna<i class="fas fa-female"></i></a>
-        </div>
-
-        <a href="#" style="border-bottom: 1px solid #747474;">
-            Carrello<i class="fas fa-shopping-cart"></i>
-        </a>
-
-        <button class="dropdown-btn">Account
-            <i class="fas fa-angle-down"></i>
-        </button>
-        <div class="dropdown-container-sidenav">
-            <a href="#">Area personale</a>
-            <a href="#">Sign in</a>
-        </div>
-
-        <button class="dropdown-btn">Language
-            <i class="fas fa-angle-down"></i>
-        </button>
-        <div class="dropdown-container-sidenav">
-            <a href="#"><img src="icons/it.png">Ita</a>
-            <a href="#"><img src="icons/en.png">Eng</a>
-        </div>
-        <a href="#" style="border-bottom: 1px solid #747474;">
-            About Us<i class="far fa-address-card"></i>
-        </a>
-        <a href="#" style="border-bottom: 1px solid #747474;">
-            Contattaci<i class="far fa-address-book"></i>
-        </a>
-    </div><br>
-    <p><i class="far fa-envelope"></i>Tøj@gmail.com</p>
-    <div class="social-icon-sidenav">
-        <a href="#" title="twitter" class="hover"><i class="fab fa-twitter"></i></a>
-        <a href="#" title="googlePlus" class="hover"><i class="fab fa-google-plus"></i></a>
-        <a href="#" title="facebook" class="hover"><i class="fab fa-facebook"></i></a>
-        <a href="#" title="youtube" class="hover"><i class="fab fa-youtube"></i></a>
-    </div><br>
+    </div>
 </div>
-
-<div id="main" class="open-sidenav">
-    <i class="fas fa-bars" onclick="openNav()"></i>
+<div class="footer-bottom">
+    <div class="container-footer-bottom">
+        <div class="row">
+            <div class="column4">
+                <p>© 2021 Made with ❤️ by <span style="font-weight: bold">Tøj | Clothing Store.</span></p>
+            </div>
+            <div class="column5">
+                <p>Felici acquisti a tutti i nostri clienti. La qualità
+                    e precisione è da <span style="font-weight: bold">Tøj | Clothing Store.</span></p>
+            </div>
+        </div>
+    </div>
 </div>
-
-<script>
-  function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-  }
-  function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-    document.body.style.backgroundColor = "white";
-  }
-</script>
-<script>
-    /*dropdownd*/
-    /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
-    var dropdown = document.getElementsByClassName("dropdown-btn");
-    var i;
-
-    for (i = 0; i < dropdown.length; i++) {
-        dropdown[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var dropdownContent = this.nextElementSibling;
-            if (dropdownContent.style.display === "block") {
-                dropdownContent.style.display = "none";
-            } else {
-                dropdownContent.style.display = "block";
-            }
-        });
-    }
-</script>
-
+<a id="scrollUp" href="#top" class="scroll">
+    <i class="fas fa-angle-double-up"></i>
+</a>
 </body>
 </html>

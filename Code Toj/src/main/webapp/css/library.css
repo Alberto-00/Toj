@@ -11,6 +11,7 @@
 }
 
 body{
+    overflow-x: hidden;
     line-height: 24px;
     font-size: 13px;
     font-style: normal;
@@ -164,6 +165,182 @@ li.dropdown {
 /* header-top end */
 
 
+/* sidenav start */
+.closebtn > a > i{
+    padding: 5px 8px;
+    position: absolute;
+    font-size: 18px;
+    top: 5px;
+    right: 10px;
+    color: var(--white);
+    transition: 0.3s;
+    border: 1px solid var(--white);
+}
+
+.closebtn i:hover{
+    color: var(--hover);
+    border-color: var(--hover);
+}
+
+.sidenav {
+    text-align: center;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 999999999;
+    top: 0;
+    left: 0;
+    background-color: var(--black);
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+.sidenav > a{
+    text-decoration: none;
+    color: var(--white);
+}
+
+.sidenav > span{
+    font-weight: bold;
+    color: var(--white);
+}
+
+.sidenav > p{
+    color: #9a9a9a;
+    margin: 0;
+}
+
+.sidenav > hr{
+    border: 1px solid rgba(221,221,221,0.4);
+    background-color: rgba(221,221,221,0.4);
+    width: 85%;
+    transform: translate(0, -25px);
+}
+
+.search-sidenav input{
+    margin-bottom: 18px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 90%;
+    color: var(--grey);
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid var(--grey);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.select-sidenav{
+    padding-bottom: 18px;
+}
+
+.select-sidenav > select{
+    background-color: #9a9a9a;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--black);
+    width: 90%;
+    padding: 10px;
+}
+
+.sidenav-btn a, .dropdown-btn {
+    padding: 18px;
+    text-decoration: none;
+    color: var(--white);
+    display: block;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+    font-size: 19px;
+    border:none;
+}
+
+.dropdown-btn{
+    border-bottom: 1px solid var(--grey);
+}
+
+.sidenav a:hover, .dropdown-btn:hover {
+    color: var(--hover);
+    transition: 0.3s;
+}
+
+/* Add an active class to the active dropdown button */
+.active {
+    background-color: #555555;
+    color: var(--hover);
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container-sidenav {
+    display: none;
+    background-color: #333232;
+    padding-left: 20px;
+}
+
+.dropdown-container-sidenav > a {
+    font-size: 17px;
+    border-bottom: 1px solid var(--grey);
+    width: 85%;
+}
+
+.dropdown-container-sidenav img{
+    padding-right: 8px;
+    width: 20%;
+    height: 20%;
+}
+
+/* Style icon sidenav */
+.fa-plus, .fa-female, .fa-male, .fa-home,
+.fa-address-card, .fa-address-book,
+.fa-cart-arrow-down{
+    float: right;
+    padding-right: 8px;
+}
+
+.fa-envelope{
+    padding-right: 5px;
+}
+
+.social-icon-sidenav i{
+    color: var(--white);
+    font-size: 20px;
+    padding-left: 17px;
+    padding-top: 15px;
+}
+
+.social-icon-sidenav i:hover{
+    color: var(--hover);
+}
+
+.open-sidenav{
+    float: right;
+}
+
+.open-sidenav > i{
+    transform: translate(-29px, 29px);
+    border: 2px solid var(--grey);
+    padding: 8px;
+    color: var(--grey);
+    font-size: 20px;
+    float: right;
+    cursor:pointer;
+    transition: 0.3s;
+}
+
+.open-sidenav i:hover{
+    border-color: var(--hover);
+    color: var(--hover);
+}
+
+@media screen and (min-width: 993px){
+    .sidenav{display: none}
+    .open-sidenav{display: none}
+}
+/* Sidebar end*/
+
+
 /* header-middle start */
 .header-middle{
     height: 125px; /*modifica l'altezza del header-middle bianco*/
@@ -184,11 +361,17 @@ li.dropdown {
     font-size: 13px;
     background-color: #f6f6f6;
     display: flex;
-    width: 550px;
+    width: 600px;
     height: 50px;
     padding: 7px;
     border-radius: 30px;
     box-shadow: 0 2px 4px 0 rgba(12,18,18,0.4);
+}
+
+@media screen and (max-width: 1115px){
+    .form-group{
+        width: 500px;
+    }
 }
 
 .custom-select {
@@ -212,17 +395,17 @@ li.dropdown {
     width: 0;
     height: 0;
     border: 5px solid transparent;
-    border-color: #242424 transparent transparent transparent;
+    border-color: var(--black) transparent transparent transparent;
 }
 
 .select-selected.select-arrow-active:after {
-    border-color: transparent transparent #242424 transparent;
+    border-color: transparent transparent var(--black) transparent;
     top: 7px;
 }
 
 .select-selected{
     font-weight: bold;
-    color: #242424 !important;
+    color: var(--black) !important;
 }
 
 .select-items div,.select-selected {
@@ -254,12 +437,12 @@ li.dropdown {
     width: 280px;
     padding-left: 15px;
     color: var(--black);
-    border-right: 1.5px solid rgba(36,36,36,0.4);
+    border-right: 1px solid rgba(36,36,36,0.4);
     cursor: pointer;
 }
 
 .search{
-    width: 1000px;
+    width: 100%;
     height: 100%;
 }
 
@@ -531,18 +714,26 @@ input, button:focus{
 
 
 /* footer-top start */
-.column {
+.row:after {
+    width: 100%;
+    display: table;
+    clear: both;
+}
+
+.column2{
+    margin-left: 150px;
+    margin-right: 100px;
+}
+
+.column3 {
+    width: 25%; /*se cambi questo funziona*/
+    float: left;
+}
+
+.column, .column2, .column3 {
     display: block;
     float: left;
     margin-top: 60px;
-}
-
-.column h3{
-    font-family: Arial, Helvetica, sans-serif;
-    margin-top: 20px;
-    color: var(--black);
-    font-size: 16px;
-    line-height: 22px;
 }
 
 .column a{
@@ -552,7 +743,6 @@ input, button:focus{
     color: var(--grey);
     font-size: 13px;
     line-height: 35px;
-
     display: block;
 }
 
@@ -561,23 +751,16 @@ input, button:focus{
     color: var(--hover);
 }
 
-.column2{
-    display: block;
-    float: left;
-    margin-top: 60px;
-    margin-left: 150px;
-    margin-right: 100px;
-}
-
-.column2 h3{
+h3.footer-h{
     font-family: Arial, Helvetica, sans-serif;
     margin-top: 20px;
     color: var(--black);
     font-size: 16px;
     line-height: 22px;
+    display: block;
 }
 
-.column2 p{
+p.footer-p{
     font-family: Arial, Helvetica, sans-serif;
     width: auto;
     color: var(--grey);
@@ -602,47 +785,20 @@ input, button:focus{
     color: var(--black);
 }
 
-.column3 {
-    padding-top: 60px;
-    text-align: left;
-}
-
-.column3 h3{
-    font-family: Arial, Helvetica, sans-serif;
-    margin-top: 20px;
-    color: var(--black);
-    font-size: 16px;
-    line-height: 22px;
-}
-
-.column3 p{
-    font-family: Arial, Helvetica, sans-serif;
-    width: auto;
-    color: var(--grey);
-    font-size: 13px;
-    display: inline;
-}
-
 .subscribe-form {
     display: block;
     overflow: hidden;
 }
 
-.subscribe-form form{
-    margin-top: 15px;
-    width: 370px;
-    float: right;
-    position: relative;
-}
-
-.subscribe-form input{
-    background-color: var(--white);
-    padding: 0 16px 0 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
-    height: 45px;
+.subscribe-form input[type=email]{
+    display: block;
+    width: 49%;
+    padding: 12px;
     border: 2px solid rgba(116, 116, 116, 0.5);
-    width: 100%;
+    border-radius: 4px;
+    resize: vertical;
+    font-size: 14px;
+    margin-top: 9px;
 }
 
 .button{
@@ -654,7 +810,6 @@ input, button:focus{
     text-align: center;
     font-size: 19px;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
     padding: 15px;
     width: 370px;
     transition: all 0.5s;
@@ -664,7 +819,6 @@ input, button:focus{
 
 .button span {
     cursor: pointer;
-    display: inline-block;
     position: relative;
     transition: 0.4s;
 }
@@ -691,44 +845,7 @@ input, button:focus{
     background-color: var(--hover);
 }
 
-.row:after {
-    display: table;
-    clear: both;
-}
-/* footer-top end */
 
-
-/* footer-bottom start */
-.footer-bottom{
-    margin-top: 70px;
-    margin-left: 30px;
-    margin-right: 30px;
-    border-top: 1px solid rgba(116, 116, 116, 0.3);
-}
-
-.container-footer-bottom{
-    max-width: 1140px;
-    width: 100%;
-    padding-right: 1rem;
-    padding-left: 1rem;
-    margin-right: auto;
-    margin-left: auto;
-}
-
-.column4{
-    display: block;
-    float: left;
-    margin-top: 15px;
-    margin-right: 100px;
-    margin-bottom: 15px;
-}
-
-.column5{
-    margin-top: 15px;
-    display: block;
-    float: right;
-    margin-bottom: 15px;
-}
 
 /*Popup newsLetter*/
 .popup {
@@ -783,12 +900,46 @@ input, button:focus{
     from {opacity: 0;}
     to {opacity: 1;}
 }
+/* footer-top end */
+
+
+/* footer-bottom start */
+.footer-bottom{
+    margin-top: 70px;
+    margin-left: 30px;
+    margin-right: 30px;
+    border-top: 1px solid rgba(116, 116, 116, 0.3);
+}
+
+.container-footer-bottom{
+    max-width: 1140px;
+    width: 100%;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.column4{
+    display: block;
+    float: left;
+    margin-top: 15px;
+    margin-right: 100px;
+    margin-bottom: 15px;
+}
+
+.column5{
+    margin-top: 15px;
+    display: block;
+    float: right;
+    margin-bottom: 15px;
+}
 /* footer-bottom end*/
 
 
 /*Arrow top homepage*/
 #scrollUp {
-    background: #242424 none repeat scroll 0 0;
+    background: var(--black) none repeat scroll 0 0;
     bottom: 85px;
     color: #ffffff;
     cursor: pointer;
@@ -844,9 +995,11 @@ input, button:focus{
     animation-name: fadeInUp;
 }
 
-hr{
+hr.new{
+    border: 1px solid rgba(221, 221, 221, 0.6);
+    background-color: rgba(221, 221, 221, 0.6);
+    color: rgba(221, 221, 221, 0.6);
     width: 100%;
-    border: 0.5px solid #DDD;
     margin-top: 50px;
 }
 
@@ -862,183 +1015,7 @@ html{
 }
 
 
-/* Sidebar start*/
-.closebtn > a > i{
-    padding: 4px;
-    position: absolute;
-    font-size: 18px;
-    top: 5px;
-    right: 10px;
-    color: var(--white);
-    transition: 0.3s;
-    border: 1px solid var(--white);
-
-}
-
-.closebtn i:hover{
-    color: var(--hover);
-    border-color: var(--hover);
-}
-
-.sidenav {
-    text-align: center;
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 999999999;
-    top: 0;
-    left: 0;
-    background-color: var(--black);
-    overflow-x: hidden;
-    transition: 0.5s;
-}
-
-.sidenav > a{
-    text-decoration: none;
-    color: var(--white);
-}
-
-.sidenav > span{
-    font-weight: bold;
-    color: var(--white);
-}
-
-.sidenav > p{
-    color: #9a9a9a;
-    margin: 0;
-}
-
-.sidenav > hr{
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    width: 85%;
-    transform: translate(0, -25px);
-}
-
-.search-sidenav input{
-    margin-bottom: 18px;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    width: 90%;
-    color: var(--grey);
-    font-size: 14px;
-    font-weight: bold;
-    border: 1px solid var(--grey);
-    border-radius: 10px;
-    text-align: center;
-}
-
-.select-sidenav{
-    padding-bottom: 18px;
-}
-
-.select-sidenav > select{
-    background-color: #9a9a9a;
-    font-size: 14px;
-    font-weight: bold;
-    color: var(--black);
-    width: 90%;
-    padding: 10px;
-}
-
-
-.sidenav-btn a, .dropdown-btn {
-    padding: 18px;
-    text-decoration: none;
-    color: var(--white);
-    display: block;
-    background: none;
-    width: 100%;
-    text-align: left;
-    cursor: pointer;
-    outline: none;
-    font-size: 19px;
-    border:none;
-}
-
-.dropdown-btn{
-    border-bottom: 1px solid var(--grey);
-}
-
-.sidenav a:hover, .dropdown-btn:hover {
-    color: var(--hover);
-    transition: 0.5s;
-}
-
-/* Add an active class to the active dropdown button */
-.active {
-    background-color: #555555;
-    color: var(--hover);
-}
-
-/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
-.dropdown-container-sidenav {
-    display: none;
-    background-color: #333232;
-    padding-left: 20px;
-}
-
-.dropdown-container-sidenav > a {
-    font-size: 17px;
-    border-bottom: 1px solid var(--grey);
-    width: 85%;
-}
-
-.dropdown-container-sidenav img{
-    padding-right: 8px;
-    width: 20%;
-    height: 20%;
-}
-
-/* Style icon sidenav */
-.fa-tshirt, .fa-plus, .fa-swimmer, .fa-female,
-.fa-male, .fa-home, .fa-address-card,
-.fa-address-book, .fa-cart-arrow-down{
-    float: right;
-    padding-right: 8px;
-}
-
-
-.fa-envelope{
-    padding-right: 5px;
-}
-
-.social-icon-sidenav i{
-    color: var(--white);
-    font-size: 20px;
-    padding-left: 17px;
-    padding-top: 15px;
-}
-
-.social-icon-sidenav i:hover{
-    color: var(--hover);
-}
-
-.open-sidenav{
-    float: right;
-}
-
-.open-sidenav > i{
-    transform: translate(-29px, 29px);
-    border: 2px solid var(--black);
-    padding: 8px;
-    color: var(--black);
-    font-size: 20px;
-    float: right;
-    cursor:pointer;
-    transition: 0.3s;
-}
-
-.open-sidenav i:hover{
-    border-color: var(--hover);
-    color: var(--hover);
-}
-/* Sidebar end*/
-
-@media screen and (min-width: 999px){
-    .sidenav{display: none}
-    .open-sidenav{display: none}
-}
-@media screen and (max-width: 998px){
+@media screen and (max-width: 992px){
     .header-top{display: none}
     .form-group{display: none}
     .cart-link{display: none}
@@ -1046,24 +1023,23 @@ html{
 
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
+}
 
-
-
-    .column2, .column3{
+@media screen and (max-width: 1064px){
+    .column2{
         float: left;
-        margin: 0;
-        width: 100%;
+        margin-right: 0;
+        margin-left: 60px;
     }
 
-    #newsletter {
-        width: 250px;
+    .column3{
+        margin-left: 0;
     }
+}
 
-    .subscribe-form button {
-        width: 250px;
-    }
-
-    .subscribe-form{
-        float: left;
+@media screen and (max-width: 617px){
+    .column2{
+        margin-right: 80px;
+        margin-left: 0px;
     }
 }

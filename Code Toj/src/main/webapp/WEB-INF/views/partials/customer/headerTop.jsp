@@ -40,11 +40,13 @@
 
                     <div class="login__box">
                         <i class='bx bx-user login__icon'></i>
+                        <label for="usernameInput"></label>
                         <input type="text" id="usernameInput" name="usernameInput" placeholder="Username" class="login__input">
                     </div>
 
                     <div class="login__box">
                         <i class='bx bx-lock-alt login__icon'></i>
+                        <label for="passwordInput"></label>
                         <input type="password" id="passwordInput" name="passwordInput" placeholder="Password" class="login__input">
                     </div>
                     <a href="#" class="login__forgot">Forgot password?</a>
@@ -60,16 +62,19 @@
                     <a onclick="closeForm()" class="icon-close-popup-sigUp"><i class="fas fa-times"></i></a>
                     <div class="login__box">
                         <i class='bx bx-user login__icon'></i>
+                        <label for="usernameOutput"></label>
                         <input type="text" id="usernameOutput" name="usernameOutput" placeholder="Username" class="login__input">
                     </div>
 
                     <div class="login__box">
                         <i class='bx bx-at login__icon'></i>
+                        <label for="email"></label>
                         <input type="text" id="email" name="email" placeholder="Email" class="login__input">
                     </div>
 
                     <div class="login__box">
                         <i class='bx bx-lock-alt login__icon'></i>
+                        <label for="passwordOutput"></label>
                         <input type="password" id="passwordOutput" name="passwordOutput" placeholder="Password" class="login__input">
                     </div>
                     <a href="#" class="login__button">Sign Up</a>
@@ -84,11 +89,11 @@
     <div class="header-middle">
         <div class="container-top">
             <div class="logo">
-                <a href="index.jsp">
+                <a href="${pageContext.request.contextPath}/index.jsp">
                     <img src="${pageContext.request.contextPath}/icons/logo.png"
                          alt="" width="100" height="100">
                 </a>
-                <div id="main" class="open-sidenav">
+                <div class="open-sidenav">
                     <i class="fas fa-bars" onclick="openNav()"></i>
                 </div>
                 <div id="mySidenav" class="sidenav">
@@ -98,13 +103,12 @@
                         </a>
                     </div>
 
-                   <br> <span>Consegna gratuita:</span>
+                   <br><span>Consegna gratuita:</span>
                     <p>approfittane per fare i tuoi acquisti</p><br><br>
                     <span>Resi gratuiti * </span>
                     <p>Soddisfatti o rimborsati</p><br><br>
 
-                    <a href="#">Accedi / Registrati</a>
-                    <hr>
+                    <a href="#">Accedi / Registrati</a><hr class="new">
 
                     <form action="#">
                         <label for="categoria-sidenav">
@@ -128,7 +132,7 @@
                     </form>
 
                     <div class="sidenav-btn">
-                        <a href="index.jsp" style="border-bottom: 1px solid #747474;">
+                        <a href="${pageContext.request.contextPath}/index.jsp" style="border-bottom: 1px solid #747474;">
                             Home<i class="fas fa-home"></i>
                         </a>
 
@@ -138,8 +142,8 @@
                         <div class="dropdown-container-sidenav">
                             <a href="#">Cappotti</a>
                             <a href="#">Giacche</a>
-                            <a href="#">Maglie<i class="fas fa-tshirt"></i></a>
-                            <a href="#">Costumi<i class="fas fa-swimmer"></i></a>
+                            <a href="#">Maglie</a>
+                            <a href="#">Costumi</a>
                             <a href="#">Pantaloni</a>
                         </div>
 
@@ -149,8 +153,8 @@
                         <div class="dropdown-container-sidenav">
                             <a href="#">Cappotti</a>
                             <a href="#">Giacche</a>
-                            <a href="#">Maglie<i class="fas fa-tshirt"></i></a>
-                            <a href="#">Costumi<i class="fas fa-swimmer"></i></a>
+                            <a href="#">Maglie</a>
+                            <a href="#">Costumi</a>
                             <a href="#">Pantaloni</a>
                             <a href="#">Gonne</a>
                         </div>
@@ -162,10 +166,6 @@
                             <a href="#">Uomo<i class="fas fa-male"></i></a>
                             <a href="#">Donna<i class="fas fa-female"></i></a>
                         </div>
-
-                        <a href="#" style="border-bottom: 1px solid #747474;">
-                            Carrello<i class="fas fa-cart-arrow-down"></i>
-                        </a>
 
                         <button class="dropdown-btn">Account
                             <i class="fas fa-plus"></i>
@@ -179,9 +179,13 @@
                             <i class="fas fa-plus"></i>
                         </button>
                         <div class="dropdown-container-sidenav">
-                            <a href="#"><img src="icons/it.png">Ita</a>
-                            <a href="#"><img src="icons/en.png">Eng</a>
+                            <a href="#"><img src="${pageContext.request.contextPath}/icons/it.png" alt="ita">Ita</a>
+                            <a href="#"><img src="${pageContext.request.contextPath}/icons/en.png" alt="english">Eng</a>
                         </div>
+
+                        <a href="#" style="border-bottom: 1px solid #747474;">
+                            Carrello<i class="fas fa-cart-arrow-down"></i>
+                        </a>
                         <a href="#" style="border-bottom: 1px solid #747474;">
                             About Us<i class="far fa-address-card"></i>
                         </a>

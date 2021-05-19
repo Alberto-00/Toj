@@ -58,33 +58,33 @@
     </div>
 
 <div class="container-top">
-        <div class="image image-left" id="overlay-image-woman">
-            <a href="#"><img src="images/woman.jpg" alt=""></a>
-            <div class="banner-text centered">
-                <h1>Women's</h1>
-                <p>Big Sale Off Final Items. Caught in the moment!</p>
-                <a href="#">Acquista Ora</a>
-            </div>
-        </div>
-        <div class="image image-right" id="overlay-image-man">
-            <a href="#"><img src="images/boy.jpg" alt=""></a>
-            <div class="banner-text centered">
-                <h1>Men's</h1>
-                <p>Big Sale Off Final Items. Caught in the moment!</p>
-                <a href="#">Acquista Ora</a>
-            </div>
-        </div>
-        <div class="title-middle">
-            <h2>Nuovi arrivi</h2>
-            <p>Design contemporanei, minimali e moderni per essere sempre al passo con la moda</p>
-            <ul>
-                <li class="dropdown"><a href="#" class="hover">Women's</a></li>
-                <li class="dropdown"> <a href="#" class="hover">Men's</a></li>
-            </ul>
+    <div class="image image-left" id="overlay-image-woman">
+        <a href="#"><img src="images/woman.jpg" alt=""></a>
+        <div class="banner-text centered">
+            <h1>Women's</h1>
+            <p>Big Sale Off Final Items. Caught in the moment!</p>
+            <a href="#">Acquista Ora</a>
         </div>
     </div>
-
-<div class="new-arrival" id="menu">
+    <div class="image image-right" id="overlay-image-man">
+        <a href="#"><img src="images/boy.jpg" alt=""></a>
+        <div class="banner-text centered">
+            <h1>Men's</h1>
+            <p>Big Sale Off Final Items. Caught in the moment!</p>
+            <a href="#">Acquista Ora</a>
+        </div>
+    </div>
+    <div class="title-middle">
+        <h2>Nuovi arrivi</h2>
+        <p>Design contemporanei, minimali e moderni per essere sempre al passo con la moda</p>
+        <ul>
+            <li class="dropdown"><a href="#" class="hover">Women's</a></li>
+            <li class="dropdown"> <a href="#" class="hover">Men's</a></li>
+        </ul>
+    </div>
+</div>
+<div class="container-top">
+    <div class="new-arrival" id="menu">
         <!--products----------------------->
         <div class="product-container">
             <%for(int i = 0; i < 8; i++){%>
@@ -98,7 +98,7 @@
                     </a>
                     <span class="add-sconto">5%</span>
                     <!--img------>
-                    <div class="cf">
+                    <div class="double-img">
                         <a href="#">
                             <img src="images/woman.jpg" alt="">
                             <img src="images/boy.jpg" alt="" class="top-image">
@@ -118,6 +118,9 @@
             <div id="next"><i class="fas fa-chevron-right"></i></div>
         </div>
     </div>
+</div>
+
+
 
 <%@include file="WEB-INF/views/partials/customer/footer.jsp"%>
 </body>

@@ -150,16 +150,15 @@ function stickyEffect() {
  * Questo script permette di cliccare sull'href delle immagini ("Uomo" e "Donna")
  * e di reindirizzarci ad un URL.
  */
-
 $('#prev').on('click', function() {
     $('#menu .product-container').animate({
-        scrollLeft: '-=380' /*300*/
+        scrollLeft: '-=360' /*300*/
     }, 500, 'swing');
 });
 
 $('#next').on('click', function() {
     $('#menu .product-container').animate({
-        scrollLeft: '+=380' /*290*/
+        scrollLeft: '+=369' /*290*/
     }, 500, 'swing');
 });
 
@@ -179,21 +178,20 @@ document.getElementById("overlay-image-man").addEventListener("click", function 
  */
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
-    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-
-    $(document).on("click", function(event){
-        if($(".sidenav") !== event.target && !$(".sidenav").has(event.target).length){
-            closeNav();
-        }
-    });
-};
+    document.body.style.backgroundColor = "rgba(28,28,28,0.4)";
+}
 
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.body.style.backgroundColor = "white";
-};
+}
 
-
+/*permette di chiudere la sidenav in un punto qualsiasi della pagina*/
+$('body').on('click', function(){
+    if( parseInt( $('#mySidenav').css('width') ) > 0 ){
+        closeNav();
+    }
+});
 
 
 /**

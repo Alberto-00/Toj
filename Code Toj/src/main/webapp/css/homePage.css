@@ -1,24 +1,18 @@
 /* header-bottom start */
+@media screen and (max-width: 992px){
+    .nav-bottom{display: none;}
+    .image{margin: 0 !important;}
+    .title-middle h2{margin-top: 30rem!important;}
+}
+
+@media screen and (max-width: 768px){
+
+}
+
 .header-bottom{
     background-color: #FFFFFF;
     overflow: hidden;
     display: block;
-}
-
-@media screen and (max-width: 998px){
-    .nav-bottom{display: none;}
-
-    #overlay-image-woman, #overlay-image-man{
-        width: 100%;
-        margin-top: 10px;
-    }
-
-    .title-middle text{
-        margin-top: 100px;
-        font-size: 20px;
-        padding-top: 20px;
-        padding-bottom: 0;
-    }
 }
 
 .nav-bottom{
@@ -111,10 +105,7 @@
     width: 100%;
     height: auto;
     position: absolute;
-    top: 50%;
-    transform: translatey(-50%);
-    left: 20px;
-    right: 20px;
+    top: 30%;
     text-align: center;
     z-index: 1;
 }
@@ -200,15 +191,12 @@
 
 /*new product*/
 .product-container{
-    width:1140px;
+    width: 100%;
     height: auto;
     display: flex;
-    justify-content: left; /*center*/
-    /* align-items: center;*/
-    flex-wrap: nowrap; /*wrap*/
-    overflow-x: hidden; /*non c'era*/
-    /*flex-wrap: nowrap;
-    overflow-x: scroll;*/
+    justify-content: left;
+    flex-wrap: nowrap;
+    overflow-x: hidden;
 }
 .product-box{
     display: flex;
@@ -217,19 +205,19 @@
     align-items: center;
     border: 1px solid lightgrey;
     border-radius: 10px;
-    margin: 22px;
+    margin: 24px; /*22*/
     animation: fade 0.3s;
     transition: all ease 0.3s;
 }
 
 /*effetto doppia foto in "nuovi arrivi"*/
-.cf {
+.double-img {
     position:relative;
-    height:290px;
-    width:290px;
+    height:270px;
+    width:270px;
 }
 
-.cf img{
+.double-img img{
     position:absolute;
     left:0;
     -webkit-transition: opacity 0.4s ease-in-out;
@@ -238,14 +226,14 @@
     transition: opacity 0.4s ease-in-out;
 }
 
-.cf img.top-image:hover {
+.double-img img.top-image:hover {
     opacity:0;
 }
 
 .product-img{
-    width: 290px;
-    height: 290px;
-    margin: 23px;
+    width: 270px;
+    height: 270px;
+    margin: 24px;
     cursor: pointer;
     position: relative;
 }
@@ -265,6 +253,7 @@
     padding: 5px 20px;
     border-top: 1px solid #f3f3f3;
 }
+
 .p-name {
     color: #747474;
     text-decoration: none;
@@ -334,31 +323,33 @@
 #nav {
     position: absolute;
     top: 0;
-    width: 300px;
+    width: 100%;
 }
 
 #prev {
-    margin-left: -28rem;
     left: 0;
 }
 
 #next{
-    margin-right: -28rem;
     right: 0;
 }
 
 #next, #prev{
-    margin-top: 10rem;
+    top: 11rem;
     font-size: 30px;
     display: inline-block;
-    padding: 5px;
     cursor: pointer;
-    top: 10px;
-    color: #747474;
+    color: var(--grey);
     position: absolute;
 }
 
 #prev:hover,  #next:hover{
     transition: all ease 0.2s;
-    color: #fd7e14;
+    color: var(--hover);
+}
+
+@media screen and (max-width: 1124px){
+    #next, #prev{
+        top:0;
+    }
 }
