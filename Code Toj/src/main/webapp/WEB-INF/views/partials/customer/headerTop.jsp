@@ -41,15 +41,16 @@
                     <a onclick="closeForm()" class="icon-close-popup-sigIn"><i class="fas fa-times"></i></a>
 
                     <div class="login__box">
-                        <i class='bx bx-user login__icon'></i>
-                        <label for="usernameInput"></label>
-                        <input type="text" id="usernameInput" name="usernameInput" placeholder="Username" class="login__input">
+                        <label for="usernameInput">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="usernameInput" name="usernameInput" placeholder="Username" class="login__input">
+                        </label>
                     </div>
-
                     <div class="login__box">
-                        <i class='bx bx-lock-alt login__icon'></i>
-                        <label for="passwordInput"></label>
-                        <input type="password" id="passwordInput" name="passwordInput" placeholder="Password" class="login__input">
+                        <label for="passwordInput">
+                            <i class="fas fa-unlock-alt"></i>
+                            <input type="password" id="passwordInput" name="passwordInput" placeholder="Password" class="login__input">
+                        </label>
                     </div>
                     <a href="#" class="login__forgot">Forgot password?</a>
                     <a href="#" class="login__button">Sign In</a>
@@ -63,21 +64,24 @@
                     <h1 class="login__title">Create Account</h1>
                     <a onclick="closeForm()" class="icon-close-popup-sigUp"><i class="fas fa-times"></i></a>
                     <div class="login__box">
-                        <i class='bx bx-user login__icon'></i>
-                        <label for="usernameOutput"></label>
-                        <input type="text" id="usernameOutput" name="usernameOutput" placeholder="Username" class="login__input">
+                        <label for="usernameOutput">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="usernameOutput" name="usernameOutput" placeholder="Username" class="login__input">
+                        </label>
                     </div>
 
                     <div class="login__box">
-                        <i class='bx bx-at login__icon'></i>
-                        <label for="email"></label>
-                        <input type="text" id="email" name="email" placeholder="Email" class="login__input">
+                        <label for="email">
+                            <i class="fas fa-at"></i>
+                            <input type="text" id="email" name="email" placeholder="Email" class="login__input">
+                        </label>
                     </div>
 
                     <div class="login__box">
-                        <i class='bx bx-lock-alt login__icon'></i>
-                        <label for="passwordOutput"></label>
-                        <input type="password" id="passwordOutput" name="passwordOutput" placeholder="Password" class="login__input">
+                        <label for="passwordOutput">
+                            <i class="fas fa-unlock-alt"></i>
+                            <input type="password" id="passwordOutput" name="passwordOutput" placeholder="Password" class="login__input">
+                        </label>
                     </div>
                     <a href="#" class="login__button">Sign Up</a>
                     <div>
@@ -99,6 +103,7 @@
                 <div class="open-sidenav">
                     <i class="fas fa-bars" onclick="openNav()"></i>
                 </div>
+
                 <div id="mySidenav" class="sidenav">
                     <div class="closebtn">
                         <a href="javascript:void(0)" onclick="closeNav()">
@@ -117,7 +122,6 @@
                         <label for="categoria-sidenav">
                             <div class="select-sidenav">
                                 <select id="categoria-sidenav" name="categoria-sidenav">
-                                    <option value="default option" selected>Tutte le categorie</option>
                                     <option value="Tutte le categorie" selected>Tutte le categorie</option>
                                     <option value="Cappotti">Cappotti</option>
                                     <option value="Giacche">Giacche</option>
@@ -204,6 +208,7 @@
                         <a href="#" title="youtube" class="hover"><i class="fab fa-youtube"></i></a>
                     </div><br>
                 </div>
+
                 <div class="top-left">
                     <a id="hide" onclick="openForm()">Accedi / Registrati</a>
                     <div class="cart-link">

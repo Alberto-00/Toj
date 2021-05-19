@@ -31,6 +31,7 @@ function closeForm() {
     document.body.style.overflow="auto";
 }
 
+
 /** Script per la search bar: **/
 var x, i, j, l, ll, selElmnt, a, b, c;
 /*look for any elements with the class "custom-select":*/
@@ -178,21 +179,20 @@ document.getElementById("overlay-image-man").addEventListener("click", function 
  */
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
-    document.body.style.backgroundColor = "rgba(28,28,28,0.4)";
+    document.getElementById("sidenav-background-color").style.visibility ="visible";
 }
 
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
-    document.body.style.backgroundColor = "white";
+    document.getElementById("sidenav-background-color").style.visibility ="hidden";
 }
 
 /*permette di chiudere la sidenav in un punto qualsiasi della pagina*/
-$('body').on('click', function(){
+$('#sidenav-background-color').on('click', function(){
     if( parseInt( $('#mySidenav').css('width') ) > 0 ){
         closeNav();
     }
 });
-
 
 /**
  * Dropdown button sidebar

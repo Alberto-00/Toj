@@ -23,5 +23,4 @@
 <c:if test="${not empty param.script}">
     <script src="./js/${param.script}.js" defer></script>
 </c:if>
-<link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>

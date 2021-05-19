@@ -8,6 +8,9 @@
     </jsp:include>
 </head>
 <body>
+<!-- sfondo sidenav -->
+<div id="sidenav-background-color"></div>
+
 <!--headerTop-->
 <%@include file="WEB-INF/views/partials/customer/headerTop.jsp"%>
 

@@ -9,317 +9,96 @@
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="container-top">
-    <div class="new-arrival" id="menu">
-        <!--products----------------------->
-        <div class="product-container">
-            <!--product-box-1---------->
-            <div class="product-box">
-                <!--product-img------------>
-                <div class="product-img">
-                    <!--add-cart---->
-                    <a href="#" class="add-cart">
-                        <i class="fas fa-shopping-cart"></i>
-                    </a>
-                    <span class="add-sconto">5%</span>
-                    <!--img------>
-                    <div class="double-img">
-                        <a href="#">
-                            <img src="images/woman.jpg" alt="">
-                            <img src="images/boy.jpg" alt="" class="top-image">
-                        </a>
-                    </div>
+<div class="top-left">
+    <a id="hide" onclick="openForm()">Accedi / Registrati</a>
+    <div class="cart-link">
+        <a href="#">
+            <i class="fas fa-shopping-cart icon-right"></i>Carrello
+            <span class="num-cart-product">0</span>
+        </a>
+    </div>
+</div>
+<div class="popup-login" id="myForm">
+    <div class="login__content">
+        <div class="login__forms">
+            <form action="" class="login__registre close-icon" id="login-in">
+                <h1 class="login__title">Sign In</h1>
+                <a onclick="closeForm()" class="icon-close-popup-sigIn"><i class="fas fa-times"></i></a>
+
+                <div class="login__box">
+                    <input type="text" id="usernameInput" name="usernameInput" placeholder="Username" class="login__input">
+
                 </div>
-                <!--product-details-------->
-                <div class="product-details">
-                    <a href="#" class="p-name">Drawstring T-Shirt</a>
-                    <span class="p-price">$22.00</span>
+
+                <div class="login__box">
+                    <i class='bx bx-lock-alt login__icon'></i>
+                    <label for="passwordInput"></label>
+                    <input type="password" id="passwordInput" name="passwordInput" placeholder="Password" class="login__input">
                 </div>
-            </div>
-            <div class="product-box">
-                <!--product-img------------>
-                <div class="product-img">
-                    <!--add-cart---->
-                    <a href="#" class="add-cart">
-                        <i class="fas fa-shopping-cart"></i>
-                    </a>
-                    <span class="add-sconto">5%</span>
-                    <!--img------>
-                    <div class="double-img">
-                        <a href="#">
-                            <img src="images/woman.jpg" alt="">
-                            <img src="images/boy.jpg" alt="" class="top-image">
-                        </a>
-                    </div>
+                <a href="#" class="login__forgot">Forgot password?</a>
+                <a href="#" class="login__button">Sign In</a>
+                <div>
+                    <span class="login__account">Don't have an Account ?</span>
+                    <span class="login__signin" id="sign-up">Sign Up</span>
                 </div>
-                <!--product-details-------->
-                <div class="product-details">
-                    <a href="#" class="p-name">Drawstring T-Shirt</a>
-                    <span class="p-price">$22.00</span>
+            </form>
+
+            <form action="" class="login__create none close-icon" id="login-up">
+                <h1 class="login__title">Create Account</h1>
+                <a onclick="closeForm()" class="icon-close-popup-sigUp"><i class="fas fa-times"></i></a>
+                <div class="login__box">
+                    <i class='bx bx-user login__icon'></i>
+                    <label for="usernameOutput"></label>
+                    <input type="text" id="usernameOutput" name="usernameOutput" placeholder="Username" class="login__input">
                 </div>
-            </div>
-            <div class="product-box">
-                <!--product-img------------>
-                <div class="product-img">
-                    <!--add-cart---->
-                    <a href="#" class="add-cart">
-                        <i class="fas fa-shopping-cart"></i>
-                    </a>
-                    <span class="add-sconto">5%</span>
-                    <!--img------>
-                    <div class="double-img">
-                        <a href="#">
-                            <img src="images/woman.jpg" alt="">
-                            <img src="images/boy.jpg" alt="" class="top-image">
-                        </a>
-                    </div>
+
+                <div class="login__box">
+                    <i class='bx bx-at login__icon'></i>
+                    <label for="email"></label>
+                    <input type="text" id="email" name="email" placeholder="Email" class="login__input">
                 </div>
-                <!--product-details-------->
-                <div class="product-details">
-                    <a href="#" class="p-name">Drawstring T-Shirt</a>
-                    <span class="p-price">$22.00</span>
+
+                <div class="login__box">
+                    <i class='bx bx-lock-alt login__icon'></i>
+                    <label for="passwordOutput"></label>
+                    <input type="password" id="passwordOutput" name="passwordOutput" placeholder="Password" class="login__input">
                 </div>
-            </div>
-            <div class="product-box">
-                <!--product-img------------>
-                <div class="product-img">
-                    <!--add-cart---->
-                    <a href="#" class="add-cart">
-                        <i class="fas fa-shopping-cart"></i>
-                    </a>
-                    <span class="add-sconto">5%</span>
-                    <!--img------>
-                    <div class="double-img">
-                        <a href="#">
-                            <img src="images/woman.jpg" alt="">
-                            <img src="images/boy.jpg" alt="" class="top-image">
-                        </a>
-                    </div>
+                <a href="#" class="login__button">Sign Up</a>
+                <div>
+                    <span class="login__account">Already have an Account ?</span>
+                    <span class="login__signup" id="sign-in">Sign In</span>
                 </div>
-                <!--product-details-------->
-                <div class="product-details">
-                    <a href="#" class="p-name">Drawstring T-Shirt</a>
-                    <span class="p-price">$22.00</span>
-                </div>
-            </div>
-            <div class="product-box">
-                <!--product-img------------>
-                <div class="product-img">
-                    <!--add-cart---->
-                    <a href="#" class="add-cart">
-                        <i class="fas fa-shopping-cart"></i>
-                    </a>
-                    <span class="add-sconto">5%</span>
-                    <!--img------>
-                    <div class="double-img">
-                        <a href="#">
-                            <img src="images/woman.jpg" alt="">
-                            <img src="images/boy.jpg" alt="" class="top-image">
-                        </a>
-                    </div>
-                </div>
-                <!--product-details-------->
-                <div class="product-details">
-                    <a href="#" class="p-name">Drawstring T-Shirt</a>
-                    <span class="p-price">$22.00</span>
-                </div>
-            </div>
-            <div class="product-box">
-                <!--product-img------------>
-                <div class="product-img">
-                    <!--add-cart---->
-                    <a href="#" class="add-cart">
-                        <i class="fas fa-shopping-cart"></i>
-                    </a>
-                    <span class="add-sconto">5%</span>
-                    <!--img------>
-                    <div class="double-img">
-                        <a href="#">
-                            <img src="images/woman.jpg" alt="">
-                            <img src="images/boy.jpg" alt="" class="top-image">
-                        </a>
-                    </div>
-                </div>
-                <!--product-details-------->
-                <div class="product-details">
-                    <a href="#" class="p-name">Drawstring T-Shirt</a>
-                    <span class="p-price">$22.00</span>
-                </div>
-            </div>
-            <div class="product-box">
-                <!--product-img------------>
-                <div class="product-img">
-                    <!--add-cart---->
-                    <a href="#" class="add-cart">
-                        <i class="fas fa-shopping-cart"></i>
-                    </a>
-                    <span class="add-sconto">5%</span>
-                    <!--img------>
-                    <div class="double-img">
-                        <a href="#">
-                            <img src="images/woman.jpg" alt="">
-                            <img src="images/boy.jpg" alt="" class="top-image">
-                        </a>
-                    </div>
-                </div>
-                <!--product-details-------->
-                <div class="product-details">
-                    <a href="#" class="p-name">Drawstring T-Shirt</a>
-                    <span class="p-price">$22.00</span>
-                </div>
-            </div>
-            <div class="product-box">
-                <!--product-img------------>
-                <div class="product-img">
-                    <!--add-cart---->
-                    <a href="#" class="add-cart">
-                        <i class="fas fa-shopping-cart"></i>
-                    </a>
-                    <span class="add-sconto">5%</span>
-                    <!--img------>
-                    <div class="double-img">
-                        <a href="#">
-                            <img src="images/woman.jpg" alt="">
-                            <img src="images/boy.jpg" alt="" class="top-image">
-                        </a>
-                    </div>
-                </div>
-                <!--product-details-------->
-                <div class="product-details">
-                    <a href="#" class="p-name">Drawstring T-Shirt</a>
-                    <span class="p-price">$22.00</span>
-                </div>
-            </div>
-            <div class="product-box">
-                <!--product-img------------>
-                <div class="product-img">
-                    <!--add-cart---->
-                    <a href="#" class="add-cart">
-                        <i class="fas fa-shopping-cart"></i>
-                    </a>
-                    <span class="add-sconto">5%</span>
-                    <!--img------>
-                    <div class="double-img">
-                        <a href="#">
-                            <img src="images/woman.jpg" alt="">
-                            <img src="images/boy.jpg" alt="" class="top-image">
-                        </a>
-                    </div>
-                </div>
-                <!--product-details-------->
-                <div class="product-details">
-                    <a href="#" class="p-name">Drawstring T-Shirt</a>
-                    <span class="p-price">$22.00</span>
-                </div>
-            </div>
-            <div class="product-box">
-                <!--product-img------------>
-                <div class="product-img">
-                    <!--add-cart---->
-                    <a href="#" class="add-cart">
-                        <i class="fas fa-shopping-cart"></i>
-                    </a>
-                    <span class="add-sconto">5%</span>
-                    <!--img------>
-                    <div class="double-img">
-                        <a href="#">
-                            <img src="images/woman.jpg" alt="">
-                            <img src="images/boy.jpg" alt="" class="top-image">
-                        </a>
-                    </div>
-                </div>
-                <!--product-details-------->
-                <div class="product-details">
-                    <a href="#" class="p-name">Drawstring T-Shirt</a>
-                    <span class="p-price">$22.00</span>
-                </div>
-            </div>
-            <div class="product-box">
-                <!--product-img------------>
-                <div class="product-img">
-                    <!--add-cart---->
-                    <a href="#" class="add-cart">
-                        <i class="fas fa-shopping-cart"></i>
-                    </a>
-                    <span class="add-sconto">5%</span>
-                    <!--img------>
-                    <div class="double-img">
-                        <a href="#">
-                            <img src="images/woman.jpg" alt="">
-                            <img src="images/boy.jpg" alt="" class="top-image">
-                        </a>
-                    </div>
-                </div>
-                <!--product-details-------->
-                <div class="product-details">
-                    <a href="#" class="p-name">Drawstring T-Shirt</a>
-                    <span class="p-price">$22.00</span>
-                </div>
-            </div>
-            <div class="product-box">
-                <!--product-img------------>
-                <div class="product-img">
-                    <!--add-cart---->
-                    <a href="#" class="add-cart">
-                        <i class="fas fa-shopping-cart"></i>
-                    </a>
-                    <span class="add-sconto">5%</span>
-                    <!--img------>
-                    <div class="double-img">
-                        <a href="#">
-                            <img src="images/woman.jpg" alt="">
-                            <img src="images/boy.jpg" alt="" class="top-image">
-                        </a>
-                    </div>
-                </div>
-                <!--product-details-------->
-                <div class="product-details">
-                    <a href="#" class="p-name">Drawstring T-Shirt</a>
-                    <span class="p-price">$22.00</span>
-                </div>
-            </div>
-            <div class="product-box">
-                <!--product-img------------>
-                <div class="product-img">
-                    <!--add-cart---->
-                    <a href="#" class="add-cart">
-                        <i class="fas fa-shopping-cart"></i>
-                    </a>
-                    <span class="add-sconto">5%</span>
-                    <!--img------>
-                    <div class="double-img">
-                        <a href="#">
-                            <img src="images/woman.jpg" alt="">
-                            <img src="images/boy.jpg" alt="" class="top-image">
-                        </a>
-                    </div>
-                </div>
-                <!--product-details-------->
-                <div class="product-details">
-                    <a href="#" class="p-name">Drawstring T-Shirt</a>
-                    <span class="p-price">$22.00</span>
-                </div>
-            </div>
-        </div>
-        <div id="nav">
-            <div id="prev"><i class="fas fa-chevron-left"></i></div>
-            <div id="next"><i class="fas fa-chevron-right"></i></div>
+            </form>
         </div>
     </div>
 </div>
-
 <script>
-    $('#prev').on('click', function() {
-        $('#menu .product-container').animate({
-            scrollLeft: '-=360' /*300*/
-        }, 500, 'swing');
+    const signUp = document.getElementById('sign-up'),
+        signIn = document.getElementById('sign-in'),
+        loginIn = document.getElementById('login-in'),
+        loginUp = document.getElementById('login-up')
+
+
+    signUp.addEventListener('click', ()=>{
+        loginIn.classList.remove('block')
+        loginUp.classList.remove('none')
+
+        loginIn.classList.toggle('none')
+        loginUp.classList.toggle('block')
     });
 
-    $('#next').on('click', function() {
-        $('#menu .product-container').animate({
-            scrollLeft: '+=369' /*290*/
-        }, 500, 'swing');
+    signIn.addEventListener('click', ()=>{
+        loginIn.classList.remove('none')
+        loginUp.classList.remove('block')
+
+        loginIn.classList.toggle('block')
+        loginUp.classList.toggle('none')
     });
+
+    function openForm() {
+        document.getElementById("myForm").style.display = "block";
+        document.body.style.overflow="hidden";
+    }
 </script>
 </body>
 </html>
