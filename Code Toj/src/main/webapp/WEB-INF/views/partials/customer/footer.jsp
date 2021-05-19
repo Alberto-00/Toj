@@ -4,7 +4,7 @@
         <hr class="new">
         <div class="row">
             <div class="column">
-                <h3 class="column">Informazioni</h3>
+                <h3>Informazioni</h3>
                 <a href="AboutUs.html" class="hover">About Us</a>
                 <a href="#" class="hover">Spedizioni</a>
                 <a href="#" class="hover">Privacy Policy</a>
@@ -13,7 +13,7 @@
                 <a href="index.html" class="hover">Ritorna all'HomePage</a>
             </div>
             <div class="column2">
-                <h3 class="column">Contattaci</h3>
+                <h3>Contattaci</h3>
                 <p>Indirizzo: Via Santa Maria Maggiore, 54, Salerno, Campania</p>
                 <p>84086, IT</p>
                 <p>Numero: (+39) 338 4546 448</p>
@@ -49,7 +49,7 @@
     </div>
     <div class="footer-bottom">
         <div class="container-footer-bottom">
-            <div class="row">
+            <div class="row2">
                 <div class="column4">
                     <p>© 2021 Made with ❤️ by <span style="font-weight: bold">Tøj | Clothing Store.</span></p>
                 </div>

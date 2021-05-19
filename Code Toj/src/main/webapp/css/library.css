@@ -714,32 +714,43 @@ input, button:focus{
 
 
 /* footer-top start */
-.row:after {
-    width: 100%;
-    display: table;
-    clear: both;
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.row2 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.column{
+    margin-top: 30px;
+    width: 20%;
 }
 
 .column2{
-    margin-left: 150px;
-    margin-right: 100px;
+    margin-top: 30px;
+    width: 35%;
 }
 
-.column3 {
-    width: 30%; /*se cambi questo funziona*/
-    float: left;
+.column3{
+    margin-top: 30px;
+    width: 45%;
 }
 
-
-.column, .column2, .column3 {
-    display: block;
-    float: left;
-    margin-top: 60px;
+.column4{
+    width: 40%;
 }
 
-.column a{
+.column5{
+    width: 50%;
+}
+
+.column > a{
     font-family: Arial, Helvetica, sans-serif;
-    width: auto;
     text-decoration: none;
     color: var(--grey);
     font-size: 13px;
@@ -752,16 +763,13 @@ input, button:focus{
     color: var(--hover);
 }
 
-h3.footer-h{
-    font-family: Arial, Helvetica, sans-serif;
+.column > h3, .column2 > h3, .column3 > h3{
     margin-top: 20px;
     color: var(--black);
     font-size: 16px;
-    line-height: 22px;
-    display: block;
 }
 
-p.footer-p{
+.column > p, .column2 > p, .column3 > p{
     font-family: Arial, Helvetica, sans-serif;
     width: auto;
     color: var(--grey);
@@ -844,8 +852,6 @@ p.footer-p{
 .button:hover{
     background-color: var(--hover);
 }
-
-
 
 /*Popup newsLetter*/
 .popup {
@@ -1020,7 +1026,6 @@ html{
     scroll-behavior: smooth;
 }
 
-
 @media screen and (max-width: 992px){
     .header-top{display: none}
     .form-group{display: none}
@@ -1031,22 +1036,14 @@ html{
     .sidenav a {font-size: 18px;}
 }
 
-@media screen and (max-width: 1064px){
-    .column2{
-        float: left;
-        margin-right: 0;
-        margin-left: 60px;
-    }
-
-    .column3{
-        margin-left: 0;
-    }
+@media screen and (max-width: 800px){
+    .column{width: 45%;}
+    .column2{width: 55%;}
+    .column3{width: 100%;}
 }
 
-@media screen and (max-width: 617px){
-    .column2{
-        margin-right: 80px;
-        margin-left: 0px;
-    }
-
+@media screen and (max-width: 502px){
+    .column2{width: 100%;}
 }
+
+

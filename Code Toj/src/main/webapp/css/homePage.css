@@ -2,10 +2,9 @@
 @media screen and (max-width: 992px){
     .nav-bottom{display: none;}
     .image{margin: 0 !important;}
-    .title-middle h2{margin-top: 30rem!important;}
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 800px){
 
 }
 
@@ -50,16 +49,16 @@
 }
 
 .dropdown-content-bottom a:link {
-    color: #242424 ;
+    color: #242424;
 }
 
 .dropdown-content-bottom a:visited {
-    color: #242424 ;
+    color: #242424;
 }
 
 .dropdown-content-bottom a:hover {
     transition: all 0.2s ease 0s;
-    color: #fd7e14 ;
+    color: #fd7e14;
 }
 /* header-bottom end */
 
@@ -68,7 +67,7 @@
     overflow: hidden;
     margin-top: 37px;
     position:relative;
-    width:49%;
+    width: 49%;
     height: auto;
     display: inline-block;
 }
