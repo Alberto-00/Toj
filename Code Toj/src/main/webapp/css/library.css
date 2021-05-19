@@ -726,9 +726,10 @@ input, button:focus{
 }
 
 .column3 {
-    width: 25%; /*se cambi questo funziona*/
+    width: 30%; /*se cambi questo funziona*/
     float: left;
 }
+
 
 .column, .column2, .column3 {
     display: block;
@@ -792,7 +793,7 @@ p.footer-p{
 
 .subscribe-form input[type=email]{
     display: block;
-    width: 49%;
+    width: 100%;
     padding: 12px;
     border: 2px solid rgba(116, 116, 116, 0.5);
     border-radius: 4px;
@@ -811,7 +812,6 @@ p.footer-p{
     font-size: 19px;
     font-weight: bold;
     padding: 15px;
-    width: 370px;
     transition: all 0.5s;
     cursor: pointer;
     margin-top: 15px;
@@ -856,6 +856,12 @@ p.footer-p{
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    width: 100%; /*e questo*/
+}
+
+/*ho aggiunto questo*/
+.popup button{
+    width: 100%;
 }
 
 /* The actual popup */
