@@ -10,6 +10,12 @@
     #overlay-image-man{margin-top: 30px!important;}
 }
 
+@media screen and (min-width: 600px) and (max-width: 800px){
+    .centered h1{font-size: 70px!important;}
+    .centered p{font-size: 31px!important;}
+    .centered a{font-size: 28px!important;}
+}
+
 .header-bottom{
     background-color: #FFFFFF;
     overflow: hidden;
@@ -129,7 +135,7 @@
 
 .centered a{
     display: block;
-    font-size: 16px;
+    font-size: 18px;
     color: rgb(255,255,255);
     font-weight: bold;
     line-height: 90px !important;

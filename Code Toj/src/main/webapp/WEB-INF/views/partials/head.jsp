@@ -14,13 +14,16 @@
 <meta name="theme-color" content="#FFFFFF">
 <link href="./css/reset.css" rel="stylesheet">
 <link href="./css/library.css" rel="stylesheet">
+
 <c:if test="${not empty param.style}">
     <link rel="stylesheet" href="./css/${param.style}.css">
 </c:if>
 
-<script type="text/javascript" src="./js/jquery-3.6.0.js"></script>
+<script type="text/javascript" src="./js/jquery.js"></script>
 <script src="./js/library.js" defer></script>
+
 <c:if test="${not empty param.script}">
     <script src="./js/${param.script}.js" defer></script>
 </c:if>
+
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>

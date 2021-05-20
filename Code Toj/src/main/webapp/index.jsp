@@ -51,10 +51,10 @@
                         </div>
                     </li>
                     <li class="dropdown">
-                        <a href="AboutUs.html">About Us</a>
+                        <a href="WEB-INF/views/customer/aboutUs.jsp">About Us</a>
                     </li>
                     <li class="dropdown">
-                        <a href="contactUs.html">Contattaci</a>
+                        <a href="WEB-INF/views/customer/contactUs.jsp">Contattaci</a>
                     </li>
                 </ul>
             </div>

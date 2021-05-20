@@ -225,7 +225,7 @@
                         <label for="categoria"></label>
                         <div class="custom-select" style="width: 150px;">
                             <select id="categoria" name="categoria">
-                                <option value="default option" selected>Tutte le categorie</option>
+                                <option value="default option">Tutte le categorie</option>
                                 <option value="Tutte le categorie" selected>Tutte le categorie</option>
                                 <option value="Cappotti">Cappotti</option>
                                 <option value="Giacche">Giacche</option>
