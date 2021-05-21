@@ -3,7 +3,7 @@
 <html lang="it">
 <head>
     <jsp:include page="WEB-INF/views/partials/head.jsp">
-        <jsp:param name="style" value="homePage"/>
+        <jsp:param name="styles" value="homePage"/>
         <jsp:param name="title" value="T&#x000F8;j | Clothing Store"/>
     </jsp:include>
 </head>

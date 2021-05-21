@@ -15,15 +15,19 @@
 <link href="./css/reset.css" rel="stylesheet">
 <link href="./css/library.css" rel="stylesheet">
 
-<c:if test="${not empty param.style}">
-    <link rel="stylesheet" href="./css/${param.style}.css">
+<c:if test="${not empty param.styles}">
+    <c:forTokens items="${param.styles}" delims="," var="style">
+        <link rel="stylesheet" href="./css/${style}.css">
+    </c:forTokens>
 </c:if>
 
 <script type="text/javascript" src="./js/jquery.js"></script>
 <script src="./js/library.js" defer></script>
 
-<c:if test="${not empty param.script}">
-    <script src="./js/${param.script}.js" defer></script>
+<c:if test="${not empty param.scripts}">
+    <c:forTokens items="${param.scripts}" delims="," var="script">
+        <script src="./js/${script}.js" defer></script>
+    </c:forTokens>
 </c:if>
 
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
