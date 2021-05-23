@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html>
+<html lang="it" dir="ltr">
 <head>
     <jsp:include page="../partials/head.jsp">
         <jsp:param name="title" value="Login Admin"/>
