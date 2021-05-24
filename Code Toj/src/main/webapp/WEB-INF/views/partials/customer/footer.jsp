@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <footer>
     <div class="container-top">
-        <hr class="new">
+        <hr class="border-hr">
         <div class="row">
             <div class="column">
                 <h3>Informazioni</h3>
@@ -9,7 +9,7 @@
                 <a href="#" class="hover">Spedizioni</a>
                 <a href="#" class="hover">Privacy Policy</a>
                 <a href="#" class="hover">Termini e condizioni</a>
-                <a href="contactUs.jsp" class="hover">Contattaci</a>
+                <a href="${pageContext.request.contextPath}/provaServlet" class="hover">Contattaci</a>
                 <a href="${pageContext.request.contextPath}/index.jsp" class="hover">Ritorna all'HomePage</a>
             </div>
             <div class="column2">

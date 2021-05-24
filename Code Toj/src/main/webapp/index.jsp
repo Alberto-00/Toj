@@ -8,58 +8,8 @@
     </jsp:include>
 </head>
 <body>
-<!-- sfondo sidenav -->
-<div id="sidenav-background-color"></div>
-
-<!--headerTop-->
+<!--header-->
 <%@include file="WEB-INF/views/partials/customer/headerTop.jsp"%>
-
-<!-- header bottom -->
-<div id="myTopnav">
-        <div class="container-top">
-            <div class="nav-bottom" id="nav-bottom">
-                <ul>
-                    <li class="dropdown">
-                        <a href="index.jsp">Home</a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropbtn">Uomo<i class="fas fa-angle-down icon-left"></i></a>
-                        <div class="dropdown-content dropdown-content-bottom">
-                            <a href="#">Cappotti</a>
-                            <a href="#">Giacche</a>
-                            <a href="#">Maglie</a>
-                            <a href="#">Costumi</a>
-                            <a href="#">Pantaloni</a>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropbtn">Donna<i class="fas fa-angle-down icon-left"></i></a>
-                        <div class="dropdown-content dropdown-content-bottom">
-                            <a href="#">Cappotti</a>
-                            <a href="#">Giacche</a>
-                            <a href="#">Magliette</a>
-                            <a href="#">Costumi</a>
-                            <a href="#">Pantaloni</a>
-                            <a href="#">Gonne</a>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a href="javascript:void(0)" class="dropbtn">Nuovi Arrivi<i class="fas fa-angle-down icon-left"></i></a>
-                        <div class="dropdown-content dropdown-content-bottom">
-                            <a href="#">Uomo</a>
-                            <a href="#">Donna</a>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a href="WEB-INF/views/customer/aboutUs.jsp">About Us</a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="WEB-INF/views/customer/contactUs.jsp">Contattaci</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
 
 <!-- immagini "uomo" "donna" centrali -->
 <div class="container-top">

@@ -10,7 +10,7 @@ public class ShowPageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("../../WEB-INF/views/customer/aboutUs.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/customer/aboutUs.jsp");
         dispatcher.forward(request, response);
     }
 

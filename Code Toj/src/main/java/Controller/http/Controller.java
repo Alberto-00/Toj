@@ -3,11 +3,10 @@ package Controller.http;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
-import java.io.File;
 
 public class Controller extends HttpServlet {
-    protected static DataSource source;
 
+    protected static DataSource source;
     protected String getPath(HttpServletRequest req) { return req.getPathInfo() != null ? req.getPathInfo() : "/";}
 
     protected String view(String viewPath){

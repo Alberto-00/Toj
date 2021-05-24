@@ -11,7 +11,6 @@ public class AccountExtractor implements ResultSetExtractor<Account> {
     public Account extract(ResultSet rs) throws SQLException {
         Account user = new Account();
         user.setEmail(rs.getString("Email"));
-        user.setPassword(rs.getString("Password_User"));
         user.setAdmin(rs.getBoolean("Admin_user"));
         return user;
     }

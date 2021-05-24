@@ -708,6 +708,52 @@ input, button:focus{
 /*Popup "Accedi - registrati" end*/
 
 
+/* header-bottom start */
+@media screen and (max-width: 992px){
+    .nav-bottom{display: none;}
+}
+
+.nav-bottom{
+    padding-top: 16px;
+    padding-bottom: 40px;
+}
+
+.nav-bottom a{
+    padding-right: 35px;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+.nav-bottom a:hover{
+    transition: all 0.2s ease 0s;
+    color: #fd7e14;
+}
+
+.sticky {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left:0;
+    padding-bottom: 18px;
+    z-index: 2;
+}
+
+.dropdown-content-bottom a:link {
+    color: #242424;
+}
+
+.dropdown-content-bottom a:visited {
+    color: #242424;
+}
+
+.dropdown-content-bottom a:hover {
+    transition: all 0.2s ease 0s;
+    color: #fd7e14;
+}
+/* header-bottom end */
+
+
 /* footer-top start */
 .row {
     display: flex;
@@ -1000,7 +1046,7 @@ input, button:focus{
     animation-name: fadeInUp;
 }
 
-hr.new{
+hr.border-hr{
     border: 1px solid rgba(221, 221, 221, 0.6);
     background-color: rgba(221, 221, 221, 0.6);
     color: rgba(221, 221, 221, 0.6);

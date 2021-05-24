@@ -1,5 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <header>
+    <!-- sfondo sidenav -->
+    <div id="sidenav-background-color"></div>
+
+    <!-- header top -->
     <div class="header-top">
         <div class="container-top">
             <span>Consegna gratuita:</span>
@@ -100,6 +104,8 @@
                     <img src="${pageContext.request.contextPath}/icons/logo.png"
                          alt="" width="100" height="100">
                 </a>
+
+                <!--Sidenav start -->
                 <div class="open-sidenav">
                     <i class="fas fa-bars" onclick="openNav()"></i>
                 </div>
@@ -116,7 +122,7 @@
                     <span>Resi gratuiti * </span>
                     <p>Soddisfatti o rimborsati</p><br><br>
 
-                    <a href="#">Accedi / Registrati</a><hr class="new">
+                    <a href="#">Accedi / Registrati</a><hr class="border-hr">
 
                     <form action="#">
                         <label for="categoria-sidenav">
@@ -202,12 +208,13 @@
                     </div><br>
                     <p><i class="far fa-envelope"></i>Tøj@gmail.com</p>
                     <div class="social-icon-sidenav">
-                        <a href="#" title="twitter" class="hover"><i class="fab fa-twitter"></i></a>
-                        <a href="#" title="googlePlus" class="hover"><i class="fab fa-google-plus"></i></a>
-                        <a href="#" title="facebook" class="hover"><i class="fab fa-facebook"></i></a>
-                        <a href="#" title="youtube" class="hover"><i class="fab fa-youtube"></i></a>
+                        <a href="#" title="twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="googlePlus"><i class="fab fa-google-plus"></i></a>
+                        <a href="#" title="facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" title="youtube"><i class="fab fa-youtube"></i></a>
                     </div><br>
                 </div>
+                <!--Sidenav end -->
 
                 <div class="top-left">
                     <a id="hide" onclick="openForm()">Accedi / Registrati</a>
@@ -242,6 +249,52 @@
                     <button class="btn" type="submit"><i class="fas fa-search"></i></button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <!-- header bottom -->
+    <div class="container-top">
+        <div class="nav-bottom" id="nav-bottom">
+            <ul>
+                <li class="dropdown">
+                        <a href="${pageContext.request.contextPath}/index.jsp">Home</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Uomo<i class="fas fa-angle-down icon-left"></i></a>
+                    <div class="dropdown-content dropdown-content-bottom">
+                        <a href="#">Cappotti</a>
+                        <a href="#">Giacche</a>
+                        <a href="#">Maglie</a>
+                        <a href="#">Costumi</a>
+                        <a href="#">Pantaloni</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Donna<i class="fas fa-angle-down icon-left"></i></a>
+                    <div class="dropdown-content dropdown-content-bottom">
+                        <a href="#">Cappotti</a>
+                        <a href="#">Giacche</a>
+                        <a href="#">Magliette</a>
+                        <a href="#">Costumi</a>
+                        <a href="#">Pantaloni</a>
+                        <a href="#">Gonne</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">Nuovi Arrivi<i class="fas fa-angle-down icon-left"></i></a>
+                    <div class="dropdown-content dropdown-content-bottom">
+                        <a href="#">Uomo</a>
+                        <a href="#">Donna</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="../../customer/aboutUs.jsp" class="color-fixed-navBottom">About Us</a>
+                </li>
+                <li class="dropdown">
+                    <a href="../../customer/contactUs.jsp" class="color2-fixed-navBottom">Contattaci</a>
+                </li>
+            </ul>
+            <span class="hidden-span">Call Free Support: (+39) 338 4546 448</span>
         </div>
     </div>
 </header>
