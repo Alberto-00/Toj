@@ -21,57 +21,55 @@
     </div>
 </div>
 
-<div class="contact-area">
-    <div class="container-top">
-        <div class="row">
-            <div class="column-contact">
-                <div class="contact-message">
-                    <h1>Contattaci</h1>
-                    <p>
-                        Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum.
-                        Mirum est notare quam littera gothica, quam nunc putamus parum claram anteposuerit litterarum formas human.
-                        qui sequitur mutationem consuetudium lectorum. Mirum est notare quam
-                    </p>
-                    <ul>
-                        <li>
-                            <i class="fa fa-fax"></i>
-                            Indirizzo: Via Santa Maria Maggiore, 54, Salerno, Campania
-                        </li>
-                        <li>
-                            <i class="far fa-envelope"></i>
-                            Tøj@gmail.com
-                        </li>
-                        <li>
-                            <i class="fa fa-phone"></i>
-                            (+39) 338 4546 448
-                        </li>
-                    </ul>
-                </div>
+<div class="container">
+    <div class="row">
+        <div class="column-contact">
+            <div class="contact-message">
+                <h1>Contattaci</h1>
+                <p>
+                    Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum.
+                    Mirum est notare quam littera gothica, quam nunc putamus parum claram anteposuerit litterarum formas human.
+                    qui sequitur mutationem consuetudium lectorum. Mirum est notare quam
+                </p>
+                <ul>
+                    <li>
+                        <i class="fa fa-fax"></i>
+                        Indirizzo: Via Santa Maria Maggiore, 54, Salerno, Campania
+                    </li>
+                    <li>
+                        <i class="far fa-envelope"></i>
+                        Tøj@gmail.com
+                    </li>
+                    <li>
+                        <i class="fa fa-phone"></i>
+                        (+39) 338 4546 448
+                    </li>
+                </ul>
             </div>
+        </div>
 
-            <div class="column-contact">
-                <div class="contact-message">
-                    <h1>Scrivici le tue idee</h1>
-                    <form id="contact-form" method="POST" action="#">
-                        <p>
-                            <label>Il tuo Nome (richiesto)</label>
-                            <input name="name" placeholder="Nome *" type="text">
-                        </p>
-                        <p>
-                            <label>La tua Email (richiesto)</label>
-                            <input name="email" placeholder="Email *" type="email">
-                        </p>
-                        <p>
-                            <label>Oggetto</label>
-                            <input name="subject" placeholder="Subject *" type="text">
-                        </p>
-                        <div class="contact_textarea">
-                            <label>Il tuo Messaggio</label>
-                            <textarea placeholder="Message *" name="message" class="form-control2"></textarea>
-                        </div>
-                        <input type="submit">
-                    </form>
-                </div>
+        <div class="column-contact">
+            <div class="contact-message">
+                <h1>Scrivici le tue idee</h1>
+                <form method="post" action="#">
+                    <p>
+                        <label>Nome (richiesto)</label>
+                        <input class="input-text" name="name" placeholder="Nome *" type="text">
+                    </p>
+                    <p>
+                        <label>Email (richiesto)</label>
+                        <input name="email" placeholder="Email *" type="email">
+                    </p>
+                    <p>
+                        <label>Oggetto</label>
+                        <input class="input-text" name="subject" placeholder="Subject *" type="text">
+                    </p>
+                    <div class="contact_textarea">
+                        <label>Messaggio</label>
+                        <textarea placeholder="Message *" name="message"></textarea>
+                    </div>
+                    <input type="submit" name="submitContact" value="INVIA">
+                </form>
             </div>
         </div>
     </div>
