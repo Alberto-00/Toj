@@ -1,18 +1,19 @@
 .column-contact h1 {
     color: var(--black);
-    font-size: 7.5em;
+    font-size: 9.5em;
     font-weight:bold;
+    margin-bottom: 70px;
 }
 
 .column-contact h2 {
     color: var(--black);
     font-weight:bold;
-    font-size: 2em;
+    font-size: 3em;
 }
 
 .column-contact p{
    color: var(--grey);
-    font-size: 17px;
+    font-size: 20px;
 }
 
 .column-contact img{
@@ -28,8 +29,44 @@ a.color2-fixed-navBottom{
     color: var(--black);
 }
 
+.error_form a {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    background: #ff6a28;
+    font-size: 12px;
+    font-weight: bold;
+    height: 40px;
+    line-height: 42px;
+    padding: 0 30px;
+    text-transform: uppercase;
+    margin-top: 35px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.error_form a:hover{
+    background-color: var(--black);
+}
+
 @media screen and (max-width: 992px){
     .column-contact img{
         width: 50%;
+    }
+
+    .column-contact h2{
+        line-height: 1.3em;
+        margin-bottom: 20px;
+    }
+
+    .error_form a{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .column-contact img{
+        width: 100%;
     }
 }

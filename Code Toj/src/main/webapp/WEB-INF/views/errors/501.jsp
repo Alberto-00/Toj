@@ -5,7 +5,7 @@
     <jsp:include page="../partials/head.jsp">
         <jsp:param name="customerStyles" value="otherPage"/>
         <jsp:param name="errorStyles" value="errors"/>
-        <jsp:param name="title" value="T&#x000F8;j - ERROR 501"/>
+        <jsp:param name="title" value="T&#x000F8;j - Error 501"/>
     </jsp:include>
 </head>
 <body>
