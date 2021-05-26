@@ -76,8 +76,8 @@ input.input-text, input[type=email], input[type=password]{
     box-sizing: border-box;
 }
 
-input[type=submit], input[type=submit].submit-buttom {
-    width: 25%;
+input[type=submit]{
+    width: 30%;
     background-color: #ff6a28;
     font-weight: 700;
     color: white;

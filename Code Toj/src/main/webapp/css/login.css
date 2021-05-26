@@ -22,7 +22,22 @@ hr.border-hr{
     margin-top: 0;
 }
 
-input[type=submit].submit-buttom{
-    width: 35%;
+@media screen and (max-width: 560px){
+    .login-submit a{
+        width: 100%;
+    }
 }
+
+@media screen and (max-width: 500px){
+    input[type=submit].submit-button-log{
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 500px){
+    input[type=submit].submit-button-reg{
+        width: 60%;
+    }
+}
+
 

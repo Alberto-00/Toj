@@ -37,10 +37,10 @@
                     </p>
                     <div class="login-submit">
                         <a href="#">Hai dimenticato la password?</a>
-                        <input type="submit" name="submitContact" value="LOGIN">
+                        <input class="submit-button-log" type="submit" name="submitContact" value="LOGIN">
                         <label for="remember" class="hover">
-                            <input id="remember" type="checkbox" name="remember">
-                            <span>Remember me</span>
+                            <input id="remember" type="checkbox" name="remember" value="remember">
+                            Remember me
                         </label>
                     </div>
                 </form>
@@ -63,7 +63,7 @@
                         <label>Passwords *</label>
                         <input name="password" type="password">
                     </p>
-                    <input class="submit-buttom" type="submit" name="submitContact" value="REGISTRATI">
+                    <input class="submit-button-reg" type="submit" name="submitContact" value="REGISTRATI">
                 </form>
             </div>
         </div>
