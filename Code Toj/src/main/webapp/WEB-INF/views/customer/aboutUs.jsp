@@ -78,7 +78,7 @@
 
 <div class="container-top">
     <div class="row">
-        <div class="column-bottom">
+        <div class="column-aboutUs">
             <div class="square">
                 <div class="counter-info-image">
                     <img src="${pageContext.request.contextPath}/icons/user.png" alt="">
@@ -90,7 +90,7 @@
             </div>
         </div>
 
-        <div class="column-bottom">
+        <div class="column-aboutUs">
             <div class="square">
                 <div class="counter-info-image">
                     <img src="${pageContext.request.contextPath}/icons/package.png" alt="">
@@ -102,7 +102,7 @@
             </div>
         </div>
 
-        <div class="column-bottom">
+        <div class="column-aboutUs">
             <div class="square">
                 <div class="counter-info-image">
                     <img src="${pageContext.request.contextPath}/icons/clothes.png" alt="">
@@ -114,7 +114,7 @@
             </div>
         </div>
 
-        <div class="column-bottom">
+        <div class="column-aboutUs">
             <div class="square">
                 <div class="counter-info-image">
                     <img src="${pageContext.request.contextPath}/icons/time.png" alt="">

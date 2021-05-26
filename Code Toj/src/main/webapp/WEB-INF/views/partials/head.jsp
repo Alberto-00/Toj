@@ -21,7 +21,7 @@
     </c:forTokens>
 </c:if>
 
-<script type="text/javascript" src="./js/jquery.js"></script>
+<script src="./js/jquery.js" defer></script>
 <script src="./js/library.js" defer></script>
 
 <c:if test="${not empty param.scripts}">

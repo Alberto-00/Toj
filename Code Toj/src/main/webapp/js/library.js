@@ -166,12 +166,19 @@ $('#next').on('click', function() {
 
 /** Overlay foto middle
  */
-document.getElementById("overlay-image-woman").addEventListener("click", function (){
-    window.location.href = "./Donna";
-})
-document.getElementById("overlay-image-man").addEventListener("click", function (){
-    window.location.href = "./Uomo";
-})
+var elem = document.getElementById("overlay-image-woman")
+if(elem){
+    elem.addEventListener("click", function (){
+        window.location.href = "./Donna"; /*inserire servlet*/
+    })
+}
+
+var elem = document.getElementById("overlay-image-man")
+if(elem){
+    elem.addEventListener("click", function (){
+        window.location.href = "./Uomo";
+    })
+}
 
 
 /**
