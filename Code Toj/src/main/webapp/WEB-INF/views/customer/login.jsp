@@ -3,7 +3,7 @@
 <html lang="it">
 <head>
     <jsp:include page="../partials/head.jsp">
-        <jsp:param name="styles" value="otherPage,contactUs,login"/>
+        <jsp:param name="customerStyles" value="otherPage,login"/>
         <jsp:param name="title" value="T&#x000F8;j - Login / Register"/>
     </jsp:include>
 </head>
@@ -32,7 +32,7 @@
                         <input class="input-text" name="username" type="text">
                     </p>
                     <p>
-                        <label>Passwords *</label>
+                        <label>Password *</label>
                         <input name="password" type="password">
                     </p>
                     <div class="login-submit">
@@ -60,7 +60,7 @@
                         <input class="input-text" name="username" type="text">
                     </p>
                     <p>
-                        <label>Passwords *</label>
+                        <label>Password *</label>
                         <input name="password" type="password">
                     </p>
                     <input class="submit-button-reg" type="submit" name="submitContact" value="REGISTRATI">

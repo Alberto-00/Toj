@@ -13,11 +13,17 @@
 <link rel="apple-touch-startup-image" href="icons/logo2.png">
 <meta name="theme-color" content="#FFFFFF">
 <link href="./css/reset.css" rel="stylesheet">
-<link href="./css/library.css" rel="stylesheet">
+<link href="./css/customer/library.css" rel="stylesheet">
 
-<c:if test="${not empty param.styles}">
-    <c:forTokens items="${param.styles}" delims="," var="style">
-        <link rel="stylesheet" href="./css/${style}.css">
+<c:if test="${not empty param.customerStyles}">
+    <c:forTokens items="${param.customerStyles}" delims="," var="customerStyle">
+        <link rel="stylesheet" href="./css/customer/${customerStyle}.css">
+    </c:forTokens>
+</c:if>
+
+<c:if test="${not empty param.errorStyles}">
+    <c:forTokens items="${param.errorStyles}" delims="," var="errorStyle">
+        <link rel="stylesheet" href="./css/errors/${errorStyle}.css">
     </c:forTokens>
 </c:if>
 

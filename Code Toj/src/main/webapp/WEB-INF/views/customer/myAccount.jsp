@@ -3,7 +3,7 @@
 <html lang="it">
 <head>
     <jsp:include page="../partials/head.jsp">
-        <jsp:param name="styles" value="otherPage"/>
+        <jsp:param name="customerStyles" value="otherPage"/>
         <jsp:param name="title" value="T&#x000F8;j - my account"/>
     </jsp:include>
 </head>

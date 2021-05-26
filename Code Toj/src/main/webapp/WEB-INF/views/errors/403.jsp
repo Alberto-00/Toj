@@ -1,12 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isErrorPage="true" %>
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
-<jsp:include page="../partials/head.jsp">
-    <jsp:param name="customerStyles" value="otherPage,contactUs"/>
-    <jsp:param name="errorStyles" value="errors"/>
-    <jsp:param name="title" value="T&#x000F8;j - ERROR 404"/>
-</jsp:include>
+    <jsp:include page="../partials/head.jsp">
+        <jsp:param name="customerStyles" value="otherPage"/>
+        <jsp:param name="errorStyles" value="errors"/>
+        <jsp:param name="title" value="T&#x000F8;j - ERROR 403"/>
+    </jsp:include>
 </head>
 <body>
 <!--headerTop-->
@@ -16,10 +16,10 @@
 <div class="container-top">
     <div class="row">
         <div class="column-contact">
-            <h1>404</h1>
-            <h2>Oops! - Page Not Found</h2>
-            <p>We can't seem to find the page you're looking for.
-                How you got here is a mystery.
+            <h1>403</h1>
+            <h2>Access Forbidden</h2>
+            <p>You don't have permission to access this area.
+                Turn back NOW!
             </p>
         </div>
         <div class="column-contact">

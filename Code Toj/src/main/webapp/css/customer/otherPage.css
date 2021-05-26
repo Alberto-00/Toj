@@ -1,12 +1,51 @@
 /*header bottom start*/
-a.color2-fixed-navBottom{
+.nav-bottom{
+    background-color: var(--white);
+}
+
+.nav-bottom a{
+    color: var(--black);
+}
+
+.sticky {
+    background-color: rgba(255,255,255,.85);
+    box-shadow: 0 2px 4px 0 rgba(24,24,24,0.2);
+}
+
+span.hidden-span{
+    color: var(--grey);
+    display: inline;
+    float: right;
+}
+hr.border2-hr{
+    border: 1px solid rgba(154, 154, 154, .2);
+    background-color: rgba(154, 154, 154, .2);
+}
+/*header bottom end*/
+
+
+/*middle-top start*/
+.middle-top{
+    padding: 35px 0 35px;
+}
+
+.middle-top a{
+    margin-right: 2px;
+    font-size: 15px;
+    text-decoration: none;
+    color: var(--grey);
+}
+
+.middle-top a:hover{
     color: var(--hover);
 }
 
-a.color-fixed-navBottom{
-    color: var(--black);
+.middle-top span{
+    margin-left: 1px;
+    font-size: 15px;
+    color: #242424;
 }
-/*header bottom end*/
+/*middle-top end*/
 
 
 /*contact-area start*/
@@ -23,6 +62,13 @@ a.color-fixed-navBottom{
     padding-right: 28px;
     width: 50%;
     margin-bottom: 60px;
+}
+
+@media screen and (max-width: 992px){
+    .column-contact{
+        width: 100%;
+        padding-top: 0;
+    }
 }
 
 .contact-message h1{
@@ -93,16 +139,3 @@ input[type=submit]:hover {
     background-color: var(--black);
 }
 
-.google-maps{
-    margin-right: 20px;
-    margin-left: 20px;
-}
-
-@media screen and (max-width: 992px){
-    .column-contact{
-        width: 100%;
-        padding-top: 0;
-    }
-
-}
-/*contact-area end*/

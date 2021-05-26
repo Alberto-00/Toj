@@ -1,0 +1,16 @@
+/*header bottom start*/
+a.color2-fixed-navBottom{
+    color: var(--hover);
+}
+
+a.color-fixed-navBottom{
+    color: var(--black);
+}
+/*header bottom end*/
+
+/*contact-area start*/
+.google-maps{
+    margin-right: 20px;
+    margin-left: 20px;
+}
+/*contact-area end*/
