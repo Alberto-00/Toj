@@ -891,7 +891,7 @@ input, button:focus{
 }
 
 .button:hover{
-    background-color: var(--hover);
+    background-color: #ff6a28;
 }
 
 /*Popup newsLetter*/

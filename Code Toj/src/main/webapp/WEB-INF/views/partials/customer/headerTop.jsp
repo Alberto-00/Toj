@@ -16,7 +16,7 @@
                         <a href="javascript:void(0)" class="dropbtn">My Account<i class="fas fa-angle-down icon-left"></i></a>
                         <div class="dropdown-content">
                             <a class="border-content" href="#">My Account</a>
-                            <a href="#">Sign in</a>
+                            <a href="${pageContext.request.contextPath}/loginServlet">Sign in</a>
                         </div>
                     </li>
                     <li class="dropdown border">

@@ -4,7 +4,7 @@
 <head>
     <jsp:include page="../partials/head.jsp">
         <jsp:param name="styles" value="otherPage,aboutUs"/>
-        <jsp:param name="title" value="T&#x000F8;j | Clothing Store"/>
+        <jsp:param name="title" value="T&#x000F8;j - about us"/>
     </jsp:include>
 </head>
 <body>
