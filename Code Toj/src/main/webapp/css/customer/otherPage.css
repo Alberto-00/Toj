@@ -14,17 +14,17 @@
     box-shadow: 0 2px 4px 0 rgba(24,24,24,0.2);
 }
 
-@media screen and (max-width: 2560px){
+@media screen and (min-width: 2560px){
     .sticky{
         padding-left: 55.7em;
         padding-right: 55.8em;
     }
 }
 
-@media screen and (max-width: 1440px){
+@media screen and (min-width: 1440px){
     .sticky{
-        padding-left: 12.8em;
-        padding-right: 12.8em;
+        padding-left: 15.8em;
+        padding-right: 15.8em;
     }
 }
 
