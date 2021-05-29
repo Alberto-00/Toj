@@ -77,7 +77,7 @@
                     <div class="login__box">
                         <label for="email">
                             <i class="fas fa-at"></i>
-                            <input type="text" id="email" name="email" placeholder="Email" class="login__input">
+                            <input type="email" id="email" name="email" placeholder="Email" class="login__input">
                         </label>
                     </div>
 

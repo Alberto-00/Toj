@@ -8,8 +8,38 @@
 }
 
 .sticky {
-    background-color: rgba(255,255,255,.85);
+    padding-left: 14.8em;
+    padding-right: 15.8em;
+    background-color: rgba(255,255,255,.9);
     box-shadow: 0 2px 4px 0 rgba(24,24,24,0.2);
+}
+
+@media screen and (max-width: 2560px){
+    .sticky{
+        padding-left: 55.7em;
+        padding-right: 55.8em;
+    }
+}
+
+@media screen and (max-width: 1440px){
+    .sticky{
+        padding-left: 12.8em;
+        padding-right: 12.8em;
+    }
+}
+
+@media screen and (max-width: 1316px){
+    .sticky{
+        padding-left: 5.8em;
+        padding-right: 5.8em;
+    }
+}
+
+@media screen and (max-width: 1053px){
+    .sticky{
+        padding-left: 1.8em;
+        padding-right: 3.8em;
+    }
 }
 
 span.hidden-span{
@@ -111,7 +141,9 @@ hr.border2-hr{
     font-weight: 500;
 }
 
-input.input-text, input[type=email], input[type=password]{
+.contact-message input[type=text],
+.contact-message input[type=email],
+.contact-message input[type=password]{
     width: 100%;
     height: 100%;
     padding: 12px 20px;

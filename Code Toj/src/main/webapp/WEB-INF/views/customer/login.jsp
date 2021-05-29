@@ -29,7 +29,7 @@
                 <form method="post" action="#">
                     <p>
                         <label>Username o email *</label>
-                        <input class="input-text" name="username" type="text">
+                        <input name="username" type="text">
                     </p>
                     <p>
                         <label>Password *</label>
