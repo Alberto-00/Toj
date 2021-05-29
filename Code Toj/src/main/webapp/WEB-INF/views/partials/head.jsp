@@ -28,11 +28,11 @@
 </c:if>
 
 <script src="./js/jquery.js" defer></script>
-<script src="./js/library.js" defer></script>
+<script src="./js/customer/library.js" defer></script>
 
-<c:if test="${not empty param.scripts}">
-    <c:forTokens items="${param.scripts}" delims="," var="script">
-        <script src="./js/${script}.js" defer></script>
+<c:if test="${not empty param.customerScripts}">
+    <c:forTokens items="${param.customerScripts}" delims="," var="customerScript">
+        <script src="./js/customer/${customerScript}.js" defer></script>
     </c:forTokens>
 </c:if>
 
