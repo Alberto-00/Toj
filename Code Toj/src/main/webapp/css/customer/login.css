@@ -18,10 +18,6 @@
     color: var(--hover);
 }
 
-hr.border-hr{
-    margin-top: 0;
-}
-
 @media screen and (max-width: 560px){
     .login-submit a{
         width: 100%;

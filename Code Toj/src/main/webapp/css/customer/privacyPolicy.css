@@ -1,0 +1,47 @@
+.column-contact{
+    width: 100%;
+    padding-right: 0;
+    margin-bottom: 0;
+}
+
+.privacy_content{
+    margin-bottom: 22px;
+}
+
+.privacy_content h2 {
+    font-size: 22px;
+    line-height: 22px;
+    font-weight: 500;
+    margin-bottom: 7px;
+    margin-top: 0;
+    color: var(--black);
+}
+
+.privacy_content h3 {
+    font-size: 22px;
+    line-height: 22px;
+    font-weight: 500;
+    margin-bottom: 7px;
+    color: var(--black);
+}
+
+.privacy_content p {
+    font-size: 15px;
+    line-height: 25px;
+    margin-bottom: 19px;
+    color: var(--grey);
+}
+
+p{
+    margin-top: 0;
+}
+
+@media screen and (max-width: 767px){
+    .privacy_content h2, .privacy_content h3 {
+        font-size: 17px;
+    }
+
+    .privacy_content p {
+        font-size: 14px;
+    }
+}
