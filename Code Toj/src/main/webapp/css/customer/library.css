@@ -533,6 +533,22 @@ input, button:focus{
     padding-right: 8px;
     margin-right: auto;
 }
+
+.num-cart-product{
+    position: absolute;
+    top: -12px;
+    right: -7px;
+    width:25px;
+    height: 25px;
+    font-size: 0.8rem;
+    border-radius: 50%;
+    background-color: #0b9d8a;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+}
 /* header-middle end */
 
 
