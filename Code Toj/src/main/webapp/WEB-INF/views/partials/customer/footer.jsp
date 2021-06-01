@@ -7,7 +7,7 @@
                 <h3>Informazioni</h3>
                 <a href="${pageContext.request.contextPath}/ShowPageServlet" class="hover">About Us</a>
                 <a href="${pageContext.request.contextPath}/privacyServlet" class="hover">Privacy Policy</a>
-                <a href="#" class="hover">Termini e condizioni</a>
+                <a href="${pageContext.request.contextPath}/terminiServlet" class="hover">Termini e condizioni</a>
                 <a href="${pageContext.request.contextPath}/provaServlet" class="hover">Contattaci</a>
                 <a href="${pageContext.request.contextPath}/index.jsp" class="hover">Ritorna all'HomePage</a>
             </div>
