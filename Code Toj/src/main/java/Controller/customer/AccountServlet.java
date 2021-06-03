@@ -14,9 +14,6 @@ public class AccountServlet extends Controller {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = getPath(request); //abbiamo preso tutto il pezzo dopo "/customers/*"
         switch (path){
-            case "/dashboard":
-                request.getRequestDispatcher(view("customer/index")).forward(request, response);
-                break;
             case "/aboutUs":
                 request.getRequestDispatcher(view("customer/aboutUs")).forward(request, response);
                 break;

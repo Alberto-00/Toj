@@ -13,10 +13,12 @@
             <div class="top-right">
                 <ul>
                     <li class="dropdown">
-                        <a href="javascript:void(0)" class="dropbtn">My Account<i class="fas fa-angle-down icon-left"></i></a>
+                        <a href="javascript:void(0)" class="dropbtn">My Account
+                            <i class="fas fa-angle-down icon-left"></i>
+                        </a>
                         <div class="dropdown-content">
-                            <a class="border-content" href="${pageContext.request.contextPath}/accountServlet">My Account</a>
-                            <a href="${pageContext.request.contextPath}/loginServlet">Sign in</a>
+                            <a class="border-content" href="${pageContext.request.contextPath}/customers/account">My Account</a>
+                            <a href="${pageContext.request.contextPath}/customers/sigin">Sign in</a>
                         </div>
                     </li>
                     <li class="dropdown border">
@@ -29,7 +31,7 @@
                         </div>
                     </li>
                     <li class="dropdown border">
-                        <a href="#">Termini e condizioni</a>
+                        <a href="${pageContext.request.contextPath}/customers/termsConditions">Termini e condizioni</a>
                     </li>
                 </ul>
             </div>
@@ -109,7 +111,6 @@
                 <div class="open-sidenav">
                     <i class="fas fa-bars" onclick="openNav()"></i>
                 </div>
-
                 <div id="mySidenav" class="sidenav">
                     <div class="closebtn">
                         <a href="javascript:void(0)" onclick="closeNav()">
@@ -122,7 +123,7 @@
                     <span>Resi gratuiti * </span>
                     <p>Soddisfatti o rimborsati</p><br><br>
 
-                    <a href="#">Accedi / Registrati</a><hr class="border-hr">
+                    <a href="${pageContext.request.contextPath}/customers/sigin">Accedi / Registrati</a><hr class="border-hr">
 
                     <form action="#">
                         <label for="categoria-sidenav">
@@ -184,8 +185,8 @@
                             <i class="fas fa-plus"></i>
                         </button>
                         <div class="dropdown-container-sidenav">
-                            <a href="#">Area personale</a>
-                            <a href="#">Sign in</a>
+                            <a href="${pageContext.request.contextPath}/customers/account">Area personale</a>
+                            <a href="${pageContext.request.contextPath}/customers/sigin">Sign in</a>
                         </div>
 
                         <button class="dropdown-btn">Language
@@ -199,19 +200,19 @@
                         <a href="#" style="border-bottom: 1px solid #747474;">
                             Carrello<i class="fas fa-cart-arrow-down"></i>
                         </a>
-                        <a href="#" style="border-bottom: 1px solid #747474;">
+                        <a href="${pageContext.request.contextPath}/customers/aboutUs" style="border-bottom: 1px solid #747474;">
                             About Us<i class="far fa-address-card"></i>
                         </a>
-                        <a href="#" style="border-bottom: 1px solid #747474;">
+                        <a href="${pageContext.request.contextPath}/customers/aboutUs" style="border-bottom: 1px solid #747474;">
                             Contattaci<i class="far fa-address-book"></i>
                         </a>
                     </div><br>
                     <p><i class="far fa-envelope"></i>Tøj@gmail.com</p>
                     <div class="social-icon-sidenav">
-                        <a href="#" title="twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" title="googlePlus"><i class="fab fa-google-plus"></i></a>
-                        <a href="#" title="facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" title="youtube"><i class="fab fa-youtube"></i></a>
+                        <a href="javascript:void(0)" title="twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="javascript:void(0)" title="googlePlus"><i class="fab fa-google-plus"></i></a>
+                        <a href="javascript:void(0)" title="facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="javascript:void(0)" title="youtube"><i class="fab fa-youtube"></i></a>
                     </div><br>
                 </div>
                 <!--Sidenav end -->
@@ -288,10 +289,10 @@
                     </div>
                 </li>
                 <li class="dropdown">
-                    <a href="../../customer/aboutUs.jsp" class="color-fixed-navBottom">About Us</a>
+                    <a href="${pageContext.request.contextPath}/customers/aboutUs" class="color-fixed-navBottom">About Us</a>
                 </li>
                 <li class="dropdown">
-                    <a href="../../customer/contactUs.jsp" class="color2-fixed-navBottom">Contattaci</a>
+                    <a href="${pageContext.request.contextPath}/customers/contactUs" class="color2-fixed-navBottom">Contattaci</a>
                 </li>
             </ul>
             <span class="hidden-span">Call Free Support: (+39) 338 4546 448</span>

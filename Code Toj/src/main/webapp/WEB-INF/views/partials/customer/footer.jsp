@@ -5,11 +5,11 @@
         <div class="row">
             <div class="column">
                 <h3>Informazioni</h3>
-                <a href="./customers/aboutUs" class="hover">About Us</a>
-                <a href="./customers/privacy" class="hover">Privacy Policy</a>
-                <a href="./customers/termsCondition" class="hover">Termini e condizioni</a>
-                <a href="./customers/contactUs" class="hover">Contattaci</a>
-                <a href="./customers/dashboard" class="hover">Ritorna all'HomePage</a>
+                <a href="${pageContext.request.contextPath}/customers/aboutUs" class="hover">About Us</a>
+                <a href="${pageContext.request.contextPath}/customers/privacy" class="hover">Privacy Policy</a>
+                <a href="${pageContext.request.contextPath}/customers/termsCondition" class="hover">Termini e condizioni</a>
+                <a href="${pageContext.request.contextPath}/customers/contactUs" class="hover">Contattaci</a>
+                <a href="${pageContext.request.contextPath}/index.jsp" class="hover">Ritorna all'HomePage</a>
             </div>
             <div class="column2">
                 <h3>Contattaci</h3>
@@ -62,7 +62,7 @@
     </div>
 
     <!-- freccia che riporta al top della pagina-->
-    <a id="scrollUp" href="#top" class="scroll">
+    <a id="scrollUp" href="#" class="scroll">
         <i class="fas fa-angle-double-up"></i>
     </a>
 </footer>

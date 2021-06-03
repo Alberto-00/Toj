@@ -16,7 +16,7 @@
 <!--middle-->
 <div class = middle-top>
     <div class ="container-top">
-        <a href="../../../index.jsp">Home</a>
+        <a href="${pageContext.request.contextPath}/index.jsp">Home</a>
         <span>/</span>
         <span>My Account</span>
     </div>
