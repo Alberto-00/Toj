@@ -18,9 +18,10 @@
         <div class="column-contact">
             <h1>403</h1>
             <h2>Access Forbidden</h2>
-            <p>You don't have permission to access this area.
-                Turn back NOW!
-            </p>
+            <p>You don't have permission to access this area. Turn back NOW!</p>
+            <div class="error_form">
+                <a href="${pageContext.request.contextPath}/index.jsp">Back to Home Page</a>
+            </div>
         </div>
         <div class="column-contact">
             <img src="${pageContext.request.contextPath}/images/opsImg.png" alt="oopsImg">

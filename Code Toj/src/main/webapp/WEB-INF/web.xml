@@ -7,16 +7,29 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
+    <context-param>
+        <param-name>basePath</param-name>
+        <param-value>/WEB-INF/views/</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>engine</param-name>
+        <param-value>.jsp</param-value>
+    </context-param>
+
     <error-page>
         <error-code>404</error-code>
         <location>/WEB-INF/views/errors/404.jsp</location>
     </error-page>
+
     <error-page>
         <error-code>403</error-code>
         <location>/WEB-INF/views/errors/403.jsp</location>
     </error-page>
+
     <error-page>
-        <error-code>501</error-code>
-        <location>/WEB-INF/views/errors/501.jsp</location>
+        <error-code>500</error-code>
+        <location>/WEB-INF/views/errors/500.jsp</location>
     </error-page>
+
 </web-app>
