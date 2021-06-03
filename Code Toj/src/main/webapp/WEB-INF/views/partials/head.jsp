@@ -12,27 +12,27 @@
 <link rel="apple-touch-icon" href="icons/logo2.png">
 <link rel="apple-touch-startup-image" href="icons/logo2.png">
 <meta name="theme-color" content="#FFFFFF">
-<link href="./css/reset.css" rel="stylesheet">
-<link href="./css/customer/library.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/customer/library.css" rel="stylesheet">
 
 <c:if test="${not empty param.customerStyles}">
     <c:forTokens items="${param.customerStyles}" delims="," var="customerStyle">
-        <link rel="stylesheet" href="./css/customer/${customerStyle}.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/customer/${customerStyle}.css">
     </c:forTokens>
 </c:if>
 
 <c:if test="${not empty param.errorStyles}">
     <c:forTokens items="${param.errorStyles}" delims="," var="errorStyle">
-        <link rel="stylesheet" href="./css/errors/${errorStyle}.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/errors/${errorStyle}.css">
     </c:forTokens>
 </c:if>
 
-<script src="./js/jquery.js" defer></script>
-<script src="./js/customer/library.js" defer></script>
+<script src="${pageContext.request.contextPath}/js/jquery.js" defer></script>
+<script src="${pageContext.request.contextPath}/js/customer/library.js" defer></script>
 
 <c:if test="${not empty param.customerScripts}">
     <c:forTokens items="${param.customerScripts}" delims="," var="customerScript">
-        <script src="./js/customer/${customerScript}.js" defer></script>
+        <script src="${pageContext.request.contextPath}/js/customer/${customerScript}.js" defer></script>
     </c:forTokens>
 </c:if>
 

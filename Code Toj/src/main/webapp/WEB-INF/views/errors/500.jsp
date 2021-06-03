@@ -5,7 +5,7 @@
     <jsp:include page="../partials/head.jsp">
         <jsp:param name="customerStyles" value="otherPage"/>
         <jsp:param name="errorStyles" value="errors"/>
-        <jsp:param name="title" value="T&#x000F8;j - Error 501"/>
+        <jsp:param name="title" value="T&#x000F8;j - Error 500"/>
     </jsp:include>
 </head>
 <body>
@@ -16,11 +16,9 @@
 <div class="container-top">
     <div class="row">
         <div class="column-contact">
-            <h1>501</h1>
-            <h2>Not Implemented</h2>
-            <p>The server either does not recognize the request method, or it lacks
-                the ability to fulfill the request.
-            </p>
+            <h1>500</h1>
+            <h2>Oops, something went wrong</h2>
+            <p>Try to refresh this page or feel free to contact us if the problem persists.</p>
         </div>
         <div class="column-contact">
             <img src="${pageContext.request.contextPath}/images/forbidden.png" alt="oopsImg">

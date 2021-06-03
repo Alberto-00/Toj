@@ -45,8 +45,8 @@ h1{ margin: 0; }
 
 p{
     display: block;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
+    /*margin-block-start: 1em;
+    margin-block-end: 1em;*/
     margin-top: 0;
 }
 
