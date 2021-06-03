@@ -1,0 +1,84 @@
+
+.shopping-cart{
+    width: 100%;
+}
+
+table, td, .shopping-cart {
+    border: 1px solid lightgrey;
+    border-collapse: collapse;
+}
+
+
+.carrello thead {
+    border-bottom: solid 4px #ff6a28;
+    background-color: #dddddd;
+}
+
+.carrello thead text{
+    color: darkgray;
+}
+
+th {
+    width: 15%;
+    height: 50px;
+}
+
+th.product_name{
+    width: 25%;
+}
+
+.carrello tbody tr td {
+    text-align: center;
+}
+
+td {
+    padding: 10px;
+    height: 150px;
+}
+
+td.product_remove i {
+    color: #ff6a28;
+}
+
+td.product_image img{
+    width: 70%;
+    height: 100%;
+}
+
+td.product_name, td.product_total {
+    color: #747474;
+    font-size: 20px;
+}
+
+td.product_price {
+    color: #ff6a28;
+    font-size: 20px;
+
+}
+
+.tsubmit {
+    text-align: right ;
+    padding: 20px;
+}
+
+.tsubmit button{
+    background-color: black;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.tsubmit button:hover{
+    background-color: #ff6a28;
+}
+
+.colonna{
+    width: 30%;
+    margin-right: 30px;
+}
+.coupon, .carrello-totale{
+    float: left;
+}
