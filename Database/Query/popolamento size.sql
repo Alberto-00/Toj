@@ -1140,13 +1140,6 @@ INSERT INTO toj_sitoweb.size (id_nome, ID_articolo, Quantita) VALUES ('XL', 163,
 INSERT INTO toj_sitoweb.size (id_nome, ID_articolo, Quantita) VALUES ('XS', 163, 100);
 INSERT INTO toj_sitoweb.size (id_nome, ID_articolo, Quantita) VALUES ('XXL', 163, 100);
 INSERT INTO toj_sitoweb.size (id_nome, ID_articolo, Quantita) VALUES ('XXXL', 163, 100);
-INSERT INTO toj_sitoweb.size (id_nome, ID_articolo, Quantita) VALUES ('L', 164, 100);
-INSERT INTO toj_sitoweb.size (id_nome, ID_articolo, Quantita) VALUES ('M', 164, 100);
-INSERT INTO toj_sitoweb.size (id_nome, ID_articolo, Quantita) VALUES ('S', 164, 100);
-INSERT INTO toj_sitoweb.size (id_nome, ID_articolo, Quantita) VALUES ('XL', 164, 100);
-INSERT INTO toj_sitoweb.size (id_nome, ID_articolo, Quantita) VALUES ('XS', 164, 100);
-INSERT INTO toj_sitoweb.size (id_nome, ID_articolo, Quantita) VALUES ('XXL', 164, 100);
-INSERT INTO toj_sitoweb.size (id_nome, ID_articolo, Quantita) VALUES ('XXXL', 164, 100);
 INSERT INTO toj_sitoweb.size (id_nome, ID_articolo, Quantita) VALUES ('L', 165, 100);
 INSERT INTO toj_sitoweb.size (id_nome, ID_articolo, Quantita) VALUES ('M', 165, 100);
 INSERT INTO toj_sitoweb.size (id_nome, ID_articolo, Quantita) VALUES ('S', 165, 100);
@@ -2470,13 +2463,6 @@ INSERT INTO toj_sitoweb.size (id_nome, ID_articolo, Quantita) VALUES ('XL', 353,
 INSERT INTO toj_sitoweb.size (id_nome, ID_articolo, Quantita) VALUES ('XS', 353, 100);
 INSERT INTO toj_sitoweb.size (id_nome, ID_articolo, Quantita) VALUES ('XXL', 353, 100);
 INSERT INTO toj_sitoweb.size (id_nome, ID_articolo, Quantita) VALUES ('XXXL', 353, 100);
-INSERT INTO toj_sitoweb.size (id_nome, ID_articolo, Quantita) VALUES ('L', 354, 100);
-INSERT INTO toj_sitoweb.size (id_nome, ID_articolo, Quantita) VALUES ('M', 354, 100);
-INSERT INTO toj_sitoweb.size (id_nome, ID_articolo, Quantita) VALUES ('S', 354, 100);
-INSERT INTO toj_sitoweb.size (id_nome, ID_articolo, Quantita) VALUES ('XL', 354, 100);
-INSERT INTO toj_sitoweb.size (id_nome, ID_articolo, Quantita) VALUES ('XS', 354, 100);
-INSERT INTO toj_sitoweb.size (id_nome, ID_articolo, Quantita) VALUES ('XXL', 354, 100);
-INSERT INTO toj_sitoweb.size (id_nome, ID_articolo, Quantita) VALUES ('XXXL', 354, 100);
 INSERT INTO toj_sitoweb.size (id_nome, ID_articolo, Quantita) VALUES ('L', 355, 100);
 INSERT INTO toj_sitoweb.size (id_nome, ID_articolo, Quantita) VALUES ('M', 355, 100);
 INSERT INTO toj_sitoweb.size (id_nome, ID_articolo, Quantita) VALUES ('S', 355, 100);
