@@ -41,6 +41,7 @@ span.hidden-span{
     position:relative;
     width: 49%;
     height: auto;
+    cursor: pointer;
     display: inline-block;
 }
 

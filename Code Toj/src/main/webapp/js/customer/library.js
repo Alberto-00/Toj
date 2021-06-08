@@ -130,17 +130,39 @@ function nascondi() {
 
 
 /**
+ * Scroll Up
+ */
+/*Utilizziamo addEventListener per eseguire due onscroll senza che questi si sovrascrivessero*/
+window.addEventListener("scroll", scrollFunction);
+
+var scrollUp = document.getElementById("scrollUp");
+
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
+        scrollUp.style.display = "block";
+    } else {
+        scrollUp.style.display = "none";
+    }
+}
+
+
+/**
  * Sticky effect:
  * questo script dà l'effetto sticky alla nav-bottom
  * del sito.
  */
+window.addEventListener("scroll", stickyEffect);
+
 window.onscroll = function() {stickyEffect()};
-var navbar = document.getElementById("nav-bottom");
-var sticky = navbar.offsetTop;
+
+const navbar = document.getElementById("nav-bottom");
+const sticky = navbar.offsetTop;
 
 function stickyEffect() {
     if (window.pageYOffset >= sticky) {
-        navbar.classList.add("sticky")
+        navbar.classList.add("sticky");
     } else {
         navbar.classList.remove("sticky");
     }
@@ -151,16 +173,18 @@ function stickyEffect() {
  * Questo script permette di cliccare sull'href delle immagini ("Uomo" e "Donna")
  * e di reindirizzarci ad un URL.
  */
-$('#prev').on('click', function() {
-    $('#menu .product-container').animate({
-        scrollLeft: '-=360' /*300*/
-    }, 500, 'swing');
-});
+$(document).ready(function(){
+    $('#prev').on('click', function() {
+        $('#menu .product-container').animate({
+            scrollLeft: '-=360' /*300*/
+        }, 500, 'swing');
+    });
 
-$('#next').on('click', function() {
-    $('#menu .product-container').animate({
-        scrollLeft: '+=369' /*290*/
-    }, 500, 'swing');
+    $('#next').on('click', function() {
+        $('#menu .product-container').animate({
+            scrollLeft: '+=369' /*290*/
+        }, 500, 'swing');
+    });
 });
 
 
@@ -195,11 +219,14 @@ function closeNav() {
 }
 
 /*permette di chiudere la sidenav in un punto qualsiasi della pagina*/
-$('#sidenav-background-color').on('click', function(){
-    if( parseInt( $('#mySidenav').css('width') ) > 0 ){
-        closeNav();
-    }
-});
+$(document).ready(function (){
+    $('#sidenav-background-color').on('click', function(){
+        if( parseInt( $('#mySidenav').css('width') ) > 0 ){
+            closeNav();
+        }
+    });
+})
+
 
 /**
  * Dropdown button sidebar

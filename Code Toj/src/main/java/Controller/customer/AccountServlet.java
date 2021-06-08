@@ -32,6 +32,12 @@ public class AccountServlet extends Controller {
             case "/termsCondition": // show terms and conditions (pagina)
                 request.getRequestDispatcher(view("customer/terminiCondizioni")).forward(request, response);
                 break;
+            case "/cart": // show cart (pagina)
+                request.getRequestDispatcher(view("customer/cart")).forward(request, response);
+                break;
+            case "/checkout":
+                request.getRequestDispatcher(view("customer/checkout")).forward(request, response);
+                break;
             default:
                 response.sendError(HttpServletResponse.SC_NOT_FOUND, "Risorsa non trovata");
         }

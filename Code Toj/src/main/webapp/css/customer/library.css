@@ -252,6 +252,7 @@ li.dropdown {
     color: var(--black);
     width: 90%;
     padding: 10px;
+    outline: none;
 }
 
 .sidenav-btn a, .dropdown-btn {
@@ -464,6 +465,7 @@ li.dropdown {
     padding: 0 10px;
     color: var(--grey);
     font-size: 14px;
+    outline: none;
 }
 
 .btn{
@@ -754,6 +756,75 @@ input, button:focus{
     left:0;
     padding-bottom: 18px;
     z-index: 2;
+    -webkit-animation: fadeInDown 0.5s;
+    -moz-animation: fadeInDown 0.5s;
+    -o-animation: fadeInDown 0.5s;
+}
+
+@-o-keyframes fadeInDown {
+    from {
+        opacity:1;
+        -webkit-transform: translatey(-20px);
+        -moz-transform: translatey(-20px);
+        -o-transform: translatey(-20px);
+        transform: translatey(-20px);
+    }
+    to {
+        opacity:1;
+        -webkit-transform: translatey(0);
+        -moz-transform: translatey(0);
+        -o-transform: translatey(0);
+        transform: translatey(0);
+    }
+}
+@-webkit-keyframes fadeInDown {
+    from {
+        opacity:1;
+        -webkit-transform: translatey(-20px);
+        -moz-transform: translatey(-20px);
+        -o-transform: translatey(-20px);
+        transform: translatey(-20px);
+    }
+    to {
+        opacity:1;
+        -webkit-transform: translatey(0);
+        -moz-transform: translatey(0);
+        -o-transform: translatey(0);
+        transform: translatey(0);
+    }
+}
+@-moz-keyframes fadeInDown {
+    from {
+        opacity:1;
+        -webkit-transform: translatey(-20px);
+        -moz-transform: translatey(-20px);
+        -o-transform: translatey(-20px);
+        transform: translatey(-20px);
+    }
+    to {
+        opacity:1;
+        -webkit-transform: translatey(0);
+        -moz-transform: translatey(0);
+        -o-transform: translatey(0);
+        transform: translatey(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity:1;
+        -webkit-transform: translatey(-20px);
+        -moz-transform: translatey(-20px);
+        -o-transform: translatey(-20px);
+        transform: translatey(-20px);
+    }
+    to {
+        opacity:1;
+        -webkit-transform: translatey(0);
+        -moz-transform: translatey(0);
+        -o-transform: translatey(0);
+        transform: translatey(0);
+    }
 }
 
 .dropdown-content-bottom a:link {
@@ -872,6 +943,7 @@ input, button:focus{
     resize: vertical;
     font-size: 14px;
     margin-top: 9px;
+    outline: none;
 }
 
 .button{
@@ -961,18 +1033,30 @@ input, button:focus{
 
 .popup .show {
     visibility: visible;
-    -webkit-animation: fadeIn 1s ;
+    -webkit-animation: fadeIn 1s; /* Safari and Chrome */
+    -moz-animation: fadeIn 1s; /* Firefox */
+    -o-animation: fadeIn 1s; /* Opera */
     animation: fadeIn 1s;
-}
-
-@-webkit-keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
 }
 
 @keyframes fadeIn {
     from {opacity: 0;}
     to {opacity: 1;}
+}
+
+@-webkit-keyframes fadeIn { /* Safari and Chrome */
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@-o-keyframes fadeIn { /* Opera */
+    from {opacity:0;}
+    to {opacity: 1;}
+}
+
+@-moz-keyframes fadeIn { /* Firefox */
+    from {opacity:0;}
+    to {opacity:1;}
 }
 /* footer-top end */
 
@@ -1015,7 +1099,7 @@ input, button:focus{
 #scrollUp {
     background: var(--black) none repeat scroll 0 0;
     bottom: 85px;
-    color: #ffffff;
+    color: var(--white);
     cursor: pointer;
     font-size: 20px;
     height: 45px;
@@ -1028,7 +1112,10 @@ input, button:focus{
     transition: 0.3s;
     position: fixed;
     z-index: 99;
-    display: block;
+    display: none;
+    -moz-animation: fadeIn 0.7s; /* Firefox */
+    -webkit-animation: fadeIn 0.7s; /* Safari and Chrome */
+    -o-animation: fadeIn 0.7s; /* Opera */
 }
 
 #scrollUp:hover i{
@@ -1081,12 +1168,12 @@ html{
     scroll-behavior: smooth;
 }
 
-.scroll{
+/*.scroll{
     position: fixed;
     z-index: 99;
     display: inline;
     scroll-behavior: smooth;
-}
+}*/
 
 @media screen and (max-width: 992px){
     .header-top{display: none}

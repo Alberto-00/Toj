@@ -1,0 +1,60 @@
+.column-contact{
+    width: 50%;
+    margin-bottom: 1rem;
+}
+
+.column-contact2{
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.checkout_form h3{
+    font-size: 16px;
+    line-height: 30px;
+    padding: 5px 10px;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--black);
+    font-weight: 600;
+}
+
+h3{
+    margin-top: 0;
+}
+
+.checkout_form label {
+    margin-bottom: 6px;
+}
+
+/*label {
+    display: inline-block;
+}*/
+
+.checkout_form label span {
+    color: #ff6a28;
+}
+
+.checkout_form input {
+    border: 1px solid #ddd;
+    background: none;
+    height: 40px;
+    width: 100%;
+    padding: 0 20px;
+    color: #747474;
+}
+
+a, button, img, input, span {
+    transition: all 0.3s ease 0s;
+}
+
+button, input {
+    overflow: visible;
+}
+
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+

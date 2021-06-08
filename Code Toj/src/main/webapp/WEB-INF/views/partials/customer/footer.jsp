@@ -18,10 +18,10 @@
                 <p>Numero: (+39) 338 4546 448</p>
                 <p>Email: Tøj@gmail.com</p>
                 <div class="icon">
-                    <a href="#" title="twitter" class="hover"><i class="fab fa-twitter"></i></a>
-                    <a href="#" title="googlePlus" class="hover"><i class="fab fa-google-plus"></i></a>
-                    <a href="#" title="facebook" class="hover"><i class="fab fa-facebook"></i></a>
-                    <a href="#" title="youtube" class="hover"><i class="fab fa-youtube"></i></a>
+                    <a href="https://twitter.com" target="_blank" title="twitter" class="hover"><i class="fab fa-twitter"></i></a>
+                    <a href="mailto:Tøj@gmail.com" target="_blank" title="googlePlus" class="hover"><i class="fab fa-google-plus"></i></a>
+                    <a href="https://facebook.com" target="_blank" title="facebook" class="hover"><i class="fab fa-facebook"></i></a>
+                    <a href="https://youtube.com" target="_blank" title="youtube" class="hover"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
             <div class="column3">
@@ -62,7 +62,5 @@
     </div>
 
     <!-- freccia che riporta al top della pagina-->
-    <a id="scrollUp" href="#" class="scroll">
-        <i class="fas fa-angle-double-up"></i>
-    </a>
+    <a id="scrollUp" href="#"><i class="fas fa-angle-double-up"></i></a>
 </footer>

@@ -197,7 +197,7 @@
                             <a href="#"><img src="${pageContext.request.contextPath}/icons/en.png" alt="english">Eng</a>
                         </div>
 
-                        <a href="#" style="border-bottom: 1px solid #747474;">
+                        <a href="${pageContext.request.contextPath}/customers/cart" style="border-bottom: 1px solid #747474;">
                             Carrello<i class="fas fa-cart-arrow-down"></i>
                         </a>
                         <a href="${pageContext.request.contextPath}/customers/aboutUs" style="border-bottom: 1px solid #747474;">
@@ -209,10 +209,10 @@
                     </div><br>
                     <p><i class="far fa-envelope"></i>Tøj@gmail.com</p>
                     <div class="social-icon-sidenav">
-                        <a href="javascript:void(0)" title="twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="javascript:void(0)" title="googlePlus"><i class="fab fa-google-plus"></i></a>
-                        <a href="javascript:void(0)" title="facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="javascript:void(0)" title="youtube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://twitter.com" target="_blank" title="twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="mailto:Tøj@gmail.com" target="_blank" title="googlePlus"><i class="fab fa-google-plus"></i></a>
+                        <a href="https://facebook.com" target="_blank" title="facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://youtube.com" target="_blank" title="youtube"><i class="fab fa-youtube"></i></a>
                     </div><br>
                 </div>
                 <!--Sidenav end -->
@@ -220,7 +220,7 @@
                 <div class="top-left">
                     <a id="hide" onclick="openForm()">Accedi / Registrati</a>
                     <div class="cart-link">
-                        <a href="#">
+                        <a href="${pageContext.request.contextPath}/customers/cart">
                             <i class="fas fa-shopping-cart icon-right"></i>Carrello
                             <span class="num-cart-product">0</span>
                         </a>
