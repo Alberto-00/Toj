@@ -1,28 +1,28 @@
+.column-contact{
+    margin-bottom: 0;
+}
+
 .column-contact h1 {
     color: var(--black);
     font-size: 9.5em;
     font-weight:bold;
-    margin-bottom: 70px;
 }
 
 .column-contact h2 {
     color: var(--black);
     font-weight:bold;
     font-size: 3em;
+    line-height: 1.3em;
 }
 
 .column-contact p{
-   color: var(--grey);
+    color: var(--grey);
     font-size: 20px;
 }
 
 .column-contact img{
     margin-top: 1em;
     width: 90%;
-}
-
-.column-contact{
-    margin-bottom: 0;
 }
 
 a.color2-fixed-navBottom{
@@ -49,12 +49,23 @@ a.color2-fixed-navBottom{
     background-color: var(--black);
 }
 
+.center{
+    text-align: center;
+}
+
+@media screen and (max-width: 1117px){
+    .column-contact h2{
+        font-size: 2.6em;
+    }
+}
+
 @media screen and (max-width: 992px){
     .column-contact img{
-        width: 50%;
+        width: 55%;
     }
 
     .column-contact h2{
+        font-size: 3em;
         line-height: 1.3em;
         margin-bottom: 20px;
     }
@@ -65,8 +76,42 @@ a.color2-fixed-navBottom{
     }
 }
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 808px){
     .column-contact img{
-        width: 100%;
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .column-contact{
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 808px){
+    .column-contact h1{
+        font-size: 6.5em;
+    }
+
+    .column-contact h2{
+        font-size: 2em
+    }
+
+    .column-contact p{
+        font-size: 17px;
+    }
+}
+
+@media screen and (max-width: 376px){
+    .column-contact h1{
+        font-size: 5.5em;
+    }
+
+    .column-contact h2{
+        font-size: 1.7em
+    }
+
+    .column-contact p{
+        font-size: 15px;
     }
 }

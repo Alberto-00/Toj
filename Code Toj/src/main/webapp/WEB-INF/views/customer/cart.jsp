@@ -21,7 +21,7 @@
     </div>
 </div>
 
-<div class="container">
+<div class="container-top">
     <div class="row">
         <div class="column-contact2">
             <div class="table_desc">
@@ -59,7 +59,7 @@
     </div>
 </div>
 
-<div class="container">
+<div class="container-top">
     <div class="row">
         <div class="column-contact">
             <div class="coupon_code left">

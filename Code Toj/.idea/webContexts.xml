@@ -5,10 +5,12 @@
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/crm/products.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/crm" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/aboutUs.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/checkout.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/contactUs.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/login.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/errors/404.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/errors" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/partials/customer/footer.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/partials/customer" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/partials/customer/formCheckout.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/partials/customer" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/partials/customer/headerTop.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/partials/customer" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/partials/head.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/index.html" value="file://$PROJECT_DIR$/src/main/webapp" />

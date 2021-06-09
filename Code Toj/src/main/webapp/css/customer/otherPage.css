@@ -79,15 +79,6 @@ hr.border2-hr{
 
 
 /*contact-area start*/
-.container{
-    max-width: 1140px;
-    width: 100%;
-    padding-right: 1rem;
-    padding-left: 1rem;
-    margin-right: auto;
-    margin-left: auto;
-}
-
 .column-contact{
     padding-right: 28px;
     width: 50%;

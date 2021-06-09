@@ -331,8 +331,9 @@ li.dropdown {
 }
 
 .open-sidenav > i{
-    transform: translate(-29px, 29px);
-    border: 2px solid var(--grey);
+    position: relative;
+    top: 2em;
+    border: 2px solid #9a9a9a;
     padding: 8px;
     color: var(--grey);
     font-size: 20px;
@@ -764,66 +765,66 @@ input, button:focus{
 @-o-keyframes fadeInDown {
     from {
         opacity:1;
-        -webkit-transform: translatey(-20px);
-        -moz-transform: translatey(-20px);
-        -o-transform: translatey(-20px);
-        transform: translatey(-20px);
+        -webkit-transform: translateY(-20px);
+        -moz-transform: translateY(-20px);
+        -o-transform: translateY(-20px);
+        transform: translateY(-20px);
     }
     to {
         opacity:1;
-        -webkit-transform: translatey(0);
-        -moz-transform: translatey(0);
-        -o-transform: translatey(0);
-        transform: translatey(0);
+        -webkit-transform: translateY(0);
+        -moz-transform: translateY(0);
+        -o-transform: translateY(0);
+        transform: translateY(0);
     }
 }
 @-webkit-keyframes fadeInDown {
     from {
         opacity:1;
-        -webkit-transform: translatey(-20px);
-        -moz-transform: translatey(-20px);
-        -o-transform: translatey(-20px);
-        transform: translatey(-20px);
+        -webkit-transform: translateY(-20px);
+        -moz-transform: translateY(-20px);
+        -o-transform: translateY(-20px);
+        transform: translateY(-20px);
     }
     to {
         opacity:1;
-        -webkit-transform: translatey(0);
-        -moz-transform: translatey(0);
-        -o-transform: translatey(0);
-        transform: translatey(0);
+        -webkit-transform: translateY(0);
+        -moz-transform: translateY(0);
+        -o-transform: translateY(0);
+        transform: translateY(0);
     }
 }
 @-moz-keyframes fadeInDown {
     from {
         opacity:1;
-        -webkit-transform: translatey(-20px);
-        -moz-transform: translatey(-20px);
-        -o-transform: translatey(-20px);
-        transform: translatey(-20px);
+        -webkit-transform: translateY(-20px);
+        -moz-transform: translateY(-20px);
+        -o-transform: translateY(-20px);
+        transform: translateY(-20px);
     }
     to {
         opacity:1;
-        -webkit-transform: translatey(0);
-        -moz-transform: translatey(0);
-        -o-transform: translatey(0);
-        transform: translatey(0);
+        -webkit-transform: translateY(0);
+        -moz-transform: translateY(0);
+        -o-transform: translateY(0);
+        transform: translateY(0);
     }
 }
 
 @keyframes fadeInDown {
     from {
         opacity:1;
-        -webkit-transform: translatey(-20px);
-        -moz-transform: translatey(-20px);
-        -o-transform: translatey(-20px);
-        transform: translatey(-20px);
+        -webkit-transform: translateY(-20px);
+        -moz-transform: translateY(-20px);
+        -o-transform: translateY(-20px);
+        transform: translateY(-20px);
     }
     to {
         opacity:1;
-        -webkit-transform: translatey(0);
-        -moz-transform: translatey(0);
-        -o-transform: translatey(0);
-        transform: translatey(0);
+        -webkit-transform: translateY(0);
+        -moz-transform: translateY(0);
+        -o-transform: translateY(0);
+        transform: translateY(0);
     }
 }
 
@@ -1168,13 +1169,6 @@ html{
     scroll-behavior: smooth;
 }
 
-/*.scroll{
-    position: fixed;
-    z-index: 99;
-    display: inline;
-    scroll-behavior: smooth;
-}*/
-
 @media screen and (max-width: 992px){
     .header-top{display: none}
     .form-group{display: none}
@@ -1183,16 +1177,33 @@ html{
 
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
+
+    .container-top{
+        max-width: 96%;
+    }
 }
 
-@media screen and (max-width: 800px){
+@media screen and (max-width: 808px){
     .column{width: 45%;}
     .column2{width: 55%;}
     .column3{width: 100%;}
+
+    .container-top{
+        max-width: 70%;
+    }
+}
+
+@media screen and (max-width: 612px){
+    .container-top{
+        max-width: 80%;
+    }
 }
 
 @media screen and (max-width: 502px){
     .column2{width: 100%;}
+    .container-top{
+        max-width: 93%;
+    }
 }
 
 

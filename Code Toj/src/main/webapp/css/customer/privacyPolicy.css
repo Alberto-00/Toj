@@ -36,7 +36,7 @@ p{
     margin-top: 0;
 }
 
-@media screen and (max-width: 767px){
+@media screen and (max-width: 768px){
     .privacy_content h2, .privacy_content h3 {
         font-size: 17px;
     }

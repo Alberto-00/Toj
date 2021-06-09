@@ -20,8 +20,8 @@
             <h2>Oops, something went wrong</h2>
             <p>Try to refresh this page or feel free to contact us if the problem persists.</p>
         </div>
-        <div class="column-contact">
-            <img src="${pageContext.request.contextPath}/images/forbidden.png" alt="oopsImg">
+        <div class="column-contact center">
+            <img src="${pageContext.request.contextPath}/images/opsImg.png" alt="oopsImg">
         </div>
     </div>
 </div>

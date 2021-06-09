@@ -4,7 +4,7 @@
 <head>
     <jsp:include page="../partials/head.jsp">
         <jsp:param name="customerStyles" value="otherPage"/>
-        <jsp:param name="errorStyles" value="errors"/>
+        <jsp:param name="errorStyles" value="errors,error403"/>
         <jsp:param name="title" value="T&#x000F8;j - Error 403"/>
     </jsp:include>
 </head>
@@ -23,8 +23,8 @@
                 <a href="${pageContext.request.contextPath}/index.jsp">Back to Home Page</a>
             </div>
         </div>
-        <div class="column-contact">
-            <img src="${pageContext.request.contextPath}/images/opsImg.png" alt="oopsImg">
+        <div class="column-contactImg center">
+            <img src="${pageContext.request.contextPath}/images/forbidden.png" alt="forbidden">
         </div>
     </div>
 </div>

@@ -25,7 +25,7 @@
                 <a href="${pageContext.request.contextPath}/index.jsp">Back to Home Page</a>
             </div>
         </div>
-        <div class="column-contact">
+        <div class="column-contact center">
             <img src="${pageContext.request.contextPath}/images/opsImg.png" alt="oopsImg">
         </div>
     </div>

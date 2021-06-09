@@ -8,12 +8,6 @@
     #overlay-image-man{margin-top: 30px!important;}
 }
 
-@media screen and (min-width: 600px) and (max-width: 800px){
-    .centered h1{font-size: 70px!important;}
-    .centered p{font-size: 31px!important;}
-    .centered a{font-size: 28px!important;}
-}
-
 /*header bottom start*/
 .nav-bottom{
     padding-left: 255px;
@@ -85,41 +79,26 @@ span.hidden-span{
 .centered h1{
     font-size: 60px;
     font-family: serif;
-    color: white;
-    text-decoration: rgb(255,255,255);
-    width: auto;
-    height: 10px;
+    color: var(--white);
+    margin-bottom: 2rem;
 }
 
 .centered p{
-    font-size: 21px;
+    font-size: 18px;
     font-family: sans-serif;
-    color: white;
-    text-decoration: rgb(255,255,255);
+    color: var(--white);
 }
 
 .centered a{
     display: block;
-    font-size: 18px;
-    color: rgb(255,255,255);
+    font-size: 16px;
+    color: var(--white);
     font-weight: bold;
-    line-height: 90px !important;
-}
-
-.centered:link a{
-    color: #FFFFFF;
-}
-
-.centered:visited a{
-    color: #FFFFFF;
+    line-height: 90px;
 }
 
 .centered:hover a{
     transition: all 0.4s ease 0s;
-    color: #fd7e14;
-}
-
-.centered:active a{
     color: #fd7e14;
 }
 
@@ -308,5 +287,15 @@ span.hidden-span{
 @media screen and (max-width: 1124px){
     #next, #prev{
         top:0;
+    }
+}
+
+@media screen and (max-width: 992px){
+    .centered h1{
+        font-size: 41px;
+        margin-bottom: 1rem;
+    }
+    .centered a{
+        line-height: 60px;
     }
 }

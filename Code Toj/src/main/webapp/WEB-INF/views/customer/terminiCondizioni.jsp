@@ -6,10 +6,6 @@
         <jsp:param name="customerStyles" value="otherPage,privacyPolicy"/>
         <jsp:param name="title" value="T&#x000F8;j - Termini e Condizioni"/>
     </jsp:include>
-    <style>
-        .privacy_content h3{margin-top: 0;}
-        .privacy_content{margin-bottom: 0;}
-    </style>
 </head>
 <body>
 <!--headerTop-->
@@ -25,11 +21,11 @@
     </div>
 </div>
 
-<div class="container">
+<div class="container-top">
     <div class="row">
         <div class="column-contact">
             <div class="privacy_content">
-                <h3>1. Introduzione</h3>
+                <h2>1. Introduzione</h2>
                 <p>Le presenti Condizioni Generali di Vendita (denominate di seguito "Condizioni Generali"),
                     regolano esclusivamente le relazioni contrattuali tra i clienti del sito Tøj.com
                     (denominati di seguito "Clienti") ed il venditore Tøj.com
@@ -44,7 +40,8 @@
                     Condizioni Generali di Vendita. I Clienti si impegnano a rispettare le Condizioni Generali e
                     le Condizioni di Utilizzo dettagliate sullo stesso.
                 </p>
-
+            </div>
+            <div class="privacy_content">
                 <h3>2. Eseguire un ordine</h3>
                 <p>Per eseguire un ordine sul Sito i Clienti  è possibile collegarsi :
                     - via Internet sul Sito: www.tøj.com 24 ore su 24 e 7 giorni su 7
@@ -59,13 +56,15 @@
                 <p>Una volta selezionato il modo di pagamento, i Clienti dovranno procedere al saldo dell'ordine, che formalizzerà
                     in maniera ferma e definitiva il contratto di vendita che li lega a Tøj.
                 </p>
-
+            </div>
+            <div class="privacy_content">
                 <h3>3. Informazioni sui prodotti</h3>
-                    <p>Tøj pone particolare attenzione alla messa in linea delle informazioni relative alle caratteristiche essenziali
-                        dei prodotti tramite schede tecniche elaborate dai suoi partner e/o fornitori e tramite fotografie
-                        illustrative dei prodotti, nel limite della tecnica e nel rispetto dei migliori standard del mercato.
-                    </p>
-
+                <p>Tøj pone particolare attenzione alla messa in linea delle informazioni relative alle caratteristiche essenziali
+                    dei prodotti tramite schede tecniche elaborate dai suoi partner e/o fornitori e tramite fotografie
+                    illustrative dei prodotti, nel limite della tecnica e nel rispetto dei migliori standard del mercato.
+                </p>
+            </div>
+            <div class="privacy_content">
                 <h3>4. Prezzi</h3>
                 <p>I prezzi di vendita indicati sul Sito sono espressi in euro (€). Le spese di consegna sono a carico dei Clienti nel caso di
                     spedizione diversa o gratis nel momento in cui viene scelto come mezzo di trasporto Corriere.
@@ -77,7 +76,8 @@
                 <p>In caso di visualizzazione di un prezzo sbagliato e/o manifestamente irrisorio, per qualsivoglia ragione (bug informatico, errore manuale, errore tecnico…),
                     l'ordine sarà annullato, anche in caso di convalida iniziale.
                 </p>
-
+            </div>
+            <div class="privacy_content">
                 <h3>5. Disponibilità</h3>
                 <p>Gli ordini dei Clienti sono soddisfatti nei limiti della quantità di prodotti disponibili.
                     Nel caso in cui il prodotto ordinato non sia disponibile, Tøj si impegna a contattare i Clienti via e-mail entro 10 giorni a partire dalla data dell'ordine
@@ -88,7 +88,8 @@
                     definitivo della produzione dello stesso da parte del costruttore, Tøj proporrà al cliente un prodotto di qualità e prezzo equivalenti. In caso di rifiuto da
                     parte del cliente, Tøj procederà al rimborso del prodotto indisponibile.
                 </p>
-
+            </div>
+            <div class="privacy_content">
                 <h3>6. Modalità di consegna</h3>
                 <p>I prodotti acquistati sul Sito possono essere consegnati in tutto il Mondo.</p>
                 <p>L'ordine sarà consegnato all'indirizzo indicato al momento dell'ordine.</p>
@@ -99,7 +100,8 @@
                     le eventuali anomalie sul modulo di consegna sottoforma di riserve manoscritte e controfirmate.
                 </p>
                 <p>Il corriere effettuerà 2 tentativi di consegna. In caso il 2 tentativo non ha successo, la spedizione verrà restituita a Tøj.</p>
-
+            </div>
+            <div class="privacy_content">
                 <h3>7. Garanzie dei prodotti</h3>
                 <p>I prodotti proposti alla vendita sul Sito sono accompagnati da diversi tipi di garanzie commerciali definite qui di seguito. Si precisa che la sottoscrizione da parte
                     del cliente di tali garanzie commerciali non pregiudica l'applicazione, per qualsiasi articolo venduto da Tøj sul Sito, che questo sia nuovo o usato, della garanzia
@@ -121,7 +123,8 @@
                     - Un utilizzo dell'apparecchio che risulti dannoso al suo mantenimento,<br>
                     - Qualsiasi difetto di conformità di cui il cliente fosse a conoscenza al momento di effettuare l'ordine.
                 </p>
-
+            </div>
+            <div class="privacy_content">
                 <h3>8. Protezione dati personali</h3>
                 <p>Le informazioni comunicateci sono indispensabili per il trattamento e l'inoltro degli ordini, oltre che per la redazione delle fatture e dei contratti di
                     garanzia; la loro mancanza comporta l'annullamento del tuo ordine. Iscrivendoti sul Sito, t’impegni a fornirci informazioni veritiere ed autentiche.
