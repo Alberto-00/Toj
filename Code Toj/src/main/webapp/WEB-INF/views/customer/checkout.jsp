@@ -22,11 +22,11 @@
     </div>
 </div>
 
-<div class="container-top">
-    <div class="checkout_form">
-        <div class="row">
-            <div class="column-contact">
-                <form action="#">
+<form action="#" method="post">
+    <div class="container-top">
+        <div class="checkout_form">
+            <div class="row">
+                <div class="column-contact">
                     <h3>Fatturazione</h3>
                         <%@include file="../partials/customer/formCheckout.jsp"%>
                     <div class="column-contact2">
@@ -50,11 +50,8 @@
                             <textarea id="order_note" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
                         </div>
                     </div>
-                </form>
-            </div>
-
-            <div class="column-contact">
-                <form action="#">
+                </div>
+                <div class="column-contact padding-right0">
                     <h3>Il tuo ordine</h3>
                     <div class="order_table table-responsive">
                         <table>
@@ -103,49 +100,47 @@
                         <div class="row">
                             <div class="column-contact2">
                                 <input id="paycard" type="checkbox" name="card">
-                                <label for="paycard" class="inline"><img src="${pageContext.request.contextPath}/icons/paycard.png" alt="paycard"></label>
+                                <label for="paycard" class="inline"><img src="${pageContext.request.contextPath}/icons/pay.png" alt="paycard"></label>
                             </div>
                         </div>
-                        <form action="#" method="post">
-                            <div class="hide3">
-                                <div class="row">
-                                    <div class="column-contact">
-                                        <label>Nome <span>*</span></label>
-                                        <input type="text" name="nomeCard" required>
-                                    </div>
-                                    <div class="column-contact padding-right0">
-                                        <label>Cognome  <span>*</span></label>
-                                        <input type="text" name="cognomeCard" required>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="column-contact">
-                                        <label>Numero carta <span>*</span></label>
-                                        <input type="text" inputmode="numeric" name="numeroCarta" pattern="[0-9]*" size="16" required>
-                                    </div>
-                                    <div class="column-contact3">
-                                        <label>CVV <span>*</span></label>
-                                        <input type="text" name="cvv" maxlength="4" required>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="column-contact">
-                                        <label>Mese / Anno<span>*</span></label>
-                                        <input type="month" name="dataCarta" pattern="[0-9]*" size="16" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="order_button">
-                                <button type="submit">Procedi al Pagamento</button>
-                            </div>
-                        </form>
-                    </div>
-                </form> <!--eliminare questo form-->
 
+                        <div class="hide3">
+                            <div class="row">
+                                <div class="column-contact">
+                                    <label>Nome <span>*</span></label>
+                                    <input type="text" name="nomeCard" required>
+                                </div>
+                                <div class="column-contact padding-right0">
+                                    <label>Cognome  <span>*</span></label>
+                                    <input type="text" name="cognomeCard" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="column-contact">
+                                    <label>Numero carta <span>*</span></label>
+                                    <input type="text" inputmode="numeric" name="numeroCarta" pattern="[0-9]*" size="16" required>
+                                </div>
+                                <div class="column-contact3">
+                                    <label>CVV <span>*</span></label>
+                                    <input type="text" name="cvv" maxlength="4" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="column-contact">
+                                    <label>Mese / Anno<span>*</span></label>
+                                    <input type="month" name="dataCarta" pattern="[0-9]*" size="16" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order_button">
+                            <button type="submit">Procedi al Pagamento</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>
 
 <!-- footer-->
 <%@include file="../partials/customer/footer.jsp"%>
