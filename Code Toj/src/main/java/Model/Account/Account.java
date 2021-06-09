@@ -1,6 +1,5 @@
 package Model.Account;
 
-import Model.Carta_Elettronica.CartaElettronica;
 import Model.Dati_utente.DatiUtente;
 import Model.Ordine.Ordine;
 import Model.Sconto.Sconto;
@@ -18,7 +17,6 @@ public class Account {
     private boolean admin;
     private List<Ordine> ordini;
     private List<Sconto> codSconto;
-    private List<CartaElettronica> cartePay;
     private DatiUtente dtUser;
 
     public Account(){
@@ -70,14 +68,6 @@ public class Account {
 
     public void setCodSconto(List<Sconto> codSconto) {
         this.codSconto = codSconto;
-    }
-
-    public List<CartaElettronica> getCartePay() {
-        return cartePay;
-    }
-
-    public void setCartePay(List<CartaElettronica> cartePay) {
-        this.cartePay = cartePay;
     }
 
     public DatiUtente getDtUser() {

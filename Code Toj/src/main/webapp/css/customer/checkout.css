@@ -235,39 +235,40 @@ strong {
 label img{
     width: 170px;
     height: auto;
-    transform: translate3d(0, 24px, 0);
+    cursor: pointer;
+    transform: translate3d(0, 7px, 0);
 }
 
 label.inline{
     display: inline;
 }
 
-@media screen and (max-width: 965px){
+@media screen and (max-width: 988px){
     .column-contact{
         width: 100%;
     }
 }
 
-@media screen and (max-width: 500px){
-    label.label{
-        font-size: 14px;
-    }
-}
-
-@media screen and (max-width: 426px ){
+@media screen and (max-width: 717px){
     label.label{
         font-size: 12px;
     }
 }
 
-@media screen and (max-width: 375px){
+@media screen and (max-width: 534px){
     label.label{
-        font-size: 10px;
+        font-size: 11px;
     }
 }
 
-@media screen and (max-width: 320px){
+@media screen and (max-width: 416px){
     label.label{
-        font-size: 8px;
+        font-size: 7.43px;
+    }
+}
+
+@media screen and (max-width: 335px){
+    .order_button button{
+        font-size: 14px;
     }
 }

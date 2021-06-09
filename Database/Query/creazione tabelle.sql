@@ -117,15 +117,6 @@ CREATE TABLE Composizione(
     PRIMARY KEY(ID_articolo, ID_ordine)
 );
 
-CREATE TABLE Carta_elettronica(
-	Codice_carta VARCHAR(25) PRIMARY KEY,
-    Descrizione VARCHAR(30) NOT NULL,
-    Email VARCHAR(100),
-    foreign key (Email) references Account_User (Email)
-    ON UPDATE CASCADE
-    ON DELETE CASCADE
-);
-
 CREATE TABLE Dati_cliente(
     Nome VARCHAR(50) NOT NULL,
     Cognome VARCHAR(20) NOT NULL,
