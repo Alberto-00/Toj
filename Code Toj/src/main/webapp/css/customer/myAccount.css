@@ -21,3 +21,104 @@
 .column-contact{
     width: 26%;
 }
+
+.columnAlt{
+    width: 70%;
+    float: right;
+}
+
+.Account-things h1{
+    color: #000000;
+}
+
+.table_desc {
+    border: 1px solid #ddd;
+    margin-bottom: 59px;
+    margin-top: 2px;
+}
+
+.table-responsive{
+    overflow-x: auto;
+}
+
+.table_desc .account_page table {
+    width: 100%;
+}
+
+@media screen and (max-width: 990px){
+    .table_desc .account_page table {
+        width: 58.23rem;
+    }
+}
+
+table {
+    display: table;
+    caption-side: bottom;
+    border-collapse: collapse;
+    text-indent: initial;
+    border-spacing: 2px;
+    border-color: grey;
+}
+
+.table-responsive table thead {
+    background: #f2f2f2;
+}
+
+tbody, tfoot, th, thead, tr {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+}
+
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+}
+
+tr {
+    text-align: center;
+    display: table-row;
+    vertical-align: inherit;
+}
+
+th{
+    display: table-cell;
+    vertical-align: inherit;
+}
+
+.table-responsive table tbody tr td {
+    border-right: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    color: #242424;
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+}
+
+.account_page table thead tr:last-child th, .table_desc table tbody tr td:last-child {
+    border-right: 0;
+}
+
+.table_desc .account_page table thead tr th {
+    border-bottom: 1px solid #ff6a28;
+    color: black;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px;
+    text-align: center;
+}
+
+.order-details a{
+    color: #ff6a28;
+    text-decoration: none;
+}
+
+.columnAdd{
+    width: 50%;
+    padding-right: 30px;
+}

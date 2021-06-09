@@ -7,3 +7,28 @@ for (var i = 0; i < btns.length; i++) {
         this.className += " active";
     });
 }
+
+var elements = document.getElementsByClassName("Account-things");
+function hide (elements, t) {
+    for (var index = 0; index < elements.length; index++) {
+        if(elements[index]===t){
+            elements[index].style.display='block';
+        }
+        else {
+            elements[index].style.display = 'none';
+        }
+    }
+}
+
+function showhide(str) {
+    var t = document.getElementById(str);
+    hide(elements, t);
+}
+
+function hideElement (str) {
+    var t = document.getElementById(str);
+        if(t.style.display==='block')
+            t.style.display='none';
+        else
+            t.style.display = 'block';
+}
