@@ -1,3 +1,5 @@
+/*colonna di sinistra
+*/
 .btn-Account {
     width: 100%;
     height: 40px;
@@ -12,8 +14,7 @@
     cursor: pointer;
 }
 
-/* Style the active class, and buttons on mouse-over */
-.active, .btn-Account:hover {
+.active-btn, .btn-Account:hover {
     background-color: #ff6a28;
     color: var(--white);
 }
@@ -23,12 +24,91 @@
 }
 
 .columnAlt{
-    width: 70%;
+    width: 74%;
     float: right;
 }
 
-.Account-things h1{
-    color: #000000;
+.columnAlt-100{
+    width: 100%;
+    margin-bottom: 2em;
+}
+
+.columnAlt-50{
+    width: 100%;
+    margin-bottom: 2em;
+}
+
+
+/*colonna di destra
+*/
+.account-content{
+    -webkit-animation: fadeIn 0.33s; /* Safari and Chrome */
+    -moz-animation: fadeIn 0.33s; /* Firefox */
+    -o-animation: fadeIn 0.33s; /* Opera */
+    animation: fadeIn 0.33s;
+}
+
+.account-content ~ .account-content{
+    display: none;
+}
+
+.account-content h1{
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--black);
+    margin-bottom: 15px;
+    margin-top: 0;
+}
+
+.account-content p{
+    font-size: 15px;
+    color: var(--grey);
+}
+
+.account-content label {
+    margin-bottom: 6px;
+}
+
+.account-content input {
+    border: 1px solid #ddd;
+    background: none;
+    height: 40px;
+    width: 100%;
+    padding: 0 20px;
+    color: #747474;
+    outline: none;
+}
+
+.account-content button{
+    border: 0;
+    font-size: 16px;
+    line-height: 30px;
+    padding: 5px 10px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--white);
+    background-color: #ff6a28;
+    font-weight: 600;
+    transition: 0.3s;
+    margin-bottom: 0;
+}
+
+.account-content button:hover{
+    background-color: var(--black);
+}
+
+.account-content a{
+    cursor: pointer;
+    color: var(--black);
+    text-decoration: none;
+}
+
+.account-content a:hover{
+    color: #ff6a28;
+}
+
+.column-contact label {
+    display: inline-block;
 }
 
 .table_desc {
@@ -93,7 +173,7 @@ th{
 
 .table-responsive table tbody tr td {
     border-right: 1px solid #ddd;
-    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
     color: #242424;
     font-weight: 500;
     font-size: 16px;
@@ -118,7 +198,13 @@ th{
     text-decoration: none;
 }
 
-.columnAdd{
-    width: 50%;
-    padding-right: 30px;
+@media screen and (max-width: 812px){
+    .column-contact{
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .columnAlt{
+        width: 100%;
+    }
 }

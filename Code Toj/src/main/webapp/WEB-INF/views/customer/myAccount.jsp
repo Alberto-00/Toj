@@ -5,7 +5,7 @@
     <jsp:include page="../partials/head.jsp">
         <jsp:param name="customerStyles" value="otherPage,myAccount"/>
         <jsp:param name="customerScripts" value="myAccount"/>
-        <jsp:param name="title" value="T&#x000F8;j - my Account"/>
+        <jsp:param name="title" value="T&#x000F8;j - Account"/>
     </jsp:include>
 </head>
 <body>
@@ -24,52 +24,59 @@
 
 <div class="container-top">
     <div class="row">
-
         <div class="column-contact">
             <div id="dashboard-Account">
-                <button class="btn-Account active" onclick="showhide('dashboard')">Dashboard</button>
+                <button class="btn-Account active-btn" onclick="showhide('dashboard')">Dashboard</button>
                 <button class="btn-Account" onclick="showhide('details-account')">Dettagli Account</button>
                 <button class="btn-Account" onclick="showhide('orders-account')">Ordini</button>
                 <button class="btn-Account" onclick="showhide('address-account')">Indirizzo</button>
                 <button class="btn-Account" onclick="showhide('logout-account')">Logout</button>
             </div>
         </div>
-
         <div class="columnAlt">
-
-            <div class="Account-things" id="dashboard">
+            <div class="account-content" id="dashboard">
                 <h1>Dashboard</h1>
-                <p>Benvenuto nel tuo account! Qui potrai controllare tutte le informazioni inerenti al tuo account, nonché tutti gli ordini effettuati.</p>
+                <p>Benvenuto nel tuo account! Qui potrai controllare tutte le informazioni
+                    inerenti al tuo account, nonché tutti gli ordini effettuati,gestisci i
+                    tuoi indirizzi di spedizione e fatturazione e modifica la tua password
+                    e i dettagli dell'account.
+                </p>
             </div>
-
-            <div class="Account-things contact-message" id="details-account" style="display: none">
+            <div class="account-content" id="details-account" >
                 <h1>Dettagli account</h1>
                 <form method="post" action="#">
-                    <p>
-                        <label>Nome</label>
-                        <input class="input-text" name="nome" type="text" >
-                    </p>
-                    <p>
-                        <label>Cognome</label>
-                        <input class="input-text" name="cognome" type="text">
-                    </p>
-                    <p>
-                        <label>Email</label>
-                        <input name="email" type="email">
-                    </p>
-                    <p>
-                        <label>Password</label>
-                        <input name="password" type="password">
-                    </p>
-                    <p>
-                        <label>Data di nascita</label><br>
-                        <input name="username" type="date" ><br>
-                    </p>
-                    <input class="submit-button-reg" type="submit" name="submitContact" value="Modifica">
+                    <div class="row">
+                        <div class="columnAlt-100">
+                            <label>Nome</label>
+                            <input type="text" name="nome" placeholder="Nome">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="columnAlt-100">
+                            <label>Cognome</label>
+                            <input type="text" name="cognome" placeholder="Cognome">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="columnAlt-50">
+                            <label>Telefono</label>
+                            <input type="tel" name="telefono" placeholder="es. 389 887 2651" maxlength="10" required>
+                        </div>
+                        <div class="columnAlt-50 padding-right0">
+                            <label>Email</label>
+                            <input type="email" name="email" placeholder="example@gmail.com" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="columnAlt-50">
+                            <label>Data di nascita</label>
+                            <input type="date" name="birthday">
+                        </div>
+                    </div>
+                    <button type="submit" name="detailsAccount">Salva</button>
                 </form>
             </div>
-
-            <div class="Account-things" id="orders-account" style="display: none">
+            <div class="account-content" id="orders-account">
                <h1>Storico ordini</h1>
                 <div class="table_desc">
                     <div class="account_page table-responsive">
@@ -91,47 +98,50 @@
                                 <td class="order-status">Stato</td>
                                 <td class="order-total">€ 65.00</td>
                                 <td class="order-details"><button onclick="hideElement('dettagli')">View</button></td>
-
-
+                            </tr>
+                            <tr class="account-content" id="dettagli" style="display: none">
+                                <td>
+                                    cc
+                                </td>
                             </tr>
                             <%}%>
                             </tbody>
                         </table>
-                        <div id="dettagli" style="display: none"> oioiioi </div>
+
                     </div>
                 </div>
             </div>
-
-            <div class="Account-things" id="address-account" style="display: none">
-                <h1>Indirizzo di spedizione</h1>
-
-                        <div class="contact-message">
-
-                            <form method="post" action="#">
-                                <p>
-                                    <label>Nome e Cognome</label>
-                                    <input class="input-text" name="name" placeholder="Nome *" type="text">
-                                </p>
-                                <p>
-                                    <label>Città</label>
-                                    <input class="input-text" name="city" placeholder="Città *" type="text">
-                                </p>
-                                <p>
-                                    <label>Indirizzo</label>
-                                    <input name="input-text" placeholder="Strada e numero civico" type="text">
-                                </p>
-                                <input type="submit" name="submitContact" value="Modifica">
-                            </form>
+            <div class="account-content" id="address-account">
+                <h1>Indirizzo</h1>
+                <form action="#" method="post">
+                    <div class="row">
+                        <div class="columnAlt-100">
+                            <label>Indirizzo</label>
+                            <input placeholder="Via e numero civico" type="text" name="indirizzo">
                         </div>
-
-                </div>
-
-
-            <div class="Account-things" id="logout-account" style="display: none">
-                <h1>Logout</h1>
+                        <div class="columnAlt-100">
+                            <input placeholder="Appartamento, scala, piano etc. (opzionale)" name="appartamento" type="text">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="columnAlt-100">
+                            <label>Città</label>
+                            <input type="text" name="city" placeholder="Città">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="columnAlt-50">
+                            <label>Stato /Paese</label>
+                            <input type="text" name="paese" placeholder="es. Italia" maxlength="10">
+                        </div>
+                    </div>
+                    <button type="submit" name="detailsAccount">Salva</button>
+                </form>
+            </div>
+            <div class="account-content" id="logout-account" >
+                <h1><a href="${pageContext.request.contextPath}/customers/sigin">Logout</a></h1>
             </div>
         </div>
-
     </div>
 </div>
 
