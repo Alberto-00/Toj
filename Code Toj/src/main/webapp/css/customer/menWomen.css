@@ -1,14 +1,77 @@
+.column-filters{
+    width: 20%;
+}
 
-@media only screen and (max-width: 767px) {
-    .product-box {
-        flex-direction: column;
-        width: 100%;
-    }
+.filter-price, .filter-category, .filter-size, .filter-color{
+    width:100%;
+}
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 14px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 
-.column-filters{
-    width: 20%;
+/* Hide the browser's default checkbox */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 7px;
+    left: 0;
+    height: 10px;
+    width: 10px;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+    left: 2px;
+    top: -1px;
+    width: 5px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.container .checkmark-wh:after{
+    left: 2px;
+    top: -1px;
+    width: 5px;
+    height: 8px;
+    border: solid black;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
 }
 
 .products{
@@ -117,4 +180,47 @@
 
 .product-box:hover .add-cart{
     display: flex;
+}
+
+
+
+@media only screen and (max-width: 426px) {
+
+    .products{
+        width: 90%;
+    }
+    .product-box {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .column-filters{
+        display: none;
+    }
+
+    .add-sconto, .add-cart{
+        top:55px;
+    }
+}
+
+
+
+@media only screen and (min-width: 427px) and (max-width: 1023px) {
+
+    .products{
+        width: 100%;
+    }
+
+    .product-box {
+        flex-direction: column;
+        width: 40%;
+    }
+
+    .column-filters{
+        display: none;
+    }
+
+    .add-sconto, .add-cart{
+        top:55px;
+    }
 }
