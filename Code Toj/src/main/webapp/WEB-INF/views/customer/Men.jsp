@@ -16,12 +16,11 @@
 
 <div class="container-top">
 
-    <div class="column-filters" style="float: left;">
+    <div class="column-filters" id="filters" style="float: left;">
 
         <form action="/action_page.php">
 
         <div class="filter-price">
-
 
         </div>
 
@@ -120,8 +119,6 @@
                 Grigio
             </label>
 
-            <br>
-
 
         </div>
 
@@ -156,7 +153,11 @@
         </form>
 
 
+
+
     </div>
+
+    <button class="chiudi" onclick="hideElement('filters')">CHIUDI</button>
 
     <div class="products" style="float: left">
 
@@ -184,7 +185,10 @@
             <%}%>
         </div>
 
+        <div class="row">
 
+
+        </div>
 
     </div>
 

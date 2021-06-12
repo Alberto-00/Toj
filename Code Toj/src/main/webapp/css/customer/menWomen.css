@@ -184,6 +184,15 @@
 
 
 
+
+
+
+.chiudi{
+    width: 100%;
+    display: none;
+}
+
+
 @media only screen and (max-width: 426px) {
 
     .products{
@@ -195,7 +204,12 @@
     }
 
     .column-filters{
-        display: none;
+        width: 100%;
+    }
+
+    .filter-color, .filter-size, .filter-category{
+        width: 33%;
+        float: left;
     }
 
     .add-sconto, .add-cart{
@@ -217,10 +231,28 @@
     }
 
     .column-filters{
+        width: 100%;
         display: none;
+    }
+
+    .filter-color, .filter-size, .filter-category{
+        width: 33%;
+        float: left;
     }
 
     .add-sconto, .add-cart{
         top:55px;
     }
+
+    .chiudi{
+        display: block;
+    }
 }
+
+
+
+
+
+
+
+
