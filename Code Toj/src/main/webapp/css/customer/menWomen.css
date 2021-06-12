@@ -4,8 +4,58 @@
 
 .filter-price, .filter-category, .filter-size, .filter-color{
     width:100%;
+    display: none;
 }
 
+.filter-contenitor{
+   border: 0.06px solid lightgrey;
+   padding-left: 5px;
+   font-size: 15px;
+   margin-bottom: 10px;
+}
+
+.filter-contenitor a{
+    float: right;
+    margin-top: 5px;
+}
+
+/*Prezzo*/
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #ff6a28;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #ff6a28;
+    cursor: pointer;
+}
+
+/*Colore*/
 .container {
     display: block;
     position: relative;
@@ -74,6 +124,7 @@
     transform: rotate(45deg);
 }
 
+/*Articoli*/
 .products{
     width:80%
 }
@@ -182,11 +233,6 @@
     display: flex;
 }
 
-
-
-
-
-
 .chiudi{
     width: 100%;
     display: none;
@@ -205,15 +251,17 @@
 
     .column-filters{
         width: 100%;
-    }
-
-    .filter-color, .filter-size, .filter-category{
-        width: 33%;
-        float: left;
+        display: none;
     }
 
     .add-sconto, .add-cart{
         top:55px;
+    }
+
+    .chiudi{
+        display: block;
+        background-color: gainsboro;
+        border: 1px solid grey;
     }
 }
 
@@ -235,17 +283,14 @@
         display: none;
     }
 
-    .filter-color, .filter-size, .filter-category{
-        width: 33%;
-        float: left;
-    }
-
     .add-sconto, .add-cart{
         top:55px;
     }
 
     .chiudi{
         display: block;
+        background-color: gainsboro;
+        border: 1px solid grey;
     }
 }
 

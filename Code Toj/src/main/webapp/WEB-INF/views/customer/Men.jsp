@@ -19,14 +19,22 @@
     <div class="column-filters" id="filters" style="float: left;">
 
         <form action="/action_page.php">
+    <br>
+    <div class="filter-contenitor">Prezzo
+        <a onclick="hideElement('filter-price')" style="display: block"><i class="fas fa-plus"></i></a>
+         <div class="filter-price" id="filter-price">
 
-        <div class="filter-price">
+            <input type="range" min="0" max="100" value="0" class="slider" id="myRange">
+            <p>Quanto?</p>
+            <p id="quanto"></p>
 
-        </div>
+         </div>
+    </div>
 
-        <div class="filter-category">
+    <div class="filter-contenitor">Categoria
+        <a onclick="hideElement('filter-category')" style="display: block"><i class="fas fa-plus"></i></a>
+          <div class="filter-category" id="filter-category">
 
-            <h3>Categoria</h3>
                 <input type="checkbox" id="camicie" name="camicie" value="Camicie">
                 <label for="camicie"> Camicie</label><br>
 
@@ -54,11 +62,14 @@
                 <input type="checkbox" id="long" name="long" value="Trousers">
                 <label for="long"> Pantaloni lunghi</label><br>
 
-        </div>
+         </div>
+    </div>
 
-        <div class="filter-color">
 
-            <h3>Colori</h3>
+    <div class="filter-contenitor">Colori
+        <a onclick="hideElement('filter-color')" style="display: block"><i class="fas fa-plus"></i></a>
+         <div class="filter-color" id="filter-color">
+
             <label class="container">
                 <input type="checkbox" id="green" name="green" value="Green">
                 <span class="checkmark" style="background-color: green"></span>
@@ -119,12 +130,14 @@
                 Grigio
             </label>
 
+            </div>
+    </div>
 
-        </div>
 
-        <div class="filter-size">
 
-            <h3>Taglia</h3>
+    <div class="filter-contenitor">Taglia
+        <a onclick="hideElement('filter-size')" style="display: block"><i class="fas fa-plus"></i></a>
+         <div class="filter-size" id="filter-size">
 
             <input type="checkbox" id="xs" name="xs" value="XS">
             <label for="xs"> XS</label> &ensp;
@@ -148,6 +161,7 @@
             <label for="xxl"> XXXL</label><br>
 
         </div>
+    </div>
 
             <input type="submit" value="Submit" style="width: fit-content">
         </form>
@@ -157,7 +171,7 @@
 
     </div>
 
-    <button class="chiudi" onclick="hideElement('filters')">CHIUDI</button>
+    <button class="chiudi" id="close" onclick="closeButton()">APRI</button>
 
     <div class="products" style="float: left">
 
