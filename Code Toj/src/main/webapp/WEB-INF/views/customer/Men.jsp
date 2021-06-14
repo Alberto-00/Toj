@@ -28,6 +28,8 @@
             <p>Quanto?</p>
             <p id="quanto"></p>
 
+            <br><input type="submit" value="Submit" style="width: fit-content">
+
          </div>
     </div>
 
@@ -64,7 +66,6 @@
 
          </div>
     </div>
-
 
     <div class="filter-contenitor">Colori
         <a onclick="hideElement('filter-color')" style="display: block"><i class="fas fa-plus"></i></a>
@@ -133,8 +134,6 @@
             </div>
     </div>
 
-
-
     <div class="filter-contenitor">Taglia
         <a onclick="hideElement('filter-size')" style="display: block"><i class="fas fa-plus"></i></a>
          <div class="filter-size" id="filter-size">
@@ -163,7 +162,6 @@
         </div>
     </div>
 
-            <input type="submit" value="Submit" style="width: fit-content">
         </form>
 
 
@@ -201,6 +199,16 @@
 
         <div class="row">
 
+            <div class="pagination">
+                <a href="#">&laquo;</a>
+                <a href="#">1</a>
+                <a href="#" class="active">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a>
+                <a href="#">&raquo;</a>
+            </div>
 
         </div>
 
