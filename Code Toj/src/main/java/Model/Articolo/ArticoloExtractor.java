@@ -2,8 +2,10 @@ package Model.Articolo;
 
 import Model.storage.ResultSetExtractor;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class ArticoloExtractor implements ResultSetExtractor<Articolo> {
 
@@ -14,10 +16,13 @@ public class ArticoloExtractor implements ResultSetExtractor<Articolo> {
     public Articolo extract(ResultSet rs) throws SQLException {
         Articolo articolo = new Articolo();
         articolo.setIDarticolo(rs.getInt("ID_articolo"));
-        articolo.setDescrizione(rs.getString("Descrizione"));
         articolo.setPrezzo(rs.getDouble("Prezzo"));
         articolo.setSesso(rs.getString("Sesso"));
+        articolo.setDescrizione(rs.getString("Descrizione"));
         articolo.setSconto(rs.getDouble("sconto"));
+        articolo.setData_inserimento((rs.getDate("data_inserimento")));
+        articolo.setNome(rs.getString("Nome"));
+        articolo.setPath(rs.getString("path_img"));
         return articolo;
     }
 }

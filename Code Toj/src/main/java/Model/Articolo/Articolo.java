@@ -4,16 +4,16 @@ import Model.Categoria.Categoria;
 import Model.Colore.Colore;
 import Model.Taglia.Taglia;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 public class Articolo {
 
     //Dati dell'articolo
-    private String sesso, descrizione;
+    private String sesso, descrizione, path, nome;
     private double prezzo, sconto;
     private int IDarticolo;
-    private LocalDate data_inserimento;
+    private Date data_inserimento;
     private Categoria categoria;
     private List<Taglia> taglie;
     private List<Colore> colori;
@@ -88,11 +88,27 @@ public class Articolo {
         this.colori = colori;
     }
 
-    public LocalDate getData_inserimento() {
+    public Date getData_inserimento() {
         return data_inserimento;
     }
 
-    public void setData_inserimento(LocalDate data_inserimento) {
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setData_inserimento(Date data_inserimento) {
         this.data_inserimento = data_inserimento;
     }
 

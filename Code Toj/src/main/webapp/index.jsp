@@ -27,7 +27,7 @@
         <div class="banner-text centered">
             <h1>Men's</h1>
             <p>Big Sale Off Final Items. Caught in the moment!</p>
-            <a href="#">Acquista Ora</a>
+            <a href="${pageContext.request.contextPath}/customers/Men">Acquista Ora</a>
         </div>
     </div>
 </div>

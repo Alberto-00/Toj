@@ -18,79 +18,48 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
     }
 
     @Override
-    public List<Articolo> doRetrieveAll() throws SQLException {
+    public List<Articolo> doRetrieveAllNewProducts() throws SQLException{
         try(Connection con = ConPool.getConnection()) {
-            QueryBuilder queryBuilder = new QueryBuilder("articolo", "a");
-            queryBuilder.select("a.*", "s.Quantita", "s.id_nome", "c.nome").innerJoin("size", "s")
-                    .on("s.ID_articolo = a.ID_articolo").innerJoin("tinta", "t")
-                    .on("a.ID_articolo = t.ID_articolo").innerJoin("colore", "c")
-                    .on("c.cod_esadecimale = t.cod_esadecimale");
-            try (PreparedStatement ps = con.prepareStatement(queryBuilder.generateQuery());){
-                ResultSet rs = ps.executeQuery();
-                List<Articolo> articoli = new ArrayList<>();
-                CategoriaExtractor categoriaExtractor = new CategoriaExtractor();
-                TagliaExtractor tagliaExtractor = new TagliaExtractor();
-                ColoreExtractor coloreExtractor = new ColoreExtractor();
-                ArticoloExtractor articoloExtractor = new ArticoloExtractor();
-                for(int i = 0; rs.next(); i++){
-                    articoli.add(i, articoloExtractor.extract(rs));
-                    articoli.get(i).setCategoria(categoriaExtractor.extract(rs));
-                    articoli.get(i).setColori(new ArrayList<>());
-                    articoli.get(i).getColori().add(coloreExtractor.extract(rs));
-                    articoli.get(i).setTaglie(new ArrayList<>());
-                    articoli.get(i).getTaglie().add(tagliaExtractor.extract(rs));
-                }
-                return articoli;
+            PreparedStatement ps = con.prepareStatement("SELECT a.*, s.Quantita, s.id_nome, c.nome " +
+                    "FROM articolo a INNER JOIN size s on s.ID_articolo = a.ID_articolo " +
+                    "INNER JOIN tinta t on a.ID_articolo = t.ID_articolo INNER JOIN colore c " +
+                    "on c.cod_esadecimale = t.cod_esadecimale " +
+                    "WHERE a.data_inserimento <= current_date " +
+                    "AND a.data_inserimento >= date_sub(current_date, INTERVAL  1 month)");
+            ResultSet rs = ps.executeQuery();
+            List<Articolo> articoli = new ArrayList<>();
+            CategoriaExtractor categoriaExtractor = new CategoriaExtractor();
+            TagliaExtractor tagliaExtractor = new TagliaExtractor();
+            ColoreExtractor coloreExtractor = new ColoreExtractor();
+            ArticoloExtractor articoloExtractor = new ArticoloExtractor();
+            for(int i = 0; rs.next(); i++){
+                articoli.add(i, articoloExtractor.extract(rs));
+                articoli.get(i).setCategoria(categoriaExtractor.extract(rs));
+                articoli.get(i).setColori(new ArrayList<>());
+                articoli.get(i).getColori().add(coloreExtractor.extract(rs));
+                articoli.get(i).setTaglie(new ArrayList<>());
+                articoli.get(i).getTaglie().add(tagliaExtractor.extract(rs));
             }
+            return articoli;
         }
-    }
-
-    @Override
-    public List<Articolo> doRetrieveBySex(String sesso) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public List<Articolo> doRetriveBySexAndCat(String sesso, int id_categoria) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public List<Articolo> doRetrieveBySexAndPrice(String sesso, double prezzoMin, double prezzoMax) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public List<Articolo> doRetrieveBySexAndSize(String taglia, String sesso) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public List<Articolo> doRetrieveBySexAndDate(String sesso, LocalDate data) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public List<Articolo> doRetrieveBySexAndDate(String sesso, String colore) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public List<Articolo> doRetrieveByDesc(String descrizione) throws SQLException {
-        return null;
     }
 
     @Override
     public boolean doCreateArticolo(Articolo articolo) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
             QueryBuilder queryBuilder = new QueryBuilder("articolo", "ar");
-           queryBuilder.insert("ID_articolo", "Prezzo", "Sesso", "Descrizione", "sconto");
+           queryBuilder.insert("ID_articolo", "Prezzo", "Sesso", "Descrizione", "sconto", "data_inserimento",
+                   "ID_categoria", "Nome", "path_img");
             try (PreparedStatement ps = con.prepareStatement(queryBuilder.generateQuery())) {
                 ps.setInt(1, articolo.getIDarticolo());
                 ps.setDouble(2, articolo.getPrezzo());
                 ps.setString(3, articolo.getSesso());
                 ps.setString(4, articolo.getDescrizione());
                 ps.setDouble(5, articolo.getSconto());
+                ps.setDate(6, (Date) (articolo.getData_inserimento()));
+                ps.setDouble(7, articolo.getIDarticolo());
+                ps.setString(8, articolo.getNome());
+                ps.setString(9, articolo.getPath());
                 int rows = ps.executeUpdate();
                 return rows == 1;
             }
@@ -102,16 +71,17 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
         try(Connection con = ConPool.getConnection()) {
             QueryBuilder queryBuilder = new QueryBuilder("articolo", "ar");
             queryBuilder.update("ID_articolo", "Prezzo", "Sesso", "Descrizione", "sconto", "data_inserimento",
-                    "ID_categoria").where("ar.ID_articolo=?");
+                    "ID_categoria",  "Nome", "path_img").where("ar.ID_articolo=?");
             try (PreparedStatement ps = con.prepareStatement(queryBuilder.generateQuery())) {
                 ps.setInt(1, articolo.getIDarticolo());
                 ps.setDouble(2, articolo.getPrezzo());
                 ps.setString(3, articolo.getSesso());
                 ps.setString(4, articolo.getDescrizione());
                 ps.setDouble(5, articolo.getSconto());
-                ps.setDouble(6, articolo.getIDarticolo());
-                ps.setDate(7, Date.valueOf(articolo.getData_inserimento()));
-                ps.setInt(8, articolo.getCategoria().getId_categoria());
+                ps.setDate(6, (Date) (articolo.getData_inserimento()));
+                ps.setDouble(7, articolo.getIDarticolo());
+                ps.setString(8, articolo.getNome());
+                ps.setString(9, articolo.getPath());
                 int rows = ps.executeUpdate();
                 return rows == 1;
             }

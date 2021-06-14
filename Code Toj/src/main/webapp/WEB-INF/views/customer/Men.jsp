@@ -15,29 +15,22 @@
 <hr class="border2-hr">
 
 <div class="container-top">
-
     <div class="column-filters" id="filters" style="float: left;">
+        <form action="/action_page.php"><br>
+            <div class="filter-contenitor">Prezzo
+                <a onclick="hideElement('filter-price')" style="display: block"><i class="fas fa-plus"></i></a>
+                <div class="filter-price" id="filter-price">
+                    <input type="range" min="0" max="100" value="0" class="slider" id="myRange">
+                    <p>Quanto?</p>
+                    <p id="quanto"></p><br>
+                    <input type="submit" value="Submit" style="width: fit-content">
+                </div>
+            </div>
 
-        <form action="/action_page.php">
-    <br>
-    <div class="filter-contenitor">Prezzo
-        <a onclick="hideElement('filter-price')" style="display: block"><i class="fas fa-plus"></i></a>
-         <div class="filter-price" id="filter-price">
-
-            <input type="range" min="0" max="100" value="0" class="slider" id="myRange">
-            <p>Quanto?</p>
-            <p id="quanto"></p>
-
-            <br><input type="submit" value="Submit" style="width: fit-content">
-
-         </div>
-    </div>
-
-    <div class="filter-contenitor">Categoria
-        <a onclick="hideElement('filter-category')" style="display: block"><i class="fas fa-plus"></i></a>
-          <div class="filter-category" id="filter-category">
-
-                <input type="checkbox" id="camicie" name="camicie" value="Camicie">
+            <div class="filter-contenitor">Categoria
+                <a onclick="hideElement('filter-category')" style="display: block"><i class="fas fa-plus"></i></a>
+                <div class="filter-category" id="filter-category">
+                    <input type="checkbox" id="camicie" name="camicie" value="Camicie">
                 <label for="camicie"> Camicie</label><br>
 
                 <input type="checkbox" id="cappotti" name="cappotti" value="Cappotti">
