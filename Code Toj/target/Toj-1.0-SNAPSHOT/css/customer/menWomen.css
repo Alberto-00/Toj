@@ -1,0 +1,119 @@
+
+@media only screen and (max-width: 767px) {
+    .product-box {
+        flex-direction: column;
+        width: 100%;
+    }
+}
+
+
+.column-filters{
+    width: 20%;
+}
+
+.products{
+    width:80%
+}
+
+.product-box{
+    display: flex;
+    flex-grow: 0.5;
+    flex-direction: column;
+    align-items: center;
+    margin: 22px 0 22px 22px;
+    animation: fade 0.3s;
+    transition: all ease 0.3s;
+    width: 30%;
+    height:350px;
+}
+
+/*effetto doppia foto in "nuovi arrivi"*/
+.double-img {
+    position:relative;
+    height:350px;
+    width:100%;
+}
+
+.double-img img{
+    position:absolute;
+    left:0;
+    -webkit-transition: opacity 0.4s ease-in-out;
+    -moz-transition: opacity 0.4s ease-in-out;
+    -o-transition: opacity 0.4s ease-in-out;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.double-img img.top-image:hover {
+    opacity:0;
+}
+
+
+.product-box img{
+    width:100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.product-details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 5px 10px;
+    border-top: 1px solid #f3f3f3;
+}
+
+.p-name {
+    color: #747474;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.p-name:hover {
+    transition: all ease 0.3s;
+    color: #fd7e14;
+}
+
+.p-price{
+    color: #242424 !important; /*viene sostituito dal white del container*/
+    font-size: 13px;
+    font-weight: 400;
+}
+.product-box:hover{
+    box-shadow: 2px 2px 30px rgba(0,0,0,0.1);
+}
+
+.add-sconto, .add-cart{
+    position: absolute;
+    top: 45px;
+    width:30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    box-shadow: 2px 2px 30px rgba(0,0,0,0.1);
+    animation: fade 0.3s;
+    transition: all ease 0.3s;
+    z-index: 1;
+}
+
+.add-sconto{
+    background-color: #007A58;
+    margin-left: 10px;
+}
+
+.add-cart{
+    right: 10px;
+    background-color: orange;
+    display: none;
+}
+.add-cart:hover{
+    background-color: #f76b6a;
+}
+
+.product-box:hover .add-cart{
+    display: flex;
+}

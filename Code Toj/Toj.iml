@@ -57,7 +57,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="a076d05399" level="application" />
-    <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:javax.servlet-api:4.0.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-api:5.7.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.apiguardian:apiguardian-api:1.1.0" level="project" />
@@ -66,5 +65,10 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-engine:5.7.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-engine:1.7.0" level="project" />
     <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="library" name="OwlCarousel2" level="application" />
+    <orderEntry type="library" name="flickity" level="application" />
+    <orderEntry type="library" name="OwlCarousel2" level="application" />
+    <orderEntry type="library" name="jquery-1.11.0" level="application" />
+    <orderEntry type="library" name="jquery-migrate-1.2.1" level="application" />
   </component>
 </module>
