@@ -37,12 +37,15 @@ public class Account {
 
     public void setPassword(String password) {
         try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-1");
-            digest.reset();
-            digest.update(password.getBytes(StandardCharsets.UTF_8));
-            this.password = String.format("%040x", new BigInteger(1, digest.digest()));
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
+            MessageDigest digest = MessageDigest.getInstance("SHA-512");
+            byte[] hashedPwd = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+            StringBuilder builder = new StringBuilder();
+            for(byte bit : hashedPwd){
+                builder.append(String.format("%02x", bit));
+            }
+            this.password = builder.toString();
+        } catch (NoSuchAlgorithmException e){
+            e.printStackTrace();
         }
     }
 

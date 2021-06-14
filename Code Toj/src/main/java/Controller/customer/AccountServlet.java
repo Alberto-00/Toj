@@ -20,6 +20,9 @@ public class AccountServlet extends Controller {
             case "/Men":
                 request.getRequestDispatcher(view("customer/Men")).forward(request, response);
                 break;
+            case "/Women":
+                request.getRequestDispatcher(view("customer/Men")).forward(request, response);
+                break;
             case "/aboutUs":
                 request.getRequestDispatcher(view("customer/aboutUs")).forward(request, response);
                 break;

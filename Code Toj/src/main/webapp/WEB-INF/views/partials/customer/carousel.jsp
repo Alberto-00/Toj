@@ -7,10 +7,10 @@
             <div class="item">
                 <div class="single-product">
                     <a href="#">
-                        <img class="image-first" src="${pageContext.request.contextPath}/images/woman.jpg" alt="${newProduct.nome}">
+                        <img class="image-first" src="${pageContext.request.contextPath}/covers/Cappotti da uomo Tasca Colore unico Ufficio grigio 38 (0).jpg" alt="${newProduct.nome}">
                     </a>
                     <div class="overlay-product">
-                        <a href="#"><img src="${pageContext.request.contextPath}/images/boy.jpg" alt=""></a>
+                        <a href="#"><img src="${pageContext.request.contextPath}/${paths[0][1]}" alt=""></a>
                     </div>
                     <div class="quick_button">
                         <a href="#">+ Aggiungi al Carrello</a>

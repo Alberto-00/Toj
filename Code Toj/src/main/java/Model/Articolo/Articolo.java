@@ -4,6 +4,11 @@ import Model.Categoria.Categoria;
 import Model.Colore.Colore;
 import Model.Taglia.Taglia;
 
+import javax.servlet.http.Part;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.Date;
 import java.util.List;
 
@@ -112,4 +117,20 @@ public class Articolo {
         this.data_inserimento = data_inserimento;
     }
 
+    public void writeCover(String uploadPath, Part stream) throws IOException{
+        try(InputStream fileStream = stream.getInputStream()){
+            File file = new File(uploadPath + path);
+            Files.copy(fileStream, file.toPath());
+        }
+    }
+
+    public String[] splitPath(String path){
+        String [] pathSplitted = path.split(",");
+        return pathSplitted;
+    }
+
+    public String[] splitPath(){
+        String [] pathSplitted = this.path.split(",");
+        return pathSplitted;
+    }
 }

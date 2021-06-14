@@ -22,13 +22,7 @@
                         </div>
                     </li>
                     <li class="dropdown border">
-                        <a href="javascript:void(0)" class="dropbtn">Language<i class="fas fa-angle-down icon-left"></i></a>
-                        <div class="dropdown-content">
-                            <a class="border-content" href="#">
-                                <img src="${pageContext.request.contextPath}/icons/it.png" class="image-lang" alt="">Ita
-                            </a>
-                            <a href="#"><img src="${pageContext.request.contextPath}/icons/en.png" class="image-lang" alt="">Eng</a>
-                        </div>
+                        <a href="${pageContext.request.contextPath}/customers/privacy" class="dropbtn">Privacy Policy</a>
                     </li>
                     <li class="dropdown border">
                         <a href="${pageContext.request.contextPath}/customers/termsConditions">Termini e condizioni</a>
@@ -171,14 +165,6 @@
                         <div class="dropdown-container-sidenav">
                             <a href="${pageContext.request.contextPath}/customers/account">Area personale</a>
                             <a href="${pageContext.request.contextPath}/customers/sigin">Sign in</a>
-                        </div>
-
-                        <button class="dropdown-btn">Language
-                            <i class="fas fa-plus"></i>
-                        </button>
-                        <div class="dropdown-container-sidenav">
-                            <a href="#"><img src="${pageContext.request.contextPath}/icons/it.png" alt="ita">Ita</a>
-                            <a href="#"><img src="${pageContext.request.contextPath}/icons/en.png" alt="english">Eng</a>
                         </div>
 
                         <a href="${pageContext.request.contextPath}/customers/cart" style="border-bottom: 1px solid #747474;">

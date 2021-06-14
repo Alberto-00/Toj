@@ -7,9 +7,10 @@ import Model.storage.ConPool;
 import Model.storage.QueryBuilder;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
 
@@ -20,27 +21,45 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
     @Override
     public List<Articolo> doRetrieveAllNewProducts() throws SQLException{
         try(Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT a.*, s.Quantita, s.id_nome, c.nome " +
+            PreparedStatement ps = con.prepareStatement("SELECT a.*, s.Quantita, s.id_nome, c.nome, c.cod_esadecimale " +
                     "FROM articolo a INNER JOIN size s on s.ID_articolo = a.ID_articolo " +
                     "INNER JOIN tinta t on a.ID_articolo = t.ID_articolo INNER JOIN colore c " +
                     "on c.cod_esadecimale = t.cod_esadecimale " +
                     "WHERE a.data_inserimento <= current_date " +
                     "AND a.data_inserimento >= date_sub(current_date, INTERVAL  1 month)");
             ResultSet rs = ps.executeQuery();
-            List<Articolo> articoli = new ArrayList<>();
-            CategoriaExtractor categoriaExtractor = new CategoriaExtractor();
-            TagliaExtractor tagliaExtractor = new TagliaExtractor();
-            ColoreExtractor coloreExtractor = new ColoreExtractor();
             ArticoloExtractor articoloExtractor = new ArticoloExtractor();
-            for(int i = 0; rs.next(); i++){
-                articoli.add(i, articoloExtractor.extract(rs));
-                articoli.get(i).setCategoria(categoriaExtractor.extract(rs));
-                articoli.get(i).setColori(new ArrayList<>());
-                articoli.get(i).getColori().add(coloreExtractor.extract(rs));
-                articoli.get(i).setTaglie(new ArrayList<>());
-                articoli.get(i).getTaglie().add(tagliaExtractor.extract(rs));
+            CategoriaExtractor categoriaExtractor = new CategoriaExtractor();
+            ColoreExtractor coloreExtractor = new ColoreExtractor();
+            TagliaExtractor tagliaExtractor = new TagliaExtractor();
+            Map<Integer, Articolo> productMap = new LinkedHashMap<>();
+
+            if(rs.next()){
+                Articolo articolo = articoloExtractor.extract(rs);
+                articolo.setCategoria(categoriaExtractor.extract(rs));
+
+                articolo.setColori(new ArrayList<>());
+                articolo.getColori().add(coloreExtractor.extract(rs));
+
+                articolo.setTaglie(new ArrayList<>());
+                articolo.getTaglie().add(tagliaExtractor.extract(rs));
+                productMap.put(articolo.getIDarticolo(), articolo);
+
+                while (rs.next()){
+                    int idProduct = rs.getInt("ID_articolo");
+                    if(!productMap.containsKey(idProduct)){
+                        articolo = articoloExtractor.extract(rs);
+                        articolo.setCategoria(categoriaExtractor.extract(rs));
+
+                        articolo.setColori(new ArrayList<>());
+                        articolo.setTaglie(new ArrayList<>());
+                        productMap.put(articolo.getIDarticolo(), articolo);
+                    }
+                    productMap.get(idProduct).getTaglie().add(tagliaExtractor.extract(rs));
+                    productMap.get(idProduct).getColori().add(coloreExtractor.extract(rs));
+                }
             }
-            return articoli;
+            return new ArrayList<>(productMap.values());
         }
     }
 

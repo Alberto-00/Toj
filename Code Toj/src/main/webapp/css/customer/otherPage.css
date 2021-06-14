@@ -116,6 +116,7 @@ hr.border2-hr{
 }
 
 .contact-message textarea {
+    outline: none;
     height: 170px;
     border: 1px solid #ddd;
     background: #ffffff;
