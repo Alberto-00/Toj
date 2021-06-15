@@ -146,7 +146,7 @@ hr.border2-hr{
     box-sizing: border-box;
 }
 
-input[type=submit]{
+input.submit-button-log{
     width: 30%;
     background-color: #ff6a28;
     font-weight: 700;
@@ -159,7 +159,6 @@ input[type=submit]{
     transition: all 0.3s ease 0s;
 }
 
-input[type=submit]:hover {
+input.submit-button-log:hover{
     background-color: var(--black);
 }
-

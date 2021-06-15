@@ -85,6 +85,7 @@ h1, h2, h3 {
 }
 
 .product_variant.quantity input {
+    outline: none;
     width: 85px;
     border: 1px solid #ddd;
     background: none;

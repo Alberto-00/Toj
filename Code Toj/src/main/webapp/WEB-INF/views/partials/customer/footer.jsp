@@ -36,10 +36,10 @@
                         <input type="email" id="newsletter" name="newsletter"
                                placeholder="Inserisci la tua email qui...">
                         <div class="popup">
-                            <button type="button" onclick="popupFunction()" name="newsletterSubmit" class="button">
+                            <button id="button-newsletter" type="button" onclick="popupFunction()" name="newsletterSubmit" class="button">
                                 <span>SUBSCRIBE</span>
                             </button>
-                            <span class="popup popuptext" id="myPopup">Email inviata. Grazie!</span>
+                            <span class="popup popuptext" id="myPopup"></span>
                         </div>
                     </form>
                 </div>

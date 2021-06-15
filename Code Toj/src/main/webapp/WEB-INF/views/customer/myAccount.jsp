@@ -65,6 +65,16 @@
                     </div>
                     <div class="row">
                         <div class="columnAlt-50">
+                            <label>Username</label>
+                            <input type="text" name="username" placeholder="" required>
+                        </div>
+                        <div class="columnAlt-50 padding-right0">
+                            <label>Password</label>
+                            <input type="password" name="password" placeholder="" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="columnAlt-50">
                             <label>Data di nascita</label>
                             <input type="date" name="birthday">
                         </div>

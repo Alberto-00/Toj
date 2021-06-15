@@ -16,11 +16,18 @@ CREATE TABLE Articolo(
     data_inserimento DATE NOT NULL,
     ID_categoria INT UNSIGNED NOT NULL,
     Nome text NOT NULL,
-    path_img text NOT NULL,
     foreign key (ID_categoria) references Categoria (ID_categoria)
     ON UPDATE CASCADE
     ON DELETE CASCADE
 ); 
+
+CREATE TABLE pathImg(
+    pathName VARCHAR(500) primary key,
+    ID_articolo INT UNSIGNED,
+    foreign key (ID_articolo) references Articolo (ID_articolo)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+);
 
 CREATE TABLE Colore(
 	cod_esadecimale VARCHAR(10) PRIMARY KEY,
@@ -130,4 +137,6 @@ CREATE TABLE Dati_cliente(
     ON UPDATE CASCADE
     ON DELETE CASCADE
 );
+
+
 

@@ -2,6 +2,7 @@
 <header>
     <!-- sfondo sidenav -->
     <div id="sidenav-background-color"></div>
+    <div id="popup-background-color"></div>
 
     <!-- header top -->
     <div class="header-top">
@@ -36,7 +37,7 @@
     <div class="popup-login" id="myForm">
         <div class="login__content">
             <div class="login__forms">
-                <form action="" class="login__registre close-icon" id="login-in">
+                <form action="${pageContext.request.contextPath}/customers/sigin" method="post" class="login__registre close-icon" id="login-in">
                     <h1 class="login__title">Sign In</h1>
                     <a onclick="closeForm()" class="icon-close-popup-sigIn"><i class="fas fa-times"></i></a>
 
@@ -52,13 +53,13 @@
                             <input type="password" id="passwordInput" name="passwordInput" placeholder="Password" class="login__input">
                         </label>
                     </div>
-                    <a href="#" class="login__forgot">Forgot password?</a>
-                    <a href="#" class="login__button">Sign In</a>
-                    <span class="login__account">Don't have an Account ?</span>
-                    <span class="login__signin" id="sign-up">Sign Up</span>
+                    <a href="${pageContext.request.contextPath}/customers/account" class="login__forgot">Password dimenticata?</a>
+                    <input type="submit" class="login__button" value="Accedi" name="submitForm">
+                    <span class="login__account">Non hai un Account ?</span>
+                    <span class="login__signin" id="sign-up">Registrati</span>
                 </form>
 
-                <form action="" class="login__create none close-icon" id="login-up">
+                <form action="${pageContext.request.contextPath}/customers/sigUp" method="post" class="login__create none close-icon" id="login-up">
                     <h1 class="login__title">Create Account</h1>
                     <a onclick="closeForm()" class="icon-close-popup-sigUp"><i class="fas fa-times"></i></a>
                     <div class="login__box">
@@ -81,9 +82,9 @@
                             <input type="password" id="passwordOutput" name="passwordOutput" placeholder="Password" class="login__input">
                         </label>
                     </div>
-                    <a href="#" class="login__button">Sign Up</a>
-                    <span class="login__account">Already have an Account ?</span>
-                    <span class="login__signup" id="sign-in">Sign In</span>
+                    <input type="submit" class="login__button" value="Registrati" name="submitForm">
+                    <span class="login__account">Hai già un Account ?</span>
+                    <span class="login__signup" id="sign-in">Accedi</span>
                 </form>
             </div>
         </div>

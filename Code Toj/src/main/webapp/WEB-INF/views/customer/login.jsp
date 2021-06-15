@@ -59,7 +59,7 @@
                         <label>Password *</label>
                         <input name="password" type="password">
                     </p>
-                    <input class="submit-button-reg" type="submit" name="submitContact" value="REGISTRATI">
+                    <input class="submit-button-log reg" type="submit" name="submitContact" value="REGISTRATI">
                 </form>
             </div>
         </div>

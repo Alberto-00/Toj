@@ -24,11 +24,12 @@ signIn.addEventListener('click', ()=>{
 function openForm() {
     document.getElementById("myForm").style.display = "block";
     document.body.style.overflow="hidden";
-}
+    document.getElementById("popup-background-color").style.visibility ="visible";}
 
 function closeForm() {
     document.getElementById("myForm").style.display = "none";
     document.body.style.overflow="auto";
+    document.getElementById("popup-background-color").style.visibility ="hidden";
 }
 
 
@@ -126,4 +127,22 @@ for (i = 0; i < dropdown.length; i++) {
             dropdownContent.style.display = "block";
         }
     });
+}
+
+/**
+ * Validation Popup Newsletter
+ */
+$(document).ready(function(){
+    $("#button-newsletter").click(function(){
+        if(validateEmail($("#newsletter").val()) === false){
+            $("#myPopup").text("Email errata. Riprova.");
+        }
+        else {
+            $("#myPopup").text("Email inviata. Grazie!");
+        }
+    });
+});
+function validateEmail(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
 }

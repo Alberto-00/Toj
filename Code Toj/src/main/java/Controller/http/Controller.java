@@ -23,7 +23,7 @@ public class Controller extends HttpServlet {
         return request.getServletPath() + request.getPathInfo();
     }
 
-    protected  String getUploadPath(){
+    protected String getUploadPath(){
         return System.getenv("CATALINA_HOME") + File.separator + "uploads" + File.separator;
     }
 }
