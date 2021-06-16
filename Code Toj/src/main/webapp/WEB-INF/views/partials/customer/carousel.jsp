@@ -5,21 +5,32 @@
 
 <div class="owl-slider">
     <div class="carousel owl-carousel">
-        <%List<Articolo> articoli = (List<Articolo>) request.getServletContext().getAttribute("nuoviArrivi");
-        if(articoli.size() != 0){
-            for (int i = 0; i < articoli.size() && i < 10; i++){
-                request.setAttribute("pathImgFirst",articoli.get(i).getPaths().get(0).getPathName());
-                request.setAttribute("pathImgSecond", articoli.get(i).getPaths().get(1).getPathName());
-                request.setAttribute("nome", articoli.get(i).getNome());
+        <%List<Articolo> articoliMen = (List<Articolo>) request.getServletContext().getAttribute("nuoviArriviMen");
+            List<Articolo> articoliWomen = (List<Articolo>) request.getServletContext().getAttribute("nuoviArriviWomen");
+            String sex = request.getParameter("sex");
+            List<Articolo> articoli;
+
+            if(sex != null){
+                if(sex.compareToIgnoreCase("F") == 0)
+                    articoli = articoliWomen;
+                else articoli = articoliMen;
+            }
+            else articoli = articoliWomen;
+
+            if(articoli.size() != 0){
+                for (int i = 0; i < articoli.size() && i < 10; i++){
+                    request.setAttribute("pathImgFirst",articoli.get(i).getPaths().get(0).getPathName());
+                    request.setAttribute("pathImgSecond", articoli.get(i).getPaths().get(1).getPathName());
+                    request.setAttribute("articolo", articoli.get(i));
         %>
         <div class="item">
             <div class="single-product">
-                <a href="${pageContext.request.contextPath}/customers/products">
-                    <img class="image-first" src="${pageContext.request.contextPath}/covers/${pathImgFirst}" alt="${nome}">
+                <a href="${pageContext.request.contextPath}/customers/products?id=${articolo.IDarticolo}&sex=${articolo.sesso}">
+                    <img class="image-first" src="${pageContext.request.contextPath}/covers/${pathImgFirst}" alt="${articolo.nome}">
                 </a>
                 <div class="overlay-product">
-                    <a href="#">
-                        <img src="${pageContext.request.contextPath}/covers/${pathImgSecond}" alt="${nome}">
+                    <a href="${pageContext.request.contextPath}/customers/products?id=${articolo.IDarticolo}&sex=${articolo.sesso}">
+                        <img src="${pageContext.request.contextPath}/covers/${pathImgSecond}" alt="${articolo.nome}">
                     </a>
                 </div>
                 <div class="quick_button">

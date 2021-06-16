@@ -1,15 +1,16 @@
 package Model.Articolo;
 
+import Controller.http.JSONSerializable;
 import Model.Categoria.Categoria;
 import Model.Colore.Colore;
 import Model.Path_immagini.PathImg;
-import Model.Size.Size;
 import Model.Taglia.Taglia;
+import org.json.simple.JSONObject;
 
 import java.util.Date;
 import java.util.List;
 
-public class Articolo {
+public class Articolo implements JSONSerializable {
 
     //Dati dell'articolo
     private String sesso, descrizione, nome;
@@ -17,7 +18,6 @@ public class Articolo {
     private int IDarticolo, sconto;
     private Date data_inserimento;
     private Categoria categoria;
-    private Size size;
     private List<PathImg> paths;
     private List<Taglia> taglie;
     private List<Colore> colori;
@@ -116,14 +116,6 @@ public class Articolo {
         this.data_inserimento = data_inserimento;
     }
 
-    public Size getSize() {
-        return size;
-    }
-
-    public void setSize(Size size) {
-        this.size = size;
-    }
-
     public boolean containsPath(String str){
         for (PathImg p: paths){
             if(p.getPathName().equals(str))
@@ -146,5 +138,22 @@ public class Articolo {
                 return true;
         }
         return false;
+    }
+
+    @Override
+    public JSONObject toJson(){
+        JSONObject object = new JSONObject();
+        object.put("sesso", sesso);
+        object.put("descrizione", descrizione);
+        object.put("nome", nome);
+        object.put("prezzo", prezzo);
+        object.put("IDarticolo", IDarticolo);
+        object.put("sconto", sconto);
+        object.put("data_inserimento", data_inserimento);
+        object.put("categoria", categoria);
+        object.put("paths", paths);
+        object.put("taglie", taglie);
+        object.put("colori", colori);
+        return object;
     }
 }

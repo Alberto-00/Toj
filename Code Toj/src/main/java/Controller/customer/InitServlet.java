@@ -14,11 +14,13 @@ public class InitServlet extends Controller {
 
     @Override
     public void init() throws ServletException{
-        List<Articolo> articoli;
-        SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
         try {
-            articoli = sqlArticoloDAO.doRetrieveAllNewProducts();
-            getServletContext().setAttribute("nuoviArrivi", articoli);
+            SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
+            List<Articolo> articoliMen = sqlArticoloDAO.doRetrieveNewProductsBySex("M");
+            List<Articolo> articoliWomen = sqlArticoloDAO.doRetrieveNewProductsBySex("F");
+
+            getServletContext().setAttribute("nuoviArriviMen", articoliMen);
+            getServletContext().setAttribute("nuoviArriviWomen", articoliWomen);
             super.init();
         } catch (SQLException throwables) {
             throwables.printStackTrace();

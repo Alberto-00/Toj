@@ -1,3 +1,4 @@
+<%@ page import="Model.Taglia.Taglia" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="it">
@@ -18,21 +19,22 @@
     <jsp:param name="title" value="Dettagli Prodotto"/>
 </jsp:include>
 
+<%Articolo articolo = (Articolo) request.getAttribute("articolo");%>
 <div class="container-top">
     <div class="row">
         <div class="column38">
             <div class="product-details">
                 <div class="img-zoom-container">
-                    <img class="big-img" src="${pageContext.request.contextPath}/images/boy.jpg" alt="product">
+                    <img class="big-img" src="${pageContext.request.contextPath}/covers/<%=articolo.getPaths().get(0).getPathName()%>" alt="<%=articolo.getNome()%>">
                     <div class="row">
                         <div class="column100">
                             <div class="owl-slider">
                                 <div class="carousel owl-carousel">
-                                    <%for(int i = 0; i < 8; i++){%>
+                                    <%for(int i = 0; i < articolo.getPaths().size(); i++){%>
                                     <div class="item">
                                         <div class="single-product">
                                             <a href="javascript:void(0)">
-                                                <img class="image-first small-img" src="${pageContext.request.contextPath}/images/woman.jpg" alt="">
+                                                <img class="image-first small-img" src="${pageContext.request.contextPath}/covers/<%=articolo.getPaths().get(i).getPathName()%>" alt="<%=articolo.getNome()%>">
                                             </a>
                                         </div>
                                     </div>
@@ -46,37 +48,35 @@
         </div>
         <div class="column62">
             <div class="product_d_right">
-                <form action="#">
-                    <h1>Amazon Cloud Cam</h1>
+                <form action="${pageContext.request.contextPath}/customers/cart">
+                    <h1><%=articolo.getNome()%></h1>
                     <div class="product_price">
-                        <span class="current_price">$70.00</span>
+                        <span class="current_price">€ <%=articolo.getPrezzo()%></span>
                     </div>
                     <div class="product_desc">
-                        <p>More room to move. With 80GB or 160GB of storage and up to 40 hours of battery life, the new iPod classic lets you enjoy up to 40,000 songs or up to 200 hours of video or any combination wherever you go. Cover Flow. Browse through your music collection by flipping through album art. Select an album to turn it over and see the track list. Enhanced interface. Experience a whole new way to browse and view your music and video. Sleeker design. Beautiful, durable, and sleeker than ever, iPod classic now features an anodized aluminum and polish.. </p>
+                        <p><%=articolo.getDescrizione()%></p>
                     </div>
                     <div class="product_variant color">
                         <h3>colore</h3>
                         <select name="produc-color">
-                            <option selected value="1">choose in option</option>
-                            <option value="2">choose in option2</option>
-                            <option value="3">choose in option3</option>
-                            <option value="4">choose in option4</option>
+                            <option selected value="default">Scegli opzione</option>
+                            <%for (int i = 0; i < articolo.getColori().size(); i++){%>
+                            <option value="<%=i%>"><%=articolo.getColori().get(i).getNome()%></option>
+                            <%}%>
                         </select>
                     </div>
                     <div class="product_variant size">
                         <h3>taglia</h3>
                         <select name="products-size">
-                            <option selected value="default">size</option>
-                            <option value="x">x</option>
-                            <option value="xl">xl</option>
-                            <option value="">md</option>
-                            <option value="4">xxl</option>
-                            <option value="4">s</option>
+                            <option selected value="default">Scegli opzione</option>
+                            <%for (Taglia taglia: articolo.getTaglie()){%>
+                            <option id="option_taglia" value="<%=taglia.getId_nome()%>" onclick="setQuantita(<%=taglia.getQuantita()%>)"><%=taglia.getId_nome()%></option>
+                            <%}%>
                         </select>
                     </div>
                     <div class="product_variant quantity">
                         <label>quantità</label>
-                        <input min="1" max="100" value="1" type="number">
+                        <input id="input_quantita" min="1"  value="1" type="number">
                         <button class="btn-add-cart" type="submit">Aggiungi al carrello</button>
                     </div>
                 </form>
@@ -84,7 +84,6 @@
         </div>
     </div>
 </div>
-
 <div class="product_d_info">
     <div class="container-top">
         <div class="row">

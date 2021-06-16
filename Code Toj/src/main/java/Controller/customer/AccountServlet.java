@@ -1,11 +1,17 @@
 package Controller.customer;
 
 import Controller.http.Controller;
+import Model.Articolo.Articolo;
+import Model.Articolo.SQLArticoloDAO;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet(name = "AccountServlet", value = "/customers/*")
 @MultipartConfig
@@ -16,8 +22,39 @@ public class AccountServlet extends Controller {
         String path = getPath(request); //abbiamo preso tutto il pezzo dopo "/customers/*"
         switch (path){
             case "/products":{
-
+                String id = request.getParameter("id");
+                String sex = request.getParameter("sex");
+                int idParse = Integer.parseInt(id);
+                SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
+                try {
+                    Articolo articolo = sqlArticoloDAO.doRetrieveProductById(idParse);
+                    if (articolo != null) {
+                        request.setAttribute("articolo", articolo);
+                        request.setAttribute("sex", sex);
+                    }
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
                 request.getRequestDispatcher(view("customer/products")).forward(request, response);
+                break;
+            }
+
+            case "/api":{
+                SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
+                try {
+                    List<Articolo> articoliMen = sqlArticoloDAO.doRetrieveNewProductsBySex("M");
+                    List<Articolo> articoliWomen = sqlArticoloDAO.doRetrieveNewProductsBySex("F");
+                    JSONObject root = new JSONObject();
+                    JSONArray arrMen = new JSONArray();
+                    JSONArray arrWomen = new JSONArray();
+                    root.put("nuoviArriviMen", arrMen);
+                    root.put("nuoviArriviWomen", arrWomen);
+                    articoliMen.forEach(am -> arrMen.add(am.toJson()));
+                    articoliWomen.forEach(am -> arrWomen.add(am.toJson()));
+                    sendJson(response, root);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
                 break;
             }
 
