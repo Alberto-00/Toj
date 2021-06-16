@@ -5,6 +5,7 @@ import Model.Categoria.Categoria;
 import Model.Colore.Colore;
 import Model.Path_immagini.PathImg;
 import Model.Taglia.Taglia;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.util.Date;
@@ -143,6 +144,9 @@ public class Articolo implements JSONSerializable {
     @Override
     public JSONObject toJson(){
         JSONObject object = new JSONObject();
+        JSONArray taglie = new JSONArray();
+        JSONArray colori = new JSONArray();
+        JSONArray paths = new JSONArray();
         object.put("sesso", sesso);
         object.put("descrizione", descrizione);
         object.put("nome", nome);
@@ -150,10 +154,13 @@ public class Articolo implements JSONSerializable {
         object.put("IDarticolo", IDarticolo);
         object.put("sconto", sconto);
         object.put("data_inserimento", data_inserimento);
-        object.put("categoria", categoria);
-        object.put("paths", paths);
+        object.put("categoria", this.categoria.toJson());
         object.put("taglie", taglie);
+        object.put("paths", paths);
         object.put("colori", colori);
+        this.taglie.forEach(t -> taglie.add(t.toJson()));
+        this.colori.forEach(c -> colori.add(c.toJson()));
+        this.paths.forEach(p -> paths.add(p.toJson()));
         return object;
     }
 }

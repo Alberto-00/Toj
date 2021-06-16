@@ -1,16 +1,18 @@
 package Model.Path_immagini;
 
+import Controller.http.JSONSerializable;
 import Model.Articolo.Articolo;
 import Model.Dati_utente.DatiUtente;
 import Model.Ordine.Ordine;
 import Model.Sconto.Sconto;
+import org.json.simple.JSONObject;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
-public class PathImg {
+public class PathImg implements JSONSerializable {
 
     //Dati dell'Account
     private String pathName;
@@ -34,5 +36,12 @@ public class PathImg {
 
     public void setArticoli(List<Articolo> articoli) {
         this.articoli = articoli;
+    }
+
+    @Override
+    public JSONObject toJson(){
+        JSONObject object = new JSONObject();
+        object.put("pathName", pathName);
+        return object;
     }
 }

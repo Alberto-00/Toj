@@ -42,8 +42,8 @@
     <div class="title-middle">
         <h2>Nuovi arrivi</h2>
         <p>Design contemporanei, minimali e moderni per essere sempre al passo con la moda</p><br><br>
-        <a  id="F" class="hover ajax">Women's</a>
-        <a  id="M" class="hover ajax">Men's</a>
+        <a id="F" class="hover ajax">Women's</a>
+        <a id="M" class="hover ajax">Men's</a>
     </div>
 </div>
 
