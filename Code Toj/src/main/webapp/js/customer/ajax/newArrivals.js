@@ -13,16 +13,29 @@ $(document).ready(function (){
             contentType: "application/json; charset=utf-8",
             url: './customers/api',
             success: function (response){
-                var arr = JSON.parse(response);
+                const arr = JSON.parse(response);
+                const firstHref = $('#firstImg'), secondHref = $('#secondImg');
+
                 for (let i in arr.products){
-                    $('#firstImg').path();
-                    attr('href', ).append(arr.products[i].IDarticolo + "&sex=" + arr.products[i].sesso);
+
+                    /*primo blocca 'a' - 'img'*/
+                    firstHref.attr('href', firstHref.attr("href") + arr.products[i].IDarticolo + "&sex=" + arr.products[i].sesso);
+                    $('img.image-first').attr({'src': $('img.image-first').attr('src') + arr.products[i].paths[0].pathName, "alt" : arr.products[0].nome});
+
+                    /*secondo blocco 'a' - 'img'*/
+                    secondHref.attr('href', firstHref.attr("href") + arr.products[i].IDarticolo + "&sex=" + arr.products[i].sesso);
+                    secondHref.children('img').attr({'src': $('img.image-second').attr('src') + arr.products[i].paths[1].pathName, "alt" : arr.products[0].nome})
+
+                    /*terzo blocco*/
+                    if(parseInt(arr.products[i].sconto) > 0){
+                        $('div.product_sale').children('span').text("- " + arr.products[i].sconto + "%");
+                    }
+
+                    /*quarto blocco*/
+                    $('#nameProduct').attr('href', $('#nameProduct').attr('href') + arr.products[i].IDarticolo).text(arr.products[i].nome);
+                    $('span.current_price').text("€ " + arr.products[0].prezzo);
                 }
             }
         })
    })
 })
-
-function appendText(attr, appendPath){
-    return $(this).attr(attr) + appendPath;
-}

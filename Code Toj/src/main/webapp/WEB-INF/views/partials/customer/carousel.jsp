@@ -8,30 +8,28 @@
         <div class="item">
             <div class="single-product">
                 <a id="firstImg" href="${pageContext.request.contextPath}/customers/products?id=">
-                    <img class="image-first" src="${pageContext.request.contextPath}/covers/${pathImgFirst}" alt="${articolo.nome}">
+                    <img class="image-first" src="${pageContext.request.contextPath}/covers/" alt="">
                 </a>
                 <div class="overlay-product">
-                    <a id="secondImg" href="${pageContext.request.contextPath}/customers/products?id=${articolo.IDarticolo}&sex=${articolo.sesso}">
-                        <img src="${pageContext.request.contextPath}/covers/${pathImgSecond}" alt="${articolo.nome}">
+                    <a id="secondImg" href="${pageContext.request.contextPath}/customers/products?id=">
+                        <img class="image-second" src="${pageContext.request.contextPath}/covers/" alt="">
                     </a>
                 </div>
                 <div class="quick_button">
                     <a href="#">+ Aggiungi al Carrello</a>
                 </div>
                 <div class="double_base">
-                    <%/*if (articoli.get(i).getSconto() > 0){*/%>
                     <div class="product_sale">
-                        <span><%/*"- " + articoli.get(i).getSconto() + '%'*/%></span>
+                        <span></span>
                     </div>
-                    <%/*}*/%>
                     <div class="label_product">
                         <span>new</span>
                     </div>
                 </div>
             </div>
             <div class="product_content">
-                <h3><a id="nameProduct" href="">${nome}</a></h3>
-                <span class="current_price">€ <%/*articoli.get(i).getPrezzo()*/%></span>
+                <h3><a id="nameProduct" href="${pageContext.request.contextPath}/customers/cart/?id="></a></h3>
+                <span class="current_price"></span>
             </div>
         </div>
     </div>
