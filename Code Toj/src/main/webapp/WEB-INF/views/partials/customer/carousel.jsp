@@ -15,7 +15,7 @@
                     articoli = articoliWomen;
                 else articoli = articoliMen;
             }
-            else articoli = articoliWomen;
+            else articoli = articoliMen;
 
             if(articoli.size() != 0){
                 for (int i = 0; i < articoli.size() && i < 10; i++){
