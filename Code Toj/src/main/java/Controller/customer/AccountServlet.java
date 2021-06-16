@@ -42,15 +42,20 @@ public class AccountServlet extends Controller {
             case "/api":{
                 SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
                 try {
-                    List<Articolo> articoliMen = sqlArticoloDAO.doRetrieveNewProductsBySex("M");
-                    List<Articolo> articoliWomen = sqlArticoloDAO.doRetrieveNewProductsBySex("F");
+                    String sex = request.getParameter("sex");
                     JSONObject root = new JSONObject();
-                    JSONArray arrMen = new JSONArray();
-                    JSONArray arrWomen = new JSONArray();
-                    root.put("nuoviArriviMen", arrMen);
-                    root.put("nuoviArriviWomen", arrWomen);
-                    articoliMen.forEach(am -> arrMen.add(am.toJson()));
-                    articoliWomen.forEach(am -> arrWomen.add(am.toJson()));
+                    if (sex.compareToIgnoreCase("M") == 0){
+                        List<Articolo> articoliMen = sqlArticoloDAO.doRetrieveNewProductsBySex("M");
+                        JSONArray arr = new JSONArray();
+                        root.put("products", arr);
+                        articoliMen.forEach(am -> arr.add(am.toJson()));
+                    }
+                    else {
+                        List<Articolo> articoliWomen = sqlArticoloDAO.doRetrieveNewProductsBySex("F");
+                        JSONArray arr = new JSONArray();
+                        root.put("products", arr);
+                        articoliWomen.forEach(am -> arr.add(am.toJson()));
+                    }
                     sendJson(response, root);
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();

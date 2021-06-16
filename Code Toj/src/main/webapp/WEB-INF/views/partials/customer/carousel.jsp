@@ -7,7 +7,7 @@
     <div class="carousel owl-carousel">
         <div class="item">
             <div class="single-product">
-                <a id="firstImg" href="${pageContext.request.contextPath}/customers/products?id=${articolo.IDarticolo}&sex=${articolo.sesso}">
+                <a id="firstImg" href="${pageContext.request.contextPath}/customers/products?id=">
                     <img class="image-first" src="${pageContext.request.contextPath}/covers/${pathImgFirst}" alt="${articolo.nome}">
                 </a>
                 <div class="overlay-product">

@@ -153,7 +153,6 @@ public class Articolo implements JSONSerializable {
         object.put("prezzo", prezzo);
         object.put("IDarticolo", IDarticolo);
         object.put("sconto", sconto);
-        object.put("data_inserimento", data_inserimento);
         object.put("categoria", this.categoria.toJson());
         object.put("taglie", taglie);
         object.put("paths", paths);
