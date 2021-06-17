@@ -11,6 +11,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "AccountServlet", value = "/customers/*")
@@ -25,41 +26,21 @@ public class AccountServlet extends Controller {
                 String id = request.getParameter("id");
                 String sex = request.getParameter("sex");
                 int idParse = Integer.parseInt(id);
+
                 SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
                 try {
+                    List<Articolo> newArrivalBySex = sqlArticoloDAO.doRetrieveNewProductsBySex(sex);
                     Articolo articolo = sqlArticoloDAO.doRetrieveProductById(idParse);
                     if (articolo != null) {
+                        List<Articolo> filterColor = sqlArticoloDAO.doRetrieveProductByNome(articolo.getNome());
+                        request.setAttribute("filterColor", filterColor);
                         request.setAttribute("articolo", articolo);
-                        request.setAttribute("sex", sex);
+                        request.setAttribute("nuoviArrivi", newArrivalBySex);
                     }
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
                 request.getRequestDispatcher(view("customer/products")).forward(request, response);
-                break;
-            }
-
-            case "/api":{
-                SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
-                try {
-                    String sex = request.getParameter("sex");
-                    JSONObject root = new JSONObject();
-                    if (sex.compareToIgnoreCase("M") == 0){
-                        List<Articolo> articoliMen = sqlArticoloDAO.doRetrieveNewProductsBySex("M");
-                        JSONArray arr = new JSONArray();
-                        root.put("products", arr);
-                        articoliMen.forEach(am -> arr.add(am.toJson()));
-                    }
-                    else {
-                        List<Articolo> articoliWomen = sqlArticoloDAO.doRetrieveNewProductsBySex("F");
-                        JSONArray arr = new JSONArray();
-                        root.put("products", arr);
-                        articoliWomen.forEach(am -> arr.add(am.toJson()));
-                    }
-                    sendJson(response, root);
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
                 break;
             }
 

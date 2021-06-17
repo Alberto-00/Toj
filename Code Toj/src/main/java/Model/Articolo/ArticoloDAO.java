@@ -4,9 +4,10 @@ import java.util.List;
 
 public interface ArticoloDAO <E extends Exception>{
 
-    List<Articolo> doRetrieveNewProducts() throws E;
 
     List<Articolo> doRetrieveNewProductsBySex(String sex) throws E;
+
+    List<Articolo> doRetrieveProductByNome(String nome) throws E;
 
     Articolo doRetrieveProductById(int id) throws E;
 

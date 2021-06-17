@@ -3,7 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%List<Articolo> articoli = (List<Articolo>) request.getServletContext().getAttribute("articoli");%>
+<%List<Articolo> articoliWomen = (List<Articolo>) request.getServletContext().getAttribute("articoli");
+    List<Articolo> nuoviArriviBySex = (List<Articolo>) request.getAttribute("nuoviArrivi");
+    List<Articolo> articoli;
+
+    if(nuoviArriviBySex != null && nuoviArriviBySex.size() > 0)
+        articoli = nuoviArriviBySex;
+    else
+        articoli = articoliWomen;
+%>
+
 <div class="owl-slider">
     <div class="carousel owl-carousel">
 
@@ -15,12 +24,12 @@
 
         <div id="item" class="item">
             <div class="single-product">
-                <a id="firstImg" href="${pageContext.request.contextPath}/customers/products?id=${articolo.IDarticolo}&sex=${articolo.sesso}">
-                    <img class="image-first" src="${pageContext.request.contextPath}/covers/${pathImgFirst}" alt="${articolo.nome}">
+                <a id="firstImg<%=i%>" href="${pageContext.request.contextPath}/customers/products?id=${articolo.IDarticolo}&sex=${articolo.sesso}">
+                    <img class="image-first image-first<%=i%>" src="${pageContext.request.contextPath}/covers/${pathImgFirst}" alt="${articolo.nome}">
                 </a>
                 <div class="overlay-product">
-                    <a id="secondImg" href="${pageContext.request.contextPath}/customers/products?id=${articolo.IDarticolo}&sex=${articolo.sesso}">
-                        <img class="image-second" src="${pageContext.request.contextPath}/covers/${pathImgSecond}" alt="${articolo.nome}">
+                    <a id="secondImg<%=i%>" href="${pageContext.request.contextPath}/customers/products?id=${articolo.IDarticolo}&sex=${articolo.sesso}">
+                        <img class="image-second<%=i%>" src="${pageContext.request.contextPath}/covers/${pathImgSecond}" alt="${articolo.nome}">
                     </a>
                 </div>
                 <div class="quick_button">
@@ -38,8 +47,8 @@
                 </div>
             </div>
             <div class="product_content">
-                <h3><a id="nameProduct" href="">${articolo.nome}</a></h3>
-                <span id="price" class="current_price"><%="€ " + articoli.get(i).getPrezzo()%></span>
+                <h3><a id="nameProduct<%=i%>" href="${pageContext.request.contextPath}/customers/products?id=${articolo.IDarticolo}&sex=${articolo.sesso}">${articolo.nome}</a></h3>
+                <span id="price<%=i%>" class="current_price"><%="€ " + articoli.get(i).getPrezzo()%></span>
             </div>
         </div>
         <%}%>

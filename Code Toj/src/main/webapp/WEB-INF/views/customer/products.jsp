@@ -6,6 +6,7 @@
     <jsp:include page="../partials/head.jsp">
         <jsp:param name="customerStyles" value="otherPage,carousel,products"/>
         <jsp:param name="customerScripts" value="carousel,products,myAccount"/>
+        <jsp:param name="customerAjaxScripts" value="productPage"/>
         <jsp:param name="title" value="T&#x000F8;j - products details"/>
     </jsp:include>
 </head>
@@ -19,7 +20,9 @@
     <jsp:param name="title" value="Dettagli Prodotto"/>
 </jsp:include>
 
-<%Articolo articolo = (Articolo) request.getAttribute("articolo");%>
+<%Articolo articolo = (Articolo) request.getAttribute("articolo");
+List<Articolo> articoliColor = (List<Articolo>) request.getAttribute("filterColor");
+%>
 <div class="container-top">
     <div class="row">
         <div class="column38">
@@ -34,7 +37,7 @@
                                     <div class="item">
                                         <div class="single-product">
                                             <a href="javascript:void(0)">
-                                                <img class="image-first small-img" src="${pageContext.request.contextPath}/covers/<%=articolo.getPaths().get(i).getPathName()%>" alt="<%=articolo.getNome()%>">
+                                                <img id="small-img<%=i%>" class="image-first small-img" src="${pageContext.request.contextPath}/covers/<%=articolo.getPaths().get(i).getPathName()%>" alt="<%=articolo.getNome()%>">
                                             </a>
                                         </div>
                                     </div>
@@ -58,10 +61,14 @@
                     </div>
                     <div class="product_variant color">
                         <h3>colore</h3>
-                        <select name="produc-color">
+                        <select name="produc-color" id="slectColor">
                             <option selected value="default">Scegli opzione</option>
-                            <%for (int i = 0; i < articolo.getColori().size(); i++){%>
-                            <option value="<%=i%>"><%=articolo.getColori().get(i).getNome()%></option>
+                            <%for (int i = 0; i < articoliColor.size(); i++){%>
+                            <option class="ajax" value="<%=articoliColor.get(i).getIDarticolo()%>">
+                                <%for (int j = 0; j <articoliColor.get(i).getColori().size(); j++){%>
+                                <%=articoliColor.get(i).getColori().get(j).getNome()%>
+                            </option>
+                                <%}%>
                             <%}%>
                         </select>
                     </div>
@@ -149,7 +156,6 @@
         <h3>I trend del momento su tøj</h3>
     </div>
     <%@include file="../partials/customer/carousel.jsp"%>
-    <!--trasformare in import dinamico-->
 </div>
 
 <!-- footer-->

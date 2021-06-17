@@ -1,11 +1,8 @@
 $(document).ready(function (){
-    var div = document.getElementById("item");
-    var listChildren = div.children;
-    var t1 = listChildren[0];
-    var t2 = listChildren[1];
 
     $("a.ajax").click(function () {
         var sex = $(this).attr("id");
+
         if(sex === 'M'){
             $('#M').css("color", "var(--hover)");
             $('#F').css("color", "var(--grey)");
@@ -23,39 +20,38 @@ $(document).ready(function (){
             },
             dataType: 'text',
             contentType: "application/json; charset=utf-8",
-            url: './customers/api',
+            url: './ajax/api',
             success: function (response) {
                 var arr = JSON.parse(response);
 
                 for (let i = 0; i < parseInt(arr.products.length) && i < 10; i++){
-                    $('.carousel').owlCarousel().trigger('add.owl.carousel', [jQuery("<div class='item'>" + t1.outerHTML + t2.outerHTML + "</div>")]).trigger('refresh.owl.carousel');
                     createItem(i);
                 }
 
                 function createItem(i){
-                    let firstHref = $('.single-product').find('a')[0],
-                        secondHref = $('.overlay-product').find('a')[0];
-
                     /*primo blocca 'a' - 'img'*/
-                    $(firstHref).attr({
+                    $('a#firstImg' + i).attr({
                         'href': "./customers/products?id=" + arr.products[i].IDarticolo + "&sex=" + arr.products[i].sesso,
                         'id' : "firstImg" + i
                     });
 
-                    $($(firstHref).find('img')[0]).attr({
+                    $('img.image-first' + i).attr({
                         'src': "./covers/" + arr.products[i].paths[0].pathName,
+                        'class' : "image-first image-first" + i,
                         "alt": arr.products[i].nome
                     });
 
+
                     /*secondo blocco 'a' - 'img'*/
-                    $(secondHref).attr({
+                    $('a#secondImg' + i).attr({
                         'href': "./customers/products?id="  + arr.products[i].IDarticolo + "&sex=" + arr.products[i].sesso,
                         'id' : "secondImg" + i
                     });
 
-                    $($(secondHref).find('img')[0]).attr({
+                    $('img.image-second' + i).attr({
                         'src': "./covers/" + arr.products[i].paths[1].pathName,
-                        "alt": arr.products[i].nome
+                        "alt": arr.products[i].nome,
+                        "class" : "image-second" + i
                     })
 
                     /*terzo blocco*/
@@ -64,12 +60,12 @@ $(document).ready(function (){
                     }
 
                     /*quarto blocco*/
-                    $($('.product_content').find('a')[0]).attr({
-                        'href': "./customers/products/?id=" + arr.products[i].IDarticolo,
+                    $('#nameProduct' + i).attr({
+                        'href': "./customers/products?id=" + arr.products[i].IDarticolo + "&sex=" + arr.products[i].sesso,
                         'id' : "nameProduct" + i
                     }).text(arr.products[i].nome);
 
-                    $($('.product_content').find('span')[0]).attr({
+                    $('price' + i).attr({
                         'id' : "price" + i
                     }).text("€ " + arr.products[i].prezzo);
                 }
@@ -77,14 +73,3 @@ $(document).ready(function (){
         })
    })
 })
-
-function deleteItem(){
-    var div = document.getElementsByClassName('owl-stage');
-    var listItem = $(div).find('.owl-item');
-
-    if(parseInt(listItem.length) > 0){
-        for (let i = 0; i < parseInt(listItem.length); i++){
-            listItem[i].remove();
-        }
-    }
-}
