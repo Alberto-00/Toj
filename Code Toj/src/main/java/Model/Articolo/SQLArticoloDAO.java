@@ -33,7 +33,7 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
                     "INNER JOIN pathimg p on a.ID_articolo = p.ID_articolo " +
                     "WHERE a.data_inserimento <= current_date " +
                     "AND a.data_inserimento >= date_sub(current_date, INTERVAL  1 month) " +
-                    "AND a.Sesso = '" + sex + "'");
+                    "AND a.Sesso = '" + sex + "'" + " ORDER BY a.ID_articolo Desc");
 
             ResultSet rs = ps.executeQuery();
             ArticoloExtractor articoloExtractor = new ArticoloExtractor();
@@ -356,15 +356,12 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
                     "GROUP BY a.ID_articolo");
 
             ResultSet rs = ps.executeQuery();
-
             int count=0;
             while(rs.next()){
                 count++;
             }
-
             return count;
         }
-
     }
 
 

@@ -42,15 +42,15 @@
                     <a onclick="closeForm()" class="icon-close-popup-sigIn"><i class="fas fa-times"></i></a>
 
                     <div class="login__box">
-                        <label for="usernameInput">
+                        <label for="EmailInput">
                             <i class="fas fa-user"></i>
-                            <input type="text" id="usernameInput" name="usernameInput" placeholder="Username" class="login__input">
+                            <input type="text" id="EmailInput" name="email" placeholder="Email" class="login__input">
                         </label>
                     </div>
                     <div class="login__box">
                         <label for="passwordInput">
                             <i class="fas fa-unlock-alt"></i>
-                            <input type="password" id="passwordInput" name="passwordInput" placeholder="Password" class="login__input">
+                            <input type="password" id="passwordInput" name="password" placeholder="Password" class="login__input">
                         </label>
                     </div>
                     <a href="${pageContext.request.contextPath}/customers/account" class="login__forgot">Password dimenticata?</a>
@@ -62,12 +62,6 @@
                 <form action="${pageContext.request.contextPath}/customers/sigUp" method="post" class="login__create none close-icon" id="login-up">
                     <h1 class="login__title">Create Account</h1>
                     <a onclick="closeForm()" class="icon-close-popup-sigUp"><i class="fas fa-times"></i></a>
-                    <div class="login__box">
-                        <label for="usernameOutput">
-                            <i class="fas fa-user"></i>
-                            <input type="text" id="usernameOutput" name="usernameOutput" placeholder="Username" class="login__input">
-                        </label>
-                    </div>
 
                     <div class="login__box">
                         <label for="email">
@@ -79,7 +73,7 @@
                     <div class="login__box">
                         <label for="passwordOutput">
                             <i class="fas fa-unlock-alt"></i>
-                            <input type="password" id="passwordOutput" name="passwordOutput" placeholder="Password" class="login__input">
+                            <input type="password" id="passwordOutput" name="password" placeholder="Password" class="login__input">
                         </label>
                     </div>
                     <input type="submit" class="login__button" value="Registrati" name="submitForm">

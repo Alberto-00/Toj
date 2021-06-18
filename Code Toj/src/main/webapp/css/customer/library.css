@@ -4,10 +4,17 @@
     --grey: #747474;
     --black: #242424;
     --hover: #fd7e14;
+    --error: #cc0000;
 }
 *{
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+.errMsg{
+    color: var(--error);
+    display: block;
+    font-size: .6rem;
 }
 
 body{

@@ -169,6 +169,7 @@ function validateForm(form){
     function _reportError(event){
         const _el = event.target;
         const errors = [];
+
         if (_el.validity.tooShort){
             errors.push(dict['tooShort'].replace("%s", _el.getAttribute('minlenght')));
         }
@@ -221,4 +222,10 @@ function validateForm(form){
             event.preventDefault();
         }
     })
+}
+
+/*Validazione*/
+const form = document.getElementById("customerForm");
+if (form){
+    validateForm(form);
 }

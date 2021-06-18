@@ -4,18 +4,35 @@ import Model.storage.ConPool;
 import Model.storage.QueryBuilder;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.util.List;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Optional;
 
 public class SQLAccountDAO implements AccountDAO{
+
     @Override
-    public List<Account> doRetrieveAll() throws Exception {
-        return null;
+    public Optional<Account> findAccount(String email, String password, boolean admin) throws SQLException {
+        try(Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT a.* " +
+                    "FROM account_user a " +
+                    "WHERE Email = ? AND Password_User = ? AND Admin_user = ?");
+
+            ps.setString(1, email);
+            ps.setString(2, password);
+            ps.setBoolean(3, admin);
+
+            ResultSet rs = ps.executeQuery();
+            Account account = null;
+            if(rs.next()){
+                account = new AccountExtractor().extract(rs);
+            }
+            return Optional.ofNullable(account);
+        }
     }
 
     @Override
-    public boolean doCreateArticolo(Account account) throws Exception {
+    public boolean doCreateArticolo(Account account) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
             QueryBuilder queryBuilder = new QueryBuilder("account_user", "a");
             queryBuilder.insert("Email", "Password_user", "Admin_user");
@@ -30,7 +47,7 @@ public class SQLAccountDAO implements AccountDAO{
     }
 
     @Override
-    public boolean doUpdateArticolo(Account account) throws Exception {
+    public boolean doUpdateArticolo(Account account) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
             QueryBuilder queryBuilder = new QueryBuilder("account_user", "a");
             queryBuilder.update("Email", "Password_user", "Admin_user").where("a.Email = " + account.getEmail());
@@ -45,7 +62,7 @@ public class SQLAccountDAO implements AccountDAO{
     }
 
     @Override
-    public boolean doDeleteArticolo(Account account) throws Exception {
+    public boolean doDeleteArticolo(Account account) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
             QueryBuilder queryBuilder = new QueryBuilder("account_user", "a");
             queryBuilder.delete().where("a.Email = " + account.getEmail());

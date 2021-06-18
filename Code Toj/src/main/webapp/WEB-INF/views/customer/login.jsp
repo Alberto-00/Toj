@@ -22,15 +22,16 @@
         <div class="column-contact">
             <div class="contact-message">
                 <h1>Login</h1>
-                <form method="post" action="#">
-                    <p>
-                        <label>Username o email *</label>
-                        <input name="username" type="text">
-                    </p>
-                    <p>
-                        <label>Password *</label>
-                        <input name="password" type="password">
-                    </p>
+                <form method="post" action="${pageContext.request.contextPath}/customers/sigin" id="customerForm">
+
+                    <label>Email *</label>
+                    <input name="email" type="email">
+                    <small class="errMsg">aaa</small>
+
+                    <label>Password *</label>
+                    <input name="password" type="password">
+                    <small class="errMsg">aaa</small>
+
                     <div class="login-submit">
                         <a href="#">Hai dimenticato la password?</a>
                         <input class="submit-button-log" type="submit" name="submitContact" value="LOGIN">
@@ -46,19 +47,16 @@
         <div class="column-contact">
             <div class="contact-message">
                 <h1>Registrati</h1>
-                <form method="post" action="#">
-                    <p>
-                        <label>Email *</label>
-                        <input name="email" type="email">
-                    </p>
-                    <p>
-                        <label>Username *</label>
-                        <input class="input-text" name="username" type="text">
-                    </p>
-                    <p>
-                        <label>Password *</label>
-                        <input name="password" type="password">
-                    </p>
+                <form method="post" action="${pageContext.request.contextPath}/customers/sigUp">
+
+                    <label>Email *</label>
+                    <input name="email" type="email">
+                    <small class="errMsg">aaa</small>
+
+                    <label>Password *</label>
+                    <input name="password" type="password">
+                    <small class="errMsg">aaa</small>
+
                     <input class="submit-button-log reg" type="submit" name="submitContact" value="REGISTRATI">
                 </form>
             </div>

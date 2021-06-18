@@ -33,7 +33,7 @@
                     </a>
                 </div>
                 <div class="quick_button">
-                    <a href="#">+ Aggiungi al Carrello</a>
+                    <a id="cartHref<%=i%>" href="${pageContext.request.contextPath}/customers/cart?id=${articolo.IDarticolo}&sex=${articolo.sesso}">+ Aggiungi al Carrello</a>
                 </div>
                 <div class="double_base">
                     <%if (articoli.get(i).getSconto() > 0){%>

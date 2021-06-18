@@ -28,7 +28,7 @@ List<Articolo> articoliColor = (List<Articolo>) request.getAttribute("filterColo
         <div class="column38">
             <div class="product-details">
                 <div class="img-zoom-container">
-                    <img class="big-img" src="${pageContext.request.contextPath}/covers/<%=articolo.getPaths().get(0).getPathName()%>" alt="<%=articolo.getNome()%>">
+                    <img class="big-img" src="${pageContext.request.contextPath}/covers/<%=articolo.getPaths().get(0).getPathName()%>" alt="<%=articolo.getNome()%>" data="<%=articolo.getSesso()%>">
                     <div class="row">
                         <div class="column100">
                             <div class="owl-slider">
@@ -76,9 +76,9 @@ List<Articolo> articoliColor = (List<Articolo>) request.getAttribute("filterColo
                         <h3>taglia</h3>
                         <select name="products-size">
                             <option selected value="default">Scegli opzione</option>
-                            <%for (Taglia taglia: articolo.getTaglie()){%>
-                            <option id="option_taglia" value="<%=taglia.getId_nome()%>" onclick="setQuantita(<%=taglia.getQuantita()%>)"><%=taglia.getId_nome()%></option>
-                            <%}%>
+                            <%int j = 0; for (Taglia taglia: articolo.getTaglie()){%>
+                            <option id="option_taglia<%=j%>" value="<%=taglia.getId_nome()%>" onclick="setQuantita(<%=taglia.getQuantita()%>)"><%=taglia.getId_nome()%></option>
+                            <%j++; }%>
                         </select>
                     </div>
                     <div class="product_variant quantity">
