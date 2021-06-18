@@ -1,20 +1,22 @@
 package Controller.customer;
 
+import Controller.customer.Validator.AccountValidator;
 import Controller.http.Controller;
+import Controller.http.InvalidRequestException;
+import Model.Account.Account;
+import Model.Account.AccountSession;
+import Model.Account.SQLAccountDAO;
 import Model.Articolo.Articolo;
-import Model.Articolo.ArticoloDAO;
 import Model.Articolo.SQLArticoloDAO;
 import Model.search.Paginator;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @WebServlet(name = "AccountServlet", value = "/customers/*")
 @MultipartConfig
@@ -48,17 +50,14 @@ public class AccountServlet extends Controller {
 
             case "/Men": {
                 SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
-
                 int intPage = 2;//request.getParameter("page");
                 System.out.println(intPage);
                 Paginator paginator = new Paginator(intPage, 18);
-
                 try {
                     int size = sqlArticoloDAO.countAll();
                     System.out.println(size);
                     request.setAttribute("pages", paginator.getPages(size));
                     List<Articolo> ArrivalBySex = sqlArticoloDAO.doRetrieveProductBySex("M", paginator);
-
                     if (ArrivalBySex != null) {
                         request.setAttribute("ArticoliMaschili", ArrivalBySex);
                     }
@@ -69,23 +68,23 @@ public class AccountServlet extends Controller {
                 break;
             }
 
-            case "/Women": {
-                /*SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
-                try {
-                    List<Articolo> ArrivalBySex = sqlArticoloDAO.doRetrieveProductBySex("F");
-                    if (ArrivalBySex != null) {
-                        request.setAttribute("ArticoliFemminili", ArrivalBySex);
-                    }
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
-
-                request.getRequestDispatcher(view("customer/Women")).forward(request, response);
-                break;*/
-            }
 
             case "/sigin":
                 request.getRequestDispatcher(view("customer/login")).forward(request, response);
+                break;
+
+            case "/logout":
+                HttpSession session = request.getSession(false);
+                try {
+                    authenticate(session);
+                } catch (InvalidRequestException e) {
+                    e.printStackTrace();
+                }
+                AccountSession accountSession = (AccountSession) session.getAttribute("accountSession");
+                String redirect = accountSession.isAdmin() ? "/Toj/crm/sigin" : "/Toj/customers/sigin";
+                session.removeAttribute("accountSession");
+                session.invalidate();
+                response.sendRedirect(redirect);
                 break;
 
             case "/aboutUs":
@@ -122,15 +121,37 @@ public class AccountServlet extends Controller {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         String path = getPath(request);
         switch (path){
             case "/sigin":{
-                String username = request.getParameter("usernameInput");
-                String password = request.getParameter("passwordInput");
-                request.getRequestDispatcher("index.jsp").forward(request, response);
+                String email = request.getParameter("email");
+                String password = request.getParameter("password");
+                try {
+                    validate(AccountValidator.validateSigin(request));
+                    Account tmpAccount = new Account();
+                    tmpAccount.setEmail(email);
+                    tmpAccount.setPassword(password);
+                    SQLAccountDAO sqlAccountDAO = new SQLAccountDAO();
+                    Optional<Account> accounts = null;
+                    try {
+                        accounts = sqlAccountDAO.findAccount(tmpAccount.getEmail(), tmpAccount.getPassword(), false);
+                        if(accounts.isPresent()){
+                            AccountSession accountSession = new AccountSession(accounts.get());
+                            request.getSession(true).setAttribute("accountSession", accountSession);
+                            response.sendRedirect("/Toj/dashboard/home");
+                        } else {
+                            throw new InvalidRequestException("Credenziali non valide", List.of("Credenziali non valide"), HttpServletResponse.SC_BAD_REQUEST);
+                        }
+                    } catch (InvalidRequestException e) {
+                        e.printStackTrace();
+                    }
+                } catch (SQLException | InvalidRequestException throwables) {
+                    throwables.printStackTrace();
+                }
                 break;
             }
+
             case "/sigUp":{
                 String username = request.getParameter("usernameOutput");
                 String email = request.getParameter("email");

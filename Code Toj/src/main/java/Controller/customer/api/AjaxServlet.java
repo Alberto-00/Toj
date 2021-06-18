@@ -21,22 +21,16 @@ public class AjaxServlet extends Controller {
         String path = getPath(request); //abbiamo preso tutto il pezzo dopo "/customers/*"
         switch (path) {
             case "/api-product": {
-                String id = request.getParameter("coloreID");
+                String id = request.getParameter("id");
                 int idParse = Integer.parseInt(id);
                 SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
 
                 try {
                     JSONObject root = new JSONObject();
-                    JSONArray arr = new JSONArray();
                     Articolo articolo = sqlArticoloDAO.doRetrieveProductById(idParse);
 
                     if (articolo != null) {
-                        List<Articolo> articoliColor = sqlArticoloDAO.doRetrieveProductByNome(articolo.getNome());
-                        request.setAttribute("articolo", articolo);
-                        request.setAttribute("articolos", articoliColor);
                         root.put("articolo", articolo.toJson());
-                        root.put("colori", arr);
-                        articoliColor.forEach(ar -> arr.add(ar.toJson()));
                     }
                     sendJson(response, root);
                 } catch (SQLException throwables) {

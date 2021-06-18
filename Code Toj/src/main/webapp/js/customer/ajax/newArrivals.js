@@ -55,6 +55,10 @@ $(document).ready(function (){
                     })
 
                     /*terzo blocco*/
+                    $('#cartHref' + i).attr({
+                        'href': "./customers/cart?id="  + arr.products[i].IDarticolo + "&sex=" + arr.products[i].sesso,
+                    })
+
                     if (parseInt(arr.products[i].sconto) > 0) {
                         $('div.product_sale').children('span').text("- " + arr.products[i].sconto + "%");
                     }
