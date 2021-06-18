@@ -22,13 +22,13 @@ $(document).ready(function(){
 var elem = document.getElementById("overlay-image-woman")
 if(elem){
     elem.addEventListener("click", function (){
-        window.location.href = "./customers/Men";
+        window.location.href = "./customers/productsList?page=1&sex=F";
     })
 }
 
 var elem = document.getElementById("overlay-image-man")
 if(elem){
     elem.addEventListener("click", function (){
-        window.location.href = "./customers/Men";
+        window.location.href = "./customers/productsList?page=1&sex=M";
     })
 }

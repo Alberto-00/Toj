@@ -192,7 +192,7 @@
 .p-price{
     color: #242424 !important; /*viene sostituito dal white del container*/
     font-size: 13px;
-    font-weight: 400;
+    font-weight: 500;
 }
 .product-box:hover{
     box-shadow: 2px 2px 30px rgba(0,0,0,0.1);

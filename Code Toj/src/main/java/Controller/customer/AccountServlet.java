@@ -33,7 +33,7 @@ public class AccountServlet extends Controller {
 
                 SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
                 try {
-                    List<Articolo> newArrivalBySex = sqlArticoloDAO.doRetrieveNewProductsBySex(sex);
+                    List<Articolo> newArrivalBySex = sqlArticoloDAO.pagination(sex);
                     Articolo articolo = sqlArticoloDAO.doRetrieveProductById(idParse);
                     if (articolo != null) {
                         List<Articolo> filterColor = sqlArticoloDAO.doRetrieveProductByNome(articolo.getNome());
@@ -48,26 +48,30 @@ public class AccountServlet extends Controller {
                 break;
             }
 
-            case "/Men": {
+            case "/productsList": {
                 SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
-                int intPage = 2;//request.getParameter("page");
-                System.out.println(intPage);
+                int intPage = parsePage(request);
+                String sex = request.getParameter("sex");
+
+                if (sex.compareTo("M") == 0)
+                    request.setAttribute("sex", "Uomo");
+                else
+                    request.setAttribute("sex", "Donna");
+
                 Paginator paginator = new Paginator(intPage, 18);
                 try {
-                    int size = sqlArticoloDAO.countAll();
-                    System.out.println(size);
+                    int size = sqlArticoloDAO.countAll(sex);
                     request.setAttribute("pages", paginator.getPages(size));
-                    List<Articolo> ArrivalBySex = sqlArticoloDAO.doRetrieveProductBySex("M", paginator);
-                    if (ArrivalBySex != null) {
-                        request.setAttribute("ArticoliMaschili", ArrivalBySex);
+                    List<Articolo> products = sqlArticoloDAO.pagination(sex, paginator);
+                    if (products != null) {
+                        request.setAttribute("productsList", products);
                     }
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
-                request.getRequestDispatcher(view("customer/Men")).forward(request, response);
+                request.getRequestDispatcher(view("customer/men_&_Women")).forward(request, response);
                 break;
             }
-
 
             case "/sigin":
                 request.getRequestDispatcher(view("customer/login")).forward(request, response);

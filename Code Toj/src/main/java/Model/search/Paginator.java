@@ -3,12 +3,12 @@ package Model.search;
 public class Paginator {
 
     private final int limit;
-    private int lastId, firstId;
+    private final int lastId, firstId;
 
     public Paginator(int page, int itemsPerPage){
         this.limit = itemsPerPage;
-        this.firstId = 18*(page-1);
-        this.lastId = 18*page;
+        this.firstId = itemsPerPage * (page - 1);
+        this.lastId = itemsPerPage * page;
     }
 
     public int getLastId() {

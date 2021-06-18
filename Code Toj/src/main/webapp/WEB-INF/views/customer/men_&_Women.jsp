@@ -8,7 +8,7 @@
     <jsp:include page="../partials/head.jsp">
         <jsp:param name="customerStyles" value="otherPage,menWomen"/>
         <jsp:param name="customerScripts" value="menWomen"/>
-        <jsp:param name="title" value="T&#x000F8;j - Men"/>
+        <jsp:param name="title" value="T&#x000F8;j - ${sex}"/>
     </jsp:include>
 
 </head>
@@ -17,19 +17,17 @@
 <%@include file="../partials/customer/headerTop.jsp"%>
 <hr class="border2-hr">
 
-<%List<Articolo> articoli = (List<Articolo>) request.getAttribute("ArticoliMaschili");
-
-
-if(articoli.size() > 0){
+<%List<Articolo> articoli = (List<Articolo>) request.getAttribute("productsList");
+    if(articoli.size() > 0){
     for (int i = 0; i < 18; i++){
         request.setAttribute("pathImgFirst",articoli.get(i).getPaths().get(0).getPathName());
         request.setAttribute("pathImgSecond", articoli.get(i).getPaths().get(1).getPathName());
     }
-};%>
+}%>
 
 <div class="container-top">
     <div class="column-filters" id="filters" style="float: left;">
-        <form action="/action_page.php"><br>
+        <form action="#"><br>
             <div class="filter-contenitor">Prezzo
                 <a onclick="hideElement('filter-price')" style="display: block"><i class="fas fa-plus"></i></a>
                 <div class="filter-price" id="filter-price">
@@ -211,7 +209,7 @@ if(articoli.size() > 0){
 
                 <c:forEach var="page" begin="1" end="${pages}">
                     <li>
-                        <a href="./Men?page=${page}">${page}</a>
+                        <a href="./productsList?page=${page}&sex=<%=articoli.get(0).getSesso()%>">${page}</a>
                     </li>
                 </c:forEach>
 

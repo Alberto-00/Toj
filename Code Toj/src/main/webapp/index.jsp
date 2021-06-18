@@ -16,23 +16,23 @@
 <!-- immagini "uomo" "donna" centrali -->
 <div class="container-top">
     <div class="image image-left" id="overlay-image-woman">
-        <a href="${pageContext.request.contextPath}/customers/Women">
+        <a href="./customers/productsList?page=1&sex=F">
             <img src="${pageContext.request.contextPath}/images/woman.jpg" alt="Women">
         </a>
         <div class="banner-text centered">
             <h1>Women's</h1>
             <p>Big Sale Off Final Items. Caught in the moment!</p>
-            <a href="./customers/Women">Acquista Ora</a>
+            <a href="./customers/productsList?page=1&sex=F">Acquista Ora</a>
         </div>
     </div>
     <div class="image image-right" id="overlay-image-man">
-        <a href="${pageContext.request.contextPath}/customers/Men">
+        <a href="./customers/productsList?page=1&sex=M">
             <img src="${pageContext.request.contextPath}/images/boy.jpg" alt="Men">
         </a>
         <div class="banner-text centered">
             <h1>Men's</h1>
             <p>Big Sale Off Final Items. Caught in the moment!</p>
-            <a href="./customers/Men">Acquista Ora</a>
+            <a href="./customers/productsList?page=1&sex=M">Acquista Ora</a>
         </div>
     </div>
 </div>

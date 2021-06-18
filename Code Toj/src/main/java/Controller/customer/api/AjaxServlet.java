@@ -11,7 +11,6 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "AjaxServlet", value = "/ajax/*")
@@ -45,12 +44,12 @@ public class AjaxServlet extends Controller {
                     String sex = request.getParameter("sex");
                     JSONObject root = new JSONObject();
                     if (sex.compareToIgnoreCase("M") == 0) {
-                        List<Articolo> articoliMen = sqlArticoloDAO.doRetrieveNewProductsBySex("M");
+                        List<Articolo> articoliMen = sqlArticoloDAO.pagination("M");
                         JSONArray arr = new JSONArray();
                         root.put("products", arr);
                         articoliMen.forEach(am -> arr.add(am.toJson()));
                     } else {
-                        List<Articolo> articoliWomen = sqlArticoloDAO.doRetrieveNewProductsBySex("F");
+                        List<Articolo> articoliWomen = sqlArticoloDAO.pagination("F");
                         JSONArray arr = new JSONArray();
                         root.put("products", arr);
                         articoliWomen.forEach(am -> arr.add(am.toJson()));

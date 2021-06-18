@@ -32,7 +32,7 @@ $(document).ready(function (){
                 $('form > h1').text(arr.articolo.nome);
                 $('.current_price').text("€ " + arr.articolo.prezzo);
                 $('.product_desc > p').text(arr.articolo.descrizione);
-M
+
                 for (let i = 0; i < parseInt(arr.articolo.taglie.length); i++){
                     $('#option_taglia' + i).val(arr.articolo.taglie[i].id_nome).
                     attr('onclick', 'setQuantita(' + arr.articolo.taglie[i].quantita +')').

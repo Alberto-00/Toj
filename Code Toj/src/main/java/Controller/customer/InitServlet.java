@@ -16,7 +16,7 @@ public class InitServlet extends Controller {
     public void init() throws ServletException{
         try {
             SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
-            List<Articolo> articoli = sqlArticoloDAO.doRetrieveNewProductsBySex("F");
+            List<Articolo> articoli = sqlArticoloDAO.pagination("F");
             getServletContext().setAttribute("articoli", articoli);
             super.init();
         } catch (SQLException throwables) {

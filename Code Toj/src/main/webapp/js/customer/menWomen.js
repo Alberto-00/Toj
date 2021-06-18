@@ -1,6 +1,6 @@
 function hideElement (str) {
     var t = document.getElementById(str);
-    if(t.style.display=='block')
+    if(t.style.display ==='block')
         t.style.display='none';
     else
         t.style.display = 'block';
@@ -9,7 +9,7 @@ function hideElement (str) {
 function closeButton(){
     const elem = document.getElementById("filters");
 
-    if(elem.style.display=='block') {
+    if(elem.style.display ==='block') {
         elem.style.display = 'none';
         document.getElementById("close").innerHTML = "APRI";
     }
