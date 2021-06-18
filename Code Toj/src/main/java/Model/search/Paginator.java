@@ -3,18 +3,24 @@ package Model.search;
 public class Paginator {
 
     private final int limit;
-    private final int offset;
+    private int lastId, firstId;
 
     public Paginator(int page, int itemsPerPage){
         this.limit = itemsPerPage;
-        this.offset = (page - 1) * itemsPerPage + 1;
+        this.firstId = 18*(page-1);
+        this.lastId = 18*page;
     }
 
-    public int getLimit() {
-        return limit;
+    public int getLastId() {
+        return lastId;
     }
 
-    public int getOffset() {
-        return offset;
+    public int getFirstId() {
+        return firstId;
+    }
+
+    public int getPages(int size) {
+        int additionalPage = (size%limit == 0) ? 0:1;
+        return (size/limit) + additionalPage;
     }
 }

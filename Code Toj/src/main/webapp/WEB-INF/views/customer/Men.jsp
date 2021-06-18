@@ -1,3 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="Model.Articolo.Articolo" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="it">
@@ -13,6 +16,16 @@
 <!--headerTop-->
 <%@include file="../partials/customer/headerTop.jsp"%>
 <hr class="border2-hr">
+
+<%List<Articolo> articoli = (List<Articolo>) request.getAttribute("ArticoliMaschili");
+
+
+if(articoli.size() > 0){
+    for (int i = 0; i < 18; i++){
+        request.setAttribute("pathImgFirst",articoli.get(i).getPaths().get(0).getPathName());
+        request.setAttribute("pathImgSecond", articoli.get(i).getPaths().get(1).getPathName());
+    }
+};%>
 
 <div class="container-top">
     <div class="column-filters" id="filters" style="float: left;">
@@ -167,24 +180,26 @@
     <div class="products" style="float: left">
 
         <div class="row">
-            <%for(int j = 0; j < 18; j++){%>
+            <%for(int i = 0; i < 18; i++){%>
             <div class="product-box">
                  <!--img------>
                     <div class="double-img">
-                        <a href="#">
-                            <img src="${pageContext.request.contextPath}/images/woman.jpg" alt="">
-                            <img src="${pageContext.request.contextPath}/images/boy.jpg" alt="" class="top-image">
+                        <a id="firstImg<%=i%>" href="${pageContext.request.contextPath}/customers/products?id=<%=articoli.get(i).getIDarticolo()%>&sex=<%=articoli.get(i).getSesso()%>">
+                            <img src="${pageContext.request.contextPath}/covers/<%=articoli.get(i).getPaths().get(1).getPathName()%>" alt="<%=articoli.get(i).getNome()%>">
+                            <img class="top-image" src="${pageContext.request.contextPath}/covers/<%=articoli.get(i).getPaths().get(0).getPathName()%>" alt="<%=articoli.get(i).getNome()%>">
                         </a>
                         <a href="#" class="add-cart">
                             <i class="fas fa-shopping-cart"></i>
                         </a>
-                        <span class="add-sconto">5%</span>
+                        <%if (articoli.get(i).getSconto() > 0){%>
+                            <span class="add-sconto"><%="- " + articoli.get(i).getSconto() + '%'%></span>
+                        <%}%>
                     </div>
 
                 <!--product-details-------->
                 <div class="product-details">
-                    <a href="#" class="p-name">Drawstring T-Shirt</a>
-                    <span class="p-price">$22.00</span>
+                    <a class="p-name" id="nameProduct<%=i%>" href="${pageContext.request.contextPath}/customers/products?id=<%=articoli.get(i).getIDarticolo()%>&sex=<%=articoli.get(i).getSesso()%>"><%=articoli.get(i).getNome()%>
+                    <br><span class="p-price" id="price<%=i%>"><%="€ " + articoli.get(i).getPrezzo()%></span></a>
                 </div>
             </div>
             <%}%>
@@ -192,16 +207,15 @@
 
         <div class="row">
 
-            <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="#">1</a>
-                <a href="#" class="active">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#">6</a>
-                <a href="#">&raquo;</a>
-            </div>
+            <ul class="paginator">
+
+                <c:forEach var="page" begin="1" end="${pages}">
+                    <li>
+                        <a href="./Men?page=${page}">${page}</a>
+                    </li>
+                </c:forEach>
+
+            </ul>
 
         </div>
 

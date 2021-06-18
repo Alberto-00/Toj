@@ -2,7 +2,9 @@ package Controller.customer;
 
 import Controller.http.Controller;
 import Model.Articolo.Articolo;
+import Model.Articolo.ArticoloDAO;
 import Model.Articolo.SQLArticoloDAO;
+import Model.search.Paginator;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -44,13 +46,43 @@ public class AccountServlet extends Controller {
                 break;
             }
 
-            case "/Men":
-                request.getRequestDispatcher(view("customer/Men")).forward(request, response);
-                break;
+            case "/Men": {
+                SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
 
-            case "/Women":
+                int intPage = 2;//request.getParameter("page");
+                System.out.println(intPage);
+                Paginator paginator = new Paginator(intPage, 18);
+
+                try {
+                    int size = sqlArticoloDAO.countAll();
+                    System.out.println(size);
+                    request.setAttribute("pages", paginator.getPages(size));
+                    List<Articolo> ArrivalBySex = sqlArticoloDAO.doRetrieveProductBySex("M", paginator);
+
+                    if (ArrivalBySex != null) {
+                        request.setAttribute("ArticoliMaschili", ArrivalBySex);
+                    }
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
                 request.getRequestDispatcher(view("customer/Men")).forward(request, response);
                 break;
+            }
+
+            case "/Women": {
+                /*SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
+                try {
+                    List<Articolo> ArrivalBySex = sqlArticoloDAO.doRetrieveProductBySex("F");
+                    if (ArrivalBySex != null) {
+                        request.setAttribute("ArticoliFemminili", ArrivalBySex);
+                    }
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+
+                request.getRequestDispatcher(view("customer/Women")).forward(request, response);
+                break;*/
+            }
 
             case "/sigin":
                 request.getRequestDispatcher(view("customer/login")).forward(request, response);
