@@ -344,6 +344,20 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
     }
 
     @Override
+    public int getFirstId(String sex, int off) throws SQLException {
+        try(Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT ID_articolo as id, MIN(ID_articolo) as min FROM articolo " +
+                    "WHERE Sesso='"+sex+"' LIMIT ?,18446744073709551615");
+
+            ps.setInt(1, off);
+            ResultSet rs = ps.executeQuery();
+            return rs.next() ? rs.getInt("min") : 0;
+        }
+    }
+
+
+
+    @Override
     public int countAll(String sex) throws SQLException {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) as count FROM articolo WHERE Sesso='" + sex + "'");

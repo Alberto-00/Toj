@@ -58,8 +58,9 @@ public class AccountServlet extends Controller {
                 else
                     request.setAttribute("sex", "Donna");
 
-                Paginator paginator = new Paginator(intPage, 18);
+
                 try {
+                    Paginator paginator = new Paginator(intPage, 18, sex);
                     int size = sqlArticoloDAO.countAll(sex);
                     request.setAttribute("pages", paginator.getPages(size));
                     List<Articolo> products = sqlArticoloDAO.pagination(sex, paginator);
