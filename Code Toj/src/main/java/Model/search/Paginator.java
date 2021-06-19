@@ -16,34 +16,26 @@ public class Paginator {
 
     public Paginator(int page, int itemsPerPage, String sex) throws SQLException {
         this.limit = itemsPerPage;
+        this.lastId=0;
         SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
 
-        if(sex.compareTo("M")==0){
+        List<Integer> ids = sqlArticoloDAO.getIds(sex);
 
-            List<Integer> ids = sqlArticoloDAO.getIds("M");
-            ArrayList<Integer> trial = new ArrayList<>();
+        for(int i=(18*(page-1)); i<(page*18); i++) {
 
-            for(int i=(18*(page-1)); i<(page*18) && ids.get(i)!=null; i++) {
-                trial.add(ids.get(i));
+            this.lastId = ids.get(i);
+            System.out.println(lastId);
+
+            if(ids.get(i+1)==null){
+                break;
             }
-
-            this.firstId = trial.get(0);
-            this.lastId = trial.get(17);
-
-        } else{
-
-            List<Integer> ids = sqlArticoloDAO.getIds("F");
-            ArrayList<Integer> trial = new ArrayList<>();
-
-            for(int i=(18*(page-1)); i<(page*18); i++) {
-                trial.add(ids.get(i));
-            }
-
-            this.firstId = trial.get(0);
-            this.lastId = trial.get(17);
         }
 
+        this.firstId = ids.get(18*(page-1));
+        System.out.println(lastId);
     }
+
+
 
     public int getLastId() {
         return lastId;
