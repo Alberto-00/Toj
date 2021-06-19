@@ -15,7 +15,7 @@ public interface ArticoloDAO <E extends Exception>{
 
     List<Articolo> doRetrieveProductBySexType(String sex, String type) throws E;
 
-    int getFirstId(String sex, int off) throws E;
+    List<Integer> getIds(String sex) throws E;
     
     int countAll(String sex) throws E;
 

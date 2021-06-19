@@ -2,8 +2,11 @@ package Model.search;
 
 import Model.Articolo.Articolo;
 import Model.Articolo.SQLArticoloDAO;
+import com.mysql.cj.conf.PropertyDefinitions;
 
+import java.sql.Array;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Paginator {
@@ -17,17 +20,27 @@ public class Paginator {
 
         if(sex.compareTo("M")==0){
 
-            //QUESTA è la funzione che stavo iniziando a impostare, bisogna cercare di capire meglio come funziona Limit
-            //this.firstId = sqlArticoloDAO.getFirstId("M", limit);
+            List<Integer> ids = sqlArticoloDAO.getIds("M");
+            ArrayList<Integer> trial = new ArrayList<>();
 
-            this.firstId = itemsPerPage * (page - 1);
-            this.lastId = itemsPerPage * page;
+            for(int i=(18*(page-1)); i<(page*18) && ids.get(i)!=null; i++) {
+                trial.add(ids.get(i));
+            }
+
+            this.firstId = trial.get(0);
+            this.lastId = trial.get(17);
+
         } else{
 
-            //Allora se cambi la funzione getFirstId e la lasci solo con il sex, con il codice che abbiamo visto IERI funziona, ma ovviamnete non ti va bene
+            List<Integer> ids = sqlArticoloDAO.getIds("F");
+            ArrayList<Integer> trial = new ArrayList<>();
 
-            //this.firstId = itemsPerPage * (page - 1) + sqlArticoloDAO.getFirstId("F");
-            //this.lastId = itemsPerPage * page + sqlArticoloDAO.getFirstId("F");
+            for(int i=(18*(page-1)); i<(page*18); i++) {
+                trial.add(ids.get(i));
+            }
+
+            this.firstId = trial.get(0);
+            this.lastId = trial.get(17);
         }
 
     }
