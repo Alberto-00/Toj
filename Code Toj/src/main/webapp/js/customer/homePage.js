@@ -17,18 +17,19 @@ $(document).ready(function(){
 });
 
 
-/** Overlay foto middle
+/**
+ * Overlay foto middle
  */
 var elem = document.getElementById("overlay-image-woman")
 if(elem){
     elem.addEventListener("click", function (){
-        window.location.href = "./customers/productsList?page=1&sex=F";
+        window.location.href = "./customers/shop?page=1&sex=F";
     })
 }
 
 var elem = document.getElementById("overlay-image-man")
 if(elem){
     elem.addEventListener("click", function (){
-        window.location.href = "./customers/productsList?page=1&sex=M";
+        window.location.href = "./customers/shop?page=1&sex=M";
     })
 }

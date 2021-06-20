@@ -1,6 +1,5 @@
 package Model.search;
 
-import Model.Articolo.Articolo;
 import Model.Articolo.SQLArticoloDAO;
 
 import java.sql.SQLException;
@@ -8,28 +7,24 @@ import java.util.List;
 
 public class Paginator {
 
-    private final int limit;
-    private  int lastId, firstId;
+    private final int limit, firstId;
+    private int lastId, count;
 
     public Paginator(int page, int itemsPerPage, String sex) throws SQLException {
         this.limit = itemsPerPage;
+        this.count = 0;
         SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
+        List<Integer> ids = sqlArticoloDAO.getIds(sex);
+        this.firstId = ids.get(this.limit * (page - 1));
 
-        if(sex.compareTo("M")==0){
-
-            //QUESTA è la funzione che stavo iniziando a impostare, bisogna cercare di capire meglio come funziona Limit
-            //this.firstId = sqlArticoloDAO.getFirstId("M", limit);
-
-            this.firstId = itemsPerPage * (page - 1);
-            this.lastId = itemsPerPage * page;
-        } else{
-
-            //Allora se cambi la funzione getFirstId e la lasci solo con il sex, con il codice che abbiamo visto IERI funziona, ma ovviamnete non ti va bene
-
-            //this.firstId = itemsPerPage * (page - 1) + sqlArticoloDAO.getFirstId("F");
-            //this.lastId = itemsPerPage * page + sqlArticoloDAO.getFirstId("F");
+        for(int i = (this.limit * (page - 1)); i < (page * this.limit) && i < ids.size(); i++) {
+            this.lastId = ids.get(i);
+            count++;
         }
+    }
 
+    public int getCount() {
+        return count;
     }
 
     public int getLastId() {

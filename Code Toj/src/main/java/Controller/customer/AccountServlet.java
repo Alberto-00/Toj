@@ -48,24 +48,26 @@ public class AccountServlet extends Controller {
                 break;
             }
 
-            case "/productsList": {
+            case "/shop": {
                 SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
                 int intPage = parsePage(request);
                 String sex = request.getParameter("sex");
+                request.setAttribute("numPage", intPage);
 
                 if (sex.compareTo("M") == 0)
                     request.setAttribute("sex", "Uomo");
                 else
                     request.setAttribute("sex", "Donna");
 
-
                 try {
                     Paginator paginator = new Paginator(intPage, 18, sex);
                     int size = sqlArticoloDAO.countAll(sex);
                     request.setAttribute("pages", paginator.getPages(size));
                     List<Articolo> products = sqlArticoloDAO.pagination(sex, paginator);
+                    int count = paginator.getCount();
                     if (products != null) {
                         request.setAttribute("productsList", products);
+                        request.setAttribute("count", count);
                     }
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();

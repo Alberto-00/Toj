@@ -33,7 +33,7 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
                     "INNER JOIN pathimg p on a.ID_articolo = p.ID_articolo " +
                     "WHERE a.data_inserimento <= current_date " +
                     "AND a.data_inserimento >= date_sub(current_date, INTERVAL  1 month) " +
-                    "AND a.Sesso = '" + sex + "'" + " ORDER BY a.ID_articolo Desc");
+                    "AND a.Sesso = '" + sex + "'" + " ORDER BY a.ID_articolo Desc;");
 
             ResultSet rs = ps.executeQuery();
             ArticoloExtractor articoloExtractor = new ArticoloExtractor();
@@ -99,7 +99,8 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
                     "INNER JOIN tinta t on a.ID_articolo = t.ID_articolo " +
                     "INNER JOIN colore c on c.cod_esadecimale = t.cod_esadecimale " +
                     "INNER JOIN pathimg p on a.ID_articolo = p.ID_articolo " +
-                    "WHERE a.Sesso = '" + sex + "' AND a.ID_articolo <= ? AND a.ID_articolo > ? ");
+                    "WHERE a.Sesso = '" + sex + "' AND a.ID_articolo <= ? AND a.ID_articolo >= ? " +
+                    "ORDER BY a.ID_articolo, p.pathName;");
 
             ps.setInt(1, paginator.getLastId());
             ps.setInt(2, paginator.getFirstId());
@@ -168,7 +169,7 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
                     "INNER JOIN tinta t on a.ID_articolo = t.ID_articolo " +
                     "INNER JOIN colore c on c.cod_esadecimale = t.cod_esadecimale " +
                     "INNER JOIN pathimg p on a.ID_articolo = p.ID_articolo " +
-                    "WHERE a.ID_articolo = ?");
+                    "WHERE a.ID_articolo = ? ORDER BY p.pathName;");
 
             ps.setInt(1, id);
 
@@ -221,7 +222,7 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
                     "INNER JOIN tinta t on a.ID_articolo = t.ID_articolo " +
                     "INNER JOIN colore c on c.cod_esadecimale = t.cod_esadecimale " +
                     "INNER JOIN pathimg p on a.ID_articolo = p.ID_articolo " +
-                    "WHERE a.nome_articolo = '" + nome + "'");
+                    "WHERE a.nome_articolo = '" + nome + "' ORDER BY p.pathName;");
 
             ResultSet rs = ps.executeQuery();
 
@@ -288,7 +289,8 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
                     "INNER JOIN tinta t on a.ID_articolo = t.ID_articolo " +
                     "INNER JOIN colore c on c.cod_esadecimale = t.cod_esadecimale " +
                     "INNER JOIN pathimg p on a.ID_articolo = p.ID_articolo " +
-                    "WHERE a.Sesso = '" + sex + "' AND c2.nome_categoria= '"+type+"'");
+                    "WHERE a.Sesso = '" + sex + "' AND c2.nome_categoria= '"+type+"' " +
+                    "ORDER BY p.pathName;");
 
             ResultSet rs = ps.executeQuery();
             ArticoloExtractor articoloExtractor = new ArticoloExtractor();
@@ -344,18 +346,18 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
     }
 
     @Override
-    public int getFirstId(String sex, int off) throws SQLException {
+    public List<Integer> getIds(String sex) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT ID_articolo as id, MIN(ID_articolo) as min FROM articolo " +
-                    "WHERE Sesso='"+sex+"' LIMIT ?,18446744073709551615");
+            PreparedStatement ps = con.prepareStatement("SELECT ID_articolo as id FROM articolo WHERE Sesso='"+sex+"' GROUP BY ID_articolo");
 
-            ps.setInt(1, off);
             ResultSet rs = ps.executeQuery();
-            return rs.next() ? rs.getInt("min") : 0;
+            ArrayList<Integer> ids = new ArrayList<>();
+            while(rs.next()){
+                ids.add(rs.getInt("id"));
+            }
+            return ids;
         }
     }
-
-
 
     @Override
     public int countAll(String sex) throws SQLException {
