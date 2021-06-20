@@ -33,7 +33,7 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
                     "INNER JOIN pathimg p on a.ID_articolo = p.ID_articolo " +
                     "WHERE a.data_inserimento <= current_date " +
                     "AND a.data_inserimento >= date_sub(current_date, INTERVAL  1 month) " +
-                    "AND a.Sesso = '" + sex + "'" + " ORDER BY a.ID_articolo Desc;");
+                    "AND a.Sesso = '" + sex + "'" + " ORDER BY a.ID_articolo Desc, p.pathName;");
 
             ResultSet rs = ps.executeQuery();
             ArticoloExtractor articoloExtractor = new ArticoloExtractor();
