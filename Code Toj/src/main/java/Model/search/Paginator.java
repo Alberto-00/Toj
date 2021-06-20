@@ -15,9 +15,9 @@ public class Paginator {
         this.count = 0;
         SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
         List<Integer> ids = sqlArticoloDAO.getIds(sex);
-        this.firstId = ids.get(this.limit * (page - 1));
+        this.firstId = ids.get(this.limit*(page-1));
 
-        for(int i = (this.limit * (page - 1)); i < (page * this.limit) && i < ids.size(); i++) {
+        for(int i=(this.limit*(page-1)); i<(page*this.limit) && i<ids.size(); i++) {
             this.lastId = ids.get(i);
             count++;
         }
