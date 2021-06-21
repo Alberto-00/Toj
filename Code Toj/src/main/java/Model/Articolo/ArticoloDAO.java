@@ -1,5 +1,6 @@
 package Model.Articolo;
 
+import Model.search.Condition;
 import Model.search.Paginator;
 
 import java.util.List;
@@ -18,6 +19,10 @@ public interface ArticoloDAO <E extends Exception>{
     List<Integer> getIds(String sex) throws E;
     
     int countAll(String sex) throws E;
+
+    int countAll(List<Condition> conditions, String sex) throws E;
+
+    List<Articolo> search(List<Condition> conditions, String sex) throws E;
 
     Articolo doRetrieveProductById(int id) throws E;
 

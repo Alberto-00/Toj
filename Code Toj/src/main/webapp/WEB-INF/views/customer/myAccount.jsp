@@ -15,7 +15,7 @@
 
 <!--middle-->
 <jsp:include page="../partials/customer/titleBanner.jsp">
-    <jsp:param name="title" value="My Account"/>
+    <jsp:param name="title" value="Il mio Account"/>
 </jsp:include>
 
 <div class="container-top">

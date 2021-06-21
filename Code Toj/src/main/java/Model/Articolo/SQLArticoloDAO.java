@@ -1,9 +1,12 @@
 package Model.Articolo;
 
+import Model.Categoria.Categoria;
 import Model.Categoria.CategoriaExtractor;
 import Model.Colore.ColoreExtractor;
 import Model.Path_immagini.PathImgExtractor;
 import Model.Taglia.TagliaExtractor;
+import Model.search.Condition;
+import Model.search.Operator;
 import Model.search.Paginator;
 import Model.storage.ConPool;
 import Model.storage.QueryBuilder;
@@ -365,6 +368,82 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
             PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) as count FROM articolo WHERE Sesso='" + sex + "'");
             ResultSet rs = ps.executeQuery();
             return rs.next() ? rs.getInt("count") : 0;
+        }
+    }
+
+    @Override
+    public int countAll(List<Condition> conditions, String sex) throws SQLException{
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) as count FROM articolo WHERE Sesso='" + sex + "'");
+            ResultSet rs = ps.executeQuery();
+            return rs.next() ? rs.getInt("count") : 0;
+        }
+    }
+
+    @Override
+    public List<Articolo> search(List<Condition> conditions, String sex) throws SQLException{
+        try (Connection con = ConPool.getConnection()){
+            String query = ArticoloQuery.search(conditions, sex);
+            try (PreparedStatement ps = con.prepareStatement(query)){
+                for (int i = 0; i < conditions.size(); i++){
+                    if (conditions.get(i).getOperator() == Operator.MATCH){
+                        ps.setObject(i+1, "%" + conditions.get(i).getValue() + "%");
+                    } else {
+                        ps.setObject(i+1, conditions.get(i).getValue()); //i+1 perchè setObject parte da 1
+                    }
+                }
+                System.out.println(ps.toString());
+                ResultSet rs = ps.executeQuery();
+                ArticoloExtractor articoloExtractor = new ArticoloExtractor();
+                CategoriaExtractor categoriaExtractor = new CategoriaExtractor();
+                ColoreExtractor coloreExtractor = new ColoreExtractor();
+                TagliaExtractor tagliaExtractor = new TagliaExtractor();
+                PathImgExtractor pathImgExtractor = new PathImgExtractor();
+                Map<Integer, Articolo> productMap = new LinkedHashMap<>();
+
+                if(rs.next()){
+                    Articolo articolo = articoloExtractor.extract(rs);
+                    articolo.setCategoria(categoriaExtractor.extract(rs));
+
+                    articolo.setPaths(new ArrayList<>());
+                    articolo.getPaths().add(pathImgExtractor.extract(rs));
+
+                    articolo.setColori(new ArrayList<>());
+                    articolo.getColori().add(coloreExtractor.extract(rs));
+
+                    articolo.setTaglie(new ArrayList<>());
+                    articolo.getTaglie().add(tagliaExtractor.extract(rs));
+                    productMap.put(articolo.getIDarticolo(), articolo);
+
+                    while (rs.next()){
+                        int idProduct = rs.getInt("ID_articolo");
+                        if(!productMap.containsKey(idProduct)){
+                            articolo = articoloExtractor.extract(rs);
+                            articolo.setCategoria(categoriaExtractor.extract(rs));
+
+                            articolo.setPaths(new ArrayList<>());
+                            articolo.setColori(new ArrayList<>());
+                            articolo.setTaglie(new ArrayList<>());
+                            productMap.put(idProduct, articolo);
+                            productMap.get(idProduct).getColori().add(coloreExtractor.extract(rs));
+                            productMap.get(idProduct).getTaglie().add(tagliaExtractor.extract(rs));
+                            productMap.get(idProduct).getPaths().add(pathImgExtractor.extract(rs));
+                        }
+                        if(!productMap.get(idProduct).containsSize(tagliaExtractor.extract(rs).getId_nome())) {
+                            productMap.get(idProduct).getTaglie().add(tagliaExtractor.extract(rs));
+                        }
+
+                        if (!productMap.get(idProduct).containsPath(pathImgExtractor.extract(rs).getPathName())){
+                            productMap.get(idProduct).getPaths().add(pathImgExtractor.extract(rs));
+                        }
+
+                        if (!productMap.get(idProduct).containsColors(coloreExtractor.extract(rs).getNome())){
+                            productMap.get(idProduct).getColori().add(coloreExtractor.extract(rs));
+                        }
+                    }
+                }
+                return new ArrayList<>(productMap.values());
+            }
         }
     }
 

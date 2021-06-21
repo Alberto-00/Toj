@@ -42,11 +42,12 @@ public class SQLOrdineDAO implements OrdineDAO<SQLException> {
                 ps.setString(2, idOrdine);
                 ResultSet rs = ps.executeQuery();
                 OrdineExtractor ordineExtractor = new OrdineExtractor();
-                Ordine ordine1 = new Ordine();
+               /* Ordine ordine1 = new Ordine();
                 while (rs.next()){
                     ordine1 = ordineExtractor.extract(rs);
                 }
-                return ordine1;
+                return ordine1;*/
+                return null;
             }
         }
     }

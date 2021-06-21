@@ -31,6 +31,7 @@ public class SQLAccountDAO implements AccountDAO{
         }
     }
 
+    /*
     @Override
     public boolean doCreateArticolo(Account account) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
@@ -72,5 +73,5 @@ public class SQLAccountDAO implements AccountDAO{
                 return rows == 1;
             }
         }
-    }
+    }*/
 }
