@@ -7,22 +7,23 @@ import java.util.List;
 
 public interface ArticoloDAO <E extends Exception>{
 
-
-    List<Articolo> pagination(String sex) throws E;
+    List<Articolo> doRetrieveNewArrivals(String sex) throws E;
 
     List<Articolo> doRetrieveProductByNome(String nome) throws E;
 
-    List<Articolo> pagination(String sex, Paginator paginator) throws E;
+    List<Articolo> search(List<Condition> conditions) throws E;
 
-    List<Articolo> doRetrieveProductBySexType(String sex, String type) throws E;
+    List<Articolo> searchPagination(List<Condition> conditions, Paginator paginator) throws E;
 
-    List<Integer> getIds(String sex) throws E;
-    
-    int countAll(String sex) throws E;
+    List<Articolo> searchCategory(List<Condition> conditions) throws E;
 
-    int countAll(List<Condition> conditions, String sex) throws E;
+    List<Articolo> searchTaglia(List<Condition> conditions) throws E;
 
-    List<Articolo> search(List<Condition> conditions, String sex) throws E;
+    List<Articolo> searchColore(List<Condition> conditions) throws E;
+
+    double maxPrice(String sex) throws E;
+
+    double minPrice(String sex) throws E;
 
     Articolo doRetrieveProductById(int id) throws E;
 

@@ -24,7 +24,7 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
     }
 
     @Override
-    public List<Articolo> pagination(String sex) throws SQLException{
+    public List<Articolo> doRetrieveNewArrivals(String sex) throws SQLException{
         try(Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT a.*, s.Quantita, ta.id_nome, c.nome_colore, " +
                     "c.cod_esadecimale, p.pathName, c2.nome_categoria " +
@@ -37,76 +37,6 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
                     "WHERE a.data_inserimento <= current_date " +
                     "AND a.data_inserimento >= date_sub(current_date, INTERVAL  1 month) " +
                     "AND a.Sesso = '" + sex + "'" + " ORDER BY a.ID_articolo Desc, p.pathName;");
-
-            ResultSet rs = ps.executeQuery();
-            ArticoloExtractor articoloExtractor = new ArticoloExtractor();
-            CategoriaExtractor categoriaExtractor = new CategoriaExtractor();
-            ColoreExtractor coloreExtractor = new ColoreExtractor();
-            TagliaExtractor tagliaExtractor = new TagliaExtractor();
-            PathImgExtractor pathImgExtractor = new PathImgExtractor();
-            Map<Integer, Articolo> productMap = new LinkedHashMap<>();
-
-            if(rs.next()){
-                Articolo articolo = articoloExtractor.extract(rs);
-                articolo.setCategoria(categoriaExtractor.extract(rs));
-
-                articolo.setPaths(new ArrayList<>());
-                articolo.getPaths().add(pathImgExtractor.extract(rs));
-
-                articolo.setColori(new ArrayList<>());
-                articolo.getColori().add(coloreExtractor.extract(rs));
-
-                articolo.setTaglie(new ArrayList<>());
-                articolo.getTaglie().add(tagliaExtractor.extract(rs));
-                productMap.put(articolo.getIDarticolo(), articolo);
-
-                while (rs.next()){
-                    int idProduct = rs.getInt("ID_articolo");
-                    if(!productMap.containsKey(idProduct)){
-                        articolo = articoloExtractor.extract(rs);
-                        articolo.setCategoria(categoriaExtractor.extract(rs));
-
-                        articolo.setPaths(new ArrayList<>());
-                        articolo.setColori(new ArrayList<>());
-                        articolo.setTaglie(new ArrayList<>());
-                        productMap.put(idProduct, articolo);
-                        productMap.get(idProduct).getColori().add(coloreExtractor.extract(rs));
-                        productMap.get(idProduct).getTaglie().add(tagliaExtractor.extract(rs));
-                        productMap.get(idProduct).getPaths().add(pathImgExtractor.extract(rs));
-                    }
-                    if(!productMap.get(idProduct).containsSize(tagliaExtractor.extract(rs).getId_nome())) {
-                        productMap.get(idProduct).getTaglie().add(tagliaExtractor.extract(rs));
-                    }
-
-                    if (!productMap.get(idProduct).containsPath(pathImgExtractor.extract(rs).getPathName())){
-                        productMap.get(idProduct).getPaths().add(pathImgExtractor.extract(rs));
-                    }
-
-                    if (!productMap.get(idProduct).containsColors(coloreExtractor.extract(rs).getNome())){
-                        productMap.get(idProduct).getColori().add(coloreExtractor.extract(rs));
-                    }
-                }
-            }
-            return new ArrayList<>(productMap.values());
-        }
-    }
-
-    @Override
-    public List<Articolo> pagination(String sex, Paginator paginator) throws SQLException {
-        try(Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT a.*, s.Quantita, ta.id_nome, c.nome_colore, " +
-                    "c.cod_esadecimale, p.pathName, c2.nome_categoria " +
-                    "FROM articolo a INNER JOIN size s on s.ID_articolo = a.ID_articolo " +
-                    "INNER JOIN categoria c2 on a.ID_categoria = c2.ID_categoria " +
-                    "INNER JOIN taglia ta on s.id_nome = ta.id_nome " +
-                    "INNER JOIN tinta t on a.ID_articolo = t.ID_articolo " +
-                    "INNER JOIN colore c on c.cod_esadecimale = t.cod_esadecimale " +
-                    "INNER JOIN pathimg p on a.ID_articolo = p.ID_articolo " +
-                    "WHERE a.Sesso = '" + sex + "' AND a.ID_articolo <= ? AND a.ID_articolo >= ? " +
-                    "ORDER BY a.ID_articolo, p.pathName;");
-
-            ps.setInt(1, paginator.getLastId());
-            ps.setInt(2, paginator.getFirstId());
 
             ResultSet rs = ps.executeQuery();
             ArticoloExtractor articoloExtractor = new ArticoloExtractor();
@@ -282,108 +212,9 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
     }
 
     @Override
-    public List<Articolo> doRetrieveProductBySexType(String sex, String type) throws SQLException {
-    try(Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT a.*, s.Quantita, ta.id_nome, c.nome_colore, " +
-                    "c.cod_esadecimale, p.pathName, c2.nome_categoria " +
-                    "FROM articolo a INNER JOIN size s on s.ID_articolo = a.ID_articolo " +
-                    "INNER JOIN categoria c2 on a.ID_categoria = c2.ID_categoria " +
-                    "INNER JOIN taglia ta on s.id_nome = ta.id_nome " +
-                    "INNER JOIN tinta t on a.ID_articolo = t.ID_articolo " +
-                    "INNER JOIN colore c on c.cod_esadecimale = t.cod_esadecimale " +
-                    "INNER JOIN pathimg p on a.ID_articolo = p.ID_articolo " +
-                    "WHERE a.Sesso = '" + sex + "' AND c2.nome_categoria= '"+type+"' " +
-                    "ORDER BY p.pathName;");
-
-            ResultSet rs = ps.executeQuery();
-            ArticoloExtractor articoloExtractor = new ArticoloExtractor();
-            CategoriaExtractor categoriaExtractor = new CategoriaExtractor();
-            ColoreExtractor coloreExtractor = new ColoreExtractor();
-            TagliaExtractor tagliaExtractor = new TagliaExtractor();
-            PathImgExtractor pathImgExtractor = new PathImgExtractor();
-            Map<Integer, Articolo> productMap = new LinkedHashMap<>();
-
-            if(rs.next()){
-                Articolo articolo = articoloExtractor.extract(rs);
-                articolo.setCategoria(categoriaExtractor.extract(rs));
-
-                articolo.setPaths(new ArrayList<>());
-                articolo.getPaths().add(pathImgExtractor.extract(rs));
-
-                articolo.setColori(new ArrayList<>());
-                articolo.getColori().add(coloreExtractor.extract(rs));
-
-                articolo.setTaglie(new ArrayList<>());
-                articolo.getTaglie().add(tagliaExtractor.extract(rs));
-                productMap.put(articolo.getIDarticolo(), articolo);
-
-                while (rs.next()){
-                    int idProduct = rs.getInt("ID_articolo");
-                    if(!productMap.containsKey(idProduct)){
-                        articolo = articoloExtractor.extract(rs);
-                        articolo.setCategoria(categoriaExtractor.extract(rs));
-
-                        articolo.setPaths(new ArrayList<>());
-                        articolo.setColori(new ArrayList<>());
-                        articolo.setTaglie(new ArrayList<>());
-                        productMap.put(idProduct, articolo);
-                        productMap.get(idProduct).getColori().add(coloreExtractor.extract(rs));
-                        productMap.get(idProduct).getTaglie().add(tagliaExtractor.extract(rs));
-                        productMap.get(idProduct).getPaths().add(pathImgExtractor.extract(rs));
-                    }
-                    if(!productMap.get(idProduct).containsSize(tagliaExtractor.extract(rs).getId_nome())) {
-                        productMap.get(idProduct).getTaglie().add(tagliaExtractor.extract(rs));
-                    }
-
-                    if (!productMap.get(idProduct).containsPath(pathImgExtractor.extract(rs).getPathName())){
-                        productMap.get(idProduct).getPaths().add(pathImgExtractor.extract(rs));
-                    }
-
-                    if (!productMap.get(idProduct).containsColors(coloreExtractor.extract(rs).getNome())){
-                        productMap.get(idProduct).getColori().add(coloreExtractor.extract(rs));
-                    }
-                }
-            }
-            return new ArrayList<>(productMap.values());
-        }
-    }
-
-    @Override
-    public List<Integer> getIds(String sex) throws SQLException {
-        try(Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT ID_articolo as id FROM articolo WHERE Sesso='"+sex+"' GROUP BY ID_articolo");
-
-            ResultSet rs = ps.executeQuery();
-            ArrayList<Integer> ids = new ArrayList<>();
-            while(rs.next()){
-                ids.add(rs.getInt("id"));
-            }
-            return ids;
-        }
-    }
-
-    @Override
-    public int countAll(String sex) throws SQLException {
-        try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) as count FROM articolo WHERE Sesso='" + sex + "'");
-            ResultSet rs = ps.executeQuery();
-            return rs.next() ? rs.getInt("count") : 0;
-        }
-    }
-
-    @Override
-    public int countAll(List<Condition> conditions, String sex) throws SQLException{
-        try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) as count FROM articolo WHERE Sesso='" + sex + "'");
-            ResultSet rs = ps.executeQuery();
-            return rs.next() ? rs.getInt("count") : 0;
-        }
-    }
-
-    @Override
-    public List<Articolo> search(List<Condition> conditions, String sex) throws SQLException{
+    public List<Articolo> search(List<Condition> conditions) throws SQLException{
         try (Connection con = ConPool.getConnection()){
-            String query = ArticoloQuery.search(conditions, sex);
+            String query = ArticoloQuery.search(conditions);
             try (PreparedStatement ps = con.prepareStatement(query)){
                 for (int i = 0; i < conditions.size(); i++){
                     if (conditions.get(i).getOperator() == Operator.MATCH){
@@ -392,7 +223,7 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
                         ps.setObject(i+1, conditions.get(i).getValue()); //i+1 perchè setObject parte da 1
                     }
                 }
-                System.out.println(ps.toString());
+
                 ResultSet rs = ps.executeQuery();
                 ArticoloExtractor articoloExtractor = new ArticoloExtractor();
                 CategoriaExtractor categoriaExtractor = new CategoriaExtractor();
@@ -444,6 +275,114 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
                 }
                 return new ArrayList<>(productMap.values());
             }
+        }
+    }
+
+    @Override
+    public List<Articolo> searchPagination(List<Condition> conditions, Paginator paginator) throws SQLException{
+        try (Connection con = ConPool.getConnection()){
+            String query = ArticoloQuery.searchPagination(conditions, paginator);
+            try (PreparedStatement ps = con.prepareStatement(query)){
+                for (int i = 0; i < conditions.size(); i++){
+                    if (conditions.get(i).getOperator() == Operator.MATCH){
+                        ps.setObject(i+1, "%" + conditions.get(i).getValue() + "%");
+                    } else {
+                        ps.setObject(i+1, conditions.get(i).getValue()); //i+1 perchè setObject parte da 1
+                    }
+                }
+
+                ResultSet rs = ps.executeQuery();
+                ArticoloExtractor articoloExtractor = new ArticoloExtractor();
+                CategoriaExtractor categoriaExtractor = new CategoriaExtractor();
+                ColoreExtractor coloreExtractor = new ColoreExtractor();
+                TagliaExtractor tagliaExtractor = new TagliaExtractor();
+                PathImgExtractor pathImgExtractor = new PathImgExtractor();
+                Map<Integer, Articolo> productMap = new LinkedHashMap<>();
+
+                if(rs.next()){
+                    Articolo articolo = articoloExtractor.extract(rs);
+                    articolo.setCategoria(categoriaExtractor.extract(rs));
+
+                    articolo.setPaths(new ArrayList<>());
+                    articolo.getPaths().add(pathImgExtractor.extract(rs));
+
+                    articolo.setColori(new ArrayList<>());
+                    articolo.getColori().add(coloreExtractor.extract(rs));
+
+                    articolo.setTaglie(new ArrayList<>());
+                    articolo.getTaglie().add(tagliaExtractor.extract(rs));
+                    productMap.put(articolo.getIDarticolo(), articolo);
+
+                    while (rs.next()){
+                        int idProduct = rs.getInt("ID_articolo");
+                        if(!productMap.containsKey(idProduct)){
+                            articolo = articoloExtractor.extract(rs);
+                            articolo.setCategoria(categoriaExtractor.extract(rs));
+
+                            articolo.setPaths(new ArrayList<>());
+                            articolo.setColori(new ArrayList<>());
+                            articolo.setTaglie(new ArrayList<>());
+                            productMap.put(idProduct, articolo);
+                            productMap.get(idProduct).getColori().add(coloreExtractor.extract(rs));
+                            productMap.get(idProduct).getTaglie().add(tagliaExtractor.extract(rs));
+                            productMap.get(idProduct).getPaths().add(pathImgExtractor.extract(rs));
+                        }
+                        if(!productMap.get(idProduct).containsSize(tagliaExtractor.extract(rs).getId_nome())) {
+                            productMap.get(idProduct).getTaglie().add(tagliaExtractor.extract(rs));
+                        }
+
+                        if (!productMap.get(idProduct).containsPath(pathImgExtractor.extract(rs).getPathName())){
+                            productMap.get(idProduct).getPaths().add(pathImgExtractor.extract(rs));
+                        }
+
+                        if (!productMap.get(idProduct).containsColors(coloreExtractor.extract(rs).getNome())){
+                            productMap.get(idProduct).getColori().add(coloreExtractor.extract(rs));
+                        }
+                    }
+                }
+                return new ArrayList<>(productMap.values());
+            }
+        }
+    }
+
+    @Override
+    public List<Articolo> searchCategory(List<Condition> conditions) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public List<Articolo> searchTaglia(List<Condition> conditions) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public List<Articolo> searchColore(List<Condition> conditions) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public double maxPrice(String sex) throws SQLException {
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT MAX(Prezzo) as price " +
+                    "FROM articolo a WHERE a.Sesso = '" + sex + "';");
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next())
+                return rs.getDouble("price");
+            return 0;
+        }
+    }
+
+    @Override
+    public double minPrice(String sex) throws SQLException {
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT MIN(Prezzo) as price " +
+                    "FROM articolo a WHERE a.Sesso = '" + sex + "';");
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next())
+                return rs.getDouble("price");
+            return 0;
         }
     }
 

@@ -129,6 +129,7 @@
                             <i class="fas fa-plus"></i>
                         </button>
                         <div class="dropdown-container-sidenav">
+                            <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=M">Mostra Tutto</a>
                             <a href="#">Cappotti</a>
                             <a href="#">Giacche</a>
                             <a href="#">Maglie</a>
@@ -140,6 +141,7 @@
                             <i class="fas fa-plus"></i>
                         </button>
                         <div class="dropdown-container-sidenav">
+                            <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=F">Mostra Tutto</a>
                             <a href="#">Cappotti</a>
                             <a href="#">Giacche</a>
                             <a href="#">Maglie</a>
@@ -214,7 +216,7 @@
                         <a href="${pageContext.request.contextPath}/index.jsp">Home</a>
                 </li>
                 <li class="dropdown">
-                    <a href="${pageContext.request.contextPath}/customers/products" class="dropbtn">Uomo<i class="fas fa-angle-down icon-left"></i></a>
+                    <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=M" class="dropbtn">Uomo<i class="fas fa-angle-down icon-left"></i></a>
                     <div class="dropdown-content dropdown-content-bottom">
                         <a href="#">Cappotti</a>
                         <a href="#">Giacche</a>
@@ -224,7 +226,7 @@
                     </div>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropbtn">Donna<i class="fas fa-angle-down icon-left"></i></a>
+                    <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=F" class="dropbtn">Donna<i class="fas fa-angle-down icon-left"></i></a>
                     <div class="dropdown-content dropdown-content-bottom">
                         <a href="#">Cappotti</a>
                         <a href="#">Giacche</a>

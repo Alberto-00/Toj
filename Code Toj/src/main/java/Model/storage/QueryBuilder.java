@@ -108,4 +108,21 @@ public class QueryBuilder {
         QUERY.append(searchJoiner);
         return this;
     }
+
+    public QueryBuilder orderBy(String... fields){
+        QUERY.append(" ORDER BY ");
+        StringJoiner commaJoiner = new StringJoiner(",");
+        for(String field: fields)
+            commaJoiner.add(String.format("%s.%s", ALIAS_TABLE, field));
+        QUERY.append(commaJoiner.toString());
+        return this;
+    }
+
+    public void asc(){
+        QUERY.append(" ASC ");
+    }
+
+    public void desc(){
+        QUERY.append(" DESC ");
+    }
 }

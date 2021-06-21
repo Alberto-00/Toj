@@ -20,16 +20,19 @@ public class ArticoloSearch implements SearchBuilder {
             String value = request.getParameter(param);
             if (value != null && !value.isBlank()){
                 switch (param){
-                    case "price":
+                    case "Sesso":
+                        conditions.add(new Condition("Sesso", Operator.EQ, value));
+                        break;
+                    case "Prezzo":
                         conditions.add(new Condition("Prezzo", Operator.LE, value));
                         break;
-                    case "catgoryId":
+                    case "nome_categoria":
                         conditions.add(new Condition("nome_categoria", Operator.EQ, value));
                         break;
-                    case "tagliaId":
+                    case "id_nome":
                         conditions.add(new Condition("id_nome", Operator.EQ, value));
                         break;
-                    case "coloreId":
+                    case "nome_colore":
                         conditions.add(new Condition("nome_colore", Operator.EQ, value));
                         break;
                     default:

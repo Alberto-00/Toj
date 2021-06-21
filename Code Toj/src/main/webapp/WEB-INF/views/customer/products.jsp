@@ -61,10 +61,10 @@ List<Articolo> articoliColor = (List<Articolo>) request.getAttribute("filterColo
                     </div>
                     <div class="product_variant color">
                         <h3>colore</h3>
-                        <select name="produc-color" id="slectColor">
+                        <select onclick="callAjax()" name="produc-color" id="selectColor">
                             <option selected value="default">Scegli opzione</option>
                             <%for (int i = 0; i < articoliColor.size(); i++){%>
-                            <option class="ajax" value="<%=articoliColor.get(i).getIDarticolo()%>">
+                            <option value="<%=articoliColor.get(i).getIDarticolo()%>">
                                 <%for (int j = 0; j <articoliColor.get(i).getColori().size(); j++){%>
                                 <%=articoliColor.get(i).getColori().get(j).getNome()%>
                             </option>

@@ -44,12 +44,12 @@ public class AjaxServlet extends Controller {
                     String sex = request.getParameter("sex");
                     JSONObject root = new JSONObject();
                     if (sex.compareToIgnoreCase("M") == 0) {
-                        List<Articolo> articoliMen = sqlArticoloDAO.pagination("M");
+                        List<Articolo> articoliMen = sqlArticoloDAO.doRetrieveNewArrivals("M");
                         JSONArray arr = new JSONArray();
                         root.put("products", arr);
                         articoliMen.forEach(am -> arr.add(am.toJson()));
                     } else {
-                        List<Articolo> articoliWomen = sqlArticoloDAO.pagination("F");
+                        List<Articolo> articoliWomen = sqlArticoloDAO.doRetrieveNewArrivals("F");
                         JSONArray arr = new JSONArray();
                         root.put("products", arr);
                         articoliWomen.forEach(am -> arr.add(am.toJson()));

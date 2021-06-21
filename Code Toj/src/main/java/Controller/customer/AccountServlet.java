@@ -38,7 +38,7 @@ public class AccountServlet extends Controller {
                     int idParse = Integer.parseInt(id);
 
                     SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
-                    List<Articolo> newArrivalBySex = sqlArticoloDAO.pagination(sex);
+                    List<Articolo> newArrivalBySex = sqlArticoloDAO.doRetrieveNewArrivals(sex);
                     Articolo articolo = sqlArticoloDAO.doRetrieveProductById(idParse);
 
                     if (articolo != null) {
@@ -47,78 +47,45 @@ public class AccountServlet extends Controller {
                         request.setAttribute("articolo", articolo);
                         request.setAttribute("nuoviArrivi", newArrivalBySex);
                     }
-                    request.getRequestDispatcher(view("customer/men_&_Women")).forward(request, response);
-                    break;
-                }
-
-                case "/search": {
-                    SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
-                    SQLCategoriaDAO sqlCategoriaDAO = new SQLCategoriaDAO();
-                    SQLTagliaDAO tagliaDAO = new SQLTagliaDAO();
-                    SQLColoreDAO sqlColoreDAO = new SQLColoreDAO();
-
-                    int intPage = parsePage(request);
-                    String sex = request.getParameter("sex");
-                    request.setAttribute("numPage", intPage);
-
-                    if (sex.compareTo("M") == 0)
-                        request.setAttribute("sex", "Uomo");
-                    else
-                        request.setAttribute("sex", "Donna");
-
-                    List<Condition> conditions = new ArticoloSearch().buildSearch(request);
-                    List<Articolo> searchProducts = sqlArticoloDAO.search(conditions, sex);
-
-                    Paginator paginator = new Paginator(intPage, 18, sex);
-                    int size = sqlArticoloDAO.countAll(conditions, sex);
-                    request.setAttribute("pages", paginator.getPages(size));
-
-
-                    List<Articolo> products = sqlArticoloDAO.pagination(sex, paginator);
-                    int count = paginator.getCount();
-                    request.setAttribute("categorie", sqlCategoriaDAO.doRetrieveBySex(sex));
-                    request.setAttribute("taglie", tagliaDAO.doRetrieveBySex(sex));
-                    request.setAttribute("colori", sqlColoreDAO.doRetrieveBySex(sex));
-
-                    if (products != null) {
-                        request.setAttribute("productsList", products);
-                        request.setAttribute("count", count);
-                    }
                     request.getRequestDispatcher(view("customer/products")).forward(request, response);
                     break;
                 }
 
                 case "/shop": {
+                    List<Condition> conditions = new ArticoloSearch().buildSearch(request);
                     SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
+                    List<Articolo> searchProducts = sqlArticoloDAO.search(conditions);
                     SQLCategoriaDAO sqlCategoriaDAO = new SQLCategoriaDAO();
                     SQLTagliaDAO tagliaDAO = new SQLTagliaDAO();
                     SQLColoreDAO sqlColoreDAO = new SQLColoreDAO();
 
+                    int size = searchProducts.size();
                     int intPage = parsePage(request);
-                    String sex = request.getParameter("sex");
+                    String sex = request.getParameter("Sesso");
                     request.setAttribute("numPage", intPage);
+                    request.setAttribute("minPrice", sqlArticoloDAO.minPrice(sex));
+                    request.setAttribute("maxPrice", sqlArticoloDAO.maxPrice(sex));
+                    request.setAttribute("conditions", conditions);
 
                     if (sex.compareTo("M") == 0)
                         request.setAttribute("sex", "Uomo");
                     else
                         request.setAttribute("sex", "Donna");
 
-                    Paginator paginator = new Paginator(intPage, 18, sex);
-                    int size = sqlArticoloDAO.countAll(sex);
+                    Paginator paginator = new Paginator(intPage, 18, conditions);
                     request.setAttribute("pages", paginator.getPages(size));
-                    List<Articolo> products = sqlArticoloDAO.pagination(sex, paginator);
                     int count = paginator.getCount();
+                    List<Articolo> products = sqlArticoloDAO.searchPagination(conditions, paginator);
+
                     request.setAttribute("categorie", sqlCategoriaDAO.doRetrieveBySex(sex));
                     request.setAttribute("taglie", tagliaDAO.doRetrieveBySex(sex));
                     request.setAttribute("colori", sqlColoreDAO.doRetrieveBySex(sex));
 
-                    if (products != null) {
-                        request.setAttribute("productsList", products);
-                        request.setAttribute("count", count);
-                    }
+                    request.setAttribute("productsList", products);
+                    request.setAttribute("count", count);
                     request.getRequestDispatcher(view("customer/men_&_Women")).forward(request, response);
-                    break;
                 }
+                break;
 
                 case "/sigin":
                     request.getRequestDispatcher(view("customer/login")).forward(request, response);
