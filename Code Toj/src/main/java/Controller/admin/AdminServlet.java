@@ -1,4 +1,4 @@
-package Controller.adminServlets;
+package Controller.admin;
 
 import Controller.http.Controller;
 
