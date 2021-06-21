@@ -1,0 +1,148 @@
+/*Stile del flexbox*/
+* {
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: row;
+    margin: 0;
+}
+.col-1 {
+    background: var(--greenS);
+    flex: 0.5;
+    transition: all .3s ease-in-out
+}
+
+.col-1.collapse{
+    transform: translate3d(-230px,0,0);
+}
+
+.col-2 {
+    display: flex;
+    flex-direction: column;
+    flex: 6;
+    transition: all .3s ease-in-out
+}
+
+.col-2.full-width{
+    margin-left: -230px;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    background-color: var(--green);
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.content > article {
+    flex: 4;
+    min-height: 60vh;
+}
+
+header {
+    background: var(--greenS);
+    height: 6vh;
+}
+
+footer {
+    background: var(--green);
+    height: 4vh;
+    align-content: flex-end;
+    text-align: right;
+}
+
+header, footer, article, nav {
+    padding: 1em;
+}
+
+/* Stile di tutte le pagine admin*/
+header .account {
+    display: inline;
+}
+
+nav > a{
+    text-decoration: none;
+    color: white;
+    padding: 1rem;
+}
+
+/* Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* scroll se necessario */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Animation Modal*/
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: var(--greenS);
+    color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: var(--greenS);
+    color: white;
+}
+
+@media screen and (max-width: 769px){
+    header .account{
+        display: none;
+    }
+}

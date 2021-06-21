@@ -1,0 +1,125 @@
+/*DAZERO*/
+/*
+.app {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.topbar, .sidebar {
+    background-color: var(--green);
+    padding: .5rem;
+}
+
+.menu > a{
+    text-decoration: none;
+    color: white;
+    padding: 1rem;
+}
+
+.sidebar {
+    flex-basis: 300px;
+    transition: all .3s ease-in-out;
+}
+
+.content {
+    background-color: white;
+    flex: 1;
+    flex-wrap: wrap;
+    transition: all .3s ease-in-out;
+}
+
+
+.sidebar.collapse {
+    transform: translate3d(-300px,0,0);
+}
+
+.content.full-width{
+    margin-left: -300px;
+}
+
+.info {
+    text-align: right;
+    font-style: italic;
+    font-weight: normal;
+}
+
+body {
+    flex-grow: 1;
+}
+
+.topbar > .account{
+    display: none;
+}
+
+.topbar > .command{
+    flex: 1;
+}
+
+.topbar > * {
+    color: white;
+    margin-right: 8px;
+}
+
+@media screen and (min-width: 769px){
+    .topbar > .account{
+        display: block;
+    }
+}
+
+
+.body > div {
+    background-color: white;
+    box-shadow: -9px -4px 12px 3px #B7B7B7;
+    margin: 10px;
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+}
+
+.body > div > h4 {
+    margin: 0;
+    padding: 1rem;
+    color: white;
+    background-color: var(--green);
+}
+
+.body > div > h2 {
+    justify-self: center;
+    font-size: 3rem;
+}
+
+.body > div > h2:hover{
+    transform: scale3d(1.15,1.15,1.15);
+}
+*/
+
+/*.infobox {
+    min-width: 35%;
+    min-height: 35%;
+    max-width: 40%;
+    max-height: 40%;
+    border: solid var(--white);
+    margin-right: 5%;
+}*/
+
+.infobox {
+    min-width: 35%;
+    min-height: 35%;
+    max-width: 40%;
+    max-height: 40%;
+    border: solid var(--white);
+    margin-right: 5%;
+}
+
+.infobox > h2 {
+    text-align: center;
+}
+
+.infobox > p {
+    text-align: center;
+    font-size: 6em;
+}
+
+/*
+align-items: center;
+    justify-content: center;*/

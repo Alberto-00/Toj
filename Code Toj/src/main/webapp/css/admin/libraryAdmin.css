@@ -1,0 +1,179 @@
+:root{
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: clamp(16px, 2vw, 24px);
+    --green: #009578;
+    --greenS: #008067;
+    --white: #ffffff;
+    --grey: #dddddd;
+    --black: #000000;
+}
+
+input, select, textarea{
+    padding: 8px;
+    border-width: 1px;
+    border-color: #cccccc;
+    background-color: var(--grey);
+    color: var(--black);
+    border-style: solid;
+    border-radius: 0;
+    box-shadow: 0 0 10px rgba(212,212,212,.54);
+}
+
+input:focus, textarea:focus, select:focus{
+    outline: none;
+}
+
+.app{
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+}
+
+.hide {
+    display: none !important;
+}
+
+.grid-x{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.grid-y{
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.grid-inline{
+    display: inline-flex;
+}
+
+.justify-center{
+    justify-content: center;
+}
+
+.align-center{
+    align-items: center;
+}
+
+.cell{
+    flex-basis: 100%;
+}
+
+.field{
+    display: inline-flex;
+    align-items: center;
+}
+
+.field > input, .field > select, .field > textarea {
+    width: 100%;
+}
+
+.field > input[disabled], .field > select[disabled], .field > textarea[disabled]{
+    background-color: var(--grey);
+}
+
+.bnt{
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+button.primary {
+    background-color: var(--green);
+    color: var(--white);
+}
+
+button.primary:hover{
+    filter: brightness(110%);
+}
+
+.table {
+    border-collapse: collapse;
+    background-color: var(--grey);
+}
+
+.table > thead{
+    visibility: hidden;
+}
+
+.table tr{
+    border: 1px solid var(--black);
+    margin-bottom: .5rem;
+    padding: .5rem;
+    display: block;
+}
+
+.table > tbody td{
+    display: block;
+    border-bottom: 1px solid var(--black);
+    text-align: right;
+}
+
+.table > tbody td:before{
+    content: attr(data-head);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.paginator{
+    list-style-type: none;
+}
+
+.paginator > li{
+    border: 1px solid;
+    padding: .5rem;
+}
+
+.paginator > li > a {
+    text-decoration: none;
+}
+
+@media screen and (min-width: 769px) {
+    .w10 {
+        flex-basis: 10%;
+    }
+
+    .w80 {
+        flex-basis: 80%;
+    }
+
+    .w25 {
+        flex-basis: 25%;
+    }
+
+    .w40 {
+        flex-basis: 40%;
+    }
+    .w50 {
+        flex-basis: 50%;
+    }
+
+    .w75 {
+        flex-basis: 75%;
+    }
+
+    .w33 {
+        flex-basis: 33%;
+    }
+
+    .w100 {
+        flex-basis: 100%;
+    }
+
+    table > thead {
+        visibility: visible;
+    }
+
+    .table tr {
+        display: table-row;
+    }
+
+    .table > tbody td {
+        display: table-cell;
+        text-align: center;
+    }
+    
+}
