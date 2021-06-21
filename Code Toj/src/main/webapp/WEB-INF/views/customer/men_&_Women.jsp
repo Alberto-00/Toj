@@ -1,6 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="Model.Articolo.Articolo" %>
 <%@ page import="java.util.List" %>
+<%@ page import="Model.Categoria.Categoria" %>
+<%@ page import="Model.Taglia.Taglia" %>
+<%@ page import="Model.Colore.Colore" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="it">
@@ -51,10 +54,11 @@ int count = (int) request.getAttribute("count");
                         </div>
 
                         <div class="filter-category" id="filter-category">
-                            <%for(int i = 0; i < 10; i++){%>
+                            <%List<Categoria> categorie = (List<Categoria>) request.getAttribute("categorie");
+                            for(Categoria c: categorie){%>
                             <div class="catalog">
-                                <input type="checkbox" id="camicie" name="camicie" value="Camicie">
-                                <label for="camicie"> Camicie</label>
+                                <input type="checkbox" id="<%=c.getNome()%>" name="<%=c.getNome()%>" value="<%=c.getNome()%>">
+                                <label for="<%=c.getNome()%>"> <%=c.getNome()%></label>
                             </div>
                             <%}%>
                         </div>
@@ -67,31 +71,33 @@ int count = (int) request.getAttribute("count");
                         </div>
 
                         <div class="filter-color" id="filter-color">
-                            <%for (int i = 0; i < 10; i++){%>
+                            <%List<Colore> colori = (List<Colore>) request.getAttribute("colori");
+                                for (Colore c: colori){%>
                             <div class="catalog">
-                                <input type="checkbox" id="green" name="green" value="Green">
-                                <label for="green">Verde</label>
+                                <input type="checkbox" id="<%=c.getNome()%>" name="<%=c.getNome()%>" value="<%=c.getNome()%>">
+                                <label for="<%=c.getNome()%>"><%=c.getNome()%></label>
                             </div>
                             <%}%>
                         </div>
                     </div>
 
-                    <!--Filtro Taglia-->
-                    <div class="filter-contenitor">
+                <!--Filtro Taglia-->
+                <div class="filter-contenitor">
                         <div onclick="hideElement('filter-size')">
                             <h3>Taglia <i class="fas fa-plus"></i></h3>
                         </div>
 
                         <div class="filter-size" id="filter-size">
-                            <%for (int i = 0; i < 10; i++){%>
+                            <%List<Taglia> taglie = (List<Taglia>) request.getAttribute("taglie");
+                            for (Taglia t: taglie){%>
                             <div class="catalog">
-                                <input type="checkbox" id="xs" name="xs" value="XS">
-                                <label for="xs"> XS</label> &ensp;
+                                <input type="checkbox" id="<%=t.getId_nome()%>" name="<%=t.getId_nome()%>" value="<%=t.getId_nome()%>">
+                                <label for="<%=t.getId_nome()%>"> <%=t.getId_nome()%></label> &ensp;
                             </div>
                             <%}%>
                         </div>
                     </div>
-                </form>
+            </form>
         </div>
         <div class="column-Art">
             <div class="row">

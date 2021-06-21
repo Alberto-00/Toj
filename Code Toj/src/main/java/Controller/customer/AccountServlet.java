@@ -8,6 +8,9 @@ import Model.Account.AccountSession;
 import Model.Account.SQLAccountDAO;
 import Model.Articolo.Articolo;
 import Model.Articolo.SQLArticoloDAO;
+import Model.Categoria.SQLCategoriaDAO;
+import Model.Colore.SQLColoreDAO;
+import Model.Taglia.SQLTagliaDAO;
 import Model.search.Paginator;
 
 import javax.servlet.*;
@@ -50,6 +53,10 @@ public class AccountServlet extends Controller {
 
             case "/shop": {
                 SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
+                SQLCategoriaDAO sqlCategoriaDAO = new SQLCategoriaDAO();
+                SQLTagliaDAO tagliaDAO = new SQLTagliaDAO();
+                SQLColoreDAO sqlColoreDAO = new SQLColoreDAO();
+
                 int intPage = parsePage(request);
                 String sex = request.getParameter("sex");
                 request.setAttribute("numPage", intPage);
@@ -65,6 +72,10 @@ public class AccountServlet extends Controller {
                     request.setAttribute("pages", paginator.getPages(size));
                     List<Articolo> products = sqlArticoloDAO.pagination(sex, paginator);
                     int count = paginator.getCount();
+                    request.setAttribute("categorie", sqlCategoriaDAO.doRetrieveBySex(sex));
+                    request.setAttribute("taglie", tagliaDAO.doRetrieveBySex(sex));
+                    request.setAttribute("colori", sqlColoreDAO.doRetrieveBySex(sex));
+
                     if (products != null) {
                         request.setAttribute("productsList", products);
                         request.setAttribute("count", count);

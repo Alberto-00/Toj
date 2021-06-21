@@ -1,11 +1,15 @@
 package Model.Colore;
 
+import Model.Taglia.Taglia;
+import Model.Taglia.TagliaExtractor;
 import Model.storage.ConPool;
 import Model.storage.QueryBuilder;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SQLColoreDAO implements ColoreDAO<SQLException> {
@@ -15,13 +19,21 @@ public class SQLColoreDAO implements ColoreDAO<SQLException> {
     }
 
     @Override
-    public List<Colore> fetchColoreByArticolo(int id_articolo) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public List<Colore> fetchColore() throws SQLException {
-        return null;
+    public List<Colore> doRetrieveBySex(String sex) throws SQLException {
+        try (Connection con = ConPool.getConnection()){
+            PreparedStatement ps = con.prepareStatement("SELECT DISTINCT c.* " +
+                    "FROM colore c INNER JOIN tinta t on c.cod_esadecimale = t.cod_esadecimale " +
+                    "INNER JOIN articolo a on t.ID_articolo = a.ID_articolo " +
+                    "WHERE a.Sesso = '" + sex + "' " +
+                    "ORDER BY c.nome_colore;");
+            ResultSet rs = ps.executeQuery();
+            ColoreExtractor coloreExtractor = new ColoreExtractor();
+            List<Colore> colori = new ArrayList<>();
+            while (rs.next()){
+                colori.add(coloreExtractor.extract(rs));
+            }
+            return colori;
+        }
     }
 
     @Override
