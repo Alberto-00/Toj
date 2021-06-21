@@ -85,6 +85,7 @@ h1, h2, h3 {
 }
 
 .product_variant.quantity input {
+    outline: none;
     width: 85px;
     border: 1px solid #ddd;
     background: none;
@@ -257,6 +258,7 @@ tbody, td, tfoot, th, thead, tr {
     font-size: 20px;
     color: var(--black);
     font-weight: 500;
+    margin-bottom: 2em;
 }
 
 @media screen and (max-width: 769px){

@@ -4,7 +4,7 @@ INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#000000', 
 INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#000000', 13);
 INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#000000', 16);
 INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#000000', 17);
-INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#000000', 18);
+INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#000000', 19);
 INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#000000', 20);
 INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#000000', 23);
 INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#000000', 26);
@@ -303,7 +303,6 @@ INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#696969', 
 INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#696969', 139);
 INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#696969', 379);
 INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#696969', 447);
-INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#6B8E23', 1);
 INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#6B8E23', 28);
 INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#6B8E23', 37);
 INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#6B8E23', 43);
@@ -379,6 +378,7 @@ INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#9400D3', 
 INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#9400D3', 465);
 INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#9400D3', 486);
 INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#9400D3', 496);
+INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#9C9C9C', 1);
 INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#9C9C9C', 29);
 INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#9C9C9C', 30);
 INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#9C9C9C', 76);
@@ -390,7 +390,7 @@ INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#9C9C9C', 
 INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#C19A6B', 7);
 INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#C19A6B', 10);
 INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#C19A6B', 15);
-INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#C19A6B', 19);
+INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#C19A6B', 18);
 INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#C19A6B', 196);
 INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#C19A6B', 261);
 INSERT INTO toj_sitoweb.tinta (cod_esadecimale, ID_articolo) VALUES ('#C19A6B', 263);

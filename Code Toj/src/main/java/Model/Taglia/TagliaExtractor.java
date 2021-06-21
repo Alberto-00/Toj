@@ -10,7 +10,8 @@ public class TagliaExtractor implements ResultSetExtractor<Taglia> {
     @Override
     public Taglia extract(ResultSet rs) throws SQLException {
         Taglia taglia = new Taglia();
-        taglia.setId_nome("id_nome");
+        taglia.setId_nome(rs.getString("id_nome"));
+        taglia.setQuantita(rs.getInt("Quantita"));
         return taglia;
     }
 }

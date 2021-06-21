@@ -4,10 +4,17 @@
     --grey: #747474;
     --black: #242424;
     --hover: #fd7e14;
+    --error: #cc0000;
 }
 *{
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+.errMsg{
+    color: var(--error);
+    display: block;
+    font-size: .6rem;
 }
 
 body{
@@ -191,6 +198,21 @@ li.dropdown {
     cursor: crosshair;
     background: rgba(116, 116, 116, .4);
     top: 0;
+}
+
+#popup-background-color{
+    visibility: hidden;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: rgba(28, 28, 28, 0.6);
+}
+
+@media screen and (max-width: 700px){
+    #popup-background-color{
+       display: none;
+    }
 }
 
 .sidenav {
@@ -592,6 +614,8 @@ input, button:focus{
     text-align: center;
     border-radius: .5rem;
     transition: .3s;
+    border: none;
+    width: 100%;
 }
 
 .login__button:hover{
@@ -629,7 +653,6 @@ input, button:focus{
     z-index: 3;
     width: 100%;
     height: 100%;
-    background-color: rgba(28, 28, 28, 0.6);
 }
 
 .close-icon h1, i{

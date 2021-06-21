@@ -1,5 +1,9 @@
 package Model.storage;
 
+import Model.search.Condition;
+import Model.search.Operator;
+
+import java.util.List;
 import java.util.StringJoiner;
 
 //Questa classe è stata realizzata per generare query in maniera immediata
@@ -41,6 +45,11 @@ public class QueryBuilder {
 
     public QueryBuilder where(String condition){
         QUERY.append(" WHERE ").append(condition);
+        return this;
+    }
+
+    public QueryBuilder where(){
+        QUERY.append(" WHERE ");
         return this;
     }
 
@@ -88,6 +97,15 @@ public class QueryBuilder {
 
     public QueryBuilder on(String condition){
         QUERY.append(" ON ").append(condition);
+        return this;
+    }
+
+    public QueryBuilder search(List<Condition> conditions){
+        StringJoiner searchJoiner = new StringJoiner(" AND ");
+        for (Condition cn : conditions){
+            searchJoiner.add(String.format("%s.%s%s", ALIAS_TABLE, cn.toString(), QM));
+        }
+        QUERY.append(searchJoiner);
         return this;
     }
 }

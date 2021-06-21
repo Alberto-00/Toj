@@ -227,12 +227,6 @@ th{
     color: #9a9a9a;
 }
 
-.column{
-    width: 25%;
-    margin-top: 0;
-    padding-left: 30px;
-}
-
 .product-box {
     display: flex;
     flex-grow: 0.5;

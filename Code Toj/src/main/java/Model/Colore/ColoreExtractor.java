@@ -11,7 +11,7 @@ public class ColoreExtractor implements ResultSetExtractor<Colore> {
     public Colore extract(ResultSet rs) throws SQLException{
         Colore colore = new Colore();
         colore.setCod_esadecimale(rs.getString("cod_esadecimale"));
-        colore.setNome(rs.getString("Nome"));
+        colore.setNome(rs.getString("nome_colore"));
         return colore;
     }
 }

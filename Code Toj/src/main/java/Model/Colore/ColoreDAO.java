@@ -1,14 +1,13 @@
 package Model.Colore;
 
 import Model.Articolo.Articolo;
+import Model.Taglia.Taglia;
 
 import java.util.List;
 
 public interface ColoreDAO<E extends Exception> {
 
-    List<Colore> fetchColoreByArticolo(int id_articolo) throws E;
-
-    List<Colore> fetchColore() throws E;
+    List<Colore> doRetrieveBySex(String sex) throws E;
 
     boolean createColore(Colore colore) throws E;
 

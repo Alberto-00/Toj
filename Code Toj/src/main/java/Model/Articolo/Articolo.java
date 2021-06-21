@@ -1,25 +1,25 @@
 package Model.Articolo;
 
+import Controller.http.JSONSerializable;
 import Model.Categoria.Categoria;
 import Model.Colore.Colore;
+import Model.Path_immagini.PathImg;
 import Model.Taglia.Taglia;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
-import javax.servlet.http.Part;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
 import java.util.Date;
 import java.util.List;
 
-public class Articolo {
+public class Articolo implements JSONSerializable {
 
     //Dati dell'articolo
-    private String sesso, descrizione, path, nome;
-    private double prezzo, sconto;
-    private int IDarticolo;
+    private String sesso, descrizione, nome;
+    private double prezzo;
+    private int IDarticolo, sconto;
     private Date data_inserimento;
     private Categoria categoria;
+    private List<PathImg> paths;
     private List<Taglia> taglie;
     private List<Colore> colori;
 
@@ -65,7 +65,7 @@ public class Articolo {
         return sconto;
     }
 
-    public void setSconto(double sconto) {
+    public void setSconto(int sconto) {
         this.sconto = sconto;
     }
 
@@ -97,12 +97,12 @@ public class Articolo {
         return data_inserimento;
     }
 
-    public String getPath() {
-        return path;
+    public List<PathImg> getPaths() {
+        return paths;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public void setPaths(List<PathImg> paths) {
+        this.paths = paths;
     }
 
     public String getNome() {
@@ -117,20 +117,49 @@ public class Articolo {
         this.data_inserimento = data_inserimento;
     }
 
-    public void writeCover(String uploadPath, Part stream) throws IOException{
-        try(InputStream fileStream = stream.getInputStream()){
-            File file = new File(uploadPath + path);
-            Files.copy(fileStream, file.toPath());
+    public boolean containsPath(String str){
+        for (PathImg p: paths){
+            if(p.getPathName().equals(str))
+                return true;
         }
+        return false;
     }
 
-    public String[] splitPath(String path){
-        String [] pathSplitted = path.split(",");
-        return pathSplitted;
+    public boolean containsSize(String taglia){
+        for (Taglia t: taglie){
+            if(t.getId_nome().equals(taglia))
+                return true;
+        }
+        return false;
     }
 
-    public String[] splitPath(){
-        String [] pathSplitted = this.path.split(",");
-        return pathSplitted;
+    public boolean containsColors(String color){
+        for (Colore c: colori){
+            if(c.getNome().equals(color))
+                return true;
+        }
+        return false;
+    }
+
+    @Override
+    public JSONObject toJson(){
+        JSONObject object = new JSONObject();
+        JSONArray taglie = new JSONArray();
+        JSONArray colori = new JSONArray();
+        JSONArray paths = new JSONArray();
+        object.put("sesso", sesso);
+        object.put("descrizione", descrizione);
+        object.put("nome", nome);
+        object.put("prezzo", prezzo);
+        object.put("IDarticolo", IDarticolo);
+        object.put("sconto", sconto);
+        object.put("categoria", this.categoria.toJson());
+        object.put("taglie", taglie);
+        object.put("paths", paths);
+        object.put("colori", colori);
+        this.taglie.forEach(t -> taglie.add(t.toJson()));
+        this.colori.forEach(c -> colori.add(c.toJson()));
+        this.paths.forEach(p -> paths.add(p.toJson()));
+        return object;
     }
 }

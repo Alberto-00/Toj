@@ -137,3 +137,12 @@ span.hidden-span{
 .fa-shopping-cart{
     position: relative;
 }
+
+#F{
+    color: #ff6a28;
+}
+
+#F, #M{
+    cursor: pointer;
+    transition: .3s;
+}

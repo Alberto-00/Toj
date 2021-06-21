@@ -1,0 +1,15 @@
+USE toj_sitoweb;
+INSERT INTO toj_sitoweb.categoria (ID_categoria, nome_categoria) VALUES (1, 'Cappotti');
+INSERT INTO toj_sitoweb.categoria (ID_categoria, nome_categoria) VALUES (2, 'Giacche');
+INSERT INTO toj_sitoweb.categoria (ID_categoria, nome_categoria) VALUES (3, 'Costumi');
+INSERT INTO toj_sitoweb.categoria (ID_categoria, nome_categoria) VALUES (4, 'Bikini');
+INSERT INTO toj_sitoweb.categoria (ID_categoria, nome_categoria) VALUES (5, 'Intero');
+INSERT INTO toj_sitoweb.categoria (ID_categoria, nome_categoria) VALUES (6, 'Felpe');
+INSERT INTO toj_sitoweb.categoria (ID_categoria, nome_categoria) VALUES (7, 'Camicie');
+INSERT INTO toj_sitoweb.categoria (ID_categoria, nome_categoria) VALUES (8, 'Polo');
+INSERT INTO toj_sitoweb.categoria (ID_categoria, nome_categoria) VALUES (9, 'T-shirt');
+INSERT INTO toj_sitoweb.categoria (ID_categoria, nome_categoria) VALUES (10, 'Top');
+INSERT INTO toj_sitoweb.categoria (ID_categoria, nome_categoria) VALUES (11, 'Pantaloni lunghi');
+INSERT INTO toj_sitoweb.categoria (ID_categoria, nome_categoria) VALUES (12, 'Pantaloni corti');
+INSERT INTO toj_sitoweb.categoria (ID_categoria, nome_categoria) VALUES (13, 'Gonna corta');
+INSERT INTO toj_sitoweb.categoria (ID_categoria, nome_categoria) VALUES (14, 'Gonna lunga');

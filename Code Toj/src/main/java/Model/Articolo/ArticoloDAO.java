@@ -1,10 +1,30 @@
 package Model.Articolo;
 
+import Model.search.Condition;
+import Model.search.Paginator;
+
 import java.util.List;
 
 public interface ArticoloDAO <E extends Exception>{
 
-    List<Articolo> doRetrieveAllNewProducts() throws E;
+
+    List<Articolo> pagination(String sex) throws E;
+
+    List<Articolo> doRetrieveProductByNome(String nome) throws E;
+
+    List<Articolo> pagination(String sex, Paginator paginator) throws E;
+
+    List<Articolo> doRetrieveProductBySexType(String sex, String type) throws E;
+
+    List<Integer> getIds(String sex) throws E;
+    
+    int countAll(String sex) throws E;
+
+    int countAll(List<Condition> conditions, String sex) throws E;
+
+    List<Articolo> search(List<Condition> conditions, String sex) throws E;
+
+    Articolo doRetrieveProductById(int id) throws E;
 
     boolean doCreateArticolo(Articolo articolo) throws E;
 

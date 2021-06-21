@@ -15,7 +15,7 @@
 
 <!--middle-->
 <jsp:include page="../partials/customer/titleBanner.jsp">
-    <jsp:param name="title" value="My Account"/>
+    <jsp:param name="title" value="Il mio Account"/>
 </jsp:include>
 
 <div class="container-top">
@@ -61,6 +61,12 @@
                         <div class="columnAlt-50 padding-right0">
                             <label>Email</label>
                             <input type="email" name="email" placeholder="example@gmail.com" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="columnAlt-100">
+                            <label>Password</label>
+                            <input type="password" name="password" placeholder="" required>
                         </div>
                     </div>
                     <div class="row">

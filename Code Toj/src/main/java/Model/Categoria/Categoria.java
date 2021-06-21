@@ -1,10 +1,12 @@
 package Model.Categoria;
 
+import Controller.http.JSONSerializable;
 import Model.Articolo.Articolo;
+import org.json.simple.JSONObject;
 
 import java.util.List;
 
-public class Categoria {
+public class Categoria implements JSONSerializable {
 
     private int id_categoria;
     private String nome;
@@ -36,5 +38,13 @@ public class Categoria {
 
     public void setArticolo(List<Articolo> articolo) {
         this.articolo = articolo;
+    }
+
+    @Override
+    public JSONObject toJson(){
+        JSONObject object = new JSONObject();
+        object.put("id_categoria", id_categoria);
+        object.put("nome_categoria", nome);
+        return object;
     }
 }

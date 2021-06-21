@@ -200,6 +200,7 @@ p{
 }
 
 .coupon_inner input {
+    outline: none;
     border: 1px solid #ddd;
     height: 42px;
     background: none;

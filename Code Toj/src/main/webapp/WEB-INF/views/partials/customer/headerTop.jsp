@@ -2,6 +2,7 @@
 <header>
     <!-- sfondo sidenav -->
     <div id="sidenav-background-color"></div>
+    <div id="popup-background-color"></div>
 
     <!-- header top -->
     <div class="header-top">
@@ -13,19 +14,19 @@
             <div class="top-right">
                 <ul>
                     <li class="dropdown">
-                        <a href="javascript:void(0)" class="dropbtn">My Account
+                        <a href="javascript:void(0)" class="dropbtn">Account
                             <i class="fas fa-angle-down icon-left"></i>
                         </a>
                         <div class="dropdown-content">
-                            <a class="border-content" href="${pageContext.request.contextPath}/customers/account">My Account</a>
-                            <a href="${pageContext.request.contextPath}/customers/sigin">Sign in</a>
+                            <a class="border-content" href="${pageContext.request.contextPath}/customers/account">Il mio Account</a>
+                            <a href="${pageContext.request.contextPath}/customers/sigin">Accedi</a>
                         </div>
                     </li>
                     <li class="dropdown border">
                         <a href="${pageContext.request.contextPath}/customers/privacy" class="dropbtn">Privacy Policy</a>
                     </li>
                     <li class="dropdown border">
-                        <a href="${pageContext.request.contextPath}/customers/termsConditions">Termini e condizioni</a>
+                        <a href="${pageContext.request.contextPath}/customers/termsCondition">Termini e condizioni</a>
                     </li>
                 </ul>
             </div>
@@ -36,37 +37,33 @@
     <div class="popup-login" id="myForm">
         <div class="login__content">
             <div class="login__forms">
-                <form action="" class="login__registre close-icon" id="login-in">
-                    <h1 class="login__title">Sign In</h1>
+                <form action="${pageContext.request.contextPath}/customers/sigin" method="post" class="login__registre close-icon" id="login-in">
+                    <h1 class="login__title">Accedi</h1>
                     <a onclick="closeForm()" class="icon-close-popup-sigIn"><i class="fas fa-times"></i></a>
 
                     <div class="login__box">
-                        <label for="usernameInput">
+                        <label for="EmailInput">
                             <i class="fas fa-user"></i>
-                            <input type="text" id="usernameInput" name="usernameInput" placeholder="Username" class="login__input">
+                            <input type="text" id="EmailInput" name="email" placeholder="Email" class="login__input">
                         </label>
+                        <small class="errMsg"></small>
                     </div>
                     <div class="login__box">
                         <label for="passwordInput">
                             <i class="fas fa-unlock-alt"></i>
-                            <input type="password" id="passwordInput" name="passwordInput" placeholder="Password" class="login__input">
+                            <input type="password" id="passwordInput" name="password" placeholder="Password" class="login__input">
                         </label>
+                        <small class="errMsg"></small>
                     </div>
-                    <a href="#" class="login__forgot">Forgot password?</a>
-                    <a href="#" class="login__button">Sign In</a>
-                    <span class="login__account">Don't have an Account ?</span>
-                    <span class="login__signin" id="sign-up">Sign Up</span>
+                    <a href="${pageContext.request.contextPath}/customers/account" class="login__forgot">Password dimenticata?</a>
+                    <input type="submit" class="login__button" value="Accedi" name="submitForm">
+                    <span class="login__account">Non hai un Account ?</span>
+                    <span class="login__signin" id="sign-up">Registrati</span>
                 </form>
 
-                <form action="" class="login__create none close-icon" id="login-up">
+                <form action="${pageContext.request.contextPath}/customers/sigUp" method="post" class="login__create none close-icon" id="login-up">
                     <h1 class="login__title">Create Account</h1>
                     <a onclick="closeForm()" class="icon-close-popup-sigUp"><i class="fas fa-times"></i></a>
-                    <div class="login__box">
-                        <label for="usernameOutput">
-                            <i class="fas fa-user"></i>
-                            <input type="text" id="usernameOutput" name="usernameOutput" placeholder="Username" class="login__input">
-                        </label>
-                    </div>
 
                     <div class="login__box">
                         <label for="email">
@@ -78,12 +75,12 @@
                     <div class="login__box">
                         <label for="passwordOutput">
                             <i class="fas fa-unlock-alt"></i>
-                            <input type="password" id="passwordOutput" name="passwordOutput" placeholder="Password" class="login__input">
+                            <input type="password" id="passwordOutput" name="password" placeholder="Password" class="login__input">
                         </label>
                     </div>
-                    <a href="#" class="login__button">Sign Up</a>
-                    <span class="login__account">Already have an Account ?</span>
-                    <span class="login__signup" id="sign-in">Sign In</span>
+                    <input type="submit" class="login__button" value="Registrati" name="submitForm">
+                    <span class="login__account">Hai già un Account ?</span>
+                    <span class="login__signup" id="sign-in">Accedi</span>
                 </form>
             </div>
         </div>
@@ -164,7 +161,7 @@
                         </button>
                         <div class="dropdown-container-sidenav">
                             <a href="${pageContext.request.contextPath}/customers/account">Area personale</a>
-                            <a href="${pageContext.request.contextPath}/customers/sigin">Sign in</a>
+                            <a href="${pageContext.request.contextPath}/customers/sigin">Accedi</a>
                         </div>
 
                         <a href="${pageContext.request.contextPath}/customers/cart" style="border-bottom: 1px solid #747474;">

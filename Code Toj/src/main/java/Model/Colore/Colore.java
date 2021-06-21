@@ -1,10 +1,12 @@
 package Model.Colore;
 
+import Controller.http.JSONSerializable;
 import Model.Articolo.Articolo;
+import org.json.simple.JSONObject;
 
 import java.util.List;
 
-public class Colore {
+public class Colore implements JSONSerializable {
 
     private String cod_esadecimale, nome;
     private List<Articolo> articoli;
@@ -35,5 +37,13 @@ public class Colore {
 
     public void setArticoli(List<Articolo> articoli) {
         this.articoli = articoli;
+    }
+
+    @Override
+    public JSONObject toJson(){
+        JSONObject object = new JSONObject();
+        object.put("cod_esadecimale", cod_esadecimale);
+        object.put("nome_colore", nome);
+        return object;
     }
 }

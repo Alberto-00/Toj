@@ -11,7 +11,7 @@ public class CategoriaExtractor implements ResultSetExtractor<Categoria> {
     public Categoria extract(ResultSet rs) throws SQLException{
         Categoria categoria = new Categoria();
         categoria.setId_categoria(rs.getInt("ID_categoria"));
-        categoria.setNome(rs.getString("Nome"));
+        categoria.setNome(rs.getString("nome_categoria"));
         return categoria;
     }
 }

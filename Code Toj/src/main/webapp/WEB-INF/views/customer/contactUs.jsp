@@ -64,7 +64,7 @@
                         <label>Messaggio</label>
                         <textarea placeholder="Message *" name="message"></textarea>
                     </div>
-                    <input type="submit" name="submitContact" value="INVIA">
+                    <input class="submit-button-log" type="submit" name="submitContact" value="INVIA">
                 </form>
             </div>
         </div>

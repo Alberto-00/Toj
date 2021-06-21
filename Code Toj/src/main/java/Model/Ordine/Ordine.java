@@ -5,6 +5,7 @@ import Model.Sconto.Sconto;
 import Model.Account.Account;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Ordine {
@@ -14,13 +15,17 @@ public class Ordine {
     private boolean pacchetto_regalo;
     private LocalDate data_spedizione;
     private String descrizione;
+    private int quantita;
+    private double total;
     private List<Articolo> articoli;
     private List<Sconto> codSconto;
     private Account user;
 
-    public Ordine(){
-        super();
-        user = new Account();
+    public Ordine(List<Articolo> articoli, int quantity){
+        this.articoli = new ArrayList<>();
+        this.articoli.addAll(articoli);
+        this.quantita = quantity;
+        this.total = 0;
     }
 
     public String getID_ordine() {
@@ -85,5 +90,28 @@ public class Ordine {
 
     public void setUser(Account user) {
         this.user = user;
+    }
+
+    public int getQuantita() {
+        return quantita;
+    }
+
+    public void setQuantita(int quantita) {
+        this.quantita = quantita;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public double total(){
+        for(Articolo a: this.articoli){
+            this.total += a.getPrezzo();
+        }
+        return getTotal();
     }
 }

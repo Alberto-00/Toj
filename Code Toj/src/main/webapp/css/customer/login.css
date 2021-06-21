@@ -20,8 +20,11 @@
 
 
 @media screen and (max-width: 801px){
-    input[type=submit]{
-        width: 40%;
+    input.submit-button-log{
+        width: 42%;
+    }
+    input.reg{
+        width: 70%!important;
     }
     .login-submit a{
         width: 100%;

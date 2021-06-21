@@ -38,3 +38,9 @@
         <script src="${pageContext.request.contextPath}/js/customer/${customerScript}.js" defer></script>
     </c:forTokens>
 </c:if>
+
+<c:if test="${not empty param.customerAjaxScripts}">
+    <c:forTokens items="${param.customerAjaxScripts}" delims="," var="customerAjaxScript">
+        <script src="${pageContext.request.contextPath}/js/customer/ajax/${customerAjaxScript}.js" defer></script>
+    </c:forTokens>
+</c:if>

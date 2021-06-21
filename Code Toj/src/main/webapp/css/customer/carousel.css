@@ -43,7 +43,7 @@
 .owl-carousel .owl-nav button.owl-next,
 .owl-carousel .owl-nav button.owl-prev,
 .owl-carousel button.owl-dot {
-    font-size: 70px !important;
+    font-size: 70px;
 }
 .owl-nav button:focus {
     outline: none;
@@ -53,7 +53,7 @@
     .owl-carousel .owl-nav button.owl-next,
     .owl-carousel .owl-nav button.owl-prev,
     .owl-carousel button.owl-dot {
-        font-size: 50px !important;
+        font-size: 50px;
     }
 }
 
