@@ -251,8 +251,8 @@
                 <li class="dropdown">
                     <a href="javascript:void(0)" class="dropbtn">Nuovi Arrivi<i class="fas fa-angle-down icon-left"></i></a>
                     <div class="dropdown-content dropdown-content-bottom">
-                        <a href="#">Uomo</a>
-                        <a href="#">Donna</a>
+                        <a href="${pageContext.request.contextPath}/customers/latest?page=1&Sesso=M"<%request.setAttribute("boolean", false);%>>Uomo</a>
+                        <a href="${pageContext.request.contextPath}/customers/latest?page=1&Sesso=F"><input type="hidden" name="god" value="<%=false%>">Donna</a>
                     </div>
                 </li>
                 <li class="dropdown">

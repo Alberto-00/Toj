@@ -52,12 +52,14 @@ public class AccountServlet extends Controller {
                 }
 
                 case "/shop": {
-                    List<Condition> conditions = new ArticoloSearch().buildSearch(request);
-                    SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
+                    boolean a = true;
                     SQLCategoriaDAO sqlCategoriaDAO = new SQLCategoriaDAO();
                     SQLTagliaDAO tagliaDAO = new SQLTagliaDAO();
                     SQLColoreDAO sqlColoreDAO = new SQLColoreDAO();
-                    List<Articolo> searchProducts = sqlArticoloDAO.search(conditions);
+
+                    List<Condition> conditions = new ArticoloSearch().buildSearch(request);
+                    SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
+                    List<Articolo> searchProducts = sqlArticoloDAO.search(conditions, a);
 
                     request.setAttribute("minPrice", sqlArticoloDAO.minPrice());
                     request.setAttribute("maxPrice", sqlArticoloDAO.maxPrice());
@@ -95,10 +97,67 @@ public class AccountServlet extends Controller {
                     request.setAttribute("numPage", intPage);
                     request.setAttribute("conditions", conditions);
 
-                    Paginator paginator = new Paginator(intPage, 18, conditions);
+                    Paginator paginator = new Paginator(intPage, 18, conditions, a);
                     request.setAttribute("pages", paginator.getPages(size));
                     int count = paginator.getCount();
-                    List<Articolo> products = sqlArticoloDAO.searchPagination(conditions, paginator);
+                    List<Articolo> products = sqlArticoloDAO.searchPagination(conditions, paginator, a);
+
+                    request.setAttribute("productsList", products);
+                    request.setAttribute("count", count);
+                    request.getRequestDispatcher(view("customer/men_&_Women")).forward(request, response);
+                }
+                break;
+
+                case "/latest": {
+                    boolean a = false;
+                    SQLCategoriaDAO sqlCategoriaDAO = new SQLCategoriaDAO();
+                    SQLTagliaDAO tagliaDAO = new SQLTagliaDAO();
+                    SQLColoreDAO sqlColoreDAO = new SQLColoreDAO();
+
+                    List<Condition> conditions = new ArticoloSearch().buildSearch(request);
+                    SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
+                    List<Articolo> searchProducts = sqlArticoloDAO.search(conditions, a);
+
+                    request.setAttribute("minPrice", sqlArticoloDAO.minPrice());
+                    request.setAttribute("maxPrice", sqlArticoloDAO.maxPrice());
+                    String sex = request.getParameter("Sesso");
+
+                    if (sex != null && sex.compareTo("") != 0){
+                        if (sex.compareTo("M") == 0) {
+                            request.setAttribute("sesso", "M");
+                            request.setAttribute("sex", "Uomo");
+                        }
+                        else{
+                            request.setAttribute("sesso", "F");
+                            request.setAttribute("sex", "Donna");
+                        }
+                        request.setAttribute("categorie", sqlCategoriaDAO.doRetrieveBySex(sex));
+                        request.setAttribute("taglie", tagliaDAO.doRetrieveBySex(sex));
+                        request.setAttribute("colori", sqlColoreDAO.doRetrieveBySex(sex));
+                    } else {
+                        request.setAttribute("sex", "Abbigliamento T&#x000F8;j");
+                        request.setAttribute("categorie", sqlCategoriaDAO.doRetrieveAll());
+                        request.setAttribute("taglie", tagliaDAO.doRetrieveAll());
+                        request.setAttribute("colori", sqlColoreDAO.doRetrieveAll());
+                    }
+
+                    if (searchProducts.size() == 0){
+                        request.setAttribute("flag", false);
+                        request.setAttribute("count", 0);
+                        request.getRequestDispatcher(view("customer/men_&_Women")).forward(request, response);
+                    }
+                    request.setAttribute("flag", true);
+
+                    int size = searchProducts.size();
+                    int intPage = parsePage(request);
+
+                    request.setAttribute("numPage", intPage);
+                    request.setAttribute("conditions", conditions);
+
+                    Paginator paginator = new Paginator(intPage, 18, conditions, a);
+                    request.setAttribute("pages", paginator.getPages(size));
+                    int count = paginator.getCount();
+                    List<Articolo> products = sqlArticoloDAO.searchPagination(conditions, paginator, a);
 
                     request.setAttribute("productsList", products);
                     request.setAttribute("count", count);

@@ -12,14 +12,21 @@ public class Paginator {
     private final int limit, firstId;
     private int lastId, count;
 
-    public Paginator(int page, int itemsPerPage, List<Condition> conditions) throws SQLException {
+    public Paginator(int page, int itemsPerPage, List<Condition> conditions, boolean a) throws SQLException {
         this.limit = itemsPerPage;
         this.count = 0;
         SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
         List<Integer> ids = new ArrayList<>();
 
-        for (Articolo articolo: sqlArticoloDAO.search(conditions))
-            ids.add(articolo.getIDarticolo());
+        if (a) {
+            for (Articolo articolo: sqlArticoloDAO.search(conditions, true))
+                ids.add(articolo.getIDarticolo());
+        }
+        else {
+            for (Articolo articolo: sqlArticoloDAO.search(conditions, false))
+                ids.add(articolo.getIDarticolo());
+        }
+
 
         this.firstId = ids.get(this.limit*(page-1));
         for(int i=(this.limit*(page-1)); i<(page*this.limit) && i<ids.size(); i++) {

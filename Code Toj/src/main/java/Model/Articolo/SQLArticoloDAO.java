@@ -226,9 +226,15 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
     }
 
     @Override
-    public List<Articolo> search(List<Condition> conditions) throws SQLException{
+    public List<Articolo> search(List<Condition> conditions, boolean a) throws SQLException{
         try (Connection con = ConPool.getConnection()){
-            String query = ArticoloQuery.search(conditions);
+            String query;
+            if(a) {
+                query = ArticoloQuery.search(conditions);
+            } else {
+                query = ArticoloQuery.searchLatest(conditions);
+            }
+
             try (PreparedStatement ps = con.prepareStatement(query)){
                 for (int i = 0; i < conditions.size(); i++){
                     if (conditions.get(i).getOperator() == Operator.MATCH){
@@ -293,9 +299,15 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
     }
 
     @Override
-    public List<Articolo> searchPagination(List<Condition> conditions, Paginator paginator) throws SQLException{
+    public List<Articolo> searchPagination(List<Condition> conditions, Paginator paginator, boolean a) throws SQLException{
         try (Connection con = ConPool.getConnection()){
-            String query = ArticoloQuery.searchPagination(conditions, paginator);
+            String query;
+            if(a) {
+                query = ArticoloQuery.searchPagination(conditions, paginator);
+            } else {
+                query= ArticoloQuery.searchPagLatest(conditions, paginator);
+            }
+
             try (PreparedStatement ps = con.prepareStatement(query)){
                 for (int i = 0; i < conditions.size(); i++){
                     if (conditions.get(i).getOperator() == Operator.MATCH){
@@ -358,6 +370,8 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
             }
         }
     }
+
+
 
     @Override
     public double maxPrice() throws SQLException {

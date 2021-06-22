@@ -15,9 +15,9 @@ public interface ArticoloDAO <E extends Exception>{
 
     List<String> doRetrieveProductByNome() throws E;
 
-    List<Articolo> search(List<Condition> conditions) throws E;
+    List<Articolo> search(List<Condition> conditions, boolean a) throws E;
 
-    List<Articolo> searchPagination(List<Condition> conditions, Paginator paginator) throws E;
+    List<Articolo> searchPagination(List<Condition> conditions, Paginator paginator, boolean a) throws E;
 
     double maxPrice() throws E;
 
