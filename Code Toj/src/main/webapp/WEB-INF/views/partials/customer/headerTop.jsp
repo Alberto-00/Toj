@@ -88,15 +88,19 @@
 
     <div class="header-middle">
         <div class="container-top">
-            <div class="logo">
-                <a href="${pageContext.request.contextPath}/index.jsp">
-                    <img src="${pageContext.request.contextPath}/icons/logo.png"
-                         alt="" width="100" height="100">
-                </a>
+            <div class="row">
+                <div class="columnLogo">
+                    <a href="${pageContext.request.contextPath}/index.jsp">
+                        <img src="${pageContext.request.contextPath}/icons/logo.png"
+                             alt="" width="100" height="100">
+                    </a>
+                </div>
 
                 <!--Sidenav start -->
-                <div class="open-sidenav">
-                    <i class="fas fa-bars" onclick="openNav()"></i>
+                <div class="columnSidenav">
+                    <div class="open-sidenav">
+                        <i class="fas fa-bars" onclick="openNav()"></i>
+                    </div>
                 </div>
                 <div id="mySidenav" class="sidenav">
                     <div class="closebtn">
@@ -105,17 +109,18 @@
                         </a>
                     </div>
 
-                   <br><span>Consegna gratuita:</span>
+                    <br><span>Consegna gratuita:</span>
                     <p>approfittane per fare i tuoi acquisti</p><br><br>
                     <span>Resi gratuiti * </span>
                     <p>Soddisfatti o rimborsati</p><br><br>
 
                     <a href="${pageContext.request.contextPath}/customers/sigin">Accedi / Registrati</a><hr class="border-hr">
 
-                    <form action="#">
-                        <label for="search-input-sidenav">
+                    <form action="${pageContext.request.contextPath}/customers/shop">
+                        <label for="search">
                             <div class="search-sidenav">
-                                <input type="text" id="search-input-sidenav" name="search-input-sidenav" placeholder="Cerca i prodotti qui...">
+                                <input class="url" type="hidden" name="page" value="1" data="${pageContext.request.contextPath}">
+                                <input type="text" id="search" name="nome_articolo" placeholder="Cerca i prodotti qui...">
                             </div>
                         </label>
                     </form>
@@ -130,11 +135,12 @@
                         </button>
                         <div class="dropdown-container-sidenav">
                             <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=M">Mostra Tutto</a>
-                            <a href="#">Cappotti</a>
-                            <a href="#">Giacche</a>
-                            <a href="#">Maglie</a>
-                            <a href="#">Costumi</a>
-                            <a href="#">Pantaloni</a>
+                            <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=M&nome_categoria=Cappotti">Cappotti</a>
+                            <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=M&nome_categoria=Giacche">Giacche</a>
+                            <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=M&nome_categoria=Camicie&nome_categoria=Polo&nome_categoria=T-shirt">Maglie</a>
+                            <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=M&nome_categoria=Costumi">Costumi</a>
+                            <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=M&nome_categoria=Pantaloni+lunghi&nome_categoria=Pantaloni+corti">Pantaloni</a>
+
                         </div>
 
                         <button class="dropdown-btn">Donna
@@ -142,12 +148,12 @@
                         </button>
                         <div class="dropdown-container-sidenav">
                             <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=F">Mostra Tutto</a>
-                            <a href="#">Cappotti</a>
-                            <a href="#">Giacche</a>
-                            <a href="#">Maglie</a>
-                            <a href="#">Costumi</a>
-                            <a href="#">Pantaloni</a>
-                            <a href="#">Gonne</a>
+                            <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=F&nome_categoria=Cappotti">Cappotti</a>
+                            <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=F&nome_categoria=Giacche">Giacche</a>
+                            <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=F&nome_categoria=T-shirt&nome_categoria=Polo&nome_categoria=Top">Magliette</a>
+                            <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=F&nome_categoria=Bikini&nome_categoria=Intero">Costumi</a>
+                            <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=F&nome_categoria=Pantaloni+lunghi&nome_categoria=Pantaloni+corti">Pantaloni</a>
+                            <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=F&nome_categoria=Gonna+corta&nome_categoria=Gonna+lunga">Gonne</a>
                         </div>
 
                         <button class="dropdown-btn">Nuovi Arrivi
@@ -186,8 +192,23 @@
                 </div>
                 <!--Sidenav end -->
 
-                <div class="top-left">
+                <div class="columnSearchBar">
+                    <form action="${pageContext.request.contextPath}/customers/shop" autocomplete="off">
+                        <div class="form-group">
+                            <div class="search">
+                                <label for="txt-search"></label>
+                                <input class="url" type="hidden" name="page" value="1" data="${pageContext.request.contextPath}">
+                                <input type="text" id="txt-search" name="nome_articolo" class="search-input" placeholder="Cerca i prodotti qui...">
+                            </div>
+                            <button class="btn" type="submit"><i class="fas fa-search"></i></button>
+                        </div>
+                    </form>
+                    <div id="filter-records"></div>
+                </div>
+                <div class="columnSignIn">
                     <a id="hide" onclick="openForm()">Accedi / Registrati</a>
+                </div>
+                <div class="columnInfo">
                     <div class="cart-link">
                         <a href="${pageContext.request.contextPath}/customers/cart">
                             <i class="fas fa-shopping-cart icon-right"></i>Carrello
@@ -196,15 +217,6 @@
                     </div>
                 </div>
             </div>
-            <form action="#">
-                <div class="form-group">
-                    <div class="search">
-                        <label for="search-input"></label>
-                        <input type="text" id="search-input" name="search-input" class="search-input" placeholder="Cerca i prodotti qui...">
-                    </div>
-                    <button class="btn" type="submit"><i class="fas fa-search"></i></button>
-                </div>
-            </form>
         </div>
     </div>
 
@@ -218,22 +230,22 @@
                 <li class="dropdown">
                     <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=M" class="dropbtn">Uomo<i class="fas fa-angle-down icon-left"></i></a>
                     <div class="dropdown-content dropdown-content-bottom">
-                        <a href="#">Cappotti</a>
-                        <a href="#">Giacche</a>
-                        <a href="#">Maglie</a>
-                        <a href="#">Costumi</a>
-                        <a href="#">Pantaloni</a>
+                        <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=M&nome_categoria=Cappotti">Cappotti</a>
+                        <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=M&nome_categoria=Giacche">Giacche</a>
+                        <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=M&nome_categoria=Camicie&nome_categoria=Polo&nome_categoria=T-shirt">Maglie</a>
+                        <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=M&nome_categoria=Costumi">Costumi</a>
+                        <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=M&nome_categoria=Pantaloni+lunghi&nome_categoria=Pantaloni+corti">Pantaloni</a>
                     </div>
                 </li>
                 <li class="dropdown">
                     <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=F" class="dropbtn">Donna<i class="fas fa-angle-down icon-left"></i></a>
                     <div class="dropdown-content dropdown-content-bottom">
-                        <a href="#">Cappotti</a>
-                        <a href="#">Giacche</a>
-                        <a href="#">Magliette</a>
-                        <a href="#">Costumi</a>
-                        <a href="#">Pantaloni</a>
-                        <a href="#">Gonne</a>
+                        <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=F&nome_categoria=Cappotti">Cappotti</a>
+                        <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=F&nome_categoria=Giacche">Giacche</a>
+                        <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=F&nome_categoria=T-shirt&nome_categoria=Polo&nome_categoria=Top">Magliette</a>
+                        <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=F&nome_categoria=Bikini&nome_categoria=Intero">Costumi</a>
+                        <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=F&nome_categoria=Pantaloni+lunghi&nome_categoria=Pantaloni+corti">Pantaloni</a>
+                        <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=F&nome_categoria=Gonna+corta&nome_categoria=Gonna+lunga">Gonne</a>
                     </div>
                 </li>
                 <li class="dropdown">

@@ -1,11 +1,10 @@
 package Model.Taglia;
 
-
-import Model.Categoria.Categoria;
-
 import java.util.List;
 
 public interface TagliaDao <E extends Exception>{
+
+    List<Taglia> doRetrieveAll() throws E;
 
     List<Taglia> doRetrieveBySex(String sex) throws E;
 

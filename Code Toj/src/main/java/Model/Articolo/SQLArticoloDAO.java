@@ -212,6 +212,20 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
     }
 
     @Override
+    public List<String> doRetrieveProductByNome() throws SQLException {
+        try(Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT DISTINCT a.nome_articolo as nome " +
+                    "FROM articolo a;");
+            ResultSet rs = ps.executeQuery();
+            List<String> nomi = new ArrayList<>();
+            while (rs.next()){
+                nomi.add(rs.getString("nome"));
+            }
+            return nomi;
+        }
+    }
+
+    @Override
     public List<Articolo> search(List<Condition> conditions) throws SQLException{
         try (Connection con = ConPool.getConnection()){
             String query = ArticoloQuery.search(conditions);
@@ -346,25 +360,10 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
     }
 
     @Override
-    public List<Articolo> searchCategory(List<Condition> conditions) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public List<Articolo> searchTaglia(List<Condition> conditions) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public List<Articolo> searchColore(List<Condition> conditions) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public double maxPrice(String sex) throws SQLException {
+    public double maxPrice() throws SQLException {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT MAX(Prezzo) as price " +
-                    "FROM articolo a WHERE a.Sesso = '" + sex + "';");
+                    "FROM articolo a;");
 
             ResultSet rs = ps.executeQuery();
             if (rs.next())
@@ -374,10 +373,10 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
     }
 
     @Override
-    public double minPrice(String sex) throws SQLException {
+    public double minPrice() throws SQLException {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT MIN(Prezzo) as price " +
-                    "FROM articolo a WHERE a.Sesso = '" + sex + "';");
+                    "FROM articolo a;");
 
             ResultSet rs = ps.executeQuery();
             if (rs.next())

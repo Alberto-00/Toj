@@ -1,5 +1,6 @@
 package Model.Categoria;
 
+import Model.Colore.Colore;
 import Model.storage.ConPool;
 import Model.storage.QueryBuilder;
 
@@ -11,6 +12,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SQLCategoriaDAO implements CategoriaDAO{
+
+    @Override
+    public List<Categoria> doRetrieveAll() throws SQLException{
+        try (Connection con = ConPool.getConnection()){
+            PreparedStatement ps = con.prepareStatement("SELECT DISTINCT c.* FROM categoria c;");
+            ResultSet rs = ps.executeQuery();
+            CategoriaExtractor categoriaExtractor = new CategoriaExtractor();
+            List<Categoria> categorie = new ArrayList<>();
+            while (rs.next()){
+                categorie.add(categoriaExtractor.extract(rs));
+            }
+            return categorie;
+        }
+    }
+
     @Override
     public List<Categoria> doRetrieveBySex(String sex) throws SQLException {
         try (Connection con = ConPool.getConnection()){

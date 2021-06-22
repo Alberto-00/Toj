@@ -12,6 +12,7 @@
     <jsp:include page="../partials/head.jsp">
         <jsp:param name="customerStyles" value="otherPage,menWomen,carousel"/>
         <jsp:param name="customerScripts" value="menWomen,pagination"/>
+        <jsp:param name="customerAjaxScripts" value="verifyFilter"/>
         <jsp:param name="title" value="T&#x000F8;j - ${sex}"/>
     </jsp:include>
 </head>
@@ -26,17 +27,22 @@
 </jsp:include>
 
 <%List<Articolo> articoli = (List<Articolo>) request.getAttribute("productsList");
+boolean flag = (boolean) request.getAttribute("flag");
 int count = (int) request.getAttribute("count");%>
 
 <div class="container-top">
     <div class="row">
         <div class="column-filters">
             <form action="${pageContext.request.contextPath}/customers/shop">
+                <%if (!flag){%>
+                <span class="errMsg">Articoli non trovati. Riprova.</span>
+                <%}%>
+                <input class="button" type="submit" value="Applica Filtri">
                 <!--Page-->
                 <input type="hidden" name="page" value="1">
 
                 <!--Sesso-->
-                <input type="hidden" name="Sesso" value="<%=articoli.get(0).getSesso()%>">
+                <input type="hidden" name="Sesso" value="${sesso}">
 
                     <!--Filtro prezzo-->
                     <div class="filter-contenitor">
@@ -45,9 +51,8 @@ int count = (int) request.getAttribute("count");%>
                         </div>
                         <div class="filter-price" id="filter-price">
                             <div class="slidecontainer">
-                                <input type="range" min="${minPrice}" max="${maxPrice}" value="0" name="Prezzo" id="myRange">
+                                <input type="range" min="${minPrice}" max="${maxPrice}" value="${maxPrice}" name="Prezzo" id="myRange">
                                 <p id="quanto">Quanto?</p>
-                                <input class="button" type="submit" value="Invia" style="width: fit-content">
                             </div>
                         </div>
                     </div>
@@ -104,7 +109,7 @@ int count = (int) request.getAttribute("count");%>
                 </div>
             </form>
         </div>
-        <%if (articoli.size() > 0){%>
+        <%if (flag){%>
         <div class="column-Art">
             <div class="row">
                     <%for(int i = 0; i < count; i++){%>
@@ -114,12 +119,12 @@ int count = (int) request.getAttribute("count");%>
                                 <img src="${pageContext.request.contextPath}/covers/<%=articoli.get(i).getPaths().get(0).getPathName()%>" alt="<%=articoli.get(i).getNome()%>">
                             </a>
                             <div class="overlay-product">
-                                <a id="secondImg<%=i%>"  href="${pageContext.request.contextPath}/customers/products?id=<%=articoli.get(i).getIDarticolo()%>&sex=<%=articoli.get(i).getSesso()%>">
+                                <a id="secondImg<%=i%>" href="${pageContext.request.contextPath}/customers/products?id=<%=articoli.get(i).getIDarticolo()%>&sex=<%=articoli.get(i).getSesso()%>">
                                     <img class="image-second<%=i%>" src="${pageContext.request.contextPath}/covers/<%=articoli.get(i).getPaths().get(1).getPathName()%>" alt="<%=articoli.get(i).getNome()%>">
                                 </a>
                             </div>
                             <div class="quick_button">
-                                <a id="cartHref<%=i%>"  href="${pageContext.request.contextPath}/customers/products?id=<%=articoli.get(i).getIDarticolo()%>&sex=<%=articoli.get(i).getSesso()%>">+ Aggiungi al Carrello</a>
+                                <a id="cartHref<%=i%>" href="${pageContext.request.contextPath}/customers/products?id=<%=articoli.get(i).getIDarticolo()%>&sex=<%=articoli.get(i).getSesso()%>">+ Aggiungi al Carrello</a>
                             </div>
                         </div>
                         <div class="product_content">
