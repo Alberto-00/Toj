@@ -145,6 +145,60 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
     }
 
     @Override
+    public Articolo doRetrieveProductById_Size(String size, int id) throws SQLException{
+        try(Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT a.*, s.Quantita, ta.id_nome, c.nome_colore, " +
+                    "c.cod_esadecimale, p.pathName, c2.nome_categoria " +
+                    "FROM articolo a INNER JOIN size s on s.ID_articolo = a.ID_articolo " +
+                    "INNER JOIN categoria c2 on a.ID_categoria = c2.ID_categoria "+
+                    "INNER JOIN taglia ta on s.id_nome = ta.id_nome " +
+                    "INNER JOIN tinta t on a.ID_articolo = t.ID_articolo " +
+                    "INNER JOIN colore c on c.cod_esadecimale = t.cod_esadecimale " +
+                    "INNER JOIN pathimg p on a.ID_articolo = p.ID_articolo " +
+                    "WHERE a.ID_articolo = ? AND ta.id_nome = ? ORDER BY p.pathName;");
+
+            ps.setInt(1, id);
+            ps.setString(2, size);
+
+            ResultSet rs = ps.executeQuery();
+            ArticoloExtractor articoloExtractor = new ArticoloExtractor();
+            CategoriaExtractor categoriaExtractor = new CategoriaExtractor();
+            ColoreExtractor coloreExtractor = new ColoreExtractor();
+            TagliaExtractor tagliaExtractor = new TagliaExtractor();
+            PathImgExtractor pathImgExtractor = new PathImgExtractor();
+
+            if(rs.next()){
+                Articolo articolo = articoloExtractor.extract(rs);
+                articolo.setCategoria(categoriaExtractor.extract(rs));
+
+                articolo.setPaths(new ArrayList<>());
+                articolo.getPaths().add(pathImgExtractor.extract(rs));
+
+                articolo.setColori(new ArrayList<>());
+                articolo.getColori().add(coloreExtractor.extract(rs));
+
+                articolo.setTaglie(new ArrayList<>());
+                articolo.getTaglie().add(tagliaExtractor.extract(rs));
+                while (rs.next()){
+                    if(!articolo.containsSize(tagliaExtractor.extract(rs).getId_nome())) {
+                        articolo.getTaglie().add(tagliaExtractor.extract(rs));
+                    }
+
+                    if (!articolo.containsPath(pathImgExtractor.extract(rs).getPathName())){
+                        articolo.getPaths().add(pathImgExtractor.extract(rs));
+                    }
+
+                    if (!articolo.containsColors(coloreExtractor.extract(rs).getNome())){
+                        articolo.getColori().add(coloreExtractor.extract(rs));
+                    }
+                }
+                return articolo;
+            }
+            return null;
+        }
+    }
+
+    @Override
     public List<Articolo> doRetrieveProductByNome(String nome) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT a.*, s.Quantita, ta.id_nome, c.nome_colore, " +

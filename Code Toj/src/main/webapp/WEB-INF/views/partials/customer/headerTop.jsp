@@ -1,3 +1,4 @@
+<%@ page import="Model.Cart.Cart" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <header>
     <!-- sfondo sidenav -->
@@ -212,7 +213,11 @@
                     <div class="cart-link">
                         <a href="${pageContext.request.contextPath}/customers/cart">
                             <i class="fas fa-shopping-cart icon-right"></i>Carrello
-                            <span class="num-cart-product">0</span>
+                            <% Cart cart = (Cart) session.getAttribute("cartNorLog"); int sum = 0;
+                            if(cart != null){
+                                sum = cart.quantity();
+                            }%>
+                            <span class="num-cart-product"><%=sum%></span>
                         </a>
                     </div>
                 </div>

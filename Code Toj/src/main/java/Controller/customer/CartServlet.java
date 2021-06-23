@@ -12,39 +12,47 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
-@WebServlet(name = "CartServlet", value = "/cart/*")
+@WebServlet(name = "CartServlet", value = "/carts/*")
 public class CartServlet extends Controller {
 
     private static final SQLArticoloDAO productDao = new SQLArticoloDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        /*try {
+        try {
             String path = getPath(request);
             switch (path) {
                 case "/add":
-                    request.setAttribute("back", view("customer/products"));
-                    validate(CartValidator.validateProduct(request));
+                    HttpSession session = request.getSession();
                     int id = Integer.parseInt(request.getParameter("id"));
-                    Articolo optArticolo = productDao.doRetrieveProductById(id);
-                    if (optArticolo != null){
-                        int quantity = Integer.parseInt(request.getParameter("quantity"));
-                        if (request.getSession(false).getAttribute("accountCart") == null)
-                            request.getSession(false).setAttribute("accountCart", new Cart(new ArrayList<>()));
+                    String taglia = request.getParameter("size");
+                    Articolo optArticolo = productDao.doRetrieveProductById_Size(taglia, id);
 
-                        getSessionCart(request.getSession(false)).addProduct(optArticolo, quantity);
-                        response.sendRedirect("/Toj/customer/products?id=" + optArticolo.getIDarticolo());
+                    if (optArticolo != null){
+                        synchronized (session){
+                            Cart sessionCartNotLog = (Cart) session.getAttribute("productNotLog");
+                            if(sessionCartNotLog == null)
+                                sessionCartNotLog = new Cart();
+
+                            int quantity = Integer.parseInt(request.getParameter("quantity"));
+                            if (quantity <= optArticolo.getQuantity())
+                                sessionCartNotLog.addProduct(optArticolo, quantity);
+
+                            session.setAttribute("cartNorLog", sessionCartNotLog);
+                        }
+                        response.sendRedirect("../customers/products?id=" + optArticolo.getIDarticolo() + "&sex=" +
+                                optArticolo.getSesso());
                     } else {
                         notFound();
                     }
                     break;
 
                 case "/remove":
-                    validate(CommonValidator.validateId(request));
                     int removeId = Integer.parseInt(request.getParameter("id"));
                     if(getSessionCart(request.getSession(false)).removeProduct(removeId)){
-                        response.sendRedirect("/Toj/customer/cart");
+                        response.sendRedirect("./customer/cart");
                     } else {
                         notFound();
                     } break;
@@ -57,6 +65,6 @@ public class CartServlet extends Controller {
         } catch (InvalidRequestException ex){
             log(ex.getMessage());
             ex.handle(request, response);
-        }*/
+        }
     }
 }

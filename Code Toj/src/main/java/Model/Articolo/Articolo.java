@@ -18,6 +18,8 @@ public class Articolo implements JSONSerializable {
     private double prezzo;
     private int IDarticolo, sconto;
     private Date data_inserimento;
+    private int quantity;
+    private int localQuantity;
     private Categoria categoria;
     private List<PathImg> paths;
     private List<Taglia> taglie;
@@ -25,7 +27,7 @@ public class Articolo implements JSONSerializable {
 
     //Constructor
     public Articolo(){
-        super();
+        localQuantity = 0;
     }
 
     //Getter & Setter
@@ -115,6 +117,22 @@ public class Articolo implements JSONSerializable {
 
     public void setData_inserimento(Date data_inserimento) {
         this.data_inserimento = data_inserimento;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getLocalQuantity() {
+        return localQuantity;
+    }
+
+    public void setLocalQuantity(int localQuantity) {
+        this.localQuantity = localQuantity;
     }
 
     public boolean containsPath(String str){

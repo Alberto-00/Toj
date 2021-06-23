@@ -1,50 +1,54 @@
 package Model.Cart;
 
-import Model.Ordine.Ordine;
+import Model.Articolo.Articolo;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class Cart {
 
-    private List<Ordine> items;
+    private List<Articolo> items;
 
-    public Cart (List<Ordine> items){
-        this.items = items;
+    public Cart (){
+        this.items = new ArrayList<>();
     }
 
-    public List<Ordine> getItems() {
+    public List<Articolo> getItems() {
         return items;
     }
 
-    public void setItems(List<Ordine> items) {
+    public void setItems(List<Articolo> items) {
         this.items = items;
     }
 
     public double total(){
-        return items.stream().mapToDouble(Ordine::total).reduce(0.00, Double::sum);
+        double sum = 0.0;
+        for (Articolo a: this.items)
+            sum += a.getPrezzo();
+        return sum;
     }
 
-    public boolean addOrdine(Ordine ordine, int quantity){
-        Optional<Ordine> optItem = find(ordine.getID_ordine());
+    public boolean addProduct(Articolo articolo, int quantity){
+        Optional<Articolo> optItem = find(articolo.getIDarticolo());
         if(optItem.isPresent()){
-            optItem.get().setQuantita(quantity);
+            optItem.get().setLocalQuantity(quantity);
             return true;
         } else {
-            return items.add(ordine);
+            return items.add(articolo);
         }
     }
 
-    public Optional<Ordine> find(String id){
-        return items.stream().filter(it -> it.getID_ordine().compareTo(id) == 0).findFirst();
+    public Optional<Articolo> find(int id){
+        return items.stream().filter(it -> it.getIDarticolo() == id).findFirst();
     }
 
-    public boolean removeOrdine(String id){
-        return items.removeIf(it -> it.getID_ordine().compareTo(id) == 0);
+    public boolean removeProduct(int id){
+        return items.removeIf(it -> it.getIDarticolo() == id);
     }
 
     public int quantity(){
-        return items.stream().mapToInt(Ordine::getQuantita).reduce(0, Integer::sum);
+        return items.stream().mapToInt(Articolo::getLocalQuantity).reduce(0, Integer::sum);
     }
 
     public void resetCart(){

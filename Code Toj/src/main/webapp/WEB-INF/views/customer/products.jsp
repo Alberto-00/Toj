@@ -51,17 +51,18 @@ List<Articolo> articoliColor = (List<Articolo>) request.getAttribute("filterColo
         </div>
         <div class="column62">
             <div class="product_d_right">
-                <form action="${pageContext.request.contextPath}/customers/cart">
+                <form action="${pageContext.request.contextPath}/carts/add">
                     <h1><%=articolo.getNome()%></h1>
                     <div class="product_price">
                         <span class="current_price">€ <%=articolo.getPrezzo()%></span>
+                        <input type="hidden" name="price" value="<%=articolo.getPrezzo()%>">
                     </div>
                     <div class="product_desc">
                         <p><%=articolo.getDescrizione()%></p>
                     </div>
                     <div class="product_variant color">
                         <h3>colore</h3>
-                        <select onclick="callAjax()" name="produc-color" id="selectColor">
+                        <select onclick="callAjax()" name="id" id="selectColor">
                             <option selected value="default">Scegli opzione</option>
                             <%for (int i = 0; i < articoliColor.size(); i++){%>
                             <option value="<%=articoliColor.get(i).getIDarticolo()%>">
@@ -74,7 +75,7 @@ List<Articolo> articoliColor = (List<Articolo>) request.getAttribute("filterColo
                     </div>
                     <div class="product_variant size">
                         <h3>taglia</h3>
-                        <select name="products-size">
+                        <select name="size">
                             <option selected value="default">Scegli opzione</option>
                             <%int j = 0; for (Taglia taglia: articolo.getTaglie()){%>
                             <option id="option_taglia<%=j%>" value="<%=taglia.getId_nome()%>" onclick="setQuantita(<%=taglia.getQuantita()%>)"><%=taglia.getId_nome()%></option>
@@ -83,7 +84,7 @@ List<Articolo> articoliColor = (List<Articolo>) request.getAttribute("filterColo
                     </div>
                     <div class="product_variant quantity">
                         <label>quantità</label>
-                        <input id="input_quantita" min="1"  value="1" type="number">
+                        <input id="input_quantita" name="quantity" min="1" max="<%=articolo.getQuantity()%>" value="1" type="number">
                         <button class="btn-add-cart" type="submit">Aggiungi al carrello</button>
                     </div>
                 </form>
