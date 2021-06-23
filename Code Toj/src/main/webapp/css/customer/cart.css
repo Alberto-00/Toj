@@ -12,6 +12,10 @@
     margin-bottom: 0;
 }
 
+.errMsg{
+    padding-top: 5px;
+}
+
 /*Shopping cart Top start*/
 .table_desc {
     border: 1px solid #ddd;

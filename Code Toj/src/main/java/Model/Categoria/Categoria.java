@@ -7,7 +7,7 @@ import org.json.simple.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Categoria implements JSONSerializable, Cloneable {
+public class Categoria implements JSONSerializable {
 
     private int id_categoria;
     private String nome;

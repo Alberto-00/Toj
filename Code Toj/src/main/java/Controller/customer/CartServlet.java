@@ -25,16 +25,16 @@ public class CartServlet extends Controller {
         try {
             String path = getPath(request);
             switch (path) {
-                case "/add":
+                case "/add": {
                     HttpSession session = request.getSession();
                     int id = Integer.parseInt(request.getParameter("id"));
                     String taglia = request.getParameter("size");
                     Articolo optArticolo = productDao.doRetrieveProductById_Size(taglia, id);
 
-                    if (optArticolo != null){
-                        synchronized (session){
-                            Cart sessionCartNotLog = (Cart) session.getAttribute("productNotLog");
-                            if(sessionCartNotLog == null)
+                    if (optArticolo != null) {
+                        synchronized (session) {
+                            Cart sessionCartNotLog = (Cart) session.getAttribute("cartNorLog");
+                            if (sessionCartNotLog == null)
                                 sessionCartNotLog = new Cart();
 
                             int quantity = Integer.parseInt(request.getParameter("quantity"));
@@ -49,14 +49,20 @@ public class CartServlet extends Controller {
                         notFound();
                     }
                     break;
+                }
 
-               /* case "/remove":
-                    int removeId = Integer.parseInt(request.getParameter("id"));
-                    if(getSessionCart(request.getSession(false)).removeProduct(removeId)){
-                        response.sendRedirect("./customer/cart");
-                    } else {
-                        notFound();
-                    } break;*/
+               case "/remove":
+                   HttpSession session = request.getSession();
+                   int removeId = Integer.parseInt(request.getParameter("id"));
+                   synchronized (session) {
+                       Cart sessionCartNotLog = (Cart) session.getAttribute("cartNorLog");
+                       if (sessionCartNotLog != null) {
+                           sessionCartNotLog.removeProduct(removeId);
+                           session.setAttribute("cartNorLog", sessionCartNotLog);
+                       }
+                   }
+                   response.sendRedirect("../customers/cart");
+                   break;
 
                 default:
                     notFound();

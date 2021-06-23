@@ -8,7 +8,7 @@ import org.json.simple.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Colore implements JSONSerializable, Cloneable {
+public class Colore implements JSONSerializable {
 
     private String cod_esadecimale, nome;
     private List<Articolo> articoli;

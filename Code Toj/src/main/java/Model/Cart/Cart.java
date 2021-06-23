@@ -9,7 +9,7 @@ import java.util.Optional;
 public class Cart {
 
     private List<Articolo> items;
-    private static int count = 0;
+    private final static double spedizione = 4.5;
 
     public Cart (){
         this.items = new ArrayList<>();
@@ -23,11 +23,15 @@ public class Cart {
         this.items = items;
     }
 
-    public double total(){
+    public double subTotal(){
         double sum = 0.0;
         for (Articolo a: this.items)
-            sum += a.getPrezzo();
+            sum += a.getPrezzoScontato();
         return sum;
+    }
+
+    public double total(){
+        return subTotal() + spedizione;
     }
 
     public boolean addProduct(Articolo articolo, int quantity){
@@ -57,5 +61,9 @@ public class Cart {
 
     public void resetCart(){
         items.clear();
+    }
+
+    public static double getSpedizione() {
+        return spedizione;
     }
 }

@@ -6,6 +6,7 @@
 <head>
     <jsp:include page="../partials/head.jsp">
         <jsp:param name="customerStyles" value="otherPage,cart"/>
+        <jsp:param name="customerAjaxScripts" value="coupon"/>
         <jsp:param name="title" value="T&#x000F8;j - carrello"/>
     </jsp:include>
 </head>
@@ -39,7 +40,7 @@
                         <c:if test="${cartNorLog != null}">
                             <%for (Articolo a: cart.getItems()){%>
                             <tr>
-                                <td class="product_remove"><a href="#"><i class="far fa-trash-alt"></i></a></td>
+                                <td class="product_remove"><a href="${pageContext.request.contextPath}/carts/remove?id=<%=a.getIDarticolo()%>"><i class="far fa-trash-alt"></i></a></td>
                                 <td class="product_thumb">
                                     <a href="${pageContext.request.contextPath}/customers/products?id=<%=a.getIDarticolo()%>&sex=<%=a.getSesso()%>">
                                     <img src="${pageContext.request.contextPath}/covers/<%=a.getPaths().get(0).getPathName()%>" alt="foto">
@@ -73,27 +74,35 @@
                 <h3>Coupon</h3>
                 <div class="coupon_inner">
                     <p>Inserisci il tuo codice coupon se ne possiedi uno.</p>
-                    <input placeholder="Codice coupon" type="text">
-                    <button type="submit">Applica coupon</button>
+                    <input placeholder="Codice coupon" type="text" name="coupon" id="couponInput">
+                    <button data="${pageContext.request.contextPath}" type="submit" id="coupon">Applica coupon</button>
+                    <small class="errMsg"></small>
                 </div>
             </div>
         </div>
+        <% double total =  0.0, subTotal = 0.0, spedizione = 0.0;
+            if(cart != null){
+                total = cart.total();
+                subTotal = cart.subTotal();
+                spedizione = Cart.getSpedizione();
+            }
+        %>
         <div class="column-contact">
             <div class="coupon_code right">
                 <h3>Totale Carrello</h3>
                 <div class="coupon_inner">
                     <div class="cart_subtotal">
                         <p>Subtotal</p>
-                        <p class="cart_amount">€ 25.00</p>
+                        <p class="cart_amount">€ <%=subTotal%></p>
                     </div>
-                    <div class="cart_subtotal ">
+                    <div class="cart_subtotal">
                         <p>Spedizione</p>
-                        <p class="cart_amount">€ 55.00</p>
+                        <p class="cart_amount">€ <%=spedizione%></p>
                     </div>
                     <hr class="border3-hr">
                     <div class="cart_subtotal">
                         <p>Totale</p>
-                        <p class="cart_amount">€ 215.00</p>
+                        <p class="cart_amount">€ <%=total%></p>
                     </div>
                     <div class="checkout_btn">
                         <a href="${pageContext.request.contextPath}/customers/checkout">Procedi al Checkout</a>
@@ -103,7 +112,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- footer-->
 <%@include file="../partials/customer/footer.jsp"%>

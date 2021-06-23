@@ -5,6 +5,8 @@ import Controller.http.InvalidRequestException;
 import Model.Articolo.Articolo;
 import Model.Articolo.ArticoloSearch;
 import Model.Articolo.SQLArticoloDAO;
+import Model.Sconto.SQLScontoDAO;
+import Model.Sconto.Sconto;
 import Model.search.Condition;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -19,6 +21,7 @@ import java.util.Map;
 
 @WebServlet(name = "AjaxServlet", value = "/ajax/*")
 public class AjaxServlet extends Controller {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = getPath(request); //abbiamo preso tutto il pezzo dopo "/customers/*"
@@ -75,6 +78,18 @@ public class AjaxServlet extends Controller {
                     sendJson(response, root);
                     break;
                 }
+
+                case "/api-coupon":
+                    SQLScontoDAO sqlScontoDAO = new SQLScontoDAO();
+                    Sconto sconto = sqlScontoDAO.doRetrieveByName(request.getParameter("coupon"));
+                    JSONObject root = new JSONObject();
+                    if (sconto != null){
+                        root.put("sconto", sconto.toJson());
+                    } else {
+                        root.put("sonto", "");
+                    }
+                    sendJson(response, root);
+                    break;
 
                 default:
                     notFound();

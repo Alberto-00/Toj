@@ -8,7 +8,7 @@ import org.json.simple.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Taglia implements JSONSerializable, Cloneable {
+public class Taglia implements JSONSerializable {
 
     private String id_nome;
     private int quantita;

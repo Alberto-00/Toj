@@ -14,7 +14,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PathImg implements JSONSerializable, Cloneable {
+public class PathImg implements JSONSerializable {
 
     //Dati dell'Account
     private String pathName;

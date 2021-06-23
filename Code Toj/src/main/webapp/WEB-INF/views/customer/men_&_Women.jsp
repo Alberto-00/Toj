@@ -131,7 +131,7 @@ int count = (int) request.getAttribute("count");%>
                                 </a>
                             </div>
                             <div class="quick_button">
-                                <a id="cartHref<%=i%>" href="${pageContext.request.contextPath}/customers/products?id=<%=articoli.get(i).getIDarticolo()%>&sex=<%=articoli.get(i).getSesso()%>">+ Aggiungi al Carrello</a>
+                                <a id="cartHref<%=i%>" href="${pageContext.request.contextPath}/customers/products?id=<%=articoli.get(i).getIDarticolo()%>&sex=<%=articoli.get(i).getSesso()%>">Vai ai Dettagli</a>
                             </div>
                         </div>
                         <div class="product_content">
