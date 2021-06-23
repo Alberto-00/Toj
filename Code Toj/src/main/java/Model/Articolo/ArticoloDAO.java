@@ -25,6 +25,8 @@ public interface ArticoloDAO <E extends Exception>{
 
     Articolo doRetrieveProductById(int id) throws E;
 
+    Articolo doRetrieveProductById_Size(String size, int id) throws E;
+
     boolean doCreateArticolo(Articolo articolo) throws E;
 
     boolean doUpdateArticolo(Articolo articolo) throws E;
