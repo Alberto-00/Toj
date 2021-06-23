@@ -1,6 +1,5 @@
 package Model.Cart;
 
-import Model.Articolo.Articolo;
 import Model.Ordine.Ordine;
 
 import java.util.List;
