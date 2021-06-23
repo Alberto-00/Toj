@@ -76,18 +76,6 @@ public class AjaxServlet extends Controller {
                     break;
                 }
 
-                case "/api-verifyFilter":
-                    List<Condition> conditions = new ArticoloSearch().buildSearch(request);
-                    System.out.println(conditions.size());
-                    if (conditions.size() <= 0){
-                        JSONObject root = new JSONObject();
-                        root.put("ms", "Articoli non trovati. Riprova.");
-                        sendJson(response, root);
-                        break;
-                    } else
-                        response.sendRedirect(view("customer/men_&_Women"));
-                    break;
-
                 default:
                     notFound();
             }

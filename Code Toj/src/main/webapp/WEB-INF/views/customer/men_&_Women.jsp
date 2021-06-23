@@ -12,7 +12,6 @@
     <jsp:include page="../partials/head.jsp">
         <jsp:param name="customerStyles" value="otherPage,menWomen,carousel"/>
         <jsp:param name="customerScripts" value="menWomen,pagination"/>
-        <jsp:param name="customerAjaxScripts" value="verifyFilter"/>
         <jsp:param name="title" value="T&#x000F8;j - ${sex}"/>
     </jsp:include>
 </head>
@@ -38,11 +37,19 @@ int count = (int) request.getAttribute("count");%>
                 <span class="errMsg">Articoli non trovati. Riprova.</span>
                 <%}%>
                 <input class="button" type="submit" value="Applica Filtri">
+
                 <!--Page-->
                 <input type="hidden" name="page" value="1">
 
-                <!--Sesso-->
-                <input type="hidden" name="Sesso" value="${sesso}">
+                <c:if test="${sesso != null}">
+                    <!--Sesso-->
+                    <input type="hidden" name="Sesso" value="${sesso}">
+                </c:if>
+
+                <c:if test="${latest}">
+                    <!--Nuovi Arrivi-->
+                    <input type="hidden" name="latest" value="true">
+                </c:if>
 
                     <!--Filtro prezzo-->
                     <div class="filter-contenitor">
@@ -141,8 +148,8 @@ int count = (int) request.getAttribute("count");%>
                             <%String url = "";
                             for(Condition c: (List<Condition>) request.getAttribute("conditions")) {
                                 url += "&" + c.getName() + "=" + c.getValue();
-                            }
-                            %>
+                            }%>
+                            <c:if test="${latest == 'true'}"> <%url += "&latest=true";%> </c:if>
                             <a id="elem${page}" href="./shop?page=${page}<%=url%>">${page}</a>
                         </div>
                     </c:forEach>

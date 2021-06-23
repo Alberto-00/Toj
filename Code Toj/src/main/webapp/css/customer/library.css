@@ -409,20 +409,7 @@ li.dropdown {
     }
 }
 
-@media screen and (max-width: 992px){
-    .container-search{
-        display: none;
-    }
-    .columnSearchBar {
-        width: 59%;
-    }
-    .columnInfo {
-        width: 13%;
-    }
-    .columnSidenav{
-        display: block;
-    }
-}
+
 /*Search bar start*/
 #filter-records{
     height: 63px;
@@ -783,10 +770,6 @@ input, button:focus{
 
 
 /* header-bottom start */
-@media screen and (max-width: 992px){
-    .nav-bottom{display: none;}
-}
-
 .nav-bottom{
     padding-top: 16px;
     padding-bottom: 40px;
@@ -1229,6 +1212,22 @@ html{
     .container-top{
         max-width: 96%;
     }
+    .container-search{
+        display: none;
+    }
+    .columnSearchBar {
+        width: 59%;
+    }
+    .columnInfo {
+        width: 13%;
+    }
+    .columnSidenav{
+        display: block;
+    }
+    #filter-records{
+        display: none;
+    }
+    .nav-bottom{display: none;}
 }
 
 @media screen and (max-width: 800px){

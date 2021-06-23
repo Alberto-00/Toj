@@ -808,7 +808,7 @@ INSERT INTO toj_sitoweb.pathimg (pathName, ID_articolo) VALUES ('uomo\\maglie\\t
 INSERT INTO toj_sitoweb.pathimg (pathName, ID_articolo) VALUES ('uomo\\maglie\\t-shirt\\t-shirt S (4).jpg', 230);
 INSERT INTO toj_sitoweb.pathimg (pathName, ID_articolo) VALUES ('uomo\\maglie\\t-shirt\\t-shirt S (5).jpg', 230);
 INSERT INTO toj_sitoweb.pathimg (pathName, ID_articolo) VALUES ('uomo\\maglie\\t-shirt\\t-shirt S (6).jpg', 230);
-INSERT INTO toj_sitoweb.pathimg (pathName, ID_articolo) VALUES ('uomo\\maglie\\t-shirt\\-shirt S (8).jpg', 231);
+INSERT INTO toj_sitoweb.pathimg (pathName, ID_articolo) VALUES ('uomo\\maglie\\t-shirt\\t-shirt S (8).jpg', 231);
 INSERT INTO toj_sitoweb.pathimg (pathName, ID_articolo) VALUES ('uomo\\maglie\\t-shirt\\t-shirt S (7).jpg', 231);
 INSERT INTO toj_sitoweb.pathimg (pathName, ID_articolo) VALUES ('uomo\\maglie\\t-shirt\\t-shirt S (9).jpg', 231);
 INSERT INTO toj_sitoweb.pathimg (pathName, ID_articolo) VALUES ('uomo\\maglie\\t-shirt\\t-shirt T (1).jpg', 232);
