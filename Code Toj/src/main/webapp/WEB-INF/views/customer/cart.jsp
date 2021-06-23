@@ -1,3 +1,5 @@
+<%@ page import="Model.Articolo.Articolo" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="it">
@@ -34,16 +36,25 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <%for(int i = 0; i < 3; i++){%>
-                        <tr>
-                            <td class="product_remove"><a href="#"><i class="far fa-trash-alt"></i></a></td>
-                            <td class="product_thumb"><a href="#"><img src="${pageContext.request.contextPath}/images/boy.jpg" alt=""></a></td>
-                            <td class="product_name"><a href="#" class="hover">Handbag fringilla</a></td>
-                            <td class="product-price">€ 65.00</td>
-                            <td class="product_quantity"><input min="1" max="100" value="1" placeholder="1" type="number"></td>
-                            <td class="product_total">€ 130.00</td>
-                        </tr>
-                        <%}%>
+                        <c:if test="${cartNorLog != null}">
+                            <%for (Articolo a: cart.getItems()){%>
+                            <tr>
+                                <td class="product_remove"><a href="#"><i class="far fa-trash-alt"></i></a></td>
+                                <td class="product_thumb">
+                                    <a href="${pageContext.request.contextPath}/customers/products?id=<%=a.getIDarticolo()%>&sex=<%=a.getSesso()%>">
+                                    <img src="${pageContext.request.contextPath}/covers/<%=a.getPaths().get(0).getPathName()%>" alt="foto">
+                                </a>
+                                </td>
+                                <td class="product_name">
+                                    <a href="${pageContext.request.contextPath}/customers/products?id=<%=a.getIDarticolo()%>&sex=<%=a.getSesso()%>" class="hover">
+                                        <%=a.getNome()%></a>
+                                </td>
+                                <td class="product-price">€ <%=a.getPrezzo()%></td>
+                                <td class="product_quantity"><input min="<%=a.getLocalQuantity()%>" max="<%=a.getQuantity()%>" value="<%=a.getLocalQuantity()%>" placeholder="<%=a.getLocalQuantity()%>" type="number"></td>
+                                <td class="product_total">€ <%=a.totalPrice()%></td>
+                            </tr>
+                            <%}%>
+                        </c:if>
                         </tbody>
                     </table>
                 </div>

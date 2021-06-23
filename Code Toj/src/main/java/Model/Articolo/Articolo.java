@@ -8,10 +8,11 @@ import Model.Taglia.Taglia;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Articolo implements JSONSerializable {
+public class Articolo implements JSONSerializable, Cloneable {
 
     //Dati dell'articolo
     private String sesso, descrizione, nome;
@@ -27,7 +28,11 @@ public class Articolo implements JSONSerializable {
 
     //Constructor
     public Articolo(){
-        localQuantity = 0;
+        this.categoria = new Categoria();
+        this.paths = new ArrayList<>();
+        this.colori = new ArrayList<>();
+        this.taglie = new ArrayList<>();
+        localQuantity = 1;
     }
 
     //Getter & Setter
@@ -63,7 +68,7 @@ public class Articolo implements JSONSerializable {
         this.IDarticolo = IDarticolo;
     }
 
-    public double getSconto() {
+    public int getSconto() {
         return sconto;
     }
 
@@ -132,7 +137,7 @@ public class Articolo implements JSONSerializable {
     }
 
     public void setLocalQuantity(int localQuantity) {
-        this.localQuantity = localQuantity;
+        this.localQuantity += localQuantity;
     }
 
     public boolean containsPath(String str){
@@ -157,6 +162,10 @@ public class Articolo implements JSONSerializable {
                 return true;
         }
         return false;
+    }
+
+    public double totalPrice(){
+        return this.prezzo * this.localQuantity;
     }
 
     @Override

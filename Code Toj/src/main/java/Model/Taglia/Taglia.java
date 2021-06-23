@@ -2,11 +2,13 @@ package Model.Taglia;
 
 import Controller.http.JSONSerializable;
 import Model.Articolo.Articolo;
+import Model.Path_immagini.PathImg;
 import org.json.simple.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Taglia implements JSONSerializable {
+public class Taglia implements JSONSerializable, Cloneable {
 
     private String id_nome;
     private int quantita;

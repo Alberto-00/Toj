@@ -2,11 +2,13 @@ package Model.Colore;
 
 import Controller.http.JSONSerializable;
 import Model.Articolo.Articolo;
+import Model.Categoria.Categoria;
 import org.json.simple.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Colore implements JSONSerializable {
+public class Colore implements JSONSerializable, Cloneable {
 
     private String cod_esadecimale, nome;
     private List<Articolo> articoli;

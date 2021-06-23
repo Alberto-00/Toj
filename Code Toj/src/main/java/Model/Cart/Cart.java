@@ -9,6 +9,7 @@ import java.util.Optional;
 public class Cart {
 
     private List<Articolo> items;
+    private static int count = 0;
 
     public Cart (){
         this.items = new ArrayList<>();
@@ -48,7 +49,10 @@ public class Cart {
     }
 
     public int quantity(){
-        return items.stream().mapToInt(Articolo::getLocalQuantity).reduce(0, Integer::sum);
+        int sum = 0;
+        for (Articolo a: this.items)
+            sum += a.getLocalQuantity();
+        return sum;
     }
 
     public void resetCart(){

@@ -3,6 +3,10 @@
     margin-bottom: 1rem;
 }
 
+.container-top p{
+    margin-right: 0;
+}
+
 .column-contact2{
     width: 100%;
     margin-bottom: 0;

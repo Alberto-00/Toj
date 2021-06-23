@@ -4,9 +4,10 @@ import Controller.http.JSONSerializable;
 import Model.Articolo.Articolo;
 import org.json.simple.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Categoria implements JSONSerializable {
+public class Categoria implements JSONSerializable, Cloneable {
 
     private int id_categoria;
     private String nome;

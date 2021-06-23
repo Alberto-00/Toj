@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @WebServlet(name = "CartServlet", value = "/carts/*")
 public class CartServlet extends Controller {
@@ -49,13 +50,13 @@ public class CartServlet extends Controller {
                     }
                     break;
 
-                case "/remove":
+               /* case "/remove":
                     int removeId = Integer.parseInt(request.getParameter("id"));
                     if(getSessionCart(request.getSession(false)).removeProduct(removeId)){
                         response.sendRedirect("./customer/cart");
                     } else {
                         notFound();
-                    } break;
+                    } break;*/
 
                 default:
                     notFound();
