@@ -1,12 +1,5 @@
 package Model.Sconto;
 
-import Model.Account.Account;
-import Model.Account.AccountExtractor;
-import Model.Articolo.Articolo;
-import Model.Articolo.ArticoloExtractor;
-import Model.Categoria.CategoriaExtractor;
-import Model.Colore.ColoreExtractor;
-import Model.Taglia.TagliaExtractor;
 import Model.storage.ConPool;
 import Model.storage.QueryBuilder;
 
@@ -16,30 +9,38 @@ import java.util.List;
 
 public class SQLScontoDAO implements ScontoDAO<SQLException>{
 
-
     @Override
-    public List<Sconto> doRetriveByUser(String email) throws SQLException {
+    public List<Sconto> doRetrieveAll() throws SQLException {
         try(Connection con = ConPool.getConnection() ){
             QueryBuilder queryBuilder = new QueryBuilder("cod_sconto", "s");
-            queryBuilder.select("s.codice","account_user.Email").innerJoin("posseduto", "p")
-                    .on("s.codice = p.codice,").innerJoin("posseduto", "p1")
-                    .on("a.Email = p1.Email").where("account_user.Email = " + email);
-
+            queryBuilder.select("*");
             try (PreparedStatement ps = con.prepareStatement(queryBuilder.generateQuery())){
                 ResultSet rs = ps.executeQuery();
                 List<Sconto> sconti = new ArrayList<>();
-                AccountExtractor accountExtractor = new AccountExtractor();
                 ScontoExtractor scontoExtractor = new ScontoExtractor();
-                Sconto sconto = new Sconto();
-                sconto.setUser(new Account());
-                sconto.getUser().setEmail(email);
-                for(int i = 0; rs.next(); i++){
-                    sconto = scontoExtractor.extract(rs);
-                    sconti.add(i,sconto);
+
+                while (rs.next()){
+                    sconti.add(scontoExtractor.extract(rs));
                 }
                 return sconti;
             }
         }
+    }
+
+    @Override
+    public Sconto doRetrieveByName(String id) throws SQLException {
+        try(Connection con = ConPool.getConnection() ){
+            QueryBuilder queryBuilder = new QueryBuilder("cod_sconto", "s");
+            queryBuilder.select("*").where("s.codice = '" + id + "'");
+            try (PreparedStatement ps = con.prepareStatement(queryBuilder.generateQuery())){
+                ResultSet rs = ps.executeQuery();
+                ScontoExtractor scontoExtractor = new ScontoExtractor();
+                if(rs.next()){
+                   return scontoExtractor.extract(rs);
+                }
+            }
+        }
+        return null;
     }
 
     @Override

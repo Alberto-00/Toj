@@ -1,4 +1,4 @@
-package Controller.adminServlets;
+package Controller.admin;
 
 import Controller.customer.Validator.AccountValidator;
 import Controller.http.Controller;

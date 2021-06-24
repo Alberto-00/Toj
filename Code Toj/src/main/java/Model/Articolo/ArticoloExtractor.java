@@ -22,6 +22,7 @@ public class ArticoloExtractor implements ResultSetExtractor<Articolo> {
         articolo.setSconto(rs.getInt("sconto"));
         articolo.setData_inserimento((rs.getDate("data_inserimento")));
         articolo.setNome(rs.getString("nome_articolo"));
+        articolo.setQuantity(rs.getInt("Quantita"));
         return articolo;
     }
 }

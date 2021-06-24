@@ -1,6 +1,8 @@
 package Controller.http;
 
 import Model.Account.AccountSession;
+import Model.Articolo.Articolo;
+import Model.Cart.Cart;
 import Model.Ordine.Ordine;
 import org.json.simple.JSONObject;
 
@@ -47,8 +49,8 @@ public class Controller extends HttpServlet implements ErrorHandler {
         return (AccountSession) session.getAttribute("accountSession");
     }
 
-    protected Ordine getSessionCart(HttpSession session){
-        return (Ordine) session.getAttribute("accountCart");
+    protected Cart getSessionCart(HttpSession session){
+        return (Cart) session.getAttribute("accountCart");
     }
 
     protected void sendJson(HttpServletResponse response, JSONObject object) throws IOException{

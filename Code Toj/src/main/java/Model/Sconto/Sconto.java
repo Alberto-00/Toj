@@ -1,11 +1,14 @@
 package Model.Sconto;
 
+import Controller.http.JSONSerializable;
 import Model.Ordine.Ordine;
 import Model.Account.Account;
+import org.json.simple.JSONObject;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-public class Sconto {
+public class Sconto implements JSONSerializable {
 
     private String codice;
     private LocalDate dataScadenza;
@@ -55,5 +58,14 @@ public class Sconto {
 
     public void setUser(Account user) {
         this.user = user;
+    }
+
+    @Override
+    public JSONObject toJson(){
+        JSONObject object = new JSONObject();
+        object.put("codice", codice);
+        object.put("sconto", sconto);
+        object.put("data", dataScadenza.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        return object;
     }
 }

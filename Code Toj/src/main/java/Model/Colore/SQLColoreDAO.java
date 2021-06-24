@@ -1,7 +1,5 @@
 package Model.Colore;
 
-import Model.Taglia.Taglia;
-import Model.Taglia.TagliaExtractor;
 import Model.storage.ConPool;
 import Model.storage.QueryBuilder;
 
@@ -16,6 +14,21 @@ public class SQLColoreDAO implements ColoreDAO<SQLException> {
 
     public SQLColoreDAO(){
         super();
+    }
+
+    @Override
+    public List<Colore> doRetrieveAll() throws SQLException {
+        try (Connection con = ConPool.getConnection()){
+            PreparedStatement ps = con.prepareStatement("SELECT DISTINCT c.* " +
+                    "FROM colore c ORDER BY c.nome_colore;");
+            ResultSet rs = ps.executeQuery();
+            ColoreExtractor coloreExtractor = new ColoreExtractor();
+            List<Colore> colori = new ArrayList<>();
+            while (rs.next()){
+                colori.add(coloreExtractor.extract(rs));
+            }
+            return colori;
+        }
     }
 
     @Override

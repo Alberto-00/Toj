@@ -3,9 +3,17 @@
     margin-bottom: 1rem;
 }
 
+.container-top p{
+    margin-right: 0;
+}
+
 .column-contact2{
     width: 100%;
     margin-bottom: 0;
+}
+
+.errMsg{
+    padding-top: 5px;
 }
 
 /*Shopping cart Top start*/
@@ -256,6 +264,7 @@ p{
 }
 
 .checkout_btn a {
+    cursor: pointer;
     background: #ff6a28;
     color: var(--white);
     font-size: 14px;

@@ -100,12 +100,69 @@ public class QueryBuilder {
         return this;
     }
 
-    public QueryBuilder search(List<Condition> conditions){
+    /*public QueryBuilder search(List<Condition> conditions){
         StringJoiner searchJoiner = new StringJoiner(" AND ");
         for (Condition cn : conditions){
             searchJoiner.add(String.format("%s.%s%s", ALIAS_TABLE, cn.toString(), QM));
         }
         QUERY.append(searchJoiner);
         return this;
+    }*/
+
+    public QueryBuilder search(List<Condition> conditions) {
+        int i = 0, j = 0, k = 0, z = 0;
+        for (Condition cn : conditions) {
+
+            switch (cn.getName()) {
+                case "nome_categoria":
+                    if (i == 0) {
+                        QUERY.append(" ) AND ( ").append(String.format("%s.%s%s", "c2", cn.toString(), QM));
+                        i++;
+                    } else
+                        QUERY.append(" OR ").append(String.format("%s.%s%s", "c2", cn.toString(), QM));
+                    break;
+
+                case "id_nome":
+                    if (k == 0) {
+                        QUERY.append(" ) AND ( ").append(String.format("%s.%s%s", "ta", cn.toString(), QM));
+                        k++;
+                    } else
+                        QUERY.append(" OR ").append(String.format("%s.%s%s", "ta", cn.toString(), QM));
+                    break;
+
+                case "nome_colore":
+                    if (z == 0) {
+                        QUERY.append(" ) AND ( ").append(String.format("%s.%s%s", "c", cn.toString(), QM));
+                        z++;
+                    } else
+                        QUERY.append(" OR ").append(String.format("%s.%s%s", "c", cn.toString(), QM));
+                    break;
+
+                default:
+                    if (j == 0) {
+                        QUERY.append(" ( ").append(String.format("%s.%s%s", ALIAS_TABLE, cn.toString(), QM));
+                        j++;
+                    } else
+                        QUERY.append(" ) AND ( ").append(String.format("%s.%s%s", ALIAS_TABLE, cn.toString(), QM));
+                    break;
+            }
+        }
+        return this;
+    }
+
+    public void orderBy(String... fields){
+        QUERY.append(") ORDER BY ");
+        StringJoiner commaJoiner = new StringJoiner(",");
+        for(String field: fields)
+            commaJoiner.add(String.format("%s.%s", ALIAS_TABLE, field));
+        QUERY.append(commaJoiner.toString());
+    }
+
+    public void asc(){
+        QUERY.append(" ASC ");
+    }
+
+    public void desc(){
+        QUERY.append(" DESC ");
     }
 }

@@ -4,7 +4,9 @@ import java.util.List;
 
 public interface ScontoDAO <E extends Exception> {
 
-    List<Sconto> doRetriveByUser(String email) throws E;
+    List<Sconto> doRetrieveAll() throws E;
+
+    Sconto doRetrieveByName(String id) throws E;
 
     boolean doCreateSconto(Sconto sconto) throws E;
 

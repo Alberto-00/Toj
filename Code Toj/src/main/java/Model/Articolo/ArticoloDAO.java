@@ -3,28 +3,29 @@ package Model.Articolo;
 import Model.search.Condition;
 import Model.search.Paginator;
 
+import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 public interface ArticoloDAO <E extends Exception>{
 
-
-    List<Articolo> pagination(String sex) throws E;
+    List<Articolo> doRetrieveNewArrivals(String sex) throws E;
 
     List<Articolo> doRetrieveProductByNome(String nome) throws E;
 
-    List<Articolo> pagination(String sex, Paginator paginator) throws E;
+    List<String> doRetrieveProductByNome() throws E;
 
-    List<Articolo> doRetrieveProductBySexType(String sex, String type) throws E;
+    List<Articolo> search(List<Condition> conditions, boolean latest) throws E;
 
-    List<Integer> getIds(String sex) throws E;
-    
-    int countAll(String sex) throws E;
+    List<Articolo> searchPagination(List<Condition> conditions, Paginator paginator, boolean latest) throws E;
 
-    int countAll(List<Condition> conditions, String sex) throws E;
+    double maxPrice() throws E;
 
-    List<Articolo> search(List<Condition> conditions, String sex) throws E;
+    double minPrice() throws E;
 
     Articolo doRetrieveProductById(int id) throws E;
+
+    Articolo doRetrieveProductById_Size(String size, int id) throws E;
 
     boolean doCreateArticolo(Articolo articolo) throws E;
 

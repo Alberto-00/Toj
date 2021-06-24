@@ -8,16 +8,19 @@ import Model.Taglia.Taglia;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Articolo implements JSONSerializable {
+public class Articolo implements JSONSerializable, Cloneable {
 
     //Dati dell'articolo
     private String sesso, descrizione, nome;
     private double prezzo;
     private int IDarticolo, sconto;
     private Date data_inserimento;
+    private int quantity;
+    private int localQuantity;
     private Categoria categoria;
     private List<PathImg> paths;
     private List<Taglia> taglie;
@@ -25,7 +28,11 @@ public class Articolo implements JSONSerializable {
 
     //Constructor
     public Articolo(){
-        super();
+        this.categoria = new Categoria();
+        this.paths = new ArrayList<>();
+        this.colori = new ArrayList<>();
+        this.taglie = new ArrayList<>();
+        localQuantity = 1;
     }
 
     //Getter & Setter
@@ -61,7 +68,7 @@ public class Articolo implements JSONSerializable {
         this.IDarticolo = IDarticolo;
     }
 
-    public double getSconto() {
+    public int getSconto() {
         return sconto;
     }
 
@@ -117,6 +124,22 @@ public class Articolo implements JSONSerializable {
         this.data_inserimento = data_inserimento;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getLocalQuantity() {
+        return localQuantity;
+    }
+
+    public void setLocalQuantity(int localQuantity) {
+        this.localQuantity += localQuantity;
+    }
+
     public boolean containsPath(String str){
         for (PathImg p: paths){
             if(p.getPathName().equals(str))
@@ -139,6 +162,17 @@ public class Articolo implements JSONSerializable {
                 return true;
         }
         return false;
+    }
+
+    public double getPrezzoScontato(){
+        if(this.sconto > 0){
+            return this.prezzo - (this.prezzo * this.sconto);
+        }
+        return this.prezzo;
+    }
+
+    public double totalPrice(){
+        return this.prezzo * this.localQuantity;
     }
 
     @Override
