@@ -264,6 +264,7 @@ p{
 }
 
 .checkout_btn a {
+    cursor: pointer;
     background: #ff6a28;
     color: var(--white);
     font-size: 14px;

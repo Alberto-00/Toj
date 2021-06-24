@@ -166,9 +166,9 @@ public class Articolo implements JSONSerializable, Cloneable {
 
     public double getPrezzoScontato(){
         if(this.sconto > 0){
-            return this.prezzo * this.sconto;
+            return this.prezzo - (this.prezzo * this.sconto);
         }
-        return 0;
+        return this.prezzo;
     }
 
     public double totalPrice(){

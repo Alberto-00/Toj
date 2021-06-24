@@ -33,7 +33,7 @@ public class CartServlet extends Controller {
 
                     if (optArticolo != null) {
                         synchronized (session) {
-                            Cart sessionCartNotLog = (Cart) session.getAttribute("cartNorLog");
+                            Cart sessionCartNotLog = (Cart) session.getAttribute("cartNotLog");
                             if (sessionCartNotLog == null)
                                 sessionCartNotLog = new Cart();
 
@@ -41,7 +41,7 @@ public class CartServlet extends Controller {
                             if (quantity <= optArticolo.getQuantity())
                                 sessionCartNotLog.addProduct(optArticolo, quantity);
 
-                            session.setAttribute("cartNorLog", sessionCartNotLog);
+                            session.setAttribute("cartNotLog", sessionCartNotLog);
                         }
                         response.sendRedirect("../customers/products?id=" + optArticolo.getIDarticolo() + "&sex=" +
                                 optArticolo.getSesso());
@@ -55,10 +55,10 @@ public class CartServlet extends Controller {
                    HttpSession session = request.getSession();
                    int removeId = Integer.parseInt(request.getParameter("id"));
                    synchronized (session) {
-                       Cart sessionCartNotLog = (Cart) session.getAttribute("cartNorLog");
+                       Cart sessionCartNotLog = (Cart) session.getAttribute("cartNotLog");
                        if (sessionCartNotLog != null) {
                            sessionCartNotLog.removeProduct(removeId);
-                           session.setAttribute("cartNorLog", sessionCartNotLog);
+                           session.setAttribute("cartNotLog", sessionCartNotLog);
                        }
                    }
                    response.sendRedirect("../customers/cart");

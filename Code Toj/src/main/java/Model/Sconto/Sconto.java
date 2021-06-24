@@ -5,9 +5,8 @@ import Model.Ordine.Ordine;
 import Model.Account.Account;
 import org.json.simple.JSONObject;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Sconto implements JSONSerializable {
 
@@ -64,10 +63,9 @@ public class Sconto implements JSONSerializable {
     @Override
     public JSONObject toJson(){
         JSONObject object = new JSONObject();
-        DateFormat dateFormat = new SimpleDateFormat("aaaa-mm-gg");
         object.put("codice", codice);
         object.put("sconto", sconto);
-        object.put("data", dateFormat.format(dataScadenza));
+        object.put("data", dataScadenza.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         return object;
     }
 }

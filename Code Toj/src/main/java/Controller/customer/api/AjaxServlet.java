@@ -5,6 +5,7 @@ import Controller.http.InvalidRequestException;
 import Model.Articolo.Articolo;
 import Model.Articolo.ArticoloSearch;
 import Model.Articolo.SQLArticoloDAO;
+import Model.Cart.Cart;
 import Model.Sconto.SQLScontoDAO;
 import Model.Sconto.Sconto;
 import Model.search.Condition;
@@ -79,16 +80,35 @@ public class AjaxServlet extends Controller {
                     break;
                 }
 
-                case "/api-coupon":
+                case "/api-coupon": {
+                    HttpSession session = request.getSession();
+                    Cart cart = (Cart) session.getAttribute("cartNotLog");
+                    if (cart == null || cart.getItems().size() <= 0) {
+                        JSONObject root = new JSONObject();
+                        root.put("sconto", "Carrello vuoto.");
+                        sendJson(response, root);
+                        break;
+                    }
                     SQLScontoDAO sqlScontoDAO = new SQLScontoDAO();
                     Sconto sconto = sqlScontoDAO.doRetrieveByName(request.getParameter("coupon"));
                     JSONObject root = new JSONObject();
-                    if (sconto != null){
+                    if (sconto != null) {
                         root.put("sconto", sconto.toJson());
                     } else {
                         root.put("sonto", "");
                     }
                     sendJson(response, root);
+                    break;
+                }
+
+                case "/api-checkout":
+                    HttpSession session = request.getSession();
+                    Cart cart = (Cart) session.getAttribute("cartNotLog");
+                    if (cart == null || cart.getItems().size() <= 0) {
+                        JSONObject root = new JSONObject();
+                        root.put("msg", "Carrello vuoto.");
+                        sendJson(response, root);
+                    }
                     break;
 
                 default:

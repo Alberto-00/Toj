@@ -213,7 +213,7 @@
                     <div class="cart-link">
                         <a href="${pageContext.request.contextPath}/customers/cart">
                             <i class="fas fa-shopping-cart icon-right"></i>Carrello
-                            <% Cart cart = (Cart) session.getAttribute("cartNorLog"); int sum = 0;
+                            <% Cart cart = (Cart) session.getAttribute("cartNotLog"); int sum = 0;
                             if(cart != null){
                                 sum = cart.quantity();
                             }%>

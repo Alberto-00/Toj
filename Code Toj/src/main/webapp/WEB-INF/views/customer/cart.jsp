@@ -6,7 +6,7 @@
 <head>
     <jsp:include page="../partials/head.jsp">
         <jsp:param name="customerStyles" value="otherPage,cart"/>
-        <jsp:param name="customerAjaxScripts" value="coupon"/>
+        <jsp:param name="customerAjaxScripts" value="cart"/>
         <jsp:param name="title" value="T&#x000F8;j - carrello"/>
     </jsp:include>
 </head>
@@ -37,7 +37,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:if test="${cartNorLog != null}">
+                        <c:if test="${cartNotLog != null}">
                             <%for (Articolo a: cart.getItems()){%>
                             <tr>
                                 <td class="product_remove"><a href="${pageContext.request.contextPath}/carts/remove?id=<%=a.getIDarticolo()%>"><i class="far fa-trash-alt"></i></a></td>
@@ -74,14 +74,14 @@
                 <h3>Coupon</h3>
                 <div class="coupon_inner">
                     <p>Inserisci il tuo codice coupon se ne possiedi uno.</p>
-                    <input placeholder="Codice coupon" type="text" name="coupon" id="couponInput">
+                    <input placeholder="Codice coupon" type="text" name="coupon" id="couponInput" maxlength="7">
                     <button data="${pageContext.request.contextPath}" type="submit" id="coupon">Applica coupon</button>
-                    <small class="errMsg"></small>
+                    <small></small>
                 </div>
             </div>
         </div>
         <% double total =  0.0, subTotal = 0.0, spedizione = 0.0;
-            if(cart != null){
+            if(cart != null && cart.getItems().size() > 0){
                 total = cart.total();
                 subTotal = cart.subTotal();
                 spedizione = Cart.getSpedizione();
@@ -105,7 +105,9 @@
                         <p class="cart_amount">€ <%=total%></p>
                     </div>
                     <div class="checkout_btn">
-                        <a href="${pageContext.request.contextPath}/customers/checkout">Procedi al Checkout</a>
+                        <a href="${pageContext.request.contextPath}/customers/checkout" id="checkout-btn">Procedi al Checkout</a>
+                        <small></small>
+                        <a href="${pageContext.request.contextPath}/customers/checkout">aaa</a>
                     </div>
                 </div>
             </div>
