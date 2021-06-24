@@ -65,7 +65,7 @@ CREATE TABLE Size(
 
 CREATE TABLE Account_User(
 	Email VARCHAR(100) PRIMARY KEY,
-    Password_User VARCHAR(50) NOT NULL,
+    Password_User VARCHAR(130) NOT NULL,
     Admin_user BOOLEAN default 0 NOT NULL
 );
 

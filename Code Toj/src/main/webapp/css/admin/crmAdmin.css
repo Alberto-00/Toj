@@ -133,7 +133,10 @@ nav > a{
     color: white;
 }
 
-.modal-body {padding: 2px 16px;}
+.modal-body {
+    padding: 2px 16px;
+    background-color: var(--green);
+}
 
 .modal-footer {
     padding: 2px 16px;

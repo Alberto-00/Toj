@@ -15,15 +15,8 @@
     <%@include file="../partials/admin/dashboardHeader.jsp"%>
     <main class="content">
         <div>
-            <p>Nome: Josef</p>
-        </div>
-        <div>
-            <p>Cognome: Ascione </p>
-
-        </div>
-        <div>
             <p>Email: j.ascione3@studenti.unisa.it </p>
-
+            <p>Password: Password</p>
         </div>
     </main>
     <%@include file="../partials/admin/dashboardFooter.jsp"%>

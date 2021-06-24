@@ -7,6 +7,8 @@ $(document).ready(function (){
     });
 })
 
+
+//LOGOUT
 $(document).ready(function (){
         // Modal
         var modal = document.getElementById("myModal");
@@ -22,8 +24,13 @@ $(document).ready(function (){
                 modal.style.display = "block";
         }
 
-        // Funzione per chiudere modal
+        // Funzione per chiudere modal (Dalla "X")
         span.onclick = function() {
+                modal.style.display = "none";
+        }
+
+        //Funzione per chiudere modal (Dal bottone "No")
+        document.getElementById("close").onclick = function (){
                 modal.style.display = "none";
         }
 

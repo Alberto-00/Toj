@@ -49,6 +49,10 @@ public class Account {
         }
     }
 
+    public void passWord(String psw){
+        this.password = psw;
+    }
+
     public boolean isAdmin() {
         return admin;
     }

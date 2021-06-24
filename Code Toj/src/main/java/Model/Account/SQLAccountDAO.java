@@ -3,10 +3,7 @@ package Model.Account;
 import Model.storage.ConPool;
 import Model.storage.QueryBuilder;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Optional;
 
 public class SQLAccountDAO implements AccountDAO{
@@ -14,22 +11,43 @@ public class SQLAccountDAO implements AccountDAO{
     @Override
     public Optional<Account> findAccount(String email, String password, boolean admin) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("SELECT a.* " +
+            Statement stm = con.createStatement();
+            ResultSet resultSet = stm.executeQuery("SELECT a.* " +
                     "FROM account_user a " +
-                    "WHERE Email = ? AND Password_User = ? AND Admin_user = ?");
+                    "WHERE a.Email = "+"\'"+email+"\'"+" AND a.Password_User = "+"\'"+password+"\'"+" AND a.Admin_user = "+admin+" ");
 
-            ps.setString(1, email);
-            ps.setString(2, password);
-            ps.setBoolean(3, admin);
-
-            ResultSet rs = ps.executeQuery();
             Account account = null;
-            if(rs.next()){
-                account = new AccountExtractor().extract(rs);
+            if(resultSet.next()){
+
+                account = new AccountExtractor().extract(resultSet);
+                System.out.println("SIAMO NELL'IF");
             }
             return Optional.ofNullable(account);
         }
     }
+    /*
+    @Override
+    public Optional<Account> findAccount(String email, String password, boolean admin) throws SQLException {
+        try(Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT a.* " +
+                    "FROM account_user a " +
+                    "WHERE a.Email = "+"\'"+email+"\'"+" AND a.Password_User = "+"\'"+password+"\'"+" AND a.Admin_user = "+admin+" ");
+            System.out.println("PS RETURN" + ps.toString());
+            System.out.println("PS Excecute " + ps.executeQuery().getString(0));
+            ResultSet rs = ps.executeQuery();
+            System.out.println(rs.next());
+
+            Account account = null;
+            if(rs.next()){
+                account = new AccountExtractor().extract(rs);
+            }
+            System.out.println("ACCOUTN SQL"+account.getEmail()+" "+account.getPassword());
+            return Optional.ofNullable(account);
+        }
+    }*/
+
+
+
 
     /*
     @Override

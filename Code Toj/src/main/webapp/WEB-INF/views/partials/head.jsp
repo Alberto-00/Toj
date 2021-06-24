@@ -28,6 +28,12 @@
     </c:forTokens>
 </c:if>
 
+<c:if test="${not empty param.adminStyles}">
+    <c:forTokens items="${param.adminStyles}" delims="," var="adminStyle">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin/${adminStyle}.css">
+    </c:forTokens>
+</c:if>
+
 <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous" defer></script>
@@ -39,8 +45,15 @@
     </c:forTokens>
 </c:if>
 
+<c:if test="${not empty param.adminScripts}">
+    <c:forTokens items="${param.adminScripts}" delims="," var="adminScripts">
+        <script src="${pageContext.request.contextPath}/js/admin/${adminScripts}.js" defer></script>
+    </c:forTokens>
+</c:if>
+
 <c:if test="${not empty param.customerAjaxScripts}">
     <c:forTokens items="${param.customerAjaxScripts}" delims="," var="customerAjaxScript">
         <script src="${pageContext.request.contextPath}/js/customer/ajax/${customerAjaxScript}.js" defer></script>
     </c:forTokens>
 </c:if>
+

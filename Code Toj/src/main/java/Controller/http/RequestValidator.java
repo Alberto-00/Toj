@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class RequestValidator {
+public class    RequestValidator {
 
     private final List<String> errors;
     private final HttpServletRequest request;

@@ -2,6 +2,8 @@
 <header>
   <i class="fas fa-bars"></i>
   <span class="account">
-            Welcome Admin!
-        </span>
+      <c:if test="${not empty accountSession}">
+          Welcome ${accountSession.email}!
+      </c:if>
+  </span>
 </header>
