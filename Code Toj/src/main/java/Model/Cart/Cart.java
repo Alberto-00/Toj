@@ -10,9 +10,11 @@ public class Cart {
 
     private List<Articolo> items;
     private final static double spedizione = 4.5;
+    private int count;
 
     public Cart (){
         this.items = new ArrayList<>();
+        count = 0;
     }
 
     public List<Articolo> getItems() {
@@ -26,7 +28,7 @@ public class Cart {
     public double subTotal(){
         double sum = 0.0;
         for (Articolo a: this.items)
-            sum += a.getPrezzoScontato();
+            sum += a.totalPrice();
         return sum;
     }
 
@@ -34,22 +36,26 @@ public class Cart {
         return subTotal() + spedizione;
     }
 
-    public boolean addProduct(Articolo articolo, int quantity){
-        Optional<Articolo> optItem = find(articolo.getIDarticolo());
-        if(optItem.isPresent()){
-            optItem.get().setLocalQuantity(quantity);
-            return true;
-        } else {
-            return items.add(articolo);
+    public boolean addProduct(Articolo articolo, int quantity, String size) {
+        for(Articolo a: this.items) {
+            if(a.getChosenSize().compareTo(size) == 0 && a.getIDarticolo() == articolo.getIDarticolo()) {
+                a.setLocalQuantity(quantity);
+                return true;
+            }
         }
+        articolo.setLocalQuantity(quantity);
+        articolo.setChosenSize(size);
+        items.add(count, articolo);
+        count++;
+        return false;
     }
 
     public Optional<Articolo> find(int id){
         return items.stream().filter(it -> it.getIDarticolo() == id).findFirst();
     }
 
-    public boolean removeProduct(int id){
-        return items.removeIf(it -> it.getIDarticolo() == id);
+    public boolean removeProduct(int id, String size){
+        return items.removeIf(it -> it.getIDarticolo() == id && it.getChosenSize().compareTo(size) == 0);
     }
 
     public int quantity(){

@@ -1,3 +1,4 @@
+<%@ page import="Model.Articolo.Articolo" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="it">
@@ -58,35 +59,25 @@
                             </tr>
                             </thead>
                             <tbody>
+                            <%for (Articolo a: cart.getItems()){%>
                             <tr>
-                                <td>Handbag  fringilla<strong> × 2</strong></td>
-                                <td>$165.00</td>
+                                <td><p><%=a.getNome()%><strong> × <%=a.getLocalQuantity()%></strong></p></td>
+                                <td>€ <%=a.totalPrice()%></td>
                             </tr>
-                            <tr>
-                                <td>Handbag  justo<strong> × 2</strong></td>
-                                <td>$50.00</td>
-                            </tr>
-                            <tr>
-                                <td>Handbag elit<strong> × 2</strong></td>
-                                <td>$50.00</td>
-                            </tr>
-                            <tr>
-                                <td>Handbag Rutrum<strong> × 1</strong></td>
-                                <td>$50.00</td>
-                            </tr>
+                            <%}%>
                             </tbody>
                             <tfoot>
                             <tr>
                                 <th>Totale Carrello</th>
-                                <td>$215.00</td>
+                                <td><strong>€ <%=cart.subTotal()%></strong></td>
                             </tr>
                             <tr>
                                 <th>Spedizione</th>
-                                <td><strong>$5.00</strong></td>
+                                <td><strong>€ <%=Cart.getSpedizione()%></strong></td>
                             </tr>
                             <tr class="order_total">
                                 <th>Ordine Totale</th>
-                                <td><strong>$220.00</strong></td>
+                                <td><strong>€ <%=cart.total()%></strong></td>
                             </tr>
                             </tfoot>
                         </table>

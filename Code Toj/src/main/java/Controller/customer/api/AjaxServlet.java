@@ -25,7 +25,7 @@ public class AjaxServlet extends Controller {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String path = getPath(request); //abbiamo preso tutto il pezzo dopo "/customers/*"
+        String path = getPath(request);
         try {
             switch (path) {
                 case "/api-product": {
@@ -37,7 +37,6 @@ public class AjaxServlet extends Controller {
                     Articolo articolo = sqlArticoloDAO.doRetrieveProductById(idParse);
                     if (articolo != null)
                         root.put("articolo", articolo.toJson());
-
                     sendJson(response, root);
                     break;
                 }
@@ -104,11 +103,12 @@ public class AjaxServlet extends Controller {
                 case "/api-checkout":
                     HttpSession session = request.getSession();
                     Cart cart = (Cart) session.getAttribute("cartNotLog");
-                    if (cart == null || cart.getItems().size() <= 0) {
-                        JSONObject root = new JSONObject();
+                    JSONObject root = new JSONObject();
+                    if (cart == null || cart.getItems().size() <= 0)
                         root.put("msg", "Carrello vuoto.");
-                        sendJson(response, root);
-                    }
+                    else
+                        root.put("msg", "");
+                    sendJson(response, root);
                     break;
 
                 default:

@@ -44,8 +44,10 @@ $(document).ready(function(){
             url: $url + '/ajax/api-checkout',
             success: function (response) {
                 var pass = JSON.parse(response);
-                if (pass !== undefined){
+                if (pass.msg !== ""){
                     $("a + small").addClass("errMsg").text(pass.msg);
+                } else {
+                    window.location.href = $url + '/customers/checkout';
                 }
             }
         })

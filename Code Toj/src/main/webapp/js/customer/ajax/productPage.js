@@ -1,8 +1,7 @@
 function callAjax(){
     var val = $('#selectColor option:selected').val();
-    if( val === "default"){
+    if( val === "")
         return;
-    }
 
     $.ajax({
         method: 'GET',
@@ -14,7 +13,6 @@ function callAjax(){
         url: '../ajax/api-product?id=' + val,
         success: function (response){
             var arr = JSON.parse(response);
-
             if (supports_history_api()){
                 modifyURL();
             }
@@ -40,8 +38,6 @@ function callAjax(){
                 attr('onclick', 'setQuantita(' + arr.articolo.taglie[i].quantita +')').
                 text(arr.articolo.taglie[i].id_nome)
             }
-        }, error: function (){
-            console.log(response)
         }
     })
 }
@@ -54,3 +50,38 @@ function modifyURL(){
 function supports_history_api() {
     return !!(window.history && history.pushState);
 }
+
+$(document).ready(function (){
+    // Inizializziamo la validazione sul form con name = "admin-login"
+    $("form[name='formProduct']").validate({
+        // Specifichiamo le regole di valdazione
+        rules: {
+            quantity: {
+                required: true,
+            },
+            size: {
+                required: true,
+            },
+            id: {
+                required: true,
+            }
+        },
+        // Specifichiamo i messaggi di errore
+        messages: {
+            quantity: {
+                required: "Quantità non disponibile",
+            },
+            size: {
+                required: "Inserisci la taglia",
+            },
+            id:{
+                required: "Inserisci il colore",
+            }
+        }, errorElement: 'small',
+        errorClass: 'errorMsg',
+        //Quando valido, ci assicuriamo che il form venga inviato
+        submitHandler: function(form) {
+            form.submit();
+        }
+    });
+})

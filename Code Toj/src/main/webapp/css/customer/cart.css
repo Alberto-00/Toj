@@ -92,13 +92,21 @@ th{
 }
 
 td.product_remove, td.product_thumb, td.product_name,
-td.product-price, td.product_quantity, td.product_total{
+td.product-price, td.product_quantity, td.product_total, td.product_size{
     border-bottom: 1px solid #ddd;
     border-right: 1px solid #ddd;
 }
 
 td.product_remove, td.product_thumb,
 td.product-price, td.product_total{
+    width: 133px;
+    height: 119px;
+}
+
+td.product_size{
+    font-size: 20px;
+    color: var(--black);
+    font-weight: bold;
     width: 133px;
     height: 119px;
 }
