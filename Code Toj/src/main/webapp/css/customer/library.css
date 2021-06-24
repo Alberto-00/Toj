@@ -16,8 +16,12 @@
     display: block;
     font-size: .7rem;
 }
+.error{
+    margin-left: 10px;
+    font-size: .7rem;
+}
 
-.errMsg{
+.errMsg, .error{
     color: var(--error);
 }
 

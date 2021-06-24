@@ -52,9 +52,7 @@ function supports_history_api() {
 }
 
 $(document).ready(function (){
-    // Inizializziamo la validazione sul form con name = "admin-login"
     $("form[name='formProduct']").validate({
-        // Specifichiamo le regole di valdazione
         rules: {
             quantity: {
                 required: true,
@@ -66,7 +64,6 @@ $(document).ready(function (){
                 required: true,
             }
         },
-        // Specifichiamo i messaggi di errore
         messages: {
             quantity: {
                 required: "Quantità non disponibile",
@@ -78,8 +75,6 @@ $(document).ready(function (){
                 required: "Inserisci il colore",
             }
         }, errorElement: 'small',
-        errorClass: 'errorMsg',
-        //Quando valido, ci assicuriamo che il form venga inviato
         submitHandler: function(form) {
             form.submit();
         }

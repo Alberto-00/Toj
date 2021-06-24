@@ -141,6 +141,10 @@ public class Articolo implements JSONSerializable, Cloneable {
         this.localQuantity += localQuantity;
     }
 
+    public void lessLocalQuantity(int localQuantity){
+        this.localQuantity = localQuantity;
+    }
+
     public String getChosenSize() {
         return chosenSize;
     }

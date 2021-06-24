@@ -50,8 +50,11 @@ public class Cart {
         return false;
     }
 
-    public Optional<Articolo> find(int id){
-        return items.stream().filter(it -> it.getIDarticolo() == id).findFirst();
+    public Articolo find(int id, String size){
+        for (Articolo a: this.items)
+            if(a.getChosenSize().compareTo(size) == 0 && a.getIDarticolo() == id)
+                return a;
+        return null;
     }
 
     public boolean removeProduct(int id, String size){

@@ -24,46 +24,53 @@
     <div class="row">
         <div class="column-contact2">
             <div class="table_desc">
-                <div class="cart_page table-responsive">
-                    <table>
-                        <thead>
-                        <tr>
-                            <th class="product_remove">Cancella</th>
-                            <th class="product_thumb">Immagine</th>
-                            <th class="product_name">Prodotto</th>
-                            <th class="product-price">Prezzo</th>
-                            <th class="product_quantity">Quantità</th>
-                            <th class="product_size">Taglia</th>
-                            <th class="product_total">Totale</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:if test="${cartNotLog != null}">
-                            <%for (Articolo a: cart.getItems()){%>
+                <form action="${pageContext.request.contextPath}/carts/update" name="formCart">
+                    <div class="cart_page table-responsive">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th class="product_remove">Cancella</th>
+                                <th class="product_thumb">Immagine</th>
+                                <th class="product_name">Prodotto</th>
+                                <th class="product-price">Prezzo</th>
+                                <th class="product_quantity">Quantità</th>
+                                <th class="product_size">Taglia</th>
+                                <th class="product_total">Totale</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:if test="${cartNotLog != null}">
+                                <%for (Articolo a: cart.getItems()){%>
                             <tr>
                                 <td class="product_remove"><a href="${pageContext.request.contextPath}/carts/remove?id=<%=a.getIDarticolo()%>&size=<%=a.getChosenSize()%>"><i class="far fa-trash-alt"></i></a></td>
                                 <td class="product_thumb">
                                     <a href="${pageContext.request.contextPath}/customers/products?id=<%=a.getIDarticolo()%>&sex=<%=a.getSesso()%>">
-                                    <img src="${pageContext.request.contextPath}/covers/<%=a.getPaths().get(0).getPathName()%>" alt="foto">
-                                </a>
+                                        <img src="${pageContext.request.contextPath}/covers/<%=a.getPaths().get(0).getPathName()%>" alt="foto">
+                                    </a>
                                 </td>
                                 <td class="product_name">
                                     <a href="${pageContext.request.contextPath}/customers/products?id=<%=a.getIDarticolo()%>&sex=<%=a.getSesso()%>" class="hover">
                                         <%=a.getNome()%></a>
                                 </td>
                                 <td class="product-price">€ <%=a.getPrezzoScontato()%></td>
-                                <td class="product_quantity"><input min="1" max="<%=a.getQuantity()%>" value="<%=a.getLocalQuantity()%>" placeholder="<%=a.getLocalQuantity()%>" type="number"></td>
+                                <td class="product_quantity">
+                                    <input class="update" data="<%=a.getChosenSize()%>" data1="<%=a.getIDarticolo()%>" min="1"
+                                           max="<%=a.getQuantity()%>" value="<%=a.getLocalQuantity()%>"
+                                           name="quantity" type="number">
+                                    <small></small>
+                                </td>
                                 <td class="product_size"><%=a.getChosenSize()%></td>
                                 <td class="product_total">€ <%=a.totalPrice()%></td>
                             </tr>
                             <%}%>
-                        </c:if>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="cart_submit">
-                    <button type="submit">Aggiorna carrello</button>
-                </div>
+                            </c:if>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="cart_submit">
+                        <button type="submit">Aggiorna carrello</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

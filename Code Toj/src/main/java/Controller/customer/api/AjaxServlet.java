@@ -3,12 +3,10 @@ package Controller.customer.api;
 import Controller.http.Controller;
 import Controller.http.InvalidRequestException;
 import Model.Articolo.Articolo;
-import Model.Articolo.ArticoloSearch;
 import Model.Articolo.SQLArticoloDAO;
 import Model.Cart.Cart;
 import Model.Sconto.SQLScontoDAO;
 import Model.Sconto.Sconto;
-import Model.search.Condition;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -18,7 +16,6 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 
 @WebServlet(name = "AjaxServlet", value = "/ajax/*")
 public class AjaxServlet extends Controller {
@@ -100,7 +97,7 @@ public class AjaxServlet extends Controller {
                     break;
                 }
 
-                case "/api-checkout":
+                case "/api-checkout": {
                     HttpSession session = request.getSession();
                     Cart cart = (Cart) session.getAttribute("cartNotLog");
                     JSONObject root = new JSONObject();
@@ -108,6 +105,24 @@ public class AjaxServlet extends Controller {
                         root.put("msg", "Carrello vuoto.");
                     else
                         root.put("msg", "");
+                    sendJson(response, root);
+                    break;
+                }
+
+                case "/api-updateCart":
+                    HttpSession session = request.getSession();
+                    Cart cart = (Cart) session.getAttribute("cartNotLog");
+                    String size = request.getParameter("size");
+                    int quantity = Integer.parseInt(request.getParameter("quantity"));
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    Articolo articolo = cart.find(id, size);
+                    JSONObject root = new JSONObject();
+                    if (articolo != null){
+                        articolo.lessLocalQuantity(quantity);
+                        root.put("msg", "true");
+                    } else {
+                        root.put("msg", "false");
+                    }
                     sendJson(response, root);
                     break;
 
