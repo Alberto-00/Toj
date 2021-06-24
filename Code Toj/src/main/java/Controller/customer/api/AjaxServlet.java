@@ -89,6 +89,7 @@ public class AjaxServlet extends Controller {
                     Sconto sconto = sqlScontoDAO.doRetrieveByName(request.getParameter("coupon"));
                     JSONObject root = new JSONObject();
                     if (sconto != null) {
+                        request.setAttribute("coupon", sconto.getSconto());
                         root.put("sconto", sconto.toJson());
                     } else {
                         root.put("sonto", "");

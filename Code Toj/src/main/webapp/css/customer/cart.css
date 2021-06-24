@@ -9,7 +9,7 @@
 
 .column-contact2{
     width: 100%;
-    margin-bottom: 0;
+    margin-bottom: 10px;
 }
 
 .errMsg{
@@ -142,6 +142,7 @@ td.product-price{
 img{
     max-width: 89px;
     height: auto;
+    padding-top: 6px;
 }
 
 .product_quantity input{
@@ -155,29 +156,6 @@ img{
 .fa-trash-alt{
     font-size: 20px;
     color: #ff6a28;
-}
-
-.cart_submit{
-    text-align: right;
-    padding: 12px;
-}
-
-.cart_submit button{
-    background-color: var(--black);
-    border: 0;
-    color: var(--white);
-    font-size: 12px;
-    font-weight: 600;
-    height: 38px;
-    line-height: 18px;
-    padding: 10px 15px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.cart_submit button:hover{
-    background-color: #ff6a28;
 }
 /*Shopping cart Top end*/
 

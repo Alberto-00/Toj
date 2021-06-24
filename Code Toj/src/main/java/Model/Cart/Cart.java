@@ -4,17 +4,18 @@ import Model.Articolo.Articolo;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class Cart {
 
     private List<Articolo> items;
     private final static double spedizione = 4.5;
     private int count;
+    private int subtotal;
 
     public Cart (){
         this.items = new ArrayList<>();
         count = 0;
+        subtotal = 0;
     }
 
     public List<Articolo> getItems() {
@@ -26,14 +27,18 @@ public class Cart {
     }
 
     public double subTotal(){
-        double sum = 0.0;
+        int sum = 0;
         for (Articolo a: this.items)
             sum += a.totalPrice();
-        return sum;
+        return this.subtotal = sum;
     }
 
     public double total(){
         return subTotal() + spedizione;
+    }
+
+    public double applyCoupon(double coupon){
+        return (this.subtotal * coupon);
     }
 
     public boolean addProduct(Articolo articolo, int quantity, String size) {

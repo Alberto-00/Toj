@@ -24,8 +24,7 @@
     <div class="row">
         <div class="column-contact2">
             <div class="table_desc">
-                <form action="${pageContext.request.contextPath}/carts/update" name="formCart">
-                    <div class="cart_page table-responsive">
+                <div class="cart_page table-responsive">
                         <table>
                             <thead>
                             <tr>
@@ -67,10 +66,6 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="cart_submit">
-                        <button type="submit">Aggiorna carrello</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
@@ -89,12 +84,17 @@
                 </div>
             </div>
         </div>
-        <% double total =  0.0, subTotal = 0.0, spedizione = 0.0;
-            if(cart != null && cart.getItems().size() > 0){
-                total = cart.total();
-                subTotal = cart.subTotal();
-                spedizione = Cart.getSpedizione();
-            }
+        <% double total =  0.0, subTotal = 0.0, spedizione = 0.0, coupon = 0;
+        if(request.getAttribute("coupon") != null) {
+            coupon = (double) request.getAttribute("coupon");
+        }
+        if(cart != null && cart.getItems().size() > 0){
+            total = cart.total();
+            if (coupon > 0)
+                subTotal = cart.subTotal() - cart.applyCoupon(coupon);
+            else subTotal = cart.subTotal();
+            spedizione = Cart.getSpedizione();
+        }
         %>
         <div class="column-contact">
             <div class="coupon_code right">

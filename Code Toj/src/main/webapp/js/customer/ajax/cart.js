@@ -26,8 +26,10 @@ $(document).ready(function() {
                     $("button + small").addClass("errMsg").text("Coupon non valido.");
                 } else if (sconto.sconto === "Carrello vuoto.") {
                     $("button + small").addClass("errMsg").text(sconto.sconto);
-                } else
-                    $("button + small").addClass("successMsg").text("Coupon applicato!");
+                } else {
+                    location.reload();
+                    $("button + small").addClass("successMsg").text("Coupon applicato!").fadeIn(500).delay(1200).fadeOut(500);;
+                }
             }
         })
     });
@@ -61,11 +63,11 @@ $(document).ready(function() {
 
         if ($quantity === ""){
             $(".update + small").removeClass("successMsg");
-            $(".update + small").addClass("errMsg").text("Aggiornamento fallito.").fadeIn(500).delay(1000).fadeOut(500);
+            $(".update + small").addClass("errMsg").text("Aggiornamento fallito.").fadeIn(500).delay(1200).fadeOut(500);
             return;
-        } else if ($quantity >= $(this).attr("max")){
+        } else if (parseInt($quantity) >= parseInt($(this).attr("max"))){
             $(".update + small").removeClass("successMsg");
-            $(".update + small").addClass("errMsg").text("Valore troppo alto.").fadeIn(500).delay(1000).fadeOut(500);
+            $(".update + small").addClass("errMsg").text("Valore troppo alto.").fadeIn(500).delay(1200).fadeOut(500);
             return;
         }
 
@@ -79,10 +81,12 @@ $(document).ready(function() {
             url: $url + '/ajax/api-updateCart?id=' + $id + "&size=" + $size + "&quantity=" + $quantity,
             success: function (response) {
                 var pass = JSON.parse(response);
-                if (pass.msg === "true")
-                    $(".update + small").addClass("successMsg").text("Aggiornato!").fadeIn(500).delay(1000).fadeOut(500);
+                if (pass.msg === "true"){
+                    location.reload();
+                    $(".update + small").addClass("successMsg").text("Aggiornato!").fadeIn(500).delay(1200).fadeOut(500);
+                }
                 else
-                    $(".update + small").addClass("errMsg").text("Aggiornameto fallito.").fadeIn(500).delay(1000).fadeOut(500);
+                    $(".update + small").addClass("errMsg").text("Aggiornameto fallito.").fadeIn(500).delay(1200).fadeOut(500);
             }
         });
     });

@@ -69,7 +69,13 @@
                             <tfoot>
                             <tr>
                                 <th>Totale Carrello</th>
-                                <td><strong>€ <%=cart.subTotal()%></strong></td>
+                                <% double coupon = 0, subtotal;
+                                    if (request.getAttribute("coupon") != null){
+                                        subtotal = cart.subTotal() - cart.applyCoupon((double) request.getAttribute("coupon"));
+                                    } else {
+                                        subtotal = cart.subTotal();
+                                    }%>
+                                <td><strong>€ <%=subtotal%></strong></td>
                             </tr>
                             <tr>
                                 <th>Spedizione</th>

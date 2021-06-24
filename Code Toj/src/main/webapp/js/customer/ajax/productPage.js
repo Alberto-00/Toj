@@ -67,6 +67,7 @@ $(document).ready(function (){
         messages: {
             quantity: {
                 required: "Quantità non disponibile",
+                max: "Quantità non disponibile",
             },
             size: {
                 required: "Inserisci la taglia",
