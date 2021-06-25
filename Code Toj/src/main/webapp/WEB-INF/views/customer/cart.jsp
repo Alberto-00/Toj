@@ -85,15 +85,15 @@
             </div>
         </div>
         <% double total =  0.0, subTotal = 0.0, spedizione = 0.0, coupon = 0;
-        if(request.getAttribute("coupon") != null) {
-            coupon = (double) request.getAttribute("coupon");
+        if(session.getAttribute("coupon") != null) {
+            coupon = (double) session.getAttribute("coupon");
         }
         if(cart != null && cart.getItems().size() > 0){
-            total = cart.total();
             if (coupon > 0)
                 subTotal = cart.subTotal() - cart.applyCoupon(coupon);
             else subTotal = cart.subTotal();
             spedizione = Cart.getSpedizione();
+            total = subTotal + spedizione;
         }
         %>
         <div class="column-contact">

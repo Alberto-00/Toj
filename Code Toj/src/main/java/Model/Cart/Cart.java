@@ -33,12 +33,8 @@ public class Cart {
         return this.subtotal = sum;
     }
 
-    public double total(){
-        return subTotal() + spedizione;
-    }
-
     public double applyCoupon(double coupon){
-        return (this.subtotal * coupon);
+        return Math.round((this.subtotal * coupon)*100.0)/100.00;
     }
 
     public boolean addProduct(Articolo articolo, int quantity, String size) {

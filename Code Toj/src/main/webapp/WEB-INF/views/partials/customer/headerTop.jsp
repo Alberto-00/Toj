@@ -1,5 +1,8 @@
 <%@ page import="Model.Cart.Cart" %>
+<%@ page import="Model.Dati_utente.DatiUtente" %>
+<%@ page import="Model.Account.AccountSession" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <header>
     <!-- sfondo sidenav -->
     <div id="sidenav-background-color"></div>
@@ -19,8 +22,13 @@
                             <i class="fas fa-angle-down icon-left"></i>
                         </a>
                         <div class="dropdown-content">
-                            <a class="border-content" href="${pageContext.request.contextPath}/customers/account">Il mio Account</a>
-                            <a href="${pageContext.request.contextPath}/customers/sigin">Accedi</a>
+                            <c:if test="${empty userSession}">
+                                <a href="${pageContext.request.contextPath}/customers/sigin">Accedi</a>
+                            </c:if>
+                            <c:if test="${not empty userSession}">
+                                <a class="border-content" href="${pageContext.request.contextPath}/customers/account">Il mio Account</a>
+                                <a class="border-content" href="${pageContext.request.contextPath}/customers/logout">Logout</a>
+                            </c:if>
                         </div>
                     </li>
                     <li class="dropdown border">
@@ -38,31 +46,31 @@
     <div class="popup-login" id="myForm">
         <div class="login__content">
             <div class="login__forms">
-                <form action="${pageContext.request.contextPath}/customers/sigin" method="post" class="login__registre close-icon" id="login-in">
+                <form action="${pageContext.request.contextPath}/customers/sigin" method="post" class="login__registre close-icon" id="login-in" name="formPopup">
                     <h1 class="login__title">Accedi</h1>
                     <a onclick="closeForm()" class="icon-close-popup-sigIn"><i class="fas fa-times"></i></a>
 
-                    <div class="login__box">
+                    <div class="login__box" id="firstLogin">
                         <label for="EmailInput">
                             <i class="fas fa-user"></i>
                             <input type="text" id="EmailInput" name="email" placeholder="Email" class="login__input">
                         </label>
-                        <small class="errMsg"></small>
                     </div>
-                    <div class="login__box">
+
+                    <div class="login__box" id="secondLogin">
                         <label for="passwordInput">
                             <i class="fas fa-unlock-alt"></i>
-                            <input type="password" id="passwordInput" name="password" placeholder="Password" class="login__input">
+                            <input type="password" id="passwordInput" minlength="8" maxlength="30" name="password" placeholder="Password" class="login__input" autocomplete="off">
                         </label>
-                        <small class="errMsg"></small>
                     </div>
-                    <a href="${pageContext.request.contextPath}/customers/account" class="login__forgot">Password dimenticata?</a>
+
+                    <a href="mailto:Tøj@gmail.com" target="_blank" title="googlePlus" class="login__forgot hover">Password dimenticata?</a>
                     <input type="submit" class="login__button" value="Accedi" name="submitForm">
                     <span class="login__account">Non hai un Account ?</span>
                     <span class="login__signin" id="sign-up">Registrati</span>
                 </form>
 
-                <form action="${pageContext.request.contextPath}/customers/sigUp" method="post" class="login__create none close-icon" id="login-up">
+                <form action="${pageContext.request.contextPath}/customers/registration" method="post" class="login__create none close-icon" id="login-up" name="formPopup2">
                     <h1 class="login__title">Create Account</h1>
                     <a onclick="closeForm()" class="icon-close-popup-sigUp"><i class="fas fa-times"></i></a>
 
@@ -76,9 +84,10 @@
                     <div class="login__box">
                         <label for="passwordOutput">
                             <i class="fas fa-unlock-alt"></i>
-                            <input type="password" id="passwordOutput" name="password" placeholder="Password" class="login__input">
+                            <input type="password" id="passwordOutput" name="password" placeholder="Password" class="login__input" autocomplete="off">
                         </label>
                     </div>
+
                     <input type="submit" class="login__button" value="Registrati" name="submitForm">
                     <span class="login__account">Hai già un Account ?</span>
                     <span class="login__signup" id="sign-in">Accedi</span>
@@ -92,8 +101,7 @@
             <div class="row">
                 <div class="columnLogo">
                     <a href="${pageContext.request.contextPath}/index.jsp">
-                        <img src="${pageContext.request.contextPath}/icons/logo.png"
-                             alt="" width="100" height="100">
+                        <img src="${pageContext.request.contextPath}/icons/logo.png" alt="" width="100" height="100">
                     </a>
                 </div>
 
@@ -115,8 +123,7 @@
                     <span>Resi gratuiti * </span>
                     <p>Soddisfatti o rimborsati</p><br><br>
 
-                    <a href="${pageContext.request.contextPath}/customers/sigin">Accedi / Registrati</a><hr class="border-hr">
-
+                    <%@include file="headerLoginSidenav.jsp"%>
                     <form action="${pageContext.request.contextPath}/customers/shop">
                         <label for="search">
                             <div class="search-sidenav">
@@ -169,8 +176,13 @@
                             <i class="fas fa-plus"></i>
                         </button>
                         <div class="dropdown-container-sidenav">
-                            <a href="${pageContext.request.contextPath}/customers/account">Area personale</a>
-                            <a href="${pageContext.request.contextPath}/customers/sigin">Accedi</a>
+                            <c:if test="${empty userSession}">
+                                <a href="${pageContext.request.contextPath}/customers/sigin">Accedi</a>
+                            </c:if>
+                            <c:if test="${not empty userSession}">
+                                <a class="border-content" href="${pageContext.request.contextPath}/customers/account">Area personale</a>
+                                <a class="border-content" href="${pageContext.request.contextPath}/customers/logout">Logout</a>
+                            </c:if>
                         </div>
 
                         <a href="${pageContext.request.contextPath}/customers/cart" style="border-bottom: 1px solid #747474;">
@@ -207,7 +219,7 @@
                     <div id="filter-records"></div>
                 </div>
                 <div class="columnSignIn">
-                    <a id="hide" onclick="openForm()">Accedi / Registrati</a>
+                    <%@include file="headerLogin.jsp"%>
                 </div>
                 <div class="columnInfo">
                     <div class="cart-link">

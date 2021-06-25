@@ -40,6 +40,8 @@
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous" defer></script>
 <script src="${pageContext.request.contextPath}/js/customer/library.js" defer></script>
 <script src="${pageContext.request.contextPath}/js/customer/ajax/liveSearchBar.js" defer></script>
+<script src="${pageContext.request.contextPath}/js/customer/login.js" defer></script>
+
 
 <c:if test="${not empty param.customerScripts}">
     <c:forTokens items="${param.customerScripts}" delims="," var="customerScript">

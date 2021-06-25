@@ -156,7 +156,7 @@
                 </form>
             </div>
             <div class="account-content" id="logout-account">
-                <h1><a href="${pageContext.request.contextPath}/customers/sigin">Logout</a></h1>
+                <h1><a href="${pageContext.request.contextPath}/customers/logout">Logout</a></h1>
             </div>
         </div>
     </div>

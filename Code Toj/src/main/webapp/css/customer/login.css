@@ -4,6 +4,10 @@
     border-radius: 5px;
 }
 
+.block{
+    display: block;
+}
+
 .login-submit a{
     font-size: 13px;
     color: var(--grey);

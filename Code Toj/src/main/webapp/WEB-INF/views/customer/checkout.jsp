@@ -67,14 +67,22 @@
                             <%}%>
                             </tbody>
                             <tfoot>
+                            <%if(session.getAttribute("coupon") != null){
+                            double coupon = (double) session.getAttribute("coupon");%>
+                            <tr>
+                                <th>Coupon</th>
+                                <td><strong>- <%=coupon * 100%>%</strong></td>
+                            </tr>
+                            <%}%>
                             <tr>
                                 <th>Totale Carrello</th>
-                                <% double coupon = 0, subtotal;
-                                    if (request.getAttribute("coupon") != null){
-                                        subtotal = cart.subTotal() - cart.applyCoupon((double) request.getAttribute("coupon"));
+                                <% double subtotal, total;
+                                    if (session.getAttribute("coupon") != null){
+                                        subtotal = cart.subTotal() - cart.applyCoupon((double) session.getAttribute("coupon"));
                                     } else {
                                         subtotal = cart.subTotal();
-                                    }%>
+                                    } total = subtotal + Cart.getSpedizione();
+                                %>
                                 <td><strong>€ <%=subtotal%></strong></td>
                             </tr>
                             <tr>
@@ -83,7 +91,7 @@
                             </tr>
                             <tr class="order_total">
                                 <th>Ordine Totale</th>
-                                <td><strong>€ <%=cart.total()%></strong></td>
+                                <td><strong>€ <%=total%></strong></td>
                             </tr>
                             </tfoot>
                         </table>
