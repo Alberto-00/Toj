@@ -42,7 +42,7 @@
             <%}
                 for (DatiUtente o: accounts){%>
             <tr>
-                <td data-head="Email"><%= o.getEmail()%></td>
+                <td data-head="Email"><%= o.getUser().getEmail()%></td>
                 <td data-head="Nome"><%= o.getNome()%></td>
                 <td data-head="Cognome"><%= o.getCognome()%></td>
                 <td data-head="Data Nascita"><%= o.getDataDiNascita()%></td>

@@ -35,7 +35,7 @@
             <%}
                 for (Ordine o: newOrdini){%>
                 <tr>
-                    <td data-head="Destinatario"><%= o.getEmail()%></td>
+                    <td data-head="Destinatario"><%= o.getUser().getEmail()%></td>
                     <td data-head="ID"><%= o.getID_ordine()%></td>
                     <td data-head="Data Acquisto"><%= o.getData_acquisto()%></td>
                     <td data-head="Data Spedizione"><%= o.getData_spedizione()%></td>
