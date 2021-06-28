@@ -1,4 +1,5 @@
 <%@ page import="Model.Articolo.Articolo" %>
+<%@ page import="Model.Sconto.Sconto" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -39,7 +40,7 @@
                             </thead>
                             <tbody>
                             <c:if test="${cartNotLog != null}">
-                                <%for (Articolo a: cart.getItems()){%>
+                                <% int i = 0; for (Articolo a: cart.getItems()){%>
                             <tr>
                                 <td class="product_remove"><a href="${pageContext.request.contextPath}/carts/remove?id=<%=a.getIDarticolo()%>&size=<%=a.getChosenSize()%>"><i class="far fa-trash-alt"></i></a></td>
                                 <td class="product_thumb">
@@ -53,15 +54,15 @@
                                 </td>
                                 <td class="product-price">€ <%=a.getPrezzoScontato()%></td>
                                 <td class="product_quantity">
-                                    <input class="update" data="<%=a.getChosenSize()%>" data1="<%=a.getIDarticolo()%>" min="1"
-                                           max="<%=a.getQuantity()%>" value="<%=a.getLocalQuantity()%>"
+                                    <input id="<%=i%>" class="update" data="<%=a.getChosenSize()%>" data1="<%=a.getIDarticolo()%>" min="1"
+                                           max="<%=a.getOneTaglia(a.getChosenSize()).getQuantita()%>" value="<%=a.getLocalQuantity()%>"
                                            name="quantity" type="number">
                                     <small></small>
                                 </td>
                                 <td class="product_size"><%=a.getChosenSize()%></td>
                                 <td class="product_total">€ <%=a.totalPrice()%></td>
                             </tr>
-                            <%}%>
+                            <%i++;}%>
                             </c:if>
                             </tbody>
                         </table>
@@ -86,7 +87,8 @@
         </div>
         <% double total =  0.0, subTotal = 0.0, spedizione = 0.0, coupon = 0;
         if(session.getAttribute("coupon") != null) {
-            coupon = (double) session.getAttribute("coupon");
+            Sconto sconto = (Sconto) session.getAttribute("coupon");
+            coupon = sconto.getSconto();
         }
         if(cart != null && cart.getItems().size() > 0){
             if (coupon > 0)

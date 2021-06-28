@@ -29,6 +29,9 @@
 
                     <label class="block">Password *</label>
                     <input name="password" type="password">
+                    <c:if test="${not empty msg}">
+                        <small class="errMsg">${msg}</small>
+                    </c:if>
 
                     <div class="login-submit">
                         <a href="mailto:Tøj@gmail.com" target="_blank" title="googlePlus" class="hover">Hai dimenticato la password?</a>
@@ -48,6 +51,9 @@
 
                     <label class="block">Password *</label>
                     <input name="password" type="password">
+                    <c:if test="${not empty msg2}">
+                        <small class="errMsg">${msg2}</small>
+                    </c:if>
 
                     <input class="submit-button-log reg block" type="submit" name="submitContact" value="REGISTRATI">
                 </form>

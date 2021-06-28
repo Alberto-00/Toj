@@ -46,7 +46,7 @@ public class SQLScontoDAO implements ScontoDAO<SQLException>{
     @Override
     public boolean doCreateSconto(Sconto sconto) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
-            QueryBuilder queryBuilder = new QueryBuilder("sconto", "s");
+            QueryBuilder queryBuilder = new QueryBuilder("cod_sconto", "s");
             queryBuilder.insert("codice","data_scadenza","sconto");
             try (PreparedStatement ps = con.prepareStatement(queryBuilder.generateQuery())) {
                 ps.setString(1,sconto.getCodice());
@@ -61,8 +61,8 @@ public class SQLScontoDAO implements ScontoDAO<SQLException>{
     @Override
     public boolean doUpdateSconto(Sconto sconto) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
-            QueryBuilder queryBuilder = new QueryBuilder("sconto", "s");
-            queryBuilder.update("codice", "data_scadenza", "sconto").where("s.codice = "+sconto.getCodice());
+            QueryBuilder queryBuilder = new QueryBuilder("cod_sconto", "s");
+            queryBuilder.update("codice", "data_scadenza", "sconto").where("codice = "+sconto.getCodice());
             try (PreparedStatement ps = con.prepareStatement(queryBuilder.generateQuery())) {
                 ps.setString(1, sconto.getCodice());
                 ps.setDate(2, Date.valueOf(sconto.getDataScadenza()));
@@ -74,12 +74,12 @@ public class SQLScontoDAO implements ScontoDAO<SQLException>{
     }
 
     @Override
-    public boolean doDeleteSconto(Sconto sconto) throws SQLException {
+    public boolean doDeleteSconto(String sconto) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
-            QueryBuilder queryBuilder = new QueryBuilder("sconto", "s");
-            queryBuilder.delete().where("s.codice = " + sconto.getCodice());
+            QueryBuilder queryBuilder = new QueryBuilder("cod_sconto", "s");
+            queryBuilder.delete().where("codice = '" + sconto + "'");
             try (PreparedStatement ps = con.prepareStatement(queryBuilder.generateQuery())) {
-                ps.setString(1, sconto.getCodice());
+                System.out.println(ps.toString());
                 int rows = ps.executeUpdate();
                 return rows == 1;
             }

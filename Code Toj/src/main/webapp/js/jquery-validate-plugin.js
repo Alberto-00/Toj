@@ -1618,6 +1618,41 @@
 
     } );
 
+    $.validator.addMethod("alphabetsnspace", function(value, element) {
+        return this.optional(element) || /^[a-zA-Z ]*$/.test(value);
+    });
+
+    $.validator.addMethod("minAge", function(value, element, min) {
+        var today = new Date();
+        var birthDate = new Date(value);
+        var age = today.getFullYear() - birthDate.getFullYear();
+
+        if (age > min+1) {
+            return true;
+        }
+
+        var m = today.getMonth() - birthDate.getMonth();
+
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+
+        return age >= min;
+    });
+
+    $.validator.addMethod("paycard", function(value, element) {
+        return value.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1').trim().substring(0, 19);
+    });
+
+    $.validator.addMethod("dataCard", function(value, element, regexpr) {
+        return regexpr.test(value);
+    });
+
+    jQuery.validator.addMethod("phoneUS", function(phone_number, element) {
+        phone_number = phone_number.replace(/\s+/g, "");
+        return this.optional(element) || phone_number.length > 9 &&
+            phone_number.match(/^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$/);
+    });
 // Ajax mode: abort
 // usage: $.ajax({ mode: "abort"[, port: "uniqueport"]});
 // if mode:"abort" is used, the previous request on that port (port can be undefined) is aborted via XMLHttpRequest.abort()

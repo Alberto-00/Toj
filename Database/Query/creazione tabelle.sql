@@ -125,13 +125,15 @@ CREATE TABLE Composizione(
 );
 
 CREATE TABLE Dati_cliente(
-    Nome VARCHAR(50) NOT NULL,
-    Cognome VARCHAR(20) NOT NULL,
-    ddn DATE NOT NULL,
-    Telefono VARCHAR(20) NOT NULL UNIQUE,
-    Via VARCHAR(100) NOT NULL,
-    N_civico VARCHAR(10) NOT NULL,
-    CAP CHAR(10) NOT NULL,
+    Nome VARCHAR(50),
+    Cognome VARCHAR(20),
+    ddn DATE,
+    Telefono VARCHAR(20),
+    Via VARCHAR(100),
+    CAP CHAR(10),
+    city VARCHAR (100),
+    paese VARCHAR(100),
+    appartamento VARCHAR(200),
     Email CHAR(100),
     foreign key (Email) references Account_User (Email)
     ON UPDATE CASCADE

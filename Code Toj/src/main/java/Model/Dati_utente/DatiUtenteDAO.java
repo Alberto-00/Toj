@@ -1,14 +1,20 @@
 package Model.Dati_utente;
 
+import Model.search.Paginator;
+
 import java.util.List;
+import java.util.Optional;
 
 public interface DatiUtenteDAO <E extends Exception>{
 
-    List<DatiUtente> doRetriveAll() throws E;
+    Optional<DatiUtente> findUserData(String email) throws E;
 
-    boolean doCreateDatiUtente (DatiUtente datiUtente) throws E;
+    List<DatiUtente> doRetriveAll(Paginator paginator) throws E;
 
-    boolean doUpdateDatiUtete (DatiUtente datiUtente) throws E;
+    boolean updateDatiUtete (DatiUtente datiUtente) throws E;
+
+    boolean updateAddressUtente (DatiUtente datiUtente) throws E;
 
     boolean doDeleteDatiUtente (DatiUtente datiUtente) throws E;
+
 }

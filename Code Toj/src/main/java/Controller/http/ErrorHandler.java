@@ -9,7 +9,7 @@ import java.util.List;
 public interface ErrorHandler {
 
     default void authenticate (HttpSession session) throws InvalidRequestException {
-        if (session == null || session.getAttribute("accountSession") == null){
+        if (session == null || session.getAttribute("userSession") == null){
             throw new InvalidRequestException("Errore autenticazione", List.of("Non sei autenticato"),
                     HttpServletResponse.SC_UNAUTHORIZED);
         }
@@ -17,7 +17,7 @@ public interface ErrorHandler {
 
     default void authorize(HttpSession session) throws InvalidRequestException {
         authenticate(session);
-        AccountSession accountSession = (AccountSession) session.getAttribute("accountSession");
+        AccountSession accountSession = (AccountSession) session.getAttribute("userSession");
         if (!accountSession.isAdmin()){
             throw new InvalidRequestException("Errore autorizzazione", List.of("Azione non consentita"),
                     HttpServletResponse.SC_FORBIDDEN);

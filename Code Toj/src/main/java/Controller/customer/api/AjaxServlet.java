@@ -2,6 +2,7 @@ package Controller.customer.api;
 
 import Controller.http.Controller;
 import Controller.http.InvalidRequestException;
+import Model.Account.SQLAccountDAO;
 import Model.Articolo.Articolo;
 import Model.Articolo.SQLArticoloDAO;
 import Model.Cart.Cart;
@@ -89,7 +90,7 @@ public class AjaxServlet extends Controller {
                     Sconto sconto = sqlScontoDAO.doRetrieveByName(request.getParameter("coupon"));
                     JSONObject root = new JSONObject();
                     if (sconto != null) {
-                        session.setAttribute("coupon", sconto.getSconto());
+                        session.setAttribute("coupon", sconto);
                         root.put("sconto", sconto.toJson());
                     } else {
                         root.put("sonto", "");
@@ -110,7 +111,7 @@ public class AjaxServlet extends Controller {
                     break;
                 }
 
-                case "/api-updateCart":
+                case "/api-updateCart": {
                     HttpSession session = request.getSession();
                     Cart cart = (Cart) session.getAttribute("cartNotLog");
                     String size = request.getParameter("size");
@@ -118,7 +119,7 @@ public class AjaxServlet extends Controller {
                     int id = Integer.parseInt(request.getParameter("id"));
                     Articolo articolo = cart.find(id, size);
                     JSONObject root = new JSONObject();
-                    if (articolo != null){
+                    if (articolo != null) {
                         articolo.lessLocalQuantity(quantity);
                         root.put("msg", "true");
                     } else {
@@ -126,6 +127,7 @@ public class AjaxServlet extends Controller {
                     }
                     sendJson(response, root);
                     break;
+                }
 
                 default:
                     notFound();

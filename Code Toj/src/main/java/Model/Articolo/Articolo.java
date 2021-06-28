@@ -19,7 +19,6 @@ public class Articolo implements JSONSerializable, Cloneable {
     private double prezzo;
     private int IDarticolo, sconto;
     private Date data_inserimento;
-    private int quantity;
     private int localQuantity;
     private String chosenSize;
     private Categoria categoria;
@@ -125,14 +124,6 @@ public class Articolo implements JSONSerializable, Cloneable {
         this.data_inserimento = data_inserimento;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
     public int getLocalQuantity() {
         return localQuantity;
     }
@@ -186,6 +177,13 @@ public class Articolo implements JSONSerializable, Cloneable {
 
     public double totalPrice(){
         return getPrezzoScontato() * this.localQuantity;
+    }
+
+    public Taglia getOneTaglia(String id){
+        for (Taglia t: this.getTaglie())
+            if (t.getId_nome().compareTo(id) == 0)
+                return t;
+            return null;
     }
 
     @Override

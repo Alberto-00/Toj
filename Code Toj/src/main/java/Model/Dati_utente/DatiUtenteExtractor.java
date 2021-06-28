@@ -4,6 +4,7 @@ import Model.storage.ResultSetExtractor;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 public class DatiUtenteExtractor implements ResultSetExtractor<DatiUtente> {
 
@@ -12,11 +13,13 @@ public class DatiUtenteExtractor implements ResultSetExtractor<DatiUtente> {
         DatiUtente dtUser = new DatiUtente();
         dtUser.setNome(rs.getString("Nome"));
         dtUser.setCognome(rs.getString("Cognome"));
-        dtUser.setDataDiNascita(rs.getDate("ddn").toLocalDate());
+        dtUser.setDataDiNascita(rs.getDate("ddn"));
         dtUser.setNumeroTelefonico(rs.getString("Telefono"));
         dtUser.setVia(rs.getString("Via"));
-        dtUser.setNumeroCivico(rs.getString("N_civico"));
         dtUser.setCAP(rs.getString("CAP"));
+        dtUser.setCity(rs.getString("city"));
+        dtUser.setPaese(rs.getString("paese"));
+        dtUser.setAppartamento(rs.getString("appartamento"));
         return dtUser;
     }
 }

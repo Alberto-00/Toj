@@ -1,17 +1,14 @@
 package Model.Account;
 
-import Model.search.Paginator;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 public interface AccountDAO <E extends Exception>{
 
     Optional<Account> findAccount(String email, String password, boolean admin) throws E;
 
-    public int countCustomers() throws E;
+    Optional<Account> checkAccount(String email) throws E;
 
-    ArrayList<Account> getAccounts(Paginator paginator) throws E;
+    int createAccount (String email, String password, boolean admin) throws E;
 
+    boolean updateAccount(Account account) throws E;
 }

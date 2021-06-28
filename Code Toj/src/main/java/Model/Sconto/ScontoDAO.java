@@ -12,5 +12,5 @@ public interface ScontoDAO <E extends Exception> {
 
     boolean doUpdateSconto(Sconto sconto) throws E;
 
-    boolean doDeleteSconto(Sconto sconto) throws E;
+    boolean doDeleteSconto(String sconto) throws E;
 }

@@ -4,6 +4,7 @@ $(document).ready(function (){
     })
 })
 
-function setQuantita(quantita){
-    document.getElementById("input_quantita").setAttribute("max" , quantita)
+function setQuantita(){
+    var value = $("#size option:selected").attr("data");
+    $("#input_quantita").attr("max", value);
 }

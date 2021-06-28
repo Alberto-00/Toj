@@ -29,15 +29,9 @@ function callAjax(){
                 })
             }
 
-            $('form > h1').text(arr.articolo.nome);
+            $('#productForm > h1').text(arr.articolo.nome);
             $('.current_price').text("€ " + arr.articolo.prezzo);
             $('.product_desc > p').text(arr.articolo.descrizione);
-
-            for (let i = 0; i < parseInt(arr.articolo.taglie.length); i++){
-                $('#option_taglia' + i).val(arr.articolo.taglie[i].id_nome).
-                attr('onclick', 'setQuantita(' + arr.articolo.taglie[i].quantita +')').
-                text(arr.articolo.taglie[i].id_nome)
-            }
         }
     })
 }
@@ -68,6 +62,7 @@ $(document).ready(function (){
             quantity: {
                 required: "Quantità non disponibile",
                 max: "Quantità non disponibile",
+                min: "Quantità non disponibile",
             },
             size: {
                 required: "Inserisci la taglia",

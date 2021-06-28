@@ -1,6 +1,4 @@
 <%@ page import="Model.Cart.Cart" %>
-<%@ page import="Model.Dati_utente.DatiUtente" %>
-<%@ page import="Model.Account.AccountSession" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <header>
@@ -65,7 +63,7 @@
                     </div>
 
                     <a href="mailto:Tøj@gmail.com" target="_blank" title="googlePlus" class="login__forgot hover">Password dimenticata?</a>
-                    <input type="submit" class="login__button" value="Accedi" name="submitForm">
+                    <input type="submit" class="login__button submit" value="Accedi">
                     <span class="login__account">Non hai un Account ?</span>
                     <span class="login__signin" id="sign-up">Registrati</span>
                 </form>
@@ -88,7 +86,7 @@
                         </label>
                     </div>
 
-                    <input type="submit" class="login__button" value="Registrati" name="submitForm">
+                    <input type="submit" class="login__button submit" value="Registrati">
                     <span class="login__account">Hai già un Account ?</span>
                     <span class="login__signup" id="sign-in">Accedi</span>
                 </form>

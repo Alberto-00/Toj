@@ -1,5 +1,6 @@
 package Model.Taglia;
 
+import Model.Articolo.Articolo;
 import Model.storage.ConPool;
 import Model.storage.QueryBuilder;
 
@@ -80,6 +81,23 @@ public class SQLTagliaDAO implements TagliaDao{
                 ps.setString(1,taglia.getId_nome());
                 int rows = ps.executeUpdate();
                 return rows == 1;
+            }
+        }
+    }
+
+    @Override
+    public boolean createSize(Articolo articolo) throws SQLException {
+        try(Connection con = ConPool.getConnection()) {
+            try (PreparedStatement ps = con.prepareStatement("INSERT INTO size " + "VALUES (?,?,?)")) {
+                int rows = 0;
+                for (int i = 0; i < articolo.getTaglie().size(); i++){
+                    ps.setString(1,articolo.getTaglie().get(i).getId_nome());
+                    ps.setInt(2,articolo.getIDarticolo());
+                    ps.setInt(3,articolo.getTaglie().get(i).getQuantita());
+                    ps.executeUpdate();
+                    rows++;
+                }
+                return rows == articolo.getTaglie().size();
             }
         }
     }

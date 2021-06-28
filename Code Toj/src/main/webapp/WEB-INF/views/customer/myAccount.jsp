@@ -1,3 +1,9 @@
+<%@ page import="java.util.List" %>
+<%@ page import="Model.Ordine.Ordine" %>
+<%@ page import="java.time.LocalDate" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="Model.Articolo.Articolo" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="it">
@@ -38,41 +44,49 @@
                     e i dettagli dell'account.
                 </p>
             </div>
-            <div class="account-content" id="details-account" >
+            <div class="account-content" id="details-account">
                 <h1>Dettagli account</h1>
-                <form method="post" action="#">
+                <form method="post" action="${pageContext.request.contextPath}/customers/updateAnagraphicalDates" name="formData">
                     <div class="row">
                         <div class="columnAlt-100">
                             <label>Nome</label>
-                            <input type="text" name="nome" placeholder="Nome">
+                            <input type="text" name="nome" placeholder="Nome"
+                                   value="<c:if test="${not empty userInfSession.nome}">${userInfSession.nome}</c:if>"
+                                   autocomplete="off">
                         </div>
                     </div>
                     <div class="row">
                         <div class="columnAlt-100">
                             <label>Cognome</label>
-                            <input type="text" name="cognome" placeholder="Cognome">
+                            <input type="text" name="cognome" placeholder="Cognome"
+                                   value="<c:if test="${not empty userInfSession.cognome}">${userInfSession.cognome}</c:if>"
+                                   autocomplete="off">
                         </div>
                     </div>
                     <div class="row">
                         <div class="columnAlt-50">
                             <label>Telefono</label>
-                            <input type="tel" name="telefono" placeholder="es. 389 887 2651" maxlength="10" required>
+                            <input type="tel" name="telefono" placeholder="es. +39 389 887 2651"
+                                   value="<c:if test="${not empty userInfSession.numeroTelefonico}">${userInfSession.numeroTelefonico}</c:if>"
+                                   autocomplete="off">
                         </div>
                         <div class="columnAlt-50 padding-right0">
                             <label>Email</label>
-                            <input type="email" name="email" placeholder="example@gmail.com" required>
+                            <input type="email" name="email" placeholder="example@gmail.com" value="${userSession.email}">
                         </div>
                     </div>
                     <div class="row">
                         <div class="columnAlt-100">
                             <label>Password</label>
-                            <input type="password" name="password" placeholder="" required>
+                            <input type="password" name="password">
                         </div>
                     </div>
                     <div class="row">
                         <div class="columnAlt-50">
                             <label>Data di nascita</label>
-                            <input type="date" name="birthday">
+                            <input type="date" name="birthday"
+                                   value="<c:if test="${not empty userInfSession.dataDiNascita}">${userInfSession.dataDiNascita}</c:if>"
+                                   autocomplete="off">
                         </div>
                     </div>
                     <button type="submit" name="detailsAccount">Salva</button>
@@ -93,63 +107,84 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <%for(int i = 0; i < 3; i++){%>
+                            <%List<Ordine> ordini = (List<Ordine>) request.getAttribute("ordini");
+                            if (ordini != null && ordini.size() > 0){
+                                for (int i = 0; i < ordini.size(); i++){%>
                             <tr>
-                                <td class="order-number">Numero</td>
-                                <td class="order-date">Data</td>
-                                <td class="order-status">Stato</td>
-                                <td class="order-total">€ 65.00</td>
+                                <td class="order-number">#<%=ordini.get(i).getID_ordine()%></td>
+                                <td class="order-date"><%=ordini.get(i).getData_acquisto().toString()%>
+                                </td>
+                                <%if (ordini.get(i).getData_spedizione().before(new Date()) ||
+                                    ordini.get(i).getData_spedizione().compareTo(new Date()) == 0){%>
+                                <td class="order-status">Consegnato</td>
+                                <%} else {%>
+                                <td class="order-status">Non Arrivato</td>
+                                <%}%>
+                                <td class="order-total">€ <%=ordini.get(i).total()%></td>
                                 <td class="order-details"><a class="show" id="show<%=i%>">Apri</a></td>
                             </tr>
+                            <%}%>
                             <%}%>
                             </tbody>
                         </table>
                     </div>
-                    <div class="hide">
-                        <h1>Ordine #332-2221-2121</h1>
+                    <%Map<String, List<Articolo>> articoloMap = (Map<String, List<Articolo>>) request.getAttribute("articoli");
+                    if (articoloMap != null){ int i = 0;
+                        for (Ordine o: ordini){%>
+                    <div class="hide" id="hide<%=i%>">
+                        <h1>Ordine #<%=o.getID_ordine()%></h1>
                         <div class="row">
-                            <%for(int i = 0; i < 12; i++){%>
-                            <div class="column">
+                           <%for(Articolo a: articoloMap.get(o.getID_ordine())){%>
+                            <div class="column-product">
                                 <div class="product-box">
                                     <div class="double-img">
-                                        <a href="#">
-                                            <img src="${pageContext.request.contextPath}/images/woman.jpg" alt="">
-                                            <img src="${pageContext.request.contextPath}/images/boy.jpg" alt="" class="top-image">
+                                        <a href="${pageContext.request.contextPath}/customers/products?id=<%=a.getIDarticolo()%>&sex=<%=a.getSesso()%>" >
+                                            <img src="${pageContext.request.contextPath}/covers/<%=a.getPaths().get(0).getPathName()%>" alt="">
+                                            <img src="${pageContext.request.contextPath}/covers/<%=a.getPaths().get(1).getPathName()%>" alt="" class="top-image">
                                         </a>
                                     </div>
                                     <div class="product-details">
-                                        <a href="#" class="p-name">Drawstring T-Shirt</a>
-                                        <span class="p-price">$22.00</span>
+                                        <a href="${pageContext.request.contextPath}/customers/products?id=<%=a.getIDarticolo()%>&sex=<%=a.getSesso()%>" class="p-name"><%=a.getNome()%></a>
+                                        <span class="p-price">€ <%=a.getPrezzo()%></span>
+                                        <span class="p-price">Quantità x<%=o.getQuantita()%></span>
                                     </div>
                                 </div>
                             </div>
                             <%}%>
                         </div>
                     </div>
+                    <%i++;}%>
+                    <%}%>
                 </div>
             </div>
             <div class="account-content" id="address-account">
                 <h1>Indirizzo</h1>
-                <form action="#" method="post">
+                <form action="${pageContext.request.contextPath}/customers/updateAddessUser" method="post" name="formAddress">
+                    <div class="row">
+                        <div class="columnAlt-75">
+                            <label>Indirizzo</label>
+                            <input placeholder="Via e numero civico" type="text" name="indirizzo" value="<c:if test="${not empty userInfSession.via}">${userInfSession.via}</c:if>" autocomplete="off">
+                        </div>
+                        <div class="columnAlt-20">
+                            <label>CAP</label>
+                            <input placeholder="CAP" type="text" name="cap" maxlength="5" value="<c:if test="${not empty userInfSession.CAP}">${userInfSession.CAP}</c:if>" autocomplete="off">
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="columnAlt-100">
-                            <label>Indirizzo</label>
-                            <input placeholder="Via e numero civico" type="text" name="indirizzo">
-                        </div>
-                        <div class="columnAlt-100">
-                            <input placeholder="Appartamento, scala, piano etc. (opzionale)" name="appartamento" type="text">
+                            <input placeholder="Appartamento, scala, piano etc. (opzionale)" name="appartamento" value="<c:if test="${not empty userInfSession.appartamento}">${userInfSession.appartamento}</c:if>" type="text" autocomplete="off">
                         </div>
                     </div>
                     <div class="row">
                         <div class="columnAlt-100">
                             <label>Città</label>
-                            <input type="text" name="city" placeholder="Città">
+                            <input type="text" name="city" placeholder="Città" value="<c:if test="${not empty userInfSession.city}">${userInfSession.city}</c:if>" autocomplete="off">
                         </div>
                     </div>
                     <div class="row">
                         <div class="columnAlt-50">
                             <label>Stato / Paese</label>
-                            <input type="text" name="paese" placeholder="es. Italia" maxlength="10">
+                            <input type="text" name="paese" placeholder="es. Italia" value="<c:if test="${not empty userInfSession.paese}">${userInfSession.paese}</c:if>" maxlength="10" autocomplete="off">
                         </div>
                     </div>
                     <button type="submit" name="detailsAccount">Salva</button>
@@ -162,7 +197,7 @@
     </div>
 </div>
 
-<!-- footer-->
+<!-- footer -->
 <%@include file="../partials/customer/footer.jsp"%>
 </body>
 </html>

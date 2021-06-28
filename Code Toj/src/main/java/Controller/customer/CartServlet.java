@@ -38,7 +38,7 @@ public class CartServlet extends Controller {
                                 sessionCartNotLog = new Cart();
 
                             int quantity = Integer.parseInt(request.getParameter("quantity"));
-                            if (quantity <= optArticolo.getQuantity())
+                            if (quantity <= optArticolo.getTaglie().get(0).getQuantita())
                                 sessionCartNotLog.addProduct(optArticolo, quantity, taglia);
 
                             session.setAttribute("cartNotLog", sessionCartNotLog);

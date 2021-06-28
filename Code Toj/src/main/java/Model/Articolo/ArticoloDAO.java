@@ -27,6 +27,14 @@ public interface ArticoloDAO <E extends Exception>{
 
     Articolo doRetrieveProductById_Size(String size, int id) throws E;
 
+    int countArticoli() throws E;
+
+    List<Articolo> getArticoli() throws E;
+
+    List<Articolo> getArticoliPage(Paginator paginator) throws E;
+
+    boolean reduceSize(Articolo articolo) throws E;
+
     boolean doCreateArticolo(Articolo articolo) throws E;
 
     boolean doUpdateArticolo(Articolo articolo) throws E;

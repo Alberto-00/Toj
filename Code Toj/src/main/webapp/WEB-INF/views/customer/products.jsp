@@ -51,7 +51,7 @@ List<Articolo> articoliColor = (List<Articolo>) request.getAttribute("filterColo
         </div>
         <div class="column62">
             <div class="product_d_right">
-                <form action="${pageContext.request.contextPath}/carts/add" name="formProduct">
+                <form id="productForm" action="${pageContext.request.contextPath}/carts/add" name="formProduct">
                     <h1><%=articolo.getNome()%></h1>
                     <div class="product_price">
                         <span class="current_price">€ <%=articolo.getPrezzo()%></span>
@@ -75,16 +75,16 @@ List<Articolo> articoliColor = (List<Articolo>) request.getAttribute("filterColo
                     </div>
                     <div class="product_variant size">
                         <h3>taglia</h3>
-                        <select id="size" name="size">
+                        <select id="size" name="size" onchange="setQuantita()">
                             <option selected value="" disabled>Scegli opzione</option>
-                            <%int j = 0; for (Taglia taglia: articolo.getTaglie()){%>
-                            <option id="option_taglia<%=j%>" value="<%=taglia.getId_nome()%>" onclick="setQuantita(<%=taglia.getQuantita()%>)"><%=taglia.getId_nome()%></option>
-                            <%j++; }%>
+                            <%for (Taglia taglia: articolo.getTaglie()){%>
+                            <option class="option_taglia" value="<%=taglia.getId_nome()%>" data="<%=taglia.getQuantita()%>"><%=taglia.getId_nome()%></option>
+                            <%}%>
                         </select>
                     </div>
                     <div class="product_variant quantity">
                         <label>quantità</label>
-                        <input id="input_quantita" name="quantity" min="1" max="<%=articolo.getQuantity()%>" value="1" type="number">
+                        <input id="input_quantita" name="quantity" min="0" max="100"  value="1" type="number">
                         <button class="btn-add-cart" type="submit">Aggiungi al carrello</button>
                     </div>
                 </form>

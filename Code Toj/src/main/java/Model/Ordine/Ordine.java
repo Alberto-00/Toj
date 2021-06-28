@@ -1,30 +1,35 @@
 package Model.Ordine;
 
 import Model.Articolo.Articolo;
+import Model.Colore.Colore;
 import Model.Sconto.Sconto;
 import Model.Account.Account;
 
+import java.nio.charset.Charset;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.util.*;
 
 public class Ordine {
 
     private String ID_ordine;
-    private LocalDate data_acquisto;
-    private boolean pacchetto_regalo;
-    private LocalDate data_spedizione;
-    private String descrizione;
-    private int quantita;
+    private Date data_acquisto;
+    private Date data_spedizione;
+    private int quantita_articolo;
     private double total;
     private List<Articolo> articoli;
     private List<Sconto> codSconto;
     private Account user;
 
-    public Ordine(List<Articolo> articoli, int quantity){
-        this.articoli = new ArrayList<>();
-        this.articoli.addAll(articoli);
-        this.quantita = quantity;
+    public Ordine(){
+        user = new Account();
+        ID_ordine = generateID();
+        data_acquisto = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(data_acquisto);
+        cal.add(Calendar.DAY_OF_MONTH, 10);
+        data_spedizione = cal.getTime();
+        articoli = new ArrayList<>();
         this.total = 0;
     }
 
@@ -36,36 +41,20 @@ public class Ordine {
         this.ID_ordine = ID_ordine;
     }
 
-    public LocalDate getData_acquisto() {
+    public Date getData_acquisto() {
         return data_acquisto;
     }
 
-    public void setData_acquisto(LocalDate data_acquisto) {
+    public void setData_acquisto(Date data_acquisto) {
         this.data_acquisto = data_acquisto;
     }
 
-    public boolean isPacchetto_regalo() {
-        return pacchetto_regalo;
-    }
-
-    public void setPacchetto_regalo(boolean pacchetto_regalo) {
-        this.pacchetto_regalo = pacchetto_regalo;
-    }
-
-    public LocalDate getData_spedizione() {
+    public Date getData_spedizione() {
         return data_spedizione;
     }
 
-    public void setData_spedizione(LocalDate data_spedizione) {
+    public void setData_spedizione(Date data_spedizione) {
         this.data_spedizione = data_spedizione;
-    }
-
-    public String getDescrizione() {
-        return descrizione;
-    }
-
-    public void setDescrizione(String descrizione) {
-        this.descrizione = descrizione;
     }
 
     public List<Articolo> getArticoli() {
@@ -93,11 +82,11 @@ public class Ordine {
     }
 
     public int getQuantita() {
-        return quantita;
+        return quantita_articolo;
     }
 
     public void setQuantita(int quantita) {
-        this.quantita = quantita;
+        this.quantita_articolo = quantita;
     }
 
     public double getTotal() {
@@ -113,5 +102,25 @@ public class Ordine {
             this.total += a.getPrezzo();
         }
         return getTotal();
+    }
+
+    private String  generateID() {
+        String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+        while (salt.length() < 8) { // length of the random string.
+            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+            salt.append(SALTCHARS.charAt(index));
+        }
+        return salt.toString();
+
+    }
+
+    public boolean containsArticolo(int id){
+        for (Articolo c: articoli){
+            if(c.getIDarticolo() == id)
+                return true;
+        }
+        return false;
     }
 }

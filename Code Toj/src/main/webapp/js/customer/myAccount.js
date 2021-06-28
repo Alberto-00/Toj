@@ -27,22 +27,95 @@ function showhide(str) {
 
 function hideElement (str) {
     var t = document.getElementById(str);
-        if(t.style.display =='block')
+        if(t.style.display === 'block')
             t.style.display ='none';
         else
             t.style.display = 'block';
 }
 
+function apri(){
+
+}
+
 $(document).ready(function () {
-    const pass = $(".hide");
     const btns = document.getElementsByClassName("show");
     for(let i = 0; i < btns.length; i++){
         $("#show" + i).click(function () {
-            if (pass.css('display') === 'none') {
-                pass.show(400)
+            if ($("#hide" + i).css('display') === 'none') {
+                $("#hide" + i).show(400)
             } else {
-                pass.hide(400)
+                $("#hide" + i).hide(400)
             }
         })
     }
+
+    $("#details-account input").css("color", "var(--black)");
+    $("#address-account input").css("color", "var(--black)");
+
+    $("form[name='formData']").validate({
+        rules: {
+            nome: {
+                alphabetsnspace: true,
+            },
+            cognome:{
+                alphabetsnspace: true,
+            },
+            telefono: {
+                phoneUS: true,
+            },
+            birthday:{
+                minAge: 18,
+            },
+            email: {
+                required: true,
+                email: true,
+            },
+            password: {
+                minlength: 8
+            }
+        },
+        messages: {
+            nome: {
+                alphabetsnspace: "Inseririsci il tuo nome reale.",
+            },
+            cognome:{
+                alphabetsnspace: "Inserisci il tuo cognome reale.",
+            },
+            telefono: {
+                phoneUS: "Inserire un numero telefonico valido",
+            },
+            birthday:{
+                minAge: "Devi essere maggiorenne",
+            },
+            password: {
+                minlength: "La password deve avere almeno 8 caratteri."
+            },
+            email: {
+                required: "Inserire un'email valida.",
+            }
+        },
+        submitHandler: function(form) {
+            form.submit();
+        }
+    });
+
+    $("form[name='formAddress']").validate({
+        rules: {
+            cap:{
+                digits: true,
+                minlength: 5,
+                maxlength: 5,
+            },
+        },
+        messages: {
+            cap:{
+                digits: "Inserisci un CAP valido",
+                minlength: "CAP non completo",
+                maxlength: "CAP non completo",
+            },
+        },
+        submitHandler: function(form) {
+            form.submit();
+        }
+    });
 });

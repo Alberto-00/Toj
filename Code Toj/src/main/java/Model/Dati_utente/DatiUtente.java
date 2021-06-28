@@ -2,16 +2,18 @@ package Model.Dati_utente;
 
 import Model.Account.Account;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class DatiUtente {
 
     private String cognome;
     private String nome;
-    private LocalDate dataDiNascita;
+    private Date dataDiNascita;
     private String via;
-    private String numeroCivico;
     private String CAP;
+    private String city;
+    private String paese;
+    private String appartamento;
     private String numeroTelefonico;
     private Account user;
 
@@ -35,11 +37,11 @@ public class DatiUtente {
         this.nome = nome;
     }
 
-    public LocalDate getDataDiNascita() {
+    public Date getDataDiNascita() {
         return dataDiNascita;
     }
 
-    public void setDataDiNascita(LocalDate dataDiNascita) {
+    public void setDataDiNascita(Date dataDiNascita) {
         this.dataDiNascita = dataDiNascita;
     }
 
@@ -49,14 +51,6 @@ public class DatiUtente {
 
     public void setVia(String via) {
         this.via = via;
-    }
-
-    public String getNumeroCivico() {
-        return numeroCivico;
-    }
-
-    public void setNumeroCivico(String numeroCivico) {
-        this.numeroCivico = numeroCivico;
     }
 
     public String getCAP() {
@@ -81,5 +75,29 @@ public class DatiUtente {
 
     public void setUser(Account user) {
         this.user = user;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getPaese() {
+        return paese;
+    }
+
+    public void setPaese(String paese) {
+        this.paese = paese;
+    }
+
+    public String getAppartamento() {
+        return appartamento;
+    }
+
+    public void setAppartamento(String appartamento) {
+        this.appartamento = appartamento;
     }
 }
