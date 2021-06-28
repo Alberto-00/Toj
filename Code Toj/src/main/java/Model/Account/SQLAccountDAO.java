@@ -1,9 +1,13 @@
 package Model.Account;
 
+import Model.search.Paginator;
 import Model.storage.ConPool;
 import Model.storage.QueryBuilder;
 
+import javax.swing.plaf.nimbus.State;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class SQLAccountDAO implements AccountDAO{
@@ -18,12 +22,50 @@ public class SQLAccountDAO implements AccountDAO{
 
             Account account = null;
             if(resultSet.next()){
-
                 account = new AccountExtractor().extract(resultSet);
-                System.out.println("SIAMO NELL'IF");
             }
             return Optional.ofNullable(account);
         }
+    }
+
+    @Override
+    public int countCustomers(){
+        int customers = 0;
+        try(Connection con = ConPool.getConnection()){
+            Statement stm = con.createStatement();
+            ResultSet resultSet = stm.executeQuery("SELECT count(*)" +
+                    "FROM account_user " +
+                    "where Admin_user = false");
+            if(resultSet.next()){
+                customers=resultSet.getInt(1);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return customers;
+    }
+
+    @Override
+    public ArrayList<Account> getAccounts(Paginator paginator) throws SQLException {
+        ArrayList<Account> accounts = new ArrayList<>();
+        try(Connection con = ConPool.getConnection()){
+            PreparedStatement stm = con.prepareStatement("SELECT *" +
+                    "FROM account_user " +
+                    "WHERE Admin_user = false " +
+                    "LIMIT ?,?");
+            stm.setInt(1,paginator.getOffset());
+            stm.setInt(2,paginator.getLimit());
+            ResultSet resultSet = stm.executeQuery();
+
+            while (resultSet.next()){
+                Account account = new Account();
+                account.setEmail(resultSet.getString(1));
+                account.passWord(resultSet.getString(2));
+                account.setAdmin(resultSet.getBoolean(3));
+                accounts.add(account);
+            }
+        }
+        return accounts;
     }
     /*
     @Override
