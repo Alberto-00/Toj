@@ -1,8 +1,5 @@
 package Model.Colore;
 
-import Model.Articolo.Articolo;
-import Model.Taglia.Taglia;
-
 import java.sql.SQLException;
 import java.util.List;
 
