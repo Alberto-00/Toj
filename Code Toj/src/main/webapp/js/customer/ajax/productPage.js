@@ -1,8 +1,7 @@
 function callAjax(){
     var val = $('#selectColor option:selected').val();
-    if( val === "default"){
+    if( val === "")
         return;
-    }
 
     $.ajax({
         method: 'GET',
@@ -14,7 +13,6 @@ function callAjax(){
         url: '../ajax/api-product?id=' + val,
         success: function (response){
             var arr = JSON.parse(response);
-
             if (supports_history_api()){
                 modifyURL();
             }
@@ -40,8 +38,6 @@ function callAjax(){
                 attr('onclick', 'setQuantita(' + arr.articolo.taglie[i].quantita +')').
                 text(arr.articolo.taglie[i].id_nome)
             }
-        }, error: function (){
-            console.log(response)
         }
     })
 }
@@ -54,3 +50,34 @@ function modifyURL(){
 function supports_history_api() {
     return !!(window.history && history.pushState);
 }
+
+$(document).ready(function (){
+    $("form[name='formProduct']").validate({
+        rules: {
+            quantity: {
+                required: true,
+            },
+            size: {
+                required: true,
+            },
+            id: {
+                required: true,
+            }
+        },
+        messages: {
+            quantity: {
+                required: "Quantità non disponibile",
+                max: "Quantità non disponibile",
+            },
+            size: {
+                required: "Inserisci la taglia",
+            },
+            id:{
+                required: "Inserisci il colore",
+            }
+        }, errorElement: 'small',
+        submitHandler: function(form) {
+            form.submit();
+        }
+    });
+})

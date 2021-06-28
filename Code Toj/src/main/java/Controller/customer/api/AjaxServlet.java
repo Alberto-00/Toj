@@ -3,12 +3,10 @@ package Controller.customer.api;
 import Controller.http.Controller;
 import Controller.http.InvalidRequestException;
 import Model.Articolo.Articolo;
-import Model.Articolo.ArticoloSearch;
 import Model.Articolo.SQLArticoloDAO;
 import Model.Cart.Cart;
 import Model.Sconto.SQLScontoDAO;
 import Model.Sconto.Sconto;
-import Model.search.Condition;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -18,14 +16,13 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 
 @WebServlet(name = "AjaxServlet", value = "/ajax/*")
 public class AjaxServlet extends Controller {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String path = getPath(request); //abbiamo preso tutto il pezzo dopo "/customers/*"
+        String path = getPath(request);
         try {
             switch (path) {
                 case "/api-product": {
@@ -37,7 +34,6 @@ public class AjaxServlet extends Controller {
                     Articolo articolo = sqlArticoloDAO.doRetrieveProductById(idParse);
                     if (articolo != null)
                         root.put("articolo", articolo.toJson());
-
                     sendJson(response, root);
                     break;
                 }
@@ -93,6 +89,7 @@ public class AjaxServlet extends Controller {
                     Sconto sconto = sqlScontoDAO.doRetrieveByName(request.getParameter("coupon"));
                     JSONObject root = new JSONObject();
                     if (sconto != null) {
+                        session.setAttribute("coupon", sconto.getSconto());
                         root.put("sconto", sconto.toJson());
                     } else {
                         root.put("sonto", "");
@@ -101,14 +98,33 @@ public class AjaxServlet extends Controller {
                     break;
                 }
 
-                case "/api-checkout":
+                case "/api-checkout": {
                     HttpSession session = request.getSession();
                     Cart cart = (Cart) session.getAttribute("cartNotLog");
-                    if (cart == null || cart.getItems().size() <= 0) {
-                        JSONObject root = new JSONObject();
+                    JSONObject root = new JSONObject();
+                    if (cart == null || cart.getItems().size() <= 0)
                         root.put("msg", "Carrello vuoto.");
-                        sendJson(response, root);
+                    else
+                        root.put("msg", "");
+                    sendJson(response, root);
+                    break;
+                }
+
+                case "/api-updateCart":
+                    HttpSession session = request.getSession();
+                    Cart cart = (Cart) session.getAttribute("cartNotLog");
+                    String size = request.getParameter("size");
+                    int quantity = Integer.parseInt(request.getParameter("quantity"));
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    Articolo articolo = cart.find(id, size);
+                    JSONObject root = new JSONObject();
+                    if (articolo != null){
+                        articolo.lessLocalQuantity(quantity);
+                        root.put("msg", "true");
+                    } else {
+                        root.put("msg", "false");
                     }
+                    sendJson(response, root);
                     break;
 
                 default:

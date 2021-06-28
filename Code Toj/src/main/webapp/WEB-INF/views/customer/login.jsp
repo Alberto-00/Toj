@@ -22,23 +22,17 @@
         <div class="column-contact">
             <div class="contact-message">
                 <h1>Login</h1>
-                <form method="post" action="${pageContext.request.contextPath}/customers/sigin" id="customerForm">
+                <form method="post" action="${pageContext.request.contextPath}/customers/sigin" name="formPopup3">
 
                     <label>Email *</label>
                     <input name="email" type="email">
-                    <small class="errMsg">aaa</small>
 
-                    <label>Password *</label>
+                    <label class="block">Password *</label>
                     <input name="password" type="password">
-                    <small class="errMsg">aaa</small>
 
                     <div class="login-submit">
-                        <a href="#">Hai dimenticato la password?</a>
+                        <a href="mailto:Tøj@gmail.com" target="_blank" title="googlePlus" class="hover">Hai dimenticato la password?</a>
                         <input class="submit-button-log" type="submit" name="submitContact" value="LOGIN">
-                        <label for="remember" class="hover">
-                            <input id="remember" type="checkbox" name="remember" value="remember">
-                            Remember me
-                        </label>
                     </div>
                 </form>
             </div>
@@ -47,17 +41,15 @@
         <div class="column-contact">
             <div class="contact-message">
                 <h1>Registrati</h1>
-                <form method="post" action="${pageContext.request.contextPath}/customers/sigUp">
+                <form method="post" action="${pageContext.request.contextPath}/customers/registration" name="formPopup4">
 
                     <label>Email *</label>
                     <input name="email" type="email">
-                    <small class="errMsg">aaa</small>
 
-                    <label>Password *</label>
+                    <label class="block">Password *</label>
                     <input name="password" type="password">
-                    <small class="errMsg">aaa</small>
 
-                    <input class="submit-button-log reg" type="submit" name="submitContact" value="REGISTRATI">
+                    <input class="submit-button-log reg block" type="submit" name="submitContact" value="REGISTRATI">
                 </form>
             </div>
         </div>

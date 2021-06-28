@@ -21,6 +21,7 @@ public class Articolo implements JSONSerializable, Cloneable {
     private Date data_inserimento;
     private int quantity;
     private int localQuantity;
+    private String chosenSize;
     private Categoria categoria;
     private List<PathImg> paths;
     private List<Taglia> taglie;
@@ -32,7 +33,7 @@ public class Articolo implements JSONSerializable, Cloneable {
         this.paths = new ArrayList<>();
         this.colori = new ArrayList<>();
         this.taglie = new ArrayList<>();
-        localQuantity = 1;
+        localQuantity = 0;
     }
 
     //Getter & Setter
@@ -140,6 +141,18 @@ public class Articolo implements JSONSerializable, Cloneable {
         this.localQuantity += localQuantity;
     }
 
+    public void lessLocalQuantity(int localQuantity){
+        this.localQuantity = localQuantity;
+    }
+
+    public String getChosenSize() {
+        return chosenSize;
+    }
+
+    public void setChosenSize(String chosenSize) {
+        this.chosenSize = chosenSize;
+    }
+
     public boolean containsPath(String str){
         for (PathImg p: paths){
             if(p.getPathName().equals(str))
@@ -172,7 +185,7 @@ public class Articolo implements JSONSerializable, Cloneable {
     }
 
     public double totalPrice(){
-        return this.prezzo * this.localQuantity;
+        return getPrezzoScontato() * this.localQuantity;
     }
 
     @Override

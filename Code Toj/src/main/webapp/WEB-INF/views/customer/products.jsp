@@ -51,7 +51,7 @@ List<Articolo> articoliColor = (List<Articolo>) request.getAttribute("filterColo
         </div>
         <div class="column62">
             <div class="product_d_right">
-                <form action="${pageContext.request.contextPath}/carts/add">
+                <form action="${pageContext.request.contextPath}/carts/add" name="formProduct">
                     <h1><%=articolo.getNome()%></h1>
                     <div class="product_price">
                         <span class="current_price">€ <%=articolo.getPrezzo()%></span>
@@ -63,7 +63,7 @@ List<Articolo> articoliColor = (List<Articolo>) request.getAttribute("filterColo
                     <div class="product_variant color">
                         <h3>colore</h3>
                         <select onclick="callAjax()" name="id" id="selectColor">
-                            <option selected value="default">Scegli opzione</option>
+                            <option selected value="" disabled>Scegli opzione</option>
                             <%for (int i = 0; i < articoliColor.size(); i++){%>
                             <option value="<%=articoliColor.get(i).getIDarticolo()%>">
                                 <%for (int j = 0; j <articoliColor.get(i).getColori().size(); j++){%>
@@ -75,8 +75,8 @@ List<Articolo> articoliColor = (List<Articolo>) request.getAttribute("filterColo
                     </div>
                     <div class="product_variant size">
                         <h3>taglia</h3>
-                        <select name="size">
-                            <option selected value="default">Scegli opzione</option>
+                        <select id="size" name="size">
+                            <option selected value="" disabled>Scegli opzione</option>
                             <%int j = 0; for (Taglia taglia: articolo.getTaglie()){%>
                             <option id="option_taglia<%=j%>" value="<%=taglia.getId_nome()%>" onclick="setQuantita(<%=taglia.getQuantita()%>)"><%=taglia.getId_nome()%></option>
                             <%j++; }%>

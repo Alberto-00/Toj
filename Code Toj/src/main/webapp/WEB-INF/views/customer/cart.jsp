@@ -25,43 +25,47 @@
         <div class="column-contact2">
             <div class="table_desc">
                 <div class="cart_page table-responsive">
-                    <table>
-                        <thead>
-                        <tr>
-                            <th class="product_remove">Cancella</th>
-                            <th class="product_thumb">Immagine</th>
-                            <th class="product_name">Prodotto</th>
-                            <th class="product-price">Prezzo</th>
-                            <th class="product_quantity">Quantità</th>
-                            <th class="product_total">Totale</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:if test="${cartNotLog != null}">
-                            <%for (Articolo a: cart.getItems()){%>
+                        <table>
+                            <thead>
                             <tr>
-                                <td class="product_remove"><a href="${pageContext.request.contextPath}/carts/remove?id=<%=a.getIDarticolo()%>"><i class="far fa-trash-alt"></i></a></td>
+                                <th class="product_remove">Cancella</th>
+                                <th class="product_thumb">Immagine</th>
+                                <th class="product_name">Prodotto</th>
+                                <th class="product-price">Prezzo</th>
+                                <th class="product_quantity">Quantità</th>
+                                <th class="product_size">Taglia</th>
+                                <th class="product_total">Totale</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:if test="${cartNotLog != null}">
+                                <%for (Articolo a: cart.getItems()){%>
+                            <tr>
+                                <td class="product_remove"><a href="${pageContext.request.contextPath}/carts/remove?id=<%=a.getIDarticolo()%>&size=<%=a.getChosenSize()%>"><i class="far fa-trash-alt"></i></a></td>
                                 <td class="product_thumb">
                                     <a href="${pageContext.request.contextPath}/customers/products?id=<%=a.getIDarticolo()%>&sex=<%=a.getSesso()%>">
-                                    <img src="${pageContext.request.contextPath}/covers/<%=a.getPaths().get(0).getPathName()%>" alt="foto">
-                                </a>
+                                        <img src="${pageContext.request.contextPath}/covers/<%=a.getPaths().get(0).getPathName()%>" alt="foto">
+                                    </a>
                                 </td>
                                 <td class="product_name">
                                     <a href="${pageContext.request.contextPath}/customers/products?id=<%=a.getIDarticolo()%>&sex=<%=a.getSesso()%>" class="hover">
                                         <%=a.getNome()%></a>
                                 </td>
-                                <td class="product-price">€ <%=a.getPrezzo()%></td>
-                                <td class="product_quantity"><input min="<%=a.getLocalQuantity()%>" max="<%=a.getQuantity()%>" value="<%=a.getLocalQuantity()%>" placeholder="<%=a.getLocalQuantity()%>" type="number"></td>
+                                <td class="product-price">€ <%=a.getPrezzoScontato()%></td>
+                                <td class="product_quantity">
+                                    <input class="update" data="<%=a.getChosenSize()%>" data1="<%=a.getIDarticolo()%>" min="1"
+                                           max="<%=a.getQuantity()%>" value="<%=a.getLocalQuantity()%>"
+                                           name="quantity" type="number">
+                                    <small></small>
+                                </td>
+                                <td class="product_size"><%=a.getChosenSize()%></td>
                                 <td class="product_total">€ <%=a.totalPrice()%></td>
                             </tr>
                             <%}%>
-                        </c:if>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="cart_submit">
-                    <button type="submit">Aggiorna carrello</button>
-                </div>
+                            </c:if>
+                            </tbody>
+                        </table>
+                    </div>
             </div>
         </div>
     </div>
@@ -80,12 +84,17 @@
                 </div>
             </div>
         </div>
-        <% double total =  0.0, subTotal = 0.0, spedizione = 0.0;
-            if(cart != null && cart.getItems().size() > 0){
-                total = cart.total();
-                subTotal = cart.subTotal();
-                spedizione = Cart.getSpedizione();
-            }
+        <% double total =  0.0, subTotal = 0.0, spedizione = 0.0, coupon = 0;
+        if(session.getAttribute("coupon") != null) {
+            coupon = (double) session.getAttribute("coupon");
+        }
+        if(cart != null && cart.getItems().size() > 0){
+            if (coupon > 0)
+                subTotal = cart.subTotal() - cart.applyCoupon(coupon);
+            else subTotal = cart.subTotal();
+            spedizione = Cart.getSpedizione();
+            total = subTotal + spedizione;
+        }
         %>
         <div class="column-contact">
             <div class="coupon_code right">
@@ -105,9 +114,8 @@
                         <p class="cart_amount">€ <%=total%></p>
                     </div>
                     <div class="checkout_btn">
-                        <a href="${pageContext.request.contextPath}/customers/checkout" id="checkout-btn">Procedi al Checkout</a>
+                        <a href="javascript:void(0)" id="checkout-btn">Procedi al Checkout</a>
                         <small></small>
-                        <a href="${pageContext.request.contextPath}/customers/checkout">aaa</a>
                     </div>
                 </div>
             </div>

@@ -39,7 +39,7 @@ public class CartServlet extends Controller {
 
                             int quantity = Integer.parseInt(request.getParameter("quantity"));
                             if (quantity <= optArticolo.getQuantity())
-                                sessionCartNotLog.addProduct(optArticolo, quantity);
+                                sessionCartNotLog.addProduct(optArticolo, quantity, taglia);
 
                             session.setAttribute("cartNotLog", sessionCartNotLog);
                         }
@@ -54,10 +54,11 @@ public class CartServlet extends Controller {
                case "/remove":
                    HttpSession session = request.getSession();
                    int removeId = Integer.parseInt(request.getParameter("id"));
+                   String size = request.getParameter("size");
                    synchronized (session) {
                        Cart sessionCartNotLog = (Cart) session.getAttribute("cartNotLog");
                        if (sessionCartNotLog != null) {
-                           sessionCartNotLog.removeProduct(removeId);
+                           sessionCartNotLog.removeProduct(removeId, size);
                            session.setAttribute("cartNotLog", sessionCartNotLog);
                        }
                    }

@@ -9,7 +9,7 @@
 
 .column-contact2{
     width: 100%;
-    margin-bottom: 0;
+    margin-bottom: 10px;
 }
 
 .errMsg{
@@ -92,13 +92,21 @@ th{
 }
 
 td.product_remove, td.product_thumb, td.product_name,
-td.product-price, td.product_quantity, td.product_total{
+td.product-price, td.product_quantity, td.product_total, td.product_size{
     border-bottom: 1px solid #ddd;
     border-right: 1px solid #ddd;
 }
 
 td.product_remove, td.product_thumb,
 td.product-price, td.product_total{
+    width: 133px;
+    height: 119px;
+}
+
+td.product_size{
+    font-size: 20px;
+    color: var(--black);
+    font-weight: bold;
     width: 133px;
     height: 119px;
 }
@@ -134,10 +142,11 @@ td.product-price{
 img{
     max-width: 89px;
     height: auto;
+    padding-top: 6px;
 }
 
 .product_quantity input{
-    width: 30%;
+    width: 35%;
     height: 36%;
     border: 1px solid #ddd;
     padding: 0 5px 0 10px;
@@ -147,29 +156,6 @@ img{
 .fa-trash-alt{
     font-size: 20px;
     color: #ff6a28;
-}
-
-.cart_submit{
-    text-align: right;
-    padding: 12px;
-}
-
-.cart_submit button{
-    background-color: var(--black);
-    border: 0;
-    color: var(--white);
-    font-size: 12px;
-    font-weight: 600;
-    height: 38px;
-    line-height: 18px;
-    padding: 10px 15px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.cart_submit button:hover{
-    background-color: #ff6a28;
 }
 /*Shopping cart Top end*/
 

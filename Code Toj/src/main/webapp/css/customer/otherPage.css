@@ -144,6 +144,7 @@ hr.border2-hr{
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    outline: none;
 }
 
 input.submit-button-log{
