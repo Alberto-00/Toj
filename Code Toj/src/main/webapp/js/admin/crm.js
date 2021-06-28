@@ -1,3 +1,4 @@
+//SCORRIMENTO SIDENAV
 $(document).ready(function (){
         $("i.fa-bars").click(function (){
         const col1 = document.getElementsByClassName("col-1")[0];
@@ -12,10 +13,8 @@ $(document).ready(function (){
 $(document).ready(function (){
         // Modal
         var modal = document.getElementById("myModal");
-
         // Apertura Modal
         var logout = document.getElementById("logout");
-
         // Span che chiude modal
         var span = document.getElementsByClassName("close")[0];
 
@@ -41,5 +40,13 @@ $(document).ready(function (){
                 }
         }
 })
+
+$(document).ready(function(){
+        var btn = document.getElementById("interact")
+        var form = document.getElementById("interact-form")
+        btn.onclick(function(){
+                form.style.display="none";
+        });
+});
 
 

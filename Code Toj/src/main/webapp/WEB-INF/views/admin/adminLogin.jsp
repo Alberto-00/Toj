@@ -8,9 +8,12 @@
     </jsp:include>
     <link rel="stylesheet" href="css/admin/styleAdminLogin.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
 
+    </script>
 </head>
 <body>
+
 <form name="admin-login"  class="login-form" action="${pageContext.request.contextPath}/adminServlet/adminLogin" method="post">
     <div class="login-form-logo-container">
         <img class="login-form-logo" src="${pageContext.request.contextPath}/icons/logo.png" alt="logo">

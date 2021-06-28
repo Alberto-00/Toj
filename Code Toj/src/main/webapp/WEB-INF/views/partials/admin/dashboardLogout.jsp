@@ -13,12 +13,10 @@
       <span style="align-content: center">
         <span>
           <form method="post" action="${pageContext.request.contextPath}/adminServlet/adminLogout">
-            <button type="submit">Si</button>
-            <button  type="button" id="close">No</button>
+            <button class="modal-button" type="submit">Si</button>
+            <button class="modal-button" type="button" id="close">No</button>
           </form>
-
         </span>
-
       </span>
     </div>
     <div class="modal-footer">

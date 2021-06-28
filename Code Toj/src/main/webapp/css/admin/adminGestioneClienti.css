@@ -4,15 +4,12 @@
     justify-content: flex-start;
 }
 
-/*
-Generic Styling, for Desktops/Laptops
-*/
-
+/*Tabella Utenti*/
 table {
     width: 100%;
     border-collapse: collapse;
 }
-/* Zebra striping */
+
 tr:nth-of-type(odd) {
     background: var(--greenS);
 }
@@ -31,12 +28,12 @@ td, th {
 only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
 
-    /* Force table to not be like tables anymore */
+
     table, thead, tbody, th, td, tr {
         display: block;
     }
 
-    /* Hide table headers (but not display: none;, for accessibility) */
+
     thead tr {
         position: absolute;
         top: -9999px;
@@ -46,7 +43,7 @@ only screen and (max-width: 760px),
     tr { border: 1px solid #ccc; }
 
     td {
-        /* Behave  like a "row" */
+
         border: none;
         border-bottom: 1px solid #eee;
         position: relative;
@@ -54,9 +51,9 @@ only screen and (max-width: 760px),
     }
 
     td:before {
-        /* Now like a table header */
+
         position: absolute;
-        /* Top/left values mimic padding */
+
         top: 6px;
         left: 6px;
         width: 45%;
@@ -64,15 +61,13 @@ only screen and (max-width: 760px),
         white-space: nowrap;
     }
 
-    /*
-    Label the data
-    */
-    td:nth-of-type(1):before { content: "Nome"; }
-    td:nth-of-type(2):before { content: "Cognome"; }
-    td:nth-of-type(3):before { content: "Data di Nascita"; }
-    td:nth-of-type(4):before { content: "Telefono"; }
-    td:nth-of-type(5):before { content: "Via"; }
-    td:nth-of-type(6):before { content: "N°Civico"; }
-    td:nth-of-type(7):before { content: "CAP"; }
-    td:nth-of-type(8):before { content: "Email"; }
+
+    td:nth-of-type(1):before { content: "Email"; }
+    td:nth-of-type(2):before { content: "Nome"; }
+    td:nth-of-type(3):before { content: "Cognome"; }
+    td:nth-of-type(4):before { content: "Data Nascita"; }
+    td:nth-of-type(5):before { content: "Telefono"; }
+    td:nth-of-type(6):before { content: "Via"; }
+    td:nth-of-type(7):before { content: "N°Civico"; }
+    td:nth-of-type(8):before { content: "CAP"; }
 }

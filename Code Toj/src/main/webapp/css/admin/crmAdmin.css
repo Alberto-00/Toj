@@ -144,6 +144,54 @@ nav > a{
     color: white;
 }
 
+.modal-button{
+    padding: 10px;
+    color: #ffffff;
+    font-weight: bold;
+    background: var(--greenS);
+    width: 100px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-button:active{
+    background: #008067;
+}
+
+/*Paginator*/
+
+.paginator {
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.paginator  a {
+    color: var(--grey);
+    float: left;
+    padding: 8px 8px;
+    text-decoration: none;
+    border: 1px solid var(--grey);
+}
+
+.paginator a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.paginator a:hover:not(.active) {background-color: var(--greenS);}
+
+/*Paragrafi*/
+p.insert {
+
+    margin-left: 50px;
+    padding-right: 30px;
+    font-size: 1.10em;
+
+}
+
+
 @media screen and (max-width: 769px){
     header .account{
         display: none;

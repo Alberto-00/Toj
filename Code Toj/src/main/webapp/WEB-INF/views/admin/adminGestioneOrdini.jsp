@@ -1,3 +1,6 @@
+<%@ page import="Model.Ordine.Ordine" %>
+<%@ page import="java.util.List" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 
 <!doctype html>
@@ -10,6 +13,7 @@
 </head>
 
 <body>
+
 <%@include file="../partials/admin/dashboardNav.jsp"%>
 <div class="col-2">
     <%@include file="../partials/admin/dashboardHeader.jsp"%>
@@ -17,36 +21,38 @@
         <table>
             <thead>
             <tr>
+                <th>Destinatario</th>
                 <th>ID</th>
                 <th>Data Acquisto</th>
-                <th>Pacchetto Regalo</th>
                 <th>Data Spedizione</th>
-                <th>Descrizione</th>
-                <th>Destinatario</th>
             </tr>
             </thead>
+            <!--Inizio Tables -->
             <tbody>
-            <tr>
-                <td>James</td>
-                <td>Matman</td>
-                <td>Chief Sandwich Eater</td>
-                <td>James</td>
-                <td>Matman</td>
-                <td>Chief Sandwich Eater</td>
-            </tr>
-            <tr>
-                <td>The</td>
-                <td>Tick</td>
-                <td>Crimefighter Sorta</td>
-                <td>The</td>
-                <td>Tick</td>
-                <td>Crimefighter Sorta</td>
-            </tr>
+            <%List<Ordine> newOrdini = (List<Ordine>) request.getAttribute("ordini");
+                if(newOrdini.isEmpty()){%>
+                <td>Nessun Dato Da mostrare</td>
+            <%}
+                for (Ordine o: newOrdini){%>
+                <tr>
+                    <td data-head="Destinatario"><%= o.getEmail()%></td>
+                    <td data-head="ID"><%= o.getID_ordine()%></td>
+                    <td data-head="Data Acquisto"><%= o.getData_acquisto()%></td>
+                    <td data-head="Data Spedizione"><%= o.getData_spedizione()%></td>
+                </tr>
+            <%}%>
             </tbody>
         </table>
+        <c:forEach var="page" begin="1" end="${pages}">
+            <div class="paginator">
+                <a id="elem${page}" href="${pageContext.request.contextPath}/adminServlet/adminGestioneOrdini?page=${page}">${page}</a>
+            </div>
+        </c:forEach>
+        <!-- Fine Tables -->
     </main>
     <%@include file="../partials/admin/dashboardFooter.jsp"%>
 </div>
 <%@include file="../partials/admin/dashboardLogout.jsp"%>
 
 </body>
+

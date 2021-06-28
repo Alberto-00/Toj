@@ -50,6 +50,24 @@ public class SQLColoreDAO implements ColoreDAO<SQLException> {
     }
 
     @Override
+    public boolean createTinta(int idArticolo, String idColore) throws SQLException {
+        try(Connection con = ConPool.getConnection()) {
+            try (PreparedStatement ps = con.prepareStatement("INSERT INTO tinta " + "VALUES (?,?)")) {
+                ps.setString(1,idColore);
+                ps.setInt(2,idArticolo);
+                int rows = ps.executeUpdate();
+                return rows == 1;
+            }
+            catch (SQLException e){
+                System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+
+    @Override
     public boolean createColore(Colore colore) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
             QueryBuilder queryBuilder = new QueryBuilder("colore", "c");

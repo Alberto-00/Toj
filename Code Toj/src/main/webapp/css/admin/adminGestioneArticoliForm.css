@@ -1,0 +1,18 @@
+.content {
+    justify-items:  flex-start;
+    align-items: flex-start;
+}
+
+.input-form, .delete-form, .modify-form {
+    margin-right: 100px;
+    border: solid 5px var(--greenS);
+    margin-left: 20px;
+    padding: 10px;
+    width: 350px;
+}
+
+
+h1 {
+    width: 100%;
+    text-align: center;
+}

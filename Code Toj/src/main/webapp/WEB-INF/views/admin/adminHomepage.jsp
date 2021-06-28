@@ -17,20 +17,16 @@
     <%@include file="../partials/admin/dashboardHeader.jsp"%>
     <main class="content">
         <div class="infobox">
-            <h2>Clienti Registrati</h2>
-            <p>1295</p>
+            <h2>Clienti</h2>
+            <p>${requestScope.customers}</p>
         </div>
         <div class="infobox">
             <h2>Ordini</h2>
-            <p>655</p>
+            <p>${requestScope.ordini}</p>
         </div>
         <div class="infobox">
             <h2>Articoli</h2>
-            <p>9291</p>
-        </div>
-        <div class="infobox">
-            <h2>Clienti Registrati</h2>
-            <p>aa</p>
+            <p>${requestScope.articoli}</p>
         </div>
     </main>
     <%@include file="../partials/admin/dashboardFooter.jsp"%>
