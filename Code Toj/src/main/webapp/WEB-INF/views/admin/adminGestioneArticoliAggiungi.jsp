@@ -8,7 +8,6 @@
         <jsp:param name="title" value="T&#x000F8;j | Admin Form"/>
         <jsp:param name="adminScripts" value="crm,jquery-validate-plugin,adminFormValidateArticoli"/>
     </jsp:include>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body>
 <%@include file="../partials/admin/dashboardNav.jsp"%>
@@ -16,7 +15,6 @@
     <%@include file="../partials/admin/dashboardHeader.jsp"%>
     <main class="content">
         <h1>Gestione Articoli</h1>
-
         <br>
         <form enctype="multipart/form-data" class="input-form" name="input-form" method="post" action="${pageContext.request.contextPath}/adminServlet/adminGestioneArticoliFormInsert">
             <h2>Aggiunta Articolo</h2>

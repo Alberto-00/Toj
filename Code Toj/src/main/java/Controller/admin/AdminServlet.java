@@ -98,18 +98,23 @@ public class AdminServlet extends Controller {
                         throw new InvalidRequestException("Non sei Autorizzato", List.of("Non sei Autorizzato"), HttpServletResponse.SC_FORBIDDEN);
                     break;
 
-                case "/adminGestioneArticoliForm":
+                case "/adminGestioneArticoliForm": {
                     //if (request.isRequestedSessionIdValid() && accountSession.isAdmin())
-                        int id = Integer.parseInt(request.getParameter("id"));
-                        SQLArticoloDAO sqlArticoloDAO2 = new SQLArticoloDAO();
-                        SQLColoreDAO sqlColoreDAO = new SQLColoreDAO();
-                        Articolo articolo = sqlArticoloDAO2.doRetrieveProductById(id);
-                        request.setAttribute("articolo",articolo);
-                        request.setAttribute("colori", sqlColoreDAO.doRetrieveAll());
-                        request.getRequestDispatcher(view("admin/adminGestioneArticoliForm")).forward(request, response);
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    SQLArticoloDAO sqlArticoloDAO2 = new SQLArticoloDAO();
+                    SQLColoreDAO sqlColoreDAO = new SQLColoreDAO();
+                    SQLTagliaDAO sqlTagliaDAO = new SQLTagliaDAO();
+                    SQLCategoriaDAO sqlCategoriaDAO = new SQLCategoriaDAO();
+                    Articolo articolo = sqlArticoloDAO2.doRetrieveProductById(id);
+                    request.setAttribute("articolo", articolo);
+                    request.setAttribute("colori", sqlColoreDAO.doRetrieveAll());
+                    request.setAttribute("categorie", sqlCategoriaDAO.doRetrieveAll());
+                    request.setAttribute("taglie", sqlTagliaDAO.doRetrieveAll());
+                    request.getRequestDispatcher(view("admin/adminGestioneArticoliForm")).forward(request, response);
                     //else
-                        //throw new InvalidRequestException("Non sei Autorizzato", List.of("Non sei Autorizzato"), HttpServletResponse.SC_FORBIDDEN);
+                    //throw new InvalidRequestException("Non sei Autorizzato", List.of("Non sei Autorizzato"), HttpServletResponse.SC_FORBIDDEN);
                     break;
+                }
 
                 case "/adminGestioneArticoliAggiungi" :
                     if (request.isRequestedSessionIdValid() && accountSession.isAdmin()){
@@ -192,9 +197,9 @@ public class AdminServlet extends Controller {
                     break;
 
                 case "/adminGestioneArticoliFormModify":
+                    System.out.println("gg");
                     SQLArticoloDAO articoloDAO1 = new SQLArticoloDAO();
                     Articolo articolo2 = new Articolo();
-                    articolo2.setIDarticolo(Integer.parseInt(request.getParameter("idArticolo")));
                     articolo2.setIDarticolo(Integer.parseInt(request.getParameter("idArticolo")));
                     articolo2.setPrezzo(Double.parseDouble(request.getParameter("prezzo")));
                     articolo2.setSesso(request.getParameter("sesso").toUpperCase());
@@ -227,6 +232,7 @@ public class AdminServlet extends Controller {
                         }
                         articolo2.setTaglie(newTaglie);
                     }
+                    response.sendRedirect("./adminHomepage");
                     break;
 
                 case "/adminGestioneArticoliFormDelete":
