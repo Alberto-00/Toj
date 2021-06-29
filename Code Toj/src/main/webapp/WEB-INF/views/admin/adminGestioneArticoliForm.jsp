@@ -26,11 +26,11 @@
             ID      <br><input type="text" value="${articolo.IDarticolo}" name="idArticolo"><br>
             Prezzo  <br><input type="text" value="${articolo.prezzo}" name="prezzo"><br>
             Sesso   <br><input type="radio"name="sesso" checked value="m">M <input type="radio"name="sesso" value="f">F<br>
-            Descrizione <br><textarea value="${articolo.descrizione}" name="descrizione"></textarea><br>
+            Descrizione <br><textarea name="descrizione">${articolo.descrizione}</textarea><br>
             Sconto <br><input type="text" value="${articolo.sconto}" name="sconto"><br>
 
 
-            Categoria <br><input id="idCategoria" value="" name="idCategoria" />
+            Categoria <br><input id="idCategoria" value="${articolo.categoria.nome}" name="idCategoria" />
             <datalist id="idCategorie2" name="idCategorie">
                 <option value="1">Cappotti</option>
                 <option value="2">Giacche</option>
