@@ -2,6 +2,7 @@ package Model.Taglia;
 
 import Model.Articolo.Articolo;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface TagliaDao <E extends Exception>{
@@ -14,9 +15,7 @@ public interface TagliaDao <E extends Exception>{
 
     boolean createSize(Articolo articolo) throws E;
 
-    boolean doCreateTaglia(Taglia taglia) throws E;
-
-    boolean doUpdateTaglia(Taglia taglia) throws E;
+    boolean doUpdateSize(Articolo articolo, Taglia taglia) throws E;
 
     boolean doDeleteTaglia(Taglia taglia) throws E;
 }

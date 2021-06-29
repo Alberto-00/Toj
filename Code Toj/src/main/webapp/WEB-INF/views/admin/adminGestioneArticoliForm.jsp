@@ -20,15 +20,16 @@
         <h1>Gestione Articoli</h1><br>
         <form enctype="multipart/form-data" class="input-form" name="input-form" method="post" action="${pageContext.request.contextPath}/adminServlet/adminGestioneArticoliFormModify">
             <h2>Aggiunta Articolo</h2>
-            ID      <br><input type="text" name="idArticolo" value="${articolo.IDarticolo}"><br>
+            <input type="hidden" name="idArticolo" value="${articolo.IDarticolo}">
+            ID      <br><input type="text" placeholder="${articolo.IDarticolo}" disabled><br>
             Prezzo  <br><input type="text" name="prezzo" value="${articolo.prezzo}"><br>
             Sesso   <br>
             <c:choose>
                 <c:when test="${articolo.sesso eq 'M'}">
-                    <input type="radio"name="sesso" checked value="M">M<input type="radio"name="sesso" value="F">F<br>
+                    <input type="radio" name="sesso" checked value="M">M<input type="radio"name="sesso" value="F">F<br>
                 </c:when>
                 <c:otherwise>
-                    <input type="radio"name="sesso" checked value="F">F<input type="radio"name="sesso" value="M">M<br>
+                    <input type="radio" name="sesso" checked value="F">F<input type="radio"name="sesso" value="M">M<br>
                 </c:otherwise>
             </c:choose>
             Descrizione <br><textarea name="descrizione">${articolo.descrizione}</textarea><br>
@@ -36,7 +37,7 @@
 
             Categoria <br>
             <select name="idCategoria">
-                <option value="default"><%=articolo.getCategoria().getNome()%></option>
+                <option value="<%=articolo.getCategoria().getId_categoria()%>"><%=articolo.getCategoria().getNome()%></option>
                 <c:forEach items="${categorie}" var="categoria">
                     <c:if test="${articolo.categoria.nome != categoria.nome}">
                         <option value="${categoria.id_categoria}">${categoria.nome}</option>
@@ -47,21 +48,10 @@
             Nome <br><input type="text" name="nome" value="${articolo.nome}"><br>
             <fieldset>
                 <legend>Taglie</legend>
-                <%List<Taglia> taglie = (List<Taglia>) request.getAttribute("taglie"); boolean flag = false;
-                for (Taglia t1: taglie) {
-                    for (Taglia t :articolo.getTaglie()) {
-                        if (t.getId_nome().compareTo(t1.getId_nome()) == 0){%>
-                            <input type="checkbox" name="taglia" value="<%=t.getId_nome()%>" checked><label><%=t.getId_nome()%></label>
-                            <input type="text" name="quantita" value="<%=t.getQuantita()%>" placeholder="Quantità"><br>
-                        <% flag = true; break;
-                        } else {
-                            flag = false;
-                        }
-                    } if (!flag){%>
-                         <input type="checkbox" name="taglia" value="<%=t1.getId_nome()%>" ><label><%=t1.getId_nome()%></label>
-                         <input type="text" name="quantita" value="0" placeholder="Quantità"><br>
-                <%}
-                }%>
+                <%for (Taglia t :articolo.getTaglie()) {%>
+                    <input type="checkbox" name="taglia" value="<%=t.getId_nome()%>" checked disabled><label><%=t.getId_nome()%></label>
+                    <input type="text" name="quantita" value="<%=t.getQuantita()%>" placeholder="Quantità"><br>
+                <%}%>
             </fieldset>
             Colore<br>
             <select name="colore" multiple>
@@ -70,8 +60,6 @@
                 </c:forEach>
             </select>
             <br>
-            Immagine<br>
-            <input type="file" name="path" id="fileToUpload"><br><br>
             <input type="submit">
         </form>
         <br>

@@ -37,7 +37,7 @@ public interface ArticoloDAO <E extends Exception>{
 
     void doCreateArticolo(Articolo articolo) throws E;
 
-    boolean doUpdateArticolo(Articolo articolo) throws E;
+    void doUpdateArticolo(Articolo articolo) throws E;
 
     boolean doDeleteArticolo(Articolo articolo) throws E;
 }

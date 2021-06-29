@@ -8,6 +8,8 @@ public interface AccountDAO <E extends Exception>{
 
     Optional<Account> checkAccount(String email) throws E;
 
+    int count() throws E;
+
     int createAccount (String email, String password, boolean admin) throws E;
 
     boolean updateAccount(Account account) throws E;

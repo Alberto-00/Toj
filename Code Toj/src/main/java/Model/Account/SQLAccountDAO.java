@@ -4,6 +4,8 @@ import Model.storage.ConPool;
 import Model.storage.QueryBuilder;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class SQLAccountDAO implements AccountDAO{
@@ -18,6 +20,17 @@ public class SQLAccountDAO implements AccountDAO{
             if(resultSet.next())
                 account = new AccountExtractor().extract(resultSet);
             return Optional.ofNullable(account);
+        }
+    }
+
+    @Override
+    public int count() throws SQLException{
+        try(Connection con = ConPool.getConnection()) {
+            Statement stm = con.createStatement();
+            ResultSet resultSet = stm.executeQuery("SELECT COUNT(*) as count FROM account_user;");
+            if (resultSet.next())
+               return resultSet.getInt("count");
+            return 0;
         }
     }
 

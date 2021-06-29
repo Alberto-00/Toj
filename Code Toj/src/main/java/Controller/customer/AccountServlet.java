@@ -30,7 +30,10 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 @WebServlet(name = "AccountServlet", value = "/customers/*")
@@ -136,9 +139,35 @@ public class AccountServlet extends Controller {
                     response.sendRedirect("../index.jsp");
                     break;
 
-                case "/aboutUs":
+                case "/aboutUs": {
+                    SQLAccountDAO sqlAccountDAO = new SQLAccountDAO();
+                    SQLOrdineDAO sqlOrdineDAO = new SQLOrdineDAO();
+                    SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
+
+                    SimpleDateFormat myFormat = new SimpleDateFormat("dd-MM-yyyy");
+                    String dateBeforeString = "20-06-2021";
+                    LocalDate date = LocalDate.now();
+                    String dateAfterString = date.getDayOfMonth() + "-" + date.getMonthValue() + "-" + date.getYear();
+                    Date dateBefore = myFormat.parse(dateBeforeString);
+                    Date dateAfter = myFormat.parse(dateAfterString);
+                    long difference = dateAfter.getTime() - dateBefore.getTime();
+                    long daysBetween = (difference / (1000*60*60*24));
+
+                    if (daysBetween > 0)
+                        request.setAttribute("daysOfOpen",daysBetween);
+                    else request.setAttribute("daysOfOpen", 0);
+                    if (sqlAccountDAO.count() > 0)
+                        request.setAttribute("account", sqlAccountDAO.count());
+                    else request.setAttribute("account", 0);
+                    if (sqlOrdineDAO.doRetrieveAll() > 0)
+                        request.setAttribute("ordini", sqlOrdineDAO.doRetrieveAll());
+                    else request.setAttribute("ordini", 0);
+                    if (sqlArticoloDAO.countArticoli() > 0)
+                        request.setAttribute("articoli", sqlArticoloDAO.countArticoli());
+                    else request.setAttribute("articoli", 0);
                     request.getRequestDispatcher(view("customer/aboutUs")).forward(request, response);
                     break;
+                }
 
                 case "/contactUs": // contact the site for help (pagina)
                     request.getRequestDispatcher(view("customer/contactUs")).forward(request, response);
@@ -190,6 +219,8 @@ public class AccountServlet extends Controller {
         } catch(InvalidRequestException e){
             log(e.getMessage());
             e.handle(request, response);
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
     }
 

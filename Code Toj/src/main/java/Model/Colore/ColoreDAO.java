@@ -18,5 +18,7 @@ public interface ColoreDAO<E extends Exception> {
 
     boolean updateColore(Colore colore) throws E;
 
+    boolean updateTinta(Colore colore, Articolo articolo) throws E;
+
     boolean deleteColore(Colore colore) throws E;
 }

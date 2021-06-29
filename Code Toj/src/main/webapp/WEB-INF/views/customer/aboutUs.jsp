@@ -80,7 +80,7 @@
                     <img src="${pageContext.request.contextPath}/icons/user.png" alt="">
                 </div>
                 <div class="counter-info">
-                    <h2>2170</h2>
+                    <h2>${account}</h2>
                     <p>Utenti iscritti</p>
                 </div>
             </div>
@@ -92,7 +92,7 @@
                     <img src="${pageContext.request.contextPath}/icons/package.png" alt="">
                 </div>
                 <div class="counter-info">
-                    <h2>8080</h2>
+                    <h2>${ordini}</h2>
                     <p>Ordini effettuati</p>
                 </div>
             </div>
@@ -104,7 +104,7 @@
                     <img src="${pageContext.request.contextPath}/icons/clothes.png" alt="">
                 </div>
                 <div class="counter-info">
-                    <h2>3151</h2>
+                    <h2>${articoli}</h2>
                     <p>Articoli posseduti</p>
                 </div>
             </div>
@@ -116,7 +116,7 @@
                     <img src="${pageContext.request.contextPath}/icons/time.png" alt="">
                 </div>
                 <div class="counter-info">
-                    <h2>2151</h2>
+                    <h2>${daysOfOpen}</h2>
                     <p>Giorni di apertura</p>
                 </div>
             </div>

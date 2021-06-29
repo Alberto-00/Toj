@@ -2,11 +2,13 @@ package Model.Articolo;
 
 import Model.Categoria.Categoria;
 import Model.Categoria.CategoriaExtractor;
+import Model.Colore.Colore;
 import Model.Colore.ColoreExtractor;
 import Model.Colore.SQLColoreDAO;
 import Model.Path_immagini.PathImgExtractor;
 import Model.Path_immagini.SQLPathImgDAO;
 import Model.Taglia.SQLTagliaDAO;
+import Model.Taglia.Taglia;
 import Model.Taglia.TagliaExtractor;
 import Model.search.Condition;
 import Model.search.Operator;
@@ -16,10 +18,8 @@ import Model.storage.QueryBuilder;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.Date;
 
 public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
 
@@ -599,22 +599,44 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
     }
 
     @Override
-    public boolean doUpdateArticolo(Articolo articolo) throws SQLException {
+    public void doUpdateArticolo(Articolo articolo) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
+            Date date = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
             QueryBuilder queryBuilder = new QueryBuilder("articolo", "ar");
             queryBuilder.update("ID_articolo", "Prezzo", "Sesso", "Descrizione", "sconto", "data_inserimento",
-                    "ID_categoria",  "Nome", "path_img").where("ar.ID_articolo=?");
+                    "ID_categoria",  "nome_articolo").where("ID_articolo=?");
+
             try (PreparedStatement ps = con.prepareStatement(queryBuilder.generateQuery())) {
                 ps.setInt(1, articolo.getIDarticolo());
                 ps.setDouble(2, articolo.getPrezzo());
                 ps.setString(3, articolo.getSesso());
                 ps.setString(4, articolo.getDescrizione());
                 ps.setDouble(5, articolo.getSconto());
-                ps.setDate(6, (Date) (articolo.getData_inserimento()));
+                ps.setString(6, formatter.format(date));
                 ps.setDouble(7, articolo.getIDarticolo());
                 ps.setString(8, articolo.getNome());
-                int rows = ps.executeUpdate();
-                return rows == 1;
+                ps.setInt(9, articolo.getIDarticolo());
+                System.out.println(ps);
+                ps.executeUpdate();
+
+                SQLTagliaDAO sqlTagliaDAO = new SQLTagliaDAO();
+                for(Taglia t: articolo.getTaglie())
+                    sqlTagliaDAO.doUpdateSize(articolo, t);
+
+                SQLColoreDAO sqlColoreDAO = new SQLColoreDAO();
+                if (articolo.getColori().size() > 1){
+                    Articolo tmpArticolo = new Articolo();
+                    tmpArticolo.setIDarticolo(articolo.getIDarticolo());
+                    tmpArticolo.setColori(new ArrayList<>());
+                    for(int i = 1; i < articolo.getColori().size(); i++)
+                        tmpArticolo.getColori().add(articolo.getColori().get(i));
+                    sqlColoreDAO.updateTinta(articolo.getColori().get(0), articolo);
+                    sqlColoreDAO.createTinta(tmpArticolo);
+                }
+                else
+                    sqlColoreDAO.updateTinta(articolo.getColori().get(0), articolo);
             }
         }
     }

@@ -26,7 +26,7 @@
 
             Categoria <br>
             <select name="idCategoria">
-                <option value="default" disabled>Scegli la categoria</option>
+                <option value="default" disabled selected>Scegli la categoria</option>
                 <c:forEach items="${categorie}" var="categoria">
                     <option value="${categoria.id_categoria}">${categoria.nome}</option>
                 </c:forEach>
@@ -48,7 +48,7 @@
             </select>
             <br>
             Immagine<br>
-            <input type="file" name="path" id="fileToUpload"><br><br>
+            <input type="file" name="path" id="fileToUpload" multiple="multiple"><br><br>
             <input type="submit">
         </form>
     </main>

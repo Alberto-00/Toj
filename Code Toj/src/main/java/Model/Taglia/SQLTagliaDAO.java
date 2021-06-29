@@ -68,25 +68,13 @@ public class SQLTagliaDAO implements TagliaDao{
     }
 
     @Override
-    public boolean doCreateTaglia(Taglia taglia) throws SQLException {
+    public boolean doUpdateSize(Articolo articolo, Taglia taglia) throws SQLException{
         try(Connection con = ConPool.getConnection()) {
-            QueryBuilder queryBuilder = new QueryBuilder("taglia", "t");
-            queryBuilder.insert("id_nome");
+            QueryBuilder queryBuilder = new QueryBuilder("size", "s");
+            queryBuilder.update("Quantita").where("ID_articolo = " + articolo.getIDarticolo() + " AND " +
+                    "id_nome ='" + taglia.getId_nome() + "'");
             try (PreparedStatement ps = con.prepareStatement(queryBuilder.generateQuery())) {
-                ps.setString(1,taglia.getId_nome());
-                int rows = ps.executeUpdate();
-                return rows == 1;
-            }
-        }
-    }
-
-    @Override
-    public boolean doUpdateTaglia(Taglia taglia) throws SQLException {
-        try(Connection con = ConPool.getConnection()) {
-            QueryBuilder queryBuilder = new QueryBuilder("taglia", "t");
-            queryBuilder.update("id_nome").where("t.id_nome = " + taglia.getId_nome());
-            try (PreparedStatement ps = con.prepareStatement(queryBuilder.generateQuery())) {
-                ps.setString(1,taglia.getId_nome());
+                ps.setInt(1, taglia.getQuantita());
                 int rows = ps.executeUpdate();
                 return rows == 1;
             }

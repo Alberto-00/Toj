@@ -196,8 +196,7 @@ public class AdminServlet extends Controller {
                     response.sendRedirect("./adminLogin");
                     break;
 
-                case "/adminGestioneArticoliFormModify":
-                    System.out.println("gg");
+                case "/adminGestioneArticoliFormModify": {
                     SQLArticoloDAO articoloDAO1 = new SQLArticoloDAO();
                     Articolo articolo2 = new Articolo();
                     articolo2.setIDarticolo(Integer.parseInt(request.getParameter("idArticolo")));
@@ -205,35 +204,33 @@ public class AdminServlet extends Controller {
                     articolo2.setSesso(request.getParameter("sesso").toUpperCase());
                     articolo2.setDescrizione(request.getParameter("descrizione"));
                     articolo2.setSconto(Integer.parseInt(request.getParameter("sconto")));
+
                     Categoria categoria2 = new Categoria();
                     categoria2.setId_categoria(Integer.parseInt(request.getParameter("idCategoria")));
                     articolo2.setCategoria(categoria2);
                     articolo2.setNome(request.getParameter("nome"));
+
+                    String[] quantita = request.getParameterValues("quantita");
+                    articolo2.setTaglie(new ArrayList<>());
+                    SQLTagliaDAO sqlTagliaDAO = new SQLTagliaDAO();
+                    int i = 0;
+                    for (Taglia t: sqlTagliaDAO.doRetrieveAll()){
+                        t.setQuantita(Integer.parseInt(quantita[i]));
+                        articolo2.getTaglie().add(t);
+                        i++;
+                    }
+
+                    String[] colori = request.getParameterValues("colore");
+                    articolo2.setColori(new ArrayList<>());
+                    for (int j = 0; j < colori.length; j++){
+                        Colore colore = new Colore();
+                        colore.setCod_esadecimale(colori[j]);
+                        articolo2.getColori().add(colore);
+                    }
                     articoloDAO1.doUpdateArticolo(articolo2);
-
-                    int quantita2 = Integer.parseInt(request.getParameter("quantita"));
-                    if(request.getParameterValues("taglia") == null){
-                        SQLTagliaDAO sqlTagliaDAO = new SQLTagliaDAO();
-                        List<Taglia> newTaglie = sqlTagliaDAO.doRetrieveAll(); /*sta qui*/
-                        for (Taglia t: newTaglie) {
-                            t.setQuantita(quantita2);
-                        }
-                        articolo2.setTaglie(newTaglie);
-
-                    }
-                    else{
-                        String taglie []= request.getParameterValues("taglia");
-                        List<Taglia> newTaglie = new ArrayList();
-                        for (String str: taglie) {
-                            Taglia taglia = new Taglia();
-                            taglia.setId_nome(str);
-                            taglia.setQuantita(quantita2);
-                            newTaglie.add(taglia);
-                        }
-                        articolo2.setTaglie(newTaglie);
-                    }
                     response.sendRedirect("./adminHomepage");
                     break;
+                }
 
                 case "/adminGestioneArticoliFormDelete":
                     Articolo articoloDelete = new Articolo();

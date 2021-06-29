@@ -8,6 +8,8 @@ public interface OrdineDAO  <E extends Exception>{
 
     List<Ordine> fetchOrdine(String email) throws E;
 
+    int doRetrieveAll() throws E;
+
     boolean doInsertOrdine(Ordine ordine) throws E;
 
     int countOrdini() throws E;
