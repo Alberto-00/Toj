@@ -33,6 +33,22 @@ public class SQLColoreDAO implements ColoreDAO<SQLException> {
     }
 
     @Override
+    public Colore doRetrieveById (String hex) throws SQLException{
+        try (Connection con = ConPool.getConnection()){
+            PreparedStatement ps = con.prepareStatement("SELECT c.*" +
+                    "FROM colore c " +
+                    "WHERE cod_esadecimale = "+"'"+hex+"'");
+            ResultSet rs = ps.executeQuery();
+            ColoreExtractor coloreExtractor = new ColoreExtractor();
+            Colore colore = new Colore();
+            if (rs.next()){
+                colore = coloreExtractor.extract(rs);
+            }
+            return colore;
+        }
+    }
+
+    @Override
     public List<Colore> doRetrieveBySex(String sex) throws SQLException {
         try (Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("SELECT DISTINCT c.* " +
@@ -49,6 +65,8 @@ public class SQLColoreDAO implements ColoreDAO<SQLException> {
             return colori;
         }
     }
+
+
 
     @Override
     public boolean createTinta(Articolo articolo) throws SQLException {

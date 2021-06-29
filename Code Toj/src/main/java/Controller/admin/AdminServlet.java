@@ -277,32 +277,13 @@ public class AdminServlet extends Controller {
                     }
                     Date date = new Date();
                     articolo.setData_inserimento(date);
-                    Colore colore = new Colore();
-                    switch (request.getParameter("colore")){
-                        case "#000000":
-                            colore.setNome("Bianco");
-                            colore.setCod_esadecimale("#000000");
-                            break;
-                        case "#000080":
-                            colore.setNome("Blu");
-                            colore.setCod_esadecimale("#000080");
-                            break;
-                        case "#FF0000":
-                            colore.setNome("Rosso");
-                            colore.setCod_esadecimale("#FF0000");
-                            break;
-                        case "#FFFF00":
-                            colore.setNome("Giallo");
-                            colore.setCod_esadecimale("#FFFF00");
-                            break;
-                        case "#FFFFFF":
-                            colore.setNome("Bianco");
-                            colore.setCod_esadecimale("#FFFFFF");
-                            break;
-                        default:
-                            throw new IllegalArgumentException();
-                    }
-                    articolo.setColori(List.of(colore));
+
+                    String[] colorValues = request.getParameterValues("colore");
+                    SQLColoreDAO sqlColoreDAO = new SQLColoreDAO();
+                    articolo.setColori(new ArrayList<>());
+
+                    for(int i = 0; i < colorValues.length; i++)
+                        articolo.getColori().add(sqlColoreDAO.doRetrieveById(colorValues[i]));
 
                     Part filePart = request.getPart("path");
                     String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
