@@ -47,8 +47,10 @@
                 </c:forEach>
             </select>
             <br>
-            Immagine<br>
-            <input type="file" name="path" id="fileToUpload" multiple="multiple"><br><br>
+            Immagine 1<br>
+            <input type="file" name="path" id="fileToUpload"><br>
+            Immagine 2<br>
+            <input type="file" name="path2" id="fileToUpload2"><br><br>
             <input type="submit">
         </form>
     </main>

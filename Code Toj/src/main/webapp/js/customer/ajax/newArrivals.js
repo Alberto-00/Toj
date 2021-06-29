@@ -41,7 +41,6 @@ $(document).ready(function (){
                         "alt": arr.products[i].nome
                     });
 
-
                     /*secondo blocco 'a' - 'img'*/
                     $('a#secondImg' + i).attr({
                         'href': "./customers/products?id="  + arr.products[i].IDarticolo + "&sex=" + arr.products[i].sesso,
@@ -56,7 +55,7 @@ $(document).ready(function (){
 
                     /*terzo blocco*/
                     $('#cartHref' + i).attr({
-                        'href': "./customers/cart?id="  + arr.products[i].IDarticolo + "&sex=" + arr.products[i].sesso,
+                        'href': "./customers/products?id="  + arr.products[i].IDarticolo + "&sex=" + arr.products[i].sesso,
                     })
 
                     if (parseInt(arr.products[i].sconto) > 0) {
@@ -69,7 +68,7 @@ $(document).ready(function (){
                         'id' : "nameProduct" + i
                     }).text(arr.products[i].nome);
 
-                    $('price' + i).attr({
+                    $('#price' + i).attr({
                         'id' : "price" + i
                     }).text("€ " + arr.products[i].prezzo);
                 }
