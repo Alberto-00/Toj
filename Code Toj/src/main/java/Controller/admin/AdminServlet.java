@@ -239,8 +239,7 @@ public class AdminServlet extends Controller {
                     break;
 
                 case "/adminGestioneArticoliFormInsert":
-                    //authorize(request.getSession(false));
-                    //request.setAttribute("back","/adminGestioneArticoli");
+                    request.setAttribute("back","/adminGestioneArticoli");
                     SQLArticoloDAO articoloDao = new SQLArticoloDAO();
                     Articolo articolo = new Articolo();
                     articolo.setIDarticolo(Integer.parseInt(request.getParameter("idArticolo")));
@@ -263,42 +262,41 @@ public class AdminServlet extends Controller {
                             Taglia taglia = new Taglia();
                             taglia.setId_nome(taglie[i]);
                             articolo.getTaglie().add(taglia);
-                            System.out.println(articolo.getTaglie().get(i).getId_nome());
                         }
-
-                        for (int i = 0; i < quantita.length; i++)
-                            if (quantita[i].compareTo("")!= 0){
-                               articolo.getTaglie().get(i).setQuantita(Integer.parseInt(quantita[i]));
-                               System.out.println(articolo.getTaglie().get(i).getQuantita());
+                        for (int i = 0, j = 0; i < quantita.length; i++) {
+                            if (!quantita[i].isBlank()) {
+                                articolo.getTaglie().get(j).setQuantita(Integer.parseInt(quantita[i]));
+                                j++;
                             }
+                        }
                     }
                     else{
                         notFound();
                     }
                     Date date = new Date();
                     articolo.setData_inserimento(date);
-
                     String[] colorValues = request.getParameterValues("colore");
                     SQLColoreDAO sqlColoreDAO = new SQLColoreDAO();
                     articolo.setColori(new ArrayList<>());
 
-                    for(int i = 0; i < colorValues.length; i++)
-                        articolo.getColori().add(sqlColoreDAO.doRetrieveById(colorValues[i]));
+                    for (String colorValue : colorValues) {
+                        articolo.getColori().add(sqlColoreDAO.doRetrieveById(colorValue));
+                    }
 
                     Part filePart = request.getPart("path");
                     String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
                     PathImg pathImg = new PathImg();
                     pathImg.setPathName(fileName);
-                    articolo.setPaths(List.of(pathImg));
+                    articolo.setPaths(new ArrayList<>());
+                    articolo.getPaths().add(pathImg);
 
-                    if(articoloDao.doCreateArticolo(articolo) ){
-                        String uploadRoot = getUploadPath();
-                        try(InputStream fileStream = filePart.getInputStream()){
-                            File file = new File(uploadRoot+fileName);
-                            Files.copy(fileStream,file.toPath());
-                        }
+                    articoloDao.doCreateArticolo(articolo);
+                    String uploadRoot = getUploadPath();
+                    try(InputStream fileStream = filePart.getInputStream()){
+                        File file = new File(uploadRoot + fileName);
+                        Files.copy(fileStream,file.toPath());
                     }
-                    response.sendRedirect("./adminGestioneArticoliAggiungi");
+                    response.sendRedirect("/../adminHomepage");
                     break;
 
                 default:

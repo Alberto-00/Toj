@@ -37,7 +37,7 @@ public class SQLColoreDAO implements ColoreDAO<SQLException> {
         try (Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("SELECT c.*" +
                     "FROM colore c " +
-                    "WHERE cod_esadecimale = "+"'"+hex+"'");
+                    "WHERE cod_esadecimale = '" + hex + "';");
             ResultSet rs = ps.executeQuery();
             ColoreExtractor coloreExtractor = new ColoreExtractor();
             Colore colore = new Colore();
@@ -70,13 +70,16 @@ public class SQLColoreDAO implements ColoreDAO<SQLException> {
 
     @Override
     public boolean createTinta(Articolo articolo) throws SQLException {
-        try(Connection con = ConPool.getConnection()) {
-            try (PreparedStatement ps = con.prepareStatement("INSERT INTO tinta " + "VALUES (?,?)")) {
-                ps.setString(1, articolo.getColori().get(0).getCod_esadecimale());
-                ps.setInt(2, articolo.getIDarticolo());
-                int rows = ps.executeUpdate();
-                return rows == 1;
+        try (Connection con = ConPool.getConnection()) {
+            int rows = 0;
+            for (Colore c : articolo.getColori()) {
+                try (PreparedStatement ps = con.prepareStatement("INSERT INTO tinta " + "VALUES (?,?)")) {
+                    ps.setString(1, c.getCod_esadecimale());
+                    ps.setInt(2, articolo.getIDarticolo());
+                    rows += ps.executeUpdate();
+                }
             }
+            return rows == articolo.getColori().size();
         }
     }
 

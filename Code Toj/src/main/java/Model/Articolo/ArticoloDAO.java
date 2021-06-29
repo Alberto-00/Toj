@@ -35,7 +35,7 @@ public interface ArticoloDAO <E extends Exception>{
 
     boolean reduceSize(Articolo articolo) throws E;
 
-    boolean doCreateArticolo(Articolo articolo) throws E;
+    void doCreateArticolo(Articolo articolo) throws E;
 
     boolean doUpdateArticolo(Articolo articolo) throws E;
 

@@ -15,6 +15,7 @@ import Model.storage.ConPool;
 import Model.storage.QueryBuilder;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -573,20 +574,19 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
     }
 
     @Override
-    public boolean doCreateArticolo(Articolo articolo) throws SQLException {
+    public void doCreateArticolo(Articolo articolo) throws SQLException {
         try (Connection con = ConPool.getConnection()) {
-
             try (PreparedStatement ps = con.prepareStatement("INSERT INTO articolo " + "VALUES (?,?,?,?,?,?,?,?)")) {
                 ps.setInt(1, articolo.getIDarticolo());
                 ps.setDouble(2, articolo.getPrezzo());
                 ps.setString(3, articolo.getSesso());
                 ps.setString(4, articolo.getDescrizione());
                 ps.setDouble(5, articolo.getSconto());
-                java.sql.Date sqlDate = new java.sql.Date(articolo.getData_inserimento().getTime());
-                ps.setDate(6, sqlDate);
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                ps.setString(6, formatter.format(articolo.getData_inserimento()));
                 ps.setInt(7, articolo.getCategoria().getId_categoria());
                 ps.setString(8, articolo.getNome());
-                int rows = ps.executeUpdate();
+                ps.executeUpdate();
             }
 
             SQLColoreDAO sqlColoreDAO = new SQLColoreDAO();
@@ -595,8 +595,6 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
             sqlTagliaDAO.createSize(articolo);
             SQLPathImgDAO sqlPathImgDAO = new SQLPathImgDAO();
             sqlPathImgDAO.createPathImg(articolo);
-
-            return false;
         }
     }
 
