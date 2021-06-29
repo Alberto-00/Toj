@@ -40,7 +40,7 @@ public class AccountServlet extends Controller {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{
-            String path = getPath(request); //abbiamo preso tutto il pezzo dopo "/customers/*"
+            String path = getPath(request);
             switch (path) {
                 case "/products": {
                     String id = request.getParameter("id");
@@ -102,6 +102,7 @@ public class AccountServlet extends Controller {
                         request.setAttribute("flag", false);
                         request.setAttribute("count", 0);
                         request.getRequestDispatcher(view("customer/men_&_Women")).forward(request, response);
+                        break;
                     }
                     request.setAttribute("flag", true);
 
@@ -231,7 +232,6 @@ public class AccountServlet extends Controller {
                     } else {
                         request.setAttribute("msg", "Credenziali errate!");
                         request.getRequestDispatcher(view("customer/login")).forward(request, response);
-                        throw new InvalidRequestException("Credenziali non valide", List.of("Credenziali non valide"), HttpServletResponse.SC_BAD_REQUEST);
                     }
                     break;
                 }
@@ -269,7 +269,6 @@ public class AccountServlet extends Controller {
                     } else {
                         request.setAttribute("msg2", "Email già esistente!");
                         request.getRequestDispatcher(view("customer/login")).forward(request, response);
-                        throw new InvalidRequestException("Credenziali non valide", List.of("Credenziali non valide"), HttpServletResponse.SC_BAD_REQUEST);
                     }
                     break;
                 }
@@ -289,6 +288,7 @@ public class AccountServlet extends Controller {
                         SQLDatiUtenteDAO datiUtenteDAO = new SQLDatiUtenteDAO();
 
                         Account account = new Account();
+                        account.setEmail(accountSession.getEmail());
                         account.setAdmin(false);
 
                         if (nome != null)
@@ -384,11 +384,13 @@ public class AccountServlet extends Controller {
                     if (request.getParameter("createPassword") != null){
                         if (session.getAttribute("userSession") == null){
                             if (sqlAccountDAO.checkAccount(email).isEmpty()){
+                                Account tmp = new Account();
+                                tmp.setPassword(password);
                                 validate(AccountValidator.validateSigin(request));
-                                sqlAccountDAO.createAccount(email, password, false);
-                                AccountSession accountSession = new AccountSession(sqlAccountDAO.findAccount(email, password, false).get());
+                                sqlAccountDAO.createAccount(email, tmp.getPassword(), false);
+                                AccountSession accountSession = new AccountSession(sqlAccountDAO.findAccount(email, tmp.getPassword(), false).get());
                                 session.setAttribute("userSession", accountSession);
-
+                                System.out.println("cii");
                                 DatiUtente datiUtente = new DatiUtente();
                                 if (appartamento != null)
                                     datiUtente.setAppartamento(appartamento);

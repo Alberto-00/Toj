@@ -3,7 +3,10 @@ package Model.Articolo;
 import Model.Categoria.Categoria;
 import Model.Categoria.CategoriaExtractor;
 import Model.Colore.ColoreExtractor;
+import Model.Colore.SQLColoreDAO;
 import Model.Path_immagini.PathImgExtractor;
+import Model.Path_immagini.SQLPathImgDAO;
+import Model.Taglia.SQLTagliaDAO;
 import Model.Taglia.TagliaExtractor;
 import Model.search.Condition;
 import Model.search.Operator;
@@ -521,7 +524,7 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
                     "INNER JOIN taglia ta on s.id_nome = ta.id_nome " +
                     "INNER JOIN tinta t on a.ID_articolo = t.ID_articolo " +
                     "INNER JOIN colore c on c.cod_esadecimale = t.cod_esadecimale " +
-                    "WHERE a.ID_articolo <= ? AND a.ID_articolo >= ?");
+                    "WHERE a.ID_articolo <= ? AND a.ID_articolo >= ? ORDER BY a.ID_articolo");
             ps.setInt(1,paginator.getLastId());
             ps.setInt(2,paginator.getFirstId());
             ResultSet rs = ps.executeQuery();
@@ -571,22 +574,29 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
 
     @Override
     public boolean doCreateArticolo(Articolo articolo) throws SQLException {
-        try(Connection con = ConPool.getConnection()) {
-            QueryBuilder queryBuilder = new QueryBuilder("articolo", "ar");
-           queryBuilder.insert("ID_articolo", "Prezzo", "Sesso", "Descrizione", "sconto", "data_inserimento",
-                   "ID_categoria", "Nome", "path_img");
-            try (PreparedStatement ps = con.prepareStatement(queryBuilder.generateQuery())) {
+        try (Connection con = ConPool.getConnection()) {
+
+            try (PreparedStatement ps = con.prepareStatement("INSERT INTO articolo " + "VALUES (?,?,?,?,?,?,?,?)")) {
                 ps.setInt(1, articolo.getIDarticolo());
                 ps.setDouble(2, articolo.getPrezzo());
                 ps.setString(3, articolo.getSesso());
                 ps.setString(4, articolo.getDescrizione());
                 ps.setDouble(5, articolo.getSconto());
-                ps.setDate(6, (Date) (articolo.getData_inserimento()));
-                ps.setDouble(7, articolo.getIDarticolo());
+                java.sql.Date sqlDate = new java.sql.Date(articolo.getData_inserimento().getTime());
+                ps.setDate(6, sqlDate);
+                ps.setInt(7, articolo.getCategoria().getId_categoria());
                 ps.setString(8, articolo.getNome());
                 int rows = ps.executeUpdate();
-                return rows == 1;
             }
+
+            SQLColoreDAO sqlColoreDAO = new SQLColoreDAO();
+            sqlColoreDAO.createTinta(articolo);
+            SQLTagliaDAO sqlTagliaDAO = new SQLTagliaDAO();
+            sqlTagliaDAO.createSize(articolo);
+            SQLPathImgDAO sqlPathImgDAO = new SQLPathImgDAO();
+            sqlPathImgDAO.createPathImg(articolo);
+
+            return false;
         }
     }
 
@@ -626,7 +636,7 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
     public boolean doDeleteArticolo(Articolo articolo) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
             QueryBuilder queryBuilder = new QueryBuilder("articolo", "ar");
-            queryBuilder.delete().where("ar.ID_articolo=?");
+            queryBuilder.delete().where("ID_articolo=?");
             try (PreparedStatement ps = con.prepareStatement(queryBuilder.generateQuery())) {
                 ps.setInt(1, articolo.getIDarticolo());
                 int rows = ps.executeUpdate();

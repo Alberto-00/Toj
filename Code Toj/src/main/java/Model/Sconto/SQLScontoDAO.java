@@ -79,7 +79,6 @@ public class SQLScontoDAO implements ScontoDAO<SQLException>{
             QueryBuilder queryBuilder = new QueryBuilder("cod_sconto", "s");
             queryBuilder.delete().where("codice = '" + sconto + "'");
             try (PreparedStatement ps = con.prepareStatement(queryBuilder.generateQuery())) {
-                System.out.println(ps.toString());
                 int rows = ps.executeUpdate();
                 return rows == 1;
             }

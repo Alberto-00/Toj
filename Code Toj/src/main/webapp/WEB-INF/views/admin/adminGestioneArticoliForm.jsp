@@ -1,7 +1,6 @@
 <%@ page import="Model.Taglia.Taglia" %>
 <%@ page import="Model.Articolo.Articolo" %>
 <%@ page import="Model.Colore.Colore" %>
-<%@ page import="Model.Colore.SQLColoreDAO" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
@@ -65,7 +64,7 @@
             </select>
           <br>
             Quantità<br>
-            <input type="text" value="${articolo.quantity}" name="quantita"><br>
+            <input type="text" value="0" name="quantita"><br>
             Immagine<br>
             <input type="file" name="path" id="fileToUpload2" value=""><br><br>
             <input type="submit">

@@ -46,7 +46,7 @@ int count = (int) request.getAttribute("count");%>
                     <input type="hidden" name="Sesso" value="${sesso}">
                 </c:if>
 
-                <c:if test="${latest}">
+                <c:if test="${latest != null}">
                     <!--Nuovi Arrivi-->
                     <input type="hidden" name="latest" value="true">
                 </c:if>
@@ -109,7 +109,7 @@ int count = (int) request.getAttribute("count");%>
                         for (Taglia t: taglie){%>
                         <div class="catalog">
                             <input type="checkbox" id="<%=t.getId_nome()%>" name="id_nome" value="<%=t.getId_nome()%>">
-                            <label for="<%=t.getId_nome()%>"> <%=t.getId_nome()%></label> &ensp;
+                            <label for="<%=t.getId_nome()%>"> <%=t.getId_nome()%></label>
                         </div>
                         <%}%>
                     </div>

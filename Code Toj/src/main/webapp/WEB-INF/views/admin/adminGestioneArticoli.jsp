@@ -49,16 +49,17 @@
                 <td data-head="Data Inserimento"><%= o.getData_inserimento()%></td>
                 <td data-head="ID Categoria"><%= o.getCategoria().getNome()%></td>
                 <td data-head="Taglia">
-                    <%for (int j = 0; j <o.getTaglie().size(); j++){%>
+                    <%int count = 0;
+                        for (int j = 0; j <o.getTaglie().size(); j++){%>
                     <%=o.getTaglie().get(j).getId_nome()%>
-                    <%}%>
+                    <%count+=o.getTaglie().get(j).getQuantita();}%>
                 </td>
                 <td data-head="Colore">
                     <%for (int j = 0; j <o.getColori().size(); j++){%>
                     <%=o.getColori().get(j).getNome()%>
                     <%}%>
                 </td>
-                <td data-head="Quantità"><%= o.getQuantity()%></td>
+                <td data-head="Quantità"><%=count%></td>
                 <td data-head="Gestione"><a href="${pageContext.request.contextPath}/adminServlet/adminGestioneArticoliForm?id=<%=o.getIDarticolo()%>">Modifica</a></td>
             </tr>
             <%}%>

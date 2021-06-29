@@ -1,6 +1,7 @@
 package Model.Colore;
 
-import java.sql.SQLException;
+import Model.Articolo.Articolo;
+
 import java.util.List;
 
 public interface ColoreDAO<E extends Exception> {
@@ -9,7 +10,7 @@ public interface ColoreDAO<E extends Exception> {
 
     List<Colore> doRetrieveBySex(String sex) throws E;
 
-    boolean createTinta(int idArticolo,String idColore) throws E;
+    boolean createTinta(Articolo articolo) throws E;
 
     boolean createColore(Colore colore) throws E;
 

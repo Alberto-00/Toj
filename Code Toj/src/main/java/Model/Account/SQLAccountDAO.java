@@ -39,8 +39,8 @@ public class SQLAccountDAO implements AccountDAO{
         try(Connection con = ConPool.getConnection()) {
             QueryBuilder queryBuilder = new QueryBuilder("account_user", "a");
             QueryBuilder queryBuilder1 = new QueryBuilder("dati_cliente", "data");
-            queryBuilder1.insert("Email");
             queryBuilder.insert("Email", "Password_user", "Admin_user");
+            queryBuilder1.insert("Email");
             int rows;
             try (PreparedStatement ps = con.prepareStatement(queryBuilder.generateQuery())) {
                 ps.setString(1, email);
@@ -78,6 +78,21 @@ public class SQLAccountDAO implements AccountDAO{
                     return rows == 1;
                 }
             }
+        }
+    }
+
+    @Override
+    public int countCustomers() throws SQLException {
+        int customers = 0;
+        try (Connection con = ConPool.getConnection()) {
+            Statement stm = con.createStatement();
+            ResultSet resultSet = stm.executeQuery("SELECT count(*)" +
+                    "FROM account_user " +
+                    "where Admin_user = false");
+            if (resultSet.next()) {
+                customers = resultSet.getInt(1);
+            }
+            return customers;
         }
     }
 }

@@ -8,6 +8,8 @@ public interface TagliaDao <E extends Exception>{
 
     List<Taglia> doRetrieveAll() throws E;
 
+    List<Taglia> doRetrieveAllByID(Articolo articolo) throws E;
+
     List<Taglia> doRetrieveBySex(String sex) throws E;
 
     boolean createSize(Articolo articolo) throws E;

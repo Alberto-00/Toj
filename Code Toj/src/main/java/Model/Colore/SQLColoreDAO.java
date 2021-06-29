@@ -1,5 +1,6 @@
 package Model.Colore;
 
+import Model.Articolo.Articolo;
 import Model.storage.ConPool;
 import Model.storage.QueryBuilder;
 
@@ -19,7 +20,7 @@ public class SQLColoreDAO implements ColoreDAO<SQLException> {
     @Override
     public List<Colore> doRetrieveAll() throws SQLException {
         try (Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("SELECT DISTINCT c.* " +
+            PreparedStatement ps = con.prepareStatement("SELECT c.* " +
                     "FROM colore c ORDER BY c.nome_colore;");
             ResultSet rs = ps.executeQuery();
             ColoreExtractor coloreExtractor = new ColoreExtractor();
@@ -50,21 +51,15 @@ public class SQLColoreDAO implements ColoreDAO<SQLException> {
     }
 
     @Override
-    public boolean createTinta(int idArticolo, String idColore) throws SQLException {
+    public boolean createTinta(Articolo articolo) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
             try (PreparedStatement ps = con.prepareStatement("INSERT INTO tinta " + "VALUES (?,?)")) {
-                ps.setString(1,idColore);
-                ps.setInt(2,idArticolo);
+                ps.setString(1, articolo.getColori().get(0).getCod_esadecimale());
+                ps.setInt(2, articolo.getIDarticolo());
                 int rows = ps.executeUpdate();
                 return rows == 1;
             }
-            catch (SQLException e){
-                System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-            }catch (Exception e){
-                e.printStackTrace();
-            }
         }
-        return false;
     }
 
     @Override

@@ -84,7 +84,7 @@ List<Articolo> articoliColor = (List<Articolo>) request.getAttribute("filterColo
                     </div>
                     <div class="product_variant quantity">
                         <label>quantità</label>
-                        <input id="input_quantita" name="quantity" min="0" max="100"  value="1" type="number">
+                        <input id="input_quantita" name="quantity" min="1" max="100"  value="1" type="number">
                         <button class="btn-add-cart" type="submit">Aggiungi al carrello</button>
                     </div>
                 </form>

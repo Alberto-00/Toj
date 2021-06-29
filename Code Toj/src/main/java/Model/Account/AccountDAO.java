@@ -11,4 +11,6 @@ public interface AccountDAO <E extends Exception>{
     int createAccount (String email, String password, boolean admin) throws E;
 
     boolean updateAccount(Account account) throws E;
+
+    int countCustomers() throws E;
 }

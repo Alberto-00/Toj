@@ -15,14 +15,16 @@ $(function() {
                 required: "Inserire la password.",
                 minlength: "La password deve avere almeno 8 caratteri."
             },
-            email: "Inserire un'email valida."
+            email: {
+                email: "Inserire un'email valida.",
+            },
         }, errorElement: 'span',
         errorPlacement: function(error, element) {
             error.insertAfter(element.closest("div"))
         },
         submitHandler: function(form) {
             form.submit();
-        }
+        },
     });
 
     $("form[name='formPopup2']").validate({
@@ -42,7 +44,8 @@ $(function() {
                 minlength: "La password deve avere almeno 8 caratteri."
             },
             email: {
-                required: "Inserire un'email valida.",
+                email: "Inserire un'e-mail valida.",
+                required: "Inserisci l'e-mail.",
             }
         }, errorElement: 'span',
         errorPlacement: function(error, element) {
@@ -70,7 +73,8 @@ $(function() {
                 minlength: "La password deve avere almeno 8 caratteri."
             },
             email: {
-                required: "Inserire un'email valida.",
+                required: "Inserire l'e-mail.",
+                email: "Inserire un'e-mail valida.",
             }
         }, errorElement: 'span',
         errorPlacement: function(error, element) {

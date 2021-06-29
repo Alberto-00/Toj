@@ -9,6 +9,7 @@ import Model.Account.SQLAccountDAO;
 import Model.Articolo.Articolo;
 import Model.Articolo.SQLArticoloDAO;
 import Model.Categoria.Categoria;
+import Model.Categoria.SQLCategoriaDAO;
 import Model.Colore.Colore;
 import Model.Colore.SQLColoreDAO;
 import Model.Dati_utente.DatiUtente;
@@ -111,8 +112,15 @@ public class AdminServlet extends Controller {
                     break;
 
                 case "/adminGestioneArticoliAggiungi" :
-                    if (request.isRequestedSessionIdValid() && accountSession.isAdmin())
+                    if (request.isRequestedSessionIdValid() && accountSession.isAdmin()){
+                        SQLColoreDAO sqlColoreDAO1 = new SQLColoreDAO();
+                        SQLTagliaDAO sqlTagliaDAO = new SQLTagliaDAO();
+                        SQLCategoriaDAO sqlCategoriaDAO = new SQLCategoriaDAO();
+                        request.setAttribute("categorie", sqlCategoriaDAO.doRetrieveAll());
+                        request.setAttribute("taglie", sqlTagliaDAO.doRetrieveAll());
+                        request.setAttribute("colori", sqlColoreDAO1.doRetrieveAll());
                         request.getRequestDispatcher(view("admin/adminGestioneArticoliAggiungi")).forward(request, response);
+                    }
                     else
                         throw new InvalidRequestException("Non sei Autorizzato", List.of("Non sei Autorizzato"), HttpServletResponse.SC_FORBIDDEN);
                     break;
@@ -201,7 +209,7 @@ public class AdminServlet extends Controller {
                     int quantita2 = Integer.parseInt(request.getParameter("quantita"));
                     if(request.getParameterValues("taglia") == null){
                         SQLTagliaDAO sqlTagliaDAO = new SQLTagliaDAO();
-                        List<Taglia> newTaglie = sqlTagliaDAO.doRetrieveAll();
+                        List<Taglia> newTaglie = sqlTagliaDAO.doRetrieveAll(); /*sta qui*/
                         for (Taglia t: newTaglie) {
                             t.setQuantita(quantita2);
                         }
@@ -235,39 +243,38 @@ public class AdminServlet extends Controller {
                     //request.setAttribute("back","/adminGestioneArticoli");
                     SQLArticoloDAO articoloDao = new SQLArticoloDAO();
                     Articolo articolo = new Articolo();
-
                     articolo.setIDarticolo(Integer.parseInt(request.getParameter("idArticolo")));
                     articolo.setPrezzo(Double.parseDouble(request.getParameter("prezzo")));
                     articolo.setSesso(request.getParameter("sesso").toUpperCase());
                     articolo.setDescrizione(request.getParameter("descrizione"));
                     articolo.setSconto(Integer.parseInt(request.getParameter("sconto")));
+
                     Categoria categoria = new Categoria();
                     categoria.setId_categoria(Integer.parseInt(request.getParameter("idCategoria")));
                     articolo.setCategoria(categoria);
                     articolo.setNome(request.getParameter("nome"));
 
-                    int quantita = Integer.parseInt(request.getParameter("quantita"));
-                    if(request.getParameterValues("taglia") == null){
-                        SQLTagliaDAO sqlTagliaDAO = new SQLTagliaDAO();
-                        List<Taglia> newTaglie = sqlTagliaDAO.doRetrieveAll();
-                        for (Taglia t: newTaglie) {
-                            t.setQuantita(quantita);
-                        }
-                        articolo.setTaglie(newTaglie);
+                    String[] quantita = request.getParameterValues("quantita");
+                    String[] taglie = request.getParameterValues("taglia");
 
+                    if(taglie.length > 0){
+                        articolo.setTaglie(new ArrayList<>());
+                        for (int i = 0; i < taglie.length; i++) {
+                            Taglia taglia = new Taglia();
+                            taglia.setId_nome(taglie[i]);
+                            articolo.getTaglie().add(taglia);
+                            System.out.println(articolo.getTaglie().get(i).getId_nome());
+                        }
+
+                        for (int i = 0; i < quantita.length; i++)
+                            if (quantita[i].compareTo("")!= 0){
+                               articolo.getTaglie().get(i).setQuantita(Integer.parseInt(quantita[i]));
+                               System.out.println(articolo.getTaglie().get(i).getQuantita());
+                            }
                     }
                     else{
-                        String taglie []= request.getParameterValues("taglia");
-                        List<Taglia> newTaglie = new ArrayList();
-                        for (String str: taglie) {
-                            Taglia taglia = new Taglia();
-                            taglia.setId_nome(str);
-                            taglia.setQuantita(quantita);
-                            newTaglie.add(taglia);
-                        }
-                        articolo.setTaglie(newTaglie);
+                        notFound();
                     }
-
                     Date date = new Date();
                     articolo.setData_inserimento(date);
                     Colore colore = new Colore();
@@ -299,20 +306,17 @@ public class AdminServlet extends Controller {
 
                     Part filePart = request.getPart("path");
                     String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-
                     PathImg pathImg = new PathImg();
                     pathImg.setPathName(fileName);
                     articolo.setPaths(List.of(pathImg));
 
                     if(articoloDao.doCreateArticolo(articolo) ){
-                        System.out.println(fileName);
                         String uploadRoot = getUploadPath();
                         try(InputStream fileStream = filePart.getInputStream()){
                             File file = new File(uploadRoot+fileName);
                             Files.copy(fileStream,file.toPath());
                         }
                     }
-
                     response.sendRedirect("./adminGestioneArticoliAggiungi");
                     break;
 

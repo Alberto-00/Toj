@@ -26,45 +26,29 @@
             Descrizione <br><textarea name="descrizione"></textarea><br>
             Sconto <br><input type="text" name="sconto"><br>
 
-
-            Categoria <br><input list="idCategorie" id="idCategoria" name="idCategoria" />
-            <datalist id="idCategorie" name="idCategorie">
-                <option value="1">Cappotti</option>
-                <option value="2">Giacche</option>
-                <option value="3">Costumi</option>
-                <option value="4">Bikini</option>
-                <option value="5">Intero</option>
-                <option value="6">Felpe</option>
-                <option value="7">Camice</option>
-                <option value="8">Polo</option>
-                <option value="9">T-Shirt</option>
-                <option value="10">Top</option>
-                <option value="11">Pantaloni Lunghi</option>
-                <option value="12">Pantaloni Corti</option>
-                <option value="13">Gonna Lunga</option>
-                <option value="14">Gonna Corta</option>
-            </datalist><br>
+            Categoria <br>
+            <select name="idCategoria">
+                <option value="default" disabled>Scegli la categoria</option>
+                <c:forEach items="${categorie}" var="categoria">
+                    <option value="${categoria.id_categoria}">${categoria.nome}</option>
+                </c:forEach>
+            </select>
+            <br>
             Nome <br><input type="text" name="nome"><br>
             <fieldset>
-                <legend>Taglie (Nessuna selezione equivale a tutte)</legend>
-                <input type="checkbox" name="taglia" value="L" checked>L
-                <input type="checkbox" name="taglia" value="M">M
-                <input type="checkbox" name="taglia" value="S">S
-                <input type="checkbox" name="taglia" value="XL">XL
-                <input type="checkbox" name="taglia" value="XS">XS
-                <input type="checkbox" name="taglia" value="XXL">XXL
-                <input type="checkbox" name="taglia" value="XXXL">XXXL
+                <legend>Taglie</legend>
+                <c:forEach items="${taglie}" var="taglia">
+                    <input type="checkbox" name="taglia" value="${taglia.id_nome}"><label>${taglia.id_nome}</label>
+                    <input type="text" name="quantita" value="" placeholder="Quantità"><br>
+                </c:forEach>
             </fieldset>
-            Colore<br><input list="colori" id="colore" name="colore" />
-            <datalist id="colori" name="colori">
-                <option value="#000000">Nero</option>
-                <option value="#000080">Blu</option>
-                <option value="#FF0000">Rosso</option>
-                <option value="#FFFF00">Giallo</option>
-                <option value="#FFFFFF">Bianco</option>
-            </datalist><br>
-            Quantità<br>
-            <input type="text" name="quantita"><br>
+            Colore<br>
+            <select name="colore" multiple>
+                <c:forEach items="${colori}" var="colore">
+                    <option value="${colore.cod_esadecimale}">${colore.nome}</option>
+                </c:forEach>
+            </select>
+            <br>
             Immagine<br>
             <input type="file" name="path" id="fileToUpload"><br><br>
             <input type="submit">

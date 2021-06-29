@@ -1,9 +1,10 @@
 <%@ page import="java.util.List" %>
 <%@ page import="Model.Ordine.Ordine" %>
-<%@ page import="java.time.LocalDate" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="Model.Articolo.Articolo" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="Model.Dati_utente.DatiUtente" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="it">
@@ -84,9 +85,14 @@
                     <div class="row">
                         <div class="columnAlt-50">
                             <label>Data di nascita</label>
-                            <input type="date" name="birthday"
-                                   value="<c:if test="${not empty userInfSession.dataDiNascita}">${userInfSession.dataDiNascita}</c:if>"
-                                   autocomplete="off">
+                            <% DatiUtente datiUtente = (DatiUtente) session.getAttribute("userInfSession");
+                                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                                if (datiUtente != null && datiUtente.getDataDiNascita() != null){
+                                    String  str = formatter.format(datiUtente.getDataDiNascita());%>
+                                <input type="date" name="birthday" value="<%=str%>" autocomplete="off">
+                                <%} else {%>
+                            <input type="date" name="birthday" value="" autocomplete="off">
+                            <%}%>
                         </div>
                     </div>
                     <button type="submit" name="detailsAccount">Salva</button>

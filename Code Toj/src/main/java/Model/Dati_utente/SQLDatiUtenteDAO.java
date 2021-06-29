@@ -69,29 +69,22 @@ public class SQLDatiUtenteDAO implements DatiUtenteDAO{
 
     @Override
     public List<DatiUtente> doRetriveAll(Paginator paginator) throws SQLException {
-        List<DatiUtente> datiUtenti = new ArrayList<>();
         try(Connection con = ConPool.getConnection()){
             PreparedStatement stm = con.prepareStatement("SELECT * " +
-                    "FROM dati_cliente " +
-                    "LIMIT ?,?");
+                    "FROM dati_cliente LIMIT ?,?");
             stm.setInt(1,paginator.getOffset());
             stm.setInt(2,paginator.getLimit());
             ResultSet resultSet = stm.executeQuery();
-
+            DatiUtenteExtractor datiUtenteExtractor = new DatiUtenteExtractor();
+            List<DatiUtente> datiUtenti = new ArrayList<>();
             while (resultSet.next()){
-                DatiUtente datiUtente = new DatiUtente();
-                datiUtente.setNome(resultSet.getString(1));
-                datiUtente.setCognome(resultSet.getString(2));
-                datiUtente.setDataDiNascita(resultSet.getDate(3));
-                datiUtente.setNumeroTelefonico(resultSet.getString(4));
-                datiUtente.setVia(resultSet.getString(5));
-                datiUtente.setCAP(resultSet.getString(6));
+                DatiUtente datiUtente = datiUtenteExtractor.extract(resultSet);
                 datiUtente.setUser(new Account());
-                datiUtente.getUser().setEmail(resultSet.getString(7));
+                datiUtente.getUser().setEmail(resultSet.getString("Email"));
                 datiUtenti.add(datiUtente);
             }
+            return datiUtenti;
         }
-        return datiUtenti;
     }
 
     @Override
@@ -100,7 +93,6 @@ public class SQLDatiUtenteDAO implements DatiUtenteDAO{
             PreparedStatement stm = con.prepareStatement("DELETE " +
                     "FROM dati_cliente " +
                     "WHERE dati_cliente.Email = " + datiUtente.getUser().getEmail());
-
             stm.executeQuery();
         }
         return false;
