@@ -19,7 +19,6 @@ public class SQLPathImgDAO implements PathImgDAO {
                     ps.setString(1, p.getPathName());
                     ps.setInt(2, articolo.getIDarticolo());
                     rows = ps.executeUpdate();
-
                 }
             }
             return rows == 1;
@@ -29,16 +28,12 @@ public class SQLPathImgDAO implements PathImgDAO {
     @Override
     public boolean findPath(String pathName) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
+            String tmp = pathName.replace("\\", "\\\\");
             try (PreparedStatement ps = con.prepareStatement("SELECT * " +
-                    "FROM pathimg WHERE pathName = " + "'" + pathName + "'")) {
-
+                    "FROM pathimg WHERE pathName = " + "'" + tmp + "'")) {
                 ResultSet rs = ps.executeQuery();
-                if(rs.next()){
-                    return true;
-                }else
-                    return false;
+                return rs.next();
             }
-
         }
     }
 

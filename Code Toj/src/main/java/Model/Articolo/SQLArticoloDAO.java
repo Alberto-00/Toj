@@ -618,7 +618,6 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
                 ps.setDouble(7, articolo.getIDarticolo());
                 ps.setString(8, articolo.getNome());
                 ps.setInt(9, articolo.getIDarticolo());
-                System.out.println(ps);
                 ps.executeUpdate();
 
                 SQLTagliaDAO sqlTagliaDAO = new SQLTagliaDAO();
@@ -635,8 +634,15 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
                     sqlColoreDAO.updateTinta(articolo.getColori().get(0), articolo);
                     sqlColoreDAO.createTinta(tmpArticolo);
                 }
-                else
+                else {
                     sqlColoreDAO.updateTinta(articolo.getColori().get(0), articolo);
+                }
+
+                SQLPathImgDAO sqlPathImgDAO = new SQLPathImgDAO();
+                if(articolo.getPaths() != null && articolo.getPaths().size() > 0 ) {
+                    if (articolo.getPaths().get(0).getPathName().compareTo("") != 0)
+                        sqlPathImgDAO.createPathImg(articolo);
+                }
             }
         }
     }

@@ -109,7 +109,7 @@ public class AdminServlet extends Controller {
                     request.setAttribute("articolo", articolo);
                     request.setAttribute("colori", sqlColoreDAO.doRetrieveAll());
                     request.setAttribute("categorie", sqlCategoriaDAO.doRetrieveAll());
-                    request.setAttribute("taglie", sqlTagliaDAO.doRetrieveAll());
+                    request.setAttribute("taglie", sqlTagliaDAO.doRetrieveAllByID(articolo));
                     request.getRequestDispatcher(view("admin/adminGestioneArticoliForm")).forward(request, response);
                     //else
                     //throw new InvalidRequestException("Non sei Autorizzato", List.of("Non sei Autorizzato"), HttpServletResponse.SC_FORBIDDEN);
@@ -212,18 +212,21 @@ public class AdminServlet extends Controller {
                     articolo2.setTaglie(new ArrayList<>());
                     SQLTagliaDAO sqlTagliaDAO = new SQLTagliaDAO();
                     int i = 0;
-                    for (Taglia t: sqlTagliaDAO.doRetrieveAll()){
+                    for (Taglia t: sqlTagliaDAO.doRetrieveAllByID(articolo2)){
                         t.setQuantita(Integer.parseInt(quantita[i]));
                         articolo2.getTaglie().add(t);
                         i++;
                     }
-
                     String[] colori = request.getParameterValues("colore");
                     articolo2.setColori(new ArrayList<>());
                     for (int j = 0; j < colori.length; j++){
                         Colore colore = new Colore();
                         colore.setCod_esadecimale(colori[j]);
                         articolo2.getColori().add(colore);
+                    }
+                    if (!uploadImg(articolo2, request)) {
+                        response.sendRedirect("./adminHomepage");
+                        break;
                     }
                     articoloDAO1.doUpdateArticolo(articolo2);
                     response.sendRedirect("./adminHomepage");
@@ -286,9 +289,8 @@ public class AdminServlet extends Controller {
                             }
                         }
                     }
-                    else{
+                    else
                         notFound();
-                    }
 
                     Date date = new Date();
                     articolo.setData_inserimento(date);
@@ -299,50 +301,11 @@ public class AdminServlet extends Controller {
                     for (String colorValue : colorValues) {
                         articolo.getColori().add(sqlColoreDAO.doRetrieveById(colorValue));
                     }
-
-                    Part filePart = request.getPart("path");
-                    String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-                    SQLPathImgDAO sqlPathImgDAO = new SQLPathImgDAO();
-
-                    if(sqlPathImgDAO.findPath(fileName)){
-                        System.out.println("Uscito perchè foto 1");
-                        // TODO: 29/06/2021 Aggiungere alert "creazione non avvenuta per immagine uguale"
+                    if (!uploadImg(articolo, request)) {
                         response.sendRedirect("./adminHomepage");
                         break;
                     }
-
-                    Part filePart2 = request.getPart("path2");
-                    String fileName2 = Paths.get(filePart2.getSubmittedFileName()).getFileName().toString();
-                    SQLPathImgDAO sqlPathImgDAO2 = new SQLPathImgDAO();
-                    if(sqlPathImgDAO2.findPath(fileName2)){
-                        System.out.println("Uscito perchè foto 2");
-                        // TODO: 29/06/2021 Aggiungere alert "creazione non avvenuta per immagine uguale"
-                        response.sendRedirect("./adminHomepage");
-                        break;
-                    }
-
-                    PathImg pathImg = new PathImg();
-                    String uploadRoot = getUploadPath();
-                    String totalPath1 = sqlPathImgDAO.writePath(articolo) + fileName;
-                    pathImg.setPathName(totalPath1);
-                    articolo.setPaths(new ArrayList<>());
-                    articolo.getPaths().add(pathImg);
-
-                    try(InputStream fileStream = filePart.getInputStream()){
-                        File file = new File(uploadRoot + totalPath1);
-                        Files.copy(fileStream,file.toPath());
-                    }
-
-                    PathImg pathImg2 = new PathImg();
-                    String totalPath2 = sqlPathImgDAO.writePath(articolo) + fileName2;
-                    pathImg2.setPathName(totalPath2);
-                    articolo.getPaths().add(pathImg2);
                     articoloDao.doCreateArticolo(articolo);
-
-                    try(InputStream fileStream2 = filePart2.getInputStream()){
-                        File file = new File(uploadRoot + totalPath2);
-                        Files.copy(fileStream2,file.toPath());
-                    }
                     response.sendRedirect("./adminHomepage");
                     break;
 

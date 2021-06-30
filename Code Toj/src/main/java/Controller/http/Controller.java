@@ -4,15 +4,21 @@ import Model.Account.AccountSession;
 import Model.Articolo.Articolo;
 import Model.Cart.Cart;
 import Model.Ordine.Ordine;
+import Model.Path_immagini.PathImg;
+import Model.Path_immagini.SQLPathImgDAO;
 import org.json.simple.JSONObject;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.ServletException;
+import javax.servlet.http.*;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Controller extends HttpServlet implements ErrorHandler {
 
@@ -59,5 +65,48 @@ public class Controller extends HttpServlet implements ErrorHandler {
         PrintWriter writer = response.getWriter();
         writer.print(object.toString());
         writer.flush();/*scarico del buffer*/
+    }
+
+    protected boolean uploadImg(Articolo articolo, HttpServletRequest request) throws ServletException, IOException, SQLException {
+        List<String> filesName = new ArrayList<>();
+        for (Part part: request.getParts()) {
+            if (part.getName().compareTo("path") == 0) {
+                filesName.add(Paths.get(part.getSubmittedFileName()).getFileName().toString());
+            }
+        }
+        if (filesName.get(0).compareTo("") == 0) {
+            return true;
+        }
+        SQLPathImgDAO sqlPathImgDAO = new SQLPathImgDAO();
+        List<PathImg> pathImg = new ArrayList<>();
+        List<String> fullPath = new ArrayList<>();
+        String uploadRoot = getUploadPath();
+        for (String str: filesName)
+            fullPath.add(sqlPathImgDAO.writePath(articolo) + str);
+
+        for (String pathFile: fullPath){
+            if (sqlPathImgDAO.findPath(pathFile)){
+                return false;
+            }
+        }
+        for (int i = 0; i < fullPath.size(); i++){
+            pathImg.add(new PathImg());
+            pathImg.get(i).setPathName(fullPath.get(i));
+        }
+        articolo.setPaths(new ArrayList<>());
+        for (PathImg p: pathImg)
+            articolo.getPaths().add(p);
+
+        int i = 0;
+        for (Part part: request.getParts()) {
+            if (part.getName().compareTo("path") == 0) {
+                try(InputStream fileStream = part.getInputStream()){
+                    File file = new File(uploadRoot + fullPath.get(i));
+                    Files.copy(fileStream, file.toPath());
+                }
+                i++;
+            }
+        }
+        return true;
     }
 }

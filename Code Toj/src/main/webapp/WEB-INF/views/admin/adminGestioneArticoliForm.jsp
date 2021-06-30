@@ -19,7 +19,7 @@
     <main class="content">
         <h1>Gestione Articoli</h1><br>
         <form enctype="multipart/form-data" class="input-form" name="input-form" method="post" action="${pageContext.request.contextPath}/adminServlet/adminGestioneArticoliFormModify">
-            <h2>Aggiunta Articolo</h2>
+            <h2>Modifica Articolo</h2>
             <input type="hidden" name="idArticolo" value="${articolo.IDarticolo}">
             ID      <br><input type="text" placeholder="${articolo.IDarticolo}" disabled><br>
             Prezzo  <br><input type="text" name="prezzo" value="${articolo.prezzo}"><br>
@@ -48,10 +48,10 @@
             Nome <br><input type="text" name="nome" value="${articolo.nome}"><br>
             <fieldset>
                 <legend>Taglie</legend>
-                <%for (Taglia t :articolo.getTaglie()) {%>
-                    <input type="checkbox" name="taglia" value="<%=t.getId_nome()%>" checked disabled><label><%=t.getId_nome()%></label>
-                    <input type="text" name="quantita" value="<%=t.getQuantita()%>" placeholder="Quantità"><br>
-                <%}%>
+                <c:forEach items="${taglie}" var="taglia">
+                    <input type="checkbox" name="taglia" value="${taglia.id_nome}" checked disabled><label>${taglia.id_nome}</label>
+                    <input type="text" name="quantita" value="${taglia.quantita}" placeholder="Quantità"><br>
+                </c:forEach>
             </fieldset>
             Colore<br>
             <select name="colore" multiple>
@@ -59,7 +59,8 @@
                     <option value="${colore.cod_esadecimale}">${colore.nome}</option>
                 </c:forEach>
             </select>
-            <br>
+            <br> Aggiungi Foto
+            <input type="file" name="path" id="fileToUpload" multiple><br>
             <input type="submit">
         </form>
         <br>
