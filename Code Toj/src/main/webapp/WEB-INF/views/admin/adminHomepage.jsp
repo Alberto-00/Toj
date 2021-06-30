@@ -1,14 +1,12 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
-
-<!doctype html>
+<!DOCTYPE html>
+<html lang="it">
 <head>
-    <jsp:include page="/WEB-INF/views/partials/head.jsp">
-        <jsp:param name="adminStyles" value="libraryAdmin,crmAdmin,adminHomepage"/>
+    <jsp:include page="/WEB-INF/views/partials/admin/head.jsp">
+        <jsp:param name="adminStyles" value="crmAdmin,adminHomepage"/>
         <jsp:param name="title" value="T&#x000F8;j | Admin Dashboard"/>
         <jsp:param name="adminScripts" value="crm"/>
     </jsp:include>
-
 </head>
 
 <body>
@@ -32,5 +30,5 @@
     <%@include file="../partials/admin/dashboardFooter.jsp"%>
 </div>
 <%@include file="../partials/admin/dashboardLogout.jsp"%>
-
 </body>
+</html>

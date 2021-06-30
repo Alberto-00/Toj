@@ -18,6 +18,13 @@ body{
     box-shadow: 0 0 15px rgba(0,0,0,0.15);
 }
 
+.login-form label{
+    display: block;
+    text-align: center;
+    line-height: 150%;
+    font-size: .85em;
+}
+
 /*Logo*/
 .login-form-logo-container{
     padding: 30px;
@@ -39,6 +46,16 @@ body{
     margin-bottom: 15px;
     text-align: center;
     color: #333333;
+}
+
+.login-form-header > label{
+    color: var(--black);
+    font-size: 14px;
+}
+
+.error{
+    color: var(--error);
+    margin-bottom: 5px;
 }
 
 .login-form-input{

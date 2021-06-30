@@ -19,10 +19,7 @@
         </span>
       </span>
     </div>
-    <div class="modal-footer">
-      <br>
-      <br>
+    <div class="modal-footer"><br><br>
     </div>
   </div>
-
 </div>

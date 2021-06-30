@@ -10,6 +10,11 @@ table {
     border-collapse: collapse;
 }
 
+span.empty{
+    font-weight: bold;
+    color:  #e38e00;;
+}
+
 tr:nth-of-type(odd) {
     background: var(--greenS);
 }
@@ -19,9 +24,10 @@ th {
     font-weight: bold;
 }
 td, th {
-    padding: 6px;
+    padding: 15px;
     border: 1px solid #ccc;
     text-align: left;
+    font-size: 14px;
 }
 
 @media

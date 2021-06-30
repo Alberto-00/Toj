@@ -11,16 +11,10 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="apple-touch-icon" href="${pageContext.request.contextPath}/icons/logo2.png">
 <link rel="apple-touch-startup-image" href="${pageContext.request.contextPath}/icons/logo2.png">
-<meta name="theme-color" content="#FFFFFF">
+<meta name="theme-color" content="#009578">
 <link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/customer/library.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/admin/libraryAdmin.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-
-<c:if test="${not empty param.customerStyles}">
-    <c:forTokens items="${param.customerStyles}" delims="," var="customerStyle">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/customer/${customerStyle}.css">
-    </c:forTokens>
-</c:if>
 
 <c:if test="${not empty param.errorStyles}">
     <c:forTokens items="${param.errorStyles}" delims="," var="errorStyle">
@@ -38,26 +32,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery-validate-plugin.js"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous" defer></script>
-<script src="${pageContext.request.contextPath}/js/customer/library.js" defer></script>
-<script src="${pageContext.request.contextPath}/js/customer/ajax/liveSearchBar.js" defer></script>
-<script src="${pageContext.request.contextPath}/js/customer/login.js" defer></script>
-
-
-<c:if test="${not empty param.customerScripts}">
-    <c:forTokens items="${param.customerScripts}" delims="," var="customerScript">
-        <script src="${pageContext.request.contextPath}/js/customer/${customerScript}.js" defer></script>
-    </c:forTokens>
-</c:if>
 
 <c:if test="${not empty param.adminScripts}">
     <c:forTokens items="${param.adminScripts}" delims="," var="adminScript">
         <script src="${pageContext.request.contextPath}/js/admin/${adminScript}.js" defer></script>
     </c:forTokens>
 </c:if>
-
-<c:if test="${not empty param.customerAjaxScripts}">
-    <c:forTokens items="${param.customerAjaxScripts}" delims="," var="customerAjaxScript">
-        <script src="${pageContext.request.contextPath}/js/customer/ajax/${customerAjaxScript}.js" defer></script>
-    </c:forTokens>
-</c:if>
-

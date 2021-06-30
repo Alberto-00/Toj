@@ -1,13 +1,25 @@
 /*Stile del flexbox*/
-* {
-    box-sizing: border-box;
+.fa-bars{
+    font-size: 26px;
+    border: 2px solid rgba(255,255,255,.5);
+    cursor: pointer;
+    transition: .3s;
+    padding: 6px;
 }
+
+.fa-bars:hover{
+    background-color: #2EE59D;
+    box-shadow: 0 15px 20px rgba(46, 229, 157, 0.4);
+    color: var(--black);
+}
+
 body {
     display: flex;
     min-height: 100vh;
     flex-direction: row;
     margin: 0;
 }
+
 .col-1 {
     background: var(--greenS);
     flex: 0.5;
@@ -46,12 +58,12 @@ body {
 
 header {
     background: var(--greenS);
-    height: 6vh;
 }
 
 footer {
     background: var(--green);
-    height: 4vh;
+    height: 6vh;
+    font-size: 14px;
     align-content: flex-end;
     text-align: right;
 }
@@ -63,12 +75,60 @@ header, footer, article, nav {
 /* Stile di tutte le pagine admin*/
 header .account {
     display: inline;
+    font-size: 21px;
+}
+
+#logo{
+    width: 170px;
+    height: 170px;
+}
+
+span.account, .account > span{
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+}
+
+span.account{
+    padding-left: 15px;
+}
+
+.account > span{
+    font-family: "Times New Roman", serif;
+    padding-left: 3px;
+}
+
+.btn {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: bold;
+    color: var(--white);
+    background-color: var(--greenS);
+    border: none;
+    /*box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);*/
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+    margin-bottom: 45px;
+}
+
+.btn:hover {
+    background-color: #2EE59D;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
 }
 
 nav > a{
     text-decoration: none;
-    color: white;
+    color: var(--white);
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
     padding: 1rem;
+    font-size: 17px;
+    transition: .3s;
+}
+
+nav > a:hover{
+    color: var(--hover);
 }
 
 /* Modal (background) */
@@ -161,7 +221,6 @@ nav > a{
 }
 
 /*Paginator*/
-
 .paginator {
     display: inline-block;
     margin-top: 5px;
@@ -170,27 +229,27 @@ nav > a{
 .paginator  a {
     color: var(--grey);
     float: left;
-    padding: 8px 8px;
+    padding: 7px 11px;
+    font-size: 18px;
+    font-weight: bold;
     text-decoration: none;
-    border: 1px solid var(--grey);
+    border: 2px solid rgba(255,255,255,.5);
+    margin-left: 5px;
 }
 
-.paginator a.active {
-    background-color: #4CAF50;
-    color: white;
+.paginator a:hover, .active {
+    background-color: #2EE59D;
+    box-shadow: 0 15px 20px rgba(46, 229, 157, 0.4);
+    color: var(--black)!important;
 }
-
-.paginator a:hover:not(.active) {background-color: var(--greenS);}
 
 /*Paragrafi*/
 p.insert {
-
     margin-left: 50px;
     padding-right: 30px;
     font-size: 1.10em;
 
 }
-
 
 @media screen and (max-width: 769px){
     header .account{

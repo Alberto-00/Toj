@@ -1,16 +1,13 @@
 //SCORRIMENTO SIDENAV
 $(document).ready(function (){
         $("i.fa-bars").click(function (){
-        const col1 = document.getElementsByClassName("col-1")[0];
-        const col2 = document.getElementsByClassName("col-2")[0];
-        col1.classList.toggle("collapse");
-        col2.classList.toggle("full-width");
-    });
-})
+                const col1 = document.getElementsByClassName("col-1")[0];
+                const col2 = document.getElementsByClassName("col-2")[0];
+                col1.classList.toggle("collapse");
+                col2.classList.toggle("full-width");
+        });
 
-
-//LOGOUT
-$(document).ready(function (){
+        //LOGOUT
         // Modal
         var modal = document.getElementById("myModal");
         // Apertura Modal
@@ -35,18 +32,18 @@ $(document).ready(function (){
 
         // Funzione per chiudere modal quando l'utente clicca al di fuori
         window.onclick = function(event) {
-                if (event.target == modal) {
+                if (event.target === modal) {
                         modal.style.display = "none";
                 }
         }
+
+        var header = document.getElementById("pagination");
+        var btns = header.getElementsByClassName("page");
+        for (var i = 0; i < btns.length; i++) {
+                btns[i].addEventListener("click", function() {
+                        var current = document.getElementsByClassName("active");
+                        current[0].className = current[0].className.replace(" active", "");
+                        this.className += " active";
+                });
+        }
 })
-
-$(document).ready(function(){
-        var btn = document.getElementById("interact")
-        var form = document.getElementById("interact-form")
-        btn.onclick(function(){
-                form.style.display="none";
-        });
-});
-
-

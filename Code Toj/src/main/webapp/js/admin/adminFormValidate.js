@@ -1,5 +1,5 @@
 //Aspettiamo che il file sia pronto
-$(function() {
+$(document).ready(function (){
     // Inizializziamo la validazione sul form con name = "admin-login"
     $("form[name='admin-login']").validate({
         // Specifichiamo le regole di valdazione
@@ -10,21 +10,24 @@ $(function() {
             },
             password: {
                 required: true,
-                minlength: 8
+                minlength: 8,
             }
         },
         // Specifichiamo i messaggi di errore
         messages: {
             password: {
-                required: "Inserire la password",
-                minlength: "La password deve essere almeno 8 caratteri"
+                required: "Inserire la password.",
+                minlength: "La password deve essere almeno di 8 caratteri.",
             },
-            email: "Inserire un'email valida"
+            email: {
+                required: "Inserire l'e-mail.",
+                email: "Inserire un'e-mail valida."
+            }
         },
         //Quando valido, ci assicuriamo che il form venga inviato
         submitHandler: function(form) {
             form.submit();
         }
     });
-});
+})
 

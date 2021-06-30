@@ -27,9 +27,6 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.*;
 
@@ -184,7 +181,8 @@ public class AdminServlet extends Controller {
                         request.getSession(true).setAttribute("accountSession", accountSession);
                         response.sendRedirect("./adminHomepage");
                     } else {
-                        response.sendRedirect("./adminLogin");
+                        request.setAttribute("msg", "Credenziali errate.");
+                        request.getRequestDispatcher(view("admin/adminLogin")).forward(request, response);
                     }
                     break;
                 }
