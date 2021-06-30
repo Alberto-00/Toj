@@ -35,7 +35,7 @@ public class SQLTagliaDAO implements TagliaDao{
             PreparedStatement ps = con.prepareStatement("SELECT t.id_nome, s.quantita FROM taglia t " +
                     "INNER JOIN size s on s.id_nome = t.id_nome " +
                     "INNER JOIN articolo a on s.ID_articolo = a.ID_articolo " +
-                    "WHERE a.ID_articolo = ? ORDER BY t.id_nome");
+                    "WHERE a.ID_articolo = ? ORDER BY t.id_nome;");
             ps.setInt(1, articolo.getIDarticolo());
             ResultSet rs = ps.executeQuery();
             TagliaExtractor tagliaExtractor = new TagliaExtractor();

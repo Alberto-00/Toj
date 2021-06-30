@@ -42,8 +42,7 @@ CREATE TABLE Tinta(
     ON DELETE CASCADE,
     foreign key (ID_articolo) references Articolo (ID_articolo)
     ON UPDATE CASCADE
-    ON DELETE CASCADE,
-	PRIMARY KEY(ID_articolo, cod_esadecimale)
+    ON DELETE CASCADE
 ); 
 
 CREATE TABLE Taglia(
