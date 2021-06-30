@@ -113,10 +113,10 @@ public class SQLColoreDAO implements ColoreDAO<SQLException> {
     }
 
     @Override
-    public boolean updateTinta(Colore colore, Articolo articolo) throws SQLException{
+    public boolean deleteColore(Colore colore) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
-            QueryBuilder queryBuilder = new QueryBuilder("tinta", "t");
-            queryBuilder.update("cod_esadecimale").where("ID_articolo=" + articolo.getIDarticolo());
+            QueryBuilder queryBuilder = new QueryBuilder("colore", "c");
+            queryBuilder.delete().where("c.cod_esadecimale=?");
             try (PreparedStatement ps = con.prepareStatement(queryBuilder.generateQuery())) {
                 ps.setString(1, colore.getCod_esadecimale());
                 int rows = ps.executeUpdate();
@@ -125,14 +125,13 @@ public class SQLColoreDAO implements ColoreDAO<SQLException> {
         }
     }
 
-
     @Override
-    public boolean deleteColore(Colore colore) throws SQLException {
+   public boolean deleteTinta(Articolo articolo) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
-            QueryBuilder queryBuilder = new QueryBuilder("colore", "c");
-            queryBuilder.delete().where("c.cod_esadecimale=?");
+            QueryBuilder queryBuilder = new QueryBuilder("tinta", "t");
+            queryBuilder.delete().where("ID_articolo=?");
             try (PreparedStatement ps = con.prepareStatement(queryBuilder.generateQuery())) {
-                ps.setString(1, colore.getCod_esadecimale());
+                ps.setInt(1, articolo.getIDarticolo());
                 int rows = ps.executeUpdate();
                 return rows == 1;
             }

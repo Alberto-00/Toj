@@ -53,14 +53,27 @@
                     <input type="text" name="quantita" value="${taglia.quantita}" placeholder="Quantità"><br>
                 </c:forEach>
             </fieldset>
-            Colore<br>
+            Nuovi Colori<br>
             <select name="colore" multiple>
                 <c:forEach items="${colori}" var="colore">
                     <option value="${colore.cod_esadecimale}">${colore.nome}</option>
                 </c:forEach>
             </select>
+            <fieldset>
+                <legend>Colore Articolo <%=articolo.getIDarticolo()%></legend>
+                <c:forEach items="${articolo.colori}" var="colore">
+                    <label>${colore.nome}</label><br>
+                </c:forEach>
+            </fieldset>
             <br> Aggiungi Foto
             <input type="file" name="path" id="fileToUpload" multiple><br>
+            <br>
+            <fieldset>
+                <legend>Rimuovi Foto <span>** Selezionare al più 2 foto **</span></legend>
+                <c:forEach items="${paths}" var="path">
+                    <input type="checkbox" name="deletePath" value="${path.pathName}"><label>${path.pathName}</label><br>
+                </c:forEach>
+            </fieldset>
             <input type="submit">
         </form>
         <br>

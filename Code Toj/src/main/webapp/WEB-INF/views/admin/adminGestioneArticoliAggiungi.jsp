@@ -36,8 +36,8 @@
             <fieldset>
                 <legend>Taglie</legend>
                 <c:forEach items="${taglie}" var="taglia">
-                    <input type="checkbox" name="taglia" value="${taglia.id_nome}"><label>${taglia.id_nome}</label>
-                    <input type="text" name="quantita" value="" placeholder="Quantità"><br>
+                    <input type="hidden" name="taglia" value="${taglia.id_nome}"><label>${taglia.id_nome}</label>
+                    <input type="text" name="quantita" value="0" placeholder="Quantità"><br>
                 </c:forEach>
             </fieldset>
             Colore<br>

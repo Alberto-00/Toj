@@ -77,8 +77,10 @@ List<Articolo> articoliColor = (List<Articolo>) request.getAttribute("filterColo
                         <h3>taglia</h3>
                         <select id="size" name="size" onchange="setQuantita()">
                             <option selected value="" disabled>Scegli opzione</option>
-                            <%for (Taglia taglia: articolo.getTaglie()){%>
-                            <option class="option_taglia" value="<%=taglia.getId_nome()%>" data="<%=taglia.getQuantita()%>"><%=taglia.getId_nome()%></option>
+                            <%for (Taglia taglia: articolo.getTaglie()){
+                                if (taglia.getQuantita() > 0){%>
+                                    <option class="option_taglia" value="<%=taglia.getId_nome()%>" data="<%=taglia.getQuantita()%>"><%=taglia.getId_nome()%></option>
+                                <%}%>
                             <%}%>
                         </select>
                     </div>

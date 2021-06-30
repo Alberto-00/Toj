@@ -16,6 +16,7 @@ $(function() {
                 minlength: "La password deve avere almeno 8 caratteri."
             },
             email: {
+                required: "Inserire l'e-mail.",
                 email: "Inserire un'email valida.",
             },
         }, errorElement: 'span',

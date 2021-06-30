@@ -42,7 +42,8 @@ CREATE TABLE Tinta(
     ON DELETE CASCADE,
     foreign key (ID_articolo) references Articolo (ID_articolo)
     ON UPDATE CASCADE
-    ON DELETE CASCADE
+    ON DELETE CASCADE,
+    primary key(cod_esadecimale, ID_articolo)
 ); 
 
 CREATE TABLE Taglia(
@@ -71,9 +72,7 @@ CREATE TABLE Account_User(
 CREATE TABLE Ordine(
 	ID_ordine VARCHAR(10) PRIMARY KEY,
 	data_acquisto DATE NOT NULL,
-    pacchetto_regalo BOOLEAN DEFAULT false NOT NULL,
     data_spedizione DATE NOT NULL,
-    Descrizione TEXT,
     Email VARCHAR(100),
     foreign key (Email) references Account_User (Email)
     ON UPDATE CASCADE

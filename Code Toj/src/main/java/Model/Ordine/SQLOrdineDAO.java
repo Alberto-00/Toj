@@ -32,7 +32,6 @@ public class SQLOrdineDAO implements OrdineDAO<SQLException> {
         }
     }
 
-
     @Override
     public List<Ordine> fetchOrdine(String email) throws SQLException {
         try(Connection con = ConPool.getConnection()) {

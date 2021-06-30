@@ -105,11 +105,13 @@ public class AdminServlet extends Controller {
                     SQLColoreDAO sqlColoreDAO = new SQLColoreDAO();
                     SQLTagliaDAO sqlTagliaDAO = new SQLTagliaDAO();
                     SQLCategoriaDAO sqlCategoriaDAO = new SQLCategoriaDAO();
+                    SQLPathImgDAO sqlPathImgDAO = new SQLPathImgDAO();
                     Articolo articolo = sqlArticoloDAO2.doRetrieveProductById(id);
                     request.setAttribute("articolo", articolo);
                     request.setAttribute("colori", sqlColoreDAO.doRetrieveAll());
                     request.setAttribute("categorie", sqlCategoriaDAO.doRetrieveAll());
                     request.setAttribute("taglie", sqlTagliaDAO.doRetrieveAllByID(articolo));
+                    request.setAttribute("paths", sqlPathImgDAO.doRetrieveByID(articolo));
                     request.getRequestDispatcher(view("admin/adminGestioneArticoliForm")).forward(request, response);
                     //else
                     //throw new InvalidRequestException("Non sei Autorizzato", List.of("Non sei Autorizzato"), HttpServletResponse.SC_FORBIDDEN);
@@ -227,6 +229,21 @@ public class AdminServlet extends Controller {
                     if (!uploadImg(articolo2, request)) {
                         response.sendRedirect("./adminHomepage");
                         break;
+                    }
+                    String[] deletePath = request.getParameterValues("deletePath");
+                    if (deletePath != null && deletePath.length > 0) {
+                        Articolo deletePathArticolo = new Articolo();
+                        deletePathArticolo.setIDarticolo(articolo2.getIDarticolo());
+                        deletePathArticolo.setPaths(new ArrayList<>());
+                        for (i = 0; i < deletePath.length; i++) {
+                            PathImg pathImg = new PathImg();
+                            pathImg.setPathName(deletePath[i]);
+                            deletePathArticolo.getPaths().add(pathImg);
+                        }
+                        if (!removeImg(deletePathArticolo)) {
+                            response.sendRedirect("./adminHomepage");
+                            break;
+                        }
                     }
                     articoloDAO1.doUpdateArticolo(articolo2);
                     response.sendRedirect("./adminHomepage");

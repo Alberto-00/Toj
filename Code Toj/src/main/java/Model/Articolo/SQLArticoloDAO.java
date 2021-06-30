@@ -615,7 +615,7 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
                 ps.setString(4, articolo.getDescrizione());
                 ps.setDouble(5, articolo.getSconto());
                 ps.setString(6, formatter.format(date));
-                ps.setDouble(7, articolo.getIDarticolo());
+                ps.setInt(7, articolo.getCategoria().getId_categoria());
                 ps.setString(8, articolo.getNome());
                 ps.setInt(9, articolo.getIDarticolo());
                 ps.executeUpdate();
@@ -625,24 +625,8 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
                     sqlTagliaDAO.doUpdateSize(articolo, t);
 
                 SQLColoreDAO sqlColoreDAO = new SQLColoreDAO();
-                if (articolo.getColori().size() > 1){
-                    Articolo tmpArticolo = new Articolo();
-                    tmpArticolo.setIDarticolo(articolo.getIDarticolo());
-                    tmpArticolo.setColori(new ArrayList<>());
-                    for(int i = 1; i < articolo.getColori().size(); i++)
-                        tmpArticolo.getColori().add(articolo.getColori().get(i));
-                    sqlColoreDAO.updateTinta(articolo.getColori().get(0), articolo);
-                    sqlColoreDAO.createTinta(tmpArticolo);
-                }
-                else {
-                    sqlColoreDAO.updateTinta(articolo.getColori().get(0), articolo);
-                }
-
-                SQLPathImgDAO sqlPathImgDAO = new SQLPathImgDAO();
-                if(articolo.getPaths() != null && articolo.getPaths().size() > 0 ) {
-                    if (articolo.getPaths().get(0).getPathName().compareTo("") != 0)
-                        sqlPathImgDAO.createPathImg(articolo);
-                }
+                sqlColoreDAO.deleteTinta(articolo);
+                sqlColoreDAO.createTinta(articolo);
             }
         }
     }

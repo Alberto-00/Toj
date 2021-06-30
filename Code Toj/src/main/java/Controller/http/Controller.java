@@ -76,7 +76,8 @@ public class Controller extends HttpServlet implements ErrorHandler {
         }
         if (filesName.get(0).compareTo("") == 0) {
             return true;
-        }
+        }        System.out.println("856");
+
         SQLPathImgDAO sqlPathImgDAO = new SQLPathImgDAO();
         List<PathImg> pathImg = new ArrayList<>();
         List<String> fullPath = new ArrayList<>();
@@ -90,13 +91,14 @@ public class Controller extends HttpServlet implements ErrorHandler {
             }
         }
         for (int i = 0; i < fullPath.size(); i++){
-            pathImg.add(new PathImg());
-            pathImg.get(i).setPathName(fullPath.get(i));
+            PathImg pathImg1 = new PathImg();
+            pathImg1.setPathName(fullPath.get(i));
+            pathImg.add(pathImg1);
         }
         articolo.setPaths(new ArrayList<>());
         for (PathImg p: pathImg)
             articolo.getPaths().add(p);
-
+        System.out.println("898");
         int i = 0;
         for (Part part: request.getParts()) {
             if (part.getName().compareTo("path") == 0) {
@@ -109,4 +111,20 @@ public class Controller extends HttpServlet implements ErrorHandler {
         }
         return true;
     }
+
+    protected boolean removeImg(Articolo articolo) throws SQLException {
+        SQLPathImgDAO sqlPathImgDAO = new SQLPathImgDAO();
+        if ((sqlPathImgDAO.countByID(articolo) - articolo.getPaths().size()) < 2)
+            return false;
+
+        String deleteRoot = getUploadPath();
+        for(int i = 0; i < articolo.getPaths().size(); i++){
+            String pat2h = deleteRoot + articolo.getPaths().get(i).getPathName();
+            File foto = new File(pat2h);
+            if (foto.delete())
+                sqlPathImgDAO.deletePath(articolo.getPaths().get(i).getPathName());
+        }
+        return true;
+    }
+
 }
