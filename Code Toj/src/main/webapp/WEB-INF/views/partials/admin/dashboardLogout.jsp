@@ -11,15 +11,12 @@
     <div class="modal-body">
       <p>Vuoi davvero uscire?</p>
       <span style="align-content: center">
-        <span>
           <form method="post" action="${pageContext.request.contextPath}/adminServlet/adminLogout">
             <button class="modal-button" type="submit">Si</button>
             <button class="modal-button" type="button" id="close">No</button>
-          </form>
-        </span>
+          </form><br>
       </span>
     </div>
-    <div class="modal-footer"><br><br>
-    </div>
+    <div class="modal-footer"></div>
   </div>
 </div>

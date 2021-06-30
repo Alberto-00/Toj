@@ -1,8 +1,8 @@
 <%@ page import="Model.Articolo.Articolo" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
-
 <!DOCTYPE html>
+<html lang="it">
 <head>
     <jsp:include page="/WEB-INF/views/partials/admin/head.jsp">
         <jsp:param name="adminStyles" value="crmAdmin,table,adminGestioneArticoli"/>
@@ -10,13 +10,12 @@
         <jsp:param name="adminScripts" value="crm"/>
     </jsp:include>
 </head>
-
 <body>
 <%@include file="../partials/admin/dashboardNav.jsp"%>
 <div class="col-2">
     <%@include file="../partials/admin/dashboardHeader.jsp"%>
     <main class="content">
-        <p class="insert">Aggiungi Articolo</p><a href="${pageContext.request.contextPath}/adminServlet/adminGestioneArticoliAggiungi">Vai</a>
+        <a class="addProduct" href="${pageContext.request.contextPath}/adminServlet/adminGestioneArticoliAggiungi">Aggiungi Articolo</a>
         <table>
             <thead>
             <tr>
@@ -60,7 +59,7 @@
                     <%}%>
                 </td>
                 <td data-head="Quantità"><%=count%></td>
-                <td data-head="Gestione"><a href="${pageContext.request.contextPath}/adminServlet/adminGestioneArticoliForm?id=<%=o.getIDarticolo()%>">Modifica</a></td>
+                <td data-head="Gestione"><a class="modifyProduct" href="${pageContext.request.contextPath}/adminServlet/adminGestioneArticoliForm?id=<%=o.getIDarticolo()%>">Modifica</a></td>
             </tr>
             <%}%>
             </tbody>
@@ -74,3 +73,4 @@
 </div>
 <%@include file="../partials/admin/dashboardLogout.jsp"%>
 </body>
+</html>

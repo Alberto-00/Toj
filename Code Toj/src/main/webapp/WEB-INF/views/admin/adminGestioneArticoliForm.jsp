@@ -1,12 +1,10 @@
-<%@ page import="Model.Taglia.Taglia" %>
 <%@ page import="Model.Articolo.Articolo" %>
-<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
-<html>
 <!DOCTYPE html>
+<html lang="it">
 <head>
-    <jsp:include page="/WEB-INF/views/partials/head.jsp">
-        <jsp:param name="adminStyles" value="libraryAdmin,crmAdmin,adminGestioneArticoli,adminGestioneArticoliForm"/>
+    <jsp:include page="/WEB-INF/views/partials/admin/head.jsp">
+        <jsp:param name="adminStyles" value="crmAdmin,adminGestioneArticoli,adminGestioneArticoliForm"/>
         <jsp:param name="title" value="T&#x000F8;j | Admin Form"/>
         <jsp:param name="adminScripts" value="crm,adminFormValidateArticoli"/>
     </jsp:include>
@@ -86,6 +84,5 @@
     <%@include file="../partials/admin/dashboardFooter.jsp"%>
 </div>
 <%@include file="../partials/admin/dashboardLogout.jsp"%>
-
 </body>
 </html>

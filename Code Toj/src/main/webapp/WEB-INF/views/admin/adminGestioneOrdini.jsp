@@ -2,8 +2,8 @@
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
-
-<!doctype html>
+<!DOCTYPE html>
+<html lang="it">
 <head>
     <jsp:include page="/WEB-INF/views/partials/admin/head.jsp">
         <jsp:param name="adminStyles" value="crmAdmin,table,adminGestioneOrdini"/>
@@ -11,9 +11,7 @@
         <jsp:param name="adminScripts" value="crm"/>
     </jsp:include>
 </head>
-
 <body>
-
 <%@include file="../partials/admin/dashboardNav.jsp"%>
 <div class="col-2">
     <%@include file="../partials/admin/dashboardHeader.jsp"%>
@@ -51,6 +49,6 @@
     <%@include file="../partials/admin/dashboardFooter.jsp"%>
 </div>
 <%@include file="../partials/admin/dashboardLogout.jsp"%>
-
 </body>
+</html>
 

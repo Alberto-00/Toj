@@ -1,3 +1,42 @@
+a.addProduct {
+    letter-spacing: 1.5px;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--white);
+    transition: .3s;
+    margin: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    padding: 9px;
+    border-radius: 14px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a.addProduct:hover{
+    background-color: #2EE59D;
+    box-shadow: 0 15px 20px rgba(46, 229, 157, 0.4);
+    color: var(--black);
+}
+
+a.modifyProduct{
+    font-weight: bold;
+    color: var(--black);
+    cursor: pointer;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+}
+
+td:last-child{
+    transition: .3s;
+}
+
+td:last-child:hover{
+    background-color: #2EE59D;
+    box-shadow: 0 15px 20px rgba(46, 229, 157, 0.4);
+    color: var(--black);
+}
+
 @media
 only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {

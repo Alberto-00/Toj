@@ -18,6 +18,7 @@ tr:nth-of-type(odd) {
 }
 
 th {
+    letter-spacing: 2px;
     background: #333;
     color: white;
     font-weight: bold;
@@ -33,9 +34,6 @@ td, th {
 @media screen and (max-width: 1024px)  {
     table, thead, tbody, th, td, tr {
         display: block;
-    }
-    table{
-        position: fixed;
     }
     thead tr {
         position: absolute;

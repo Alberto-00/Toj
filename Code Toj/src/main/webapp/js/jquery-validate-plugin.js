@@ -1648,6 +1648,11 @@
         return regexpr.test(value);
     });
 
+    $.validator.addMethod( "extension", function( value, element, param ) {
+        param = typeof param === "string" ? param.replace( /,/g, "|" ) : "png|jpe?g|gif";
+        return this.optional( element ) || value.match( new RegExp( "\\.(" + param + ")$", "i" ) );
+    }, $.validator.format( "Please enter a value with a valid extension." ) );
+
     jQuery.validator.addMethod("phoneUS", function(phone_number, element) {
         phone_number = phone_number.replace(/\s+/g, "");
         return this.optional(element) || phone_number.length > 9 &&

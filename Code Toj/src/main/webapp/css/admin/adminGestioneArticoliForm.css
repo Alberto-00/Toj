@@ -11,8 +11,90 @@
     width: 350px;
 }
 
-
 h1 {
     width: 100%;
+    margin-bottom: 25px;
     text-align: center;
+}
+
+.idArticolo, .price, .descrizione, .foto, .categoria,
+.sconto, .colore, .nome, .sex, .taglia{
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.idArticolo p, .price p, .descrizione p,
+.foto p, .categoria p, .sconto p, .colore p,
+.nome p, .sex p{
+    margin-bottom: 5px;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+}
+
+.idArticolo input, .price input, .sconto input,
+.nome input, .foto input, .categoria select{
+    background: #ffffff;
+    color: var(--black);
+    width: 95%;
+    outline: none;
+    margin-bottom: 8px;
+}
+
+.taglia input{
+    background: #ffffff;
+    color: var(--black);
+    width: 85%;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+label{
+    padding-right: 15px;
+    padding-left: 6px;
+    font-size: 14px;
+}
+
+button.btn{
+    letter-spacing: 1.5px;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--white);
+    transition: .3s;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    padding: 9px;
+    border-radius: 14px;
+    margin: 0;
+}
+
+button.btn:hover{
+    background-color: #2EE59D;
+    box-shadow: 0 15px 20px rgba(46, 229, 157, 0.4);
+    color: var(--black);
+}
+
+legend{
+    font-size: 14px;
+    letter-spacing: 1.5px;
+}
+
+.descrizione textarea{
+    outline: none;
+    resize: none;
+    width: 95%;
+    height: 200px;
+    border: 1px solid #ddd;
+    background: #ffffff;
+    color: var(--black);
+}
+
+.colore select{
+    width: 95%;
+    overflow-x: auto;
+    height: 165px;
+    background: var(--white);
+}
+
+fieldset{
+    width: 95%;
 }
