@@ -14,7 +14,6 @@
 <meta name="theme-color" content="#009578">
 <link href="${pageContext.request.contextPath}/css/reset.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/admin/libraryAdmin.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
 
 <c:if test="${not empty param.errorStyles}">
     <c:forTokens items="${param.errorStyles}" delims="," var="errorStyle">

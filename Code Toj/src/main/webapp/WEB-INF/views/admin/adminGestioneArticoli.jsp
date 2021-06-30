@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <head>
     <jsp:include page="/WEB-INF/views/partials/admin/head.jsp">
-        <jsp:param name="adminStyles" value="crmAdmin,adminGestioneArticoli"/>
+        <jsp:param name="adminStyles" value="crmAdmin,table,adminGestioneArticoli"/>
         <jsp:param name="title" value="T&#x000F8;j | Admin Dashboard"/>
         <jsp:param name="adminScripts" value="crm"/>
     </jsp:include>
@@ -65,13 +65,10 @@
             <%}%>
             </tbody>
         </table>
-        <div class="paginator" id="pagination">
-            <c:forEach var="page" begin="1" end="${pages}">
-                <a class="page active" id="elem${page}" href="${pageContext.request.contextPath}/adminServlet/adminGestioneArticoli?page=${page}">${page}</a>
-            </c:forEach>
-        </div>
+        <jsp:include page="/WEB-INF/views/partials/admin/pagination.jsp">
+            <jsp:param name="servlet" value="adminGestioneArticoli"/>
+        </jsp:include>
         <!-- Fine Tables -->
-        </table>
     </main>
     <%@include file="../partials/admin/dashboardFooter.jsp"%>
 </div>

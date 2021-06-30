@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <head>
     <jsp:include page="/WEB-INF/views/partials/admin/head.jsp">
-        <jsp:param name="adminStyles" value="crmAdmin,adminGestioneClienti"/>
+        <jsp:param name="adminStyles" value="crmAdmin,table,adminGestioneClienti"/>
         <jsp:param name="title" value="T&#x000F8;j | Admin Dashboard"/>
         <jsp:param name="adminScripts" value="crm"/>
     </jsp:include>
@@ -14,7 +14,7 @@
 <%@include file="../partials/admin/dashboardNav.jsp"%>
 <div class="col-2">
     <%@include file="../partials/admin/dashboardHeader.jsp"%>
-    <main class="content">
+    <main class="content table-responsive">
         <table>
             <thead>
             <tr>
@@ -23,7 +23,7 @@
                 <th>Cognome</th>
                 <th>Data Nascita</th>
                 <th>Telefono</th>
-                <th>Via</th>
+                <th>Indirizzo</th>
                 <th>CAP</th>
                 <th>Città</th>
                 <th>Paese</th>
@@ -92,11 +92,9 @@
             <%}%>
             </tbody>
         </table>
-        <div id="pagination" class="item paginator">
-        <c:forEach var="page" begin="1" end="${pages}">
-            <a class="page active" id="elem${page}" href="${pageContext.request.contextPath}/adminServlet/adminGestioneClienti?page=${page}">${page}</a>
-        </c:forEach>
-        </div>
+        <jsp:include page="/WEB-INF/views/partials/admin/pagination.jsp">
+            <jsp:param name="servlet" value="adminGestioneClienti"/>
+        </jsp:include>
         <!-- Fine Tables -->
     </main>
     <%@include file="../partials/admin/dashboardFooter.jsp"%>

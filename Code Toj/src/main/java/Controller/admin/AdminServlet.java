@@ -49,6 +49,7 @@ public class AdminServlet extends Controller {
                         Paginator paginator = new Paginator(intPage,10);
                         int size = sqlAccountDAO.countCustomers();
                         request.setAttribute("pages",paginator.getPages(size));
+                        request.setAttribute("numPage", intPage);
                         List<DatiUtente> datiUtenti = sqlDatiUtenteDAO.doRetriveAll(paginator);
                         request.setAttribute("accounts", datiUtenti);
                         request.getRequestDispatcher(view("admin/adminGestioneClienti")).forward(request, response);
@@ -65,6 +66,7 @@ public class AdminServlet extends Controller {
                         Paginator paginator = new Paginator(intPage,10);
                         int size = sqlOrdineDAO.countOrdini();
                         request.setAttribute("pages",paginator.getPages(size));
+                        request.setAttribute("numPage", intPage);
                         ArrayList<Ordine> ordini = sqlOrdineDAO.getOrders(paginator);
                         request.setAttribute("ordini", ordini);
                         request.getRequestDispatcher(view("admin/adminGestioneOrdini")).forward(request, response);
@@ -78,19 +80,15 @@ public class AdminServlet extends Controller {
 
                         int size = sqlArticoloDAO.getArticoli().size();
                         int intPage = parsePage(request);
-
                         request.setAttribute("numPage", intPage);
-
                         Paginator paginator = new Paginator(intPage, 10, false);
                         request.setAttribute("pages", paginator.getPages(size));
                         int count = paginator.getCount();
                         List<Articolo> products = sqlArticoloDAO.getArticoliPage(paginator);
                         request.setAttribute("productsList", products);
                         request.setAttribute("count", count);
-
                         request.getRequestDispatcher(view("admin/adminGestioneArticoli")).forward(request, response);
                     }
-
                     else
                         throw new InvalidRequestException("Non sei Autorizzato", List.of("Non sei Autorizzato"), HttpServletResponse.SC_FORBIDDEN);
                     break;
