@@ -11,6 +11,10 @@
     width: 350px;
 }
 
+.delete-form{
+    margin-top: 50px;
+}
+
 h1 {
     width: 100%;
     margin-bottom: 25px;
@@ -18,7 +22,7 @@ h1 {
 }
 
 .idArticolo, .price, .descrizione, .foto, .categoria,
-.sconto, .colore, .nome, .sex, .taglia{
+.sconto, .colore, .nome, .sex, .taglia, .coloreArt, .deleteImg{
     width: 100%;
     margin-bottom: 30px;
 }
@@ -40,10 +44,23 @@ h1 {
     margin-bottom: 8px;
 }
 
+
+.size > label{
+    display: inline-block;
+    width: 12%;
+    text-align: right;
+    padding-left: 0;
+}
+
+.size input[type=checkbox]{
+    width: 8%;
+    margin-bottom: 0;
+}
+
 .taglia input{
     background: #ffffff;
     color: var(--black);
-    width: 85%;
+    width: 77%;
     margin-bottom: 15px;
     outline: none;
 }
@@ -97,4 +114,16 @@ legend{
 
 fieldset{
     width: 95%;
+}
+
+.pathCheck{
+    margin: 10px 0 20px 0;
+}
+
+#quantita-error{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    margin-bottom: 10px;
 }

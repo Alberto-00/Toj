@@ -27,7 +27,6 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.*;
 
@@ -253,7 +252,11 @@ public class AdminServlet extends Controller {
                     request.setAttribute("back","/adminGestioneArticoli");
                     SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
                     Articolo articoloDelete = sqlArticoloDAO.doRetrieveProductById(Integer.parseInt(request.getParameter("id")));
-
+                    if (articoloDelete == null){
+                        request.setAttribute("msgID", "ID non trovato.");
+                        request.getRequestDispatcher("/adminServlet/adminGestioneArticoliFormDelete?id=" + Integer.parseInt(request.getParameter("id")));
+                        break;
+                    }
                     String deleteRoot = getUploadPath();
                     for(int i = 0; i < articoloDelete.getPaths().size(); i++){
                         String pat2h = deleteRoot + articoloDelete.getPaths().get(i).getPathName();
@@ -266,6 +269,17 @@ public class AdminServlet extends Controller {
 
                 case "/adminGestioneArticoliFormInsert":
                     request.setAttribute("back","/adminGestioneArticoli");
+                    int count = 0;
+                    for (Part part: request.getParts()) {
+                        if (part.getName().compareTo("path") == 0)
+                            count++;
+                    }
+                    if(count < 2){
+                        request.setAttribute("msgPath", "Caricamento fallito:" +
+                                "inserisci almeno due foto.");
+                        request.getRequestDispatcher("/adminServlet/adminGestioneArticoliAggiungi").include(request, response);
+                        break;
+                    }
                     SQLArticoloDAO articoloDao = new SQLArticoloDAO();
                     Articolo articolo = new Articolo();
 
@@ -274,7 +288,7 @@ public class AdminServlet extends Controller {
 
                     if(tmp != null){
                         request.setAttribute("msg", "ID già presente.");
-                        request.getRequestDispatcher(view("admin/adminGestioneArticoliAggiungi")).forward(request, response);
+                        request.getRequestDispatcher(view("./adminServlet/adminGestioneArticoliAggiungi")).forward(request, response);
                         break;
                     }
                     articolo.setPrezzo(Double.parseDouble(request.getParameter("prezzo")));
@@ -316,22 +330,10 @@ public class AdminServlet extends Controller {
                     for (String colorValue : colorValues) {
                         articolo.getColori().add(sqlColoreDAO.doRetrieveById(colorValue));
                     }
-
-                    int count = 0;
-                    for (Part part: request.getParts()) {
-                        if (part.getName().compareTo("path") == 0)
-                            count++;
-                    }
-                    if(count < 2){
-                        request.setAttribute("msg", "Caricamento fallito:" +
-                                "inserisci almeno due foto.");
-                        request.getRequestDispatcher(view("admin/adminGestioneArticoliAggiungi")).forward(request, response);
-                        break;
-                    }
                     if (!uploadImg(articolo, request)) {
                         request.setAttribute("msg", "Caricamento fallito: " +
                                 "foto già presente.");
-                        request.getRequestDispatcher(view("admin/adminGestioneArticoliAggiungi")).forward(request, response);
+                        request.getRequestDispatcher(view("./adminServlet/adminGestioneArticoliAggiungi")).forward(request, response);
                         break;
                     }
                     articoloDao.doCreateArticolo(articolo);

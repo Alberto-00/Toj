@@ -18,8 +18,8 @@
         <form enctype="multipart/form-data" class="input-form" name="input-form" method="post" action="${pageContext.request.contextPath}/adminServlet/adminGestioneArticoliFormInsert">
             <h1>Aggiunta Articolo</h1>
             <div class="idArticolo">
-                <p>ID <small>(ultimo ID inserito)${maxID}</small></p>
-                <input type="text" name="idArticolo" required>
+                <p>ID <small>(ultimo ID inserito ${maxID})</small></p>
+                <input type="text" name="idArticolo" required autocomplete="off">
                 <c:if test="${not empty msg}">
                     <label class="error">${msg}</label>
                 </c:if>
@@ -27,7 +27,7 @@
 
             <div class="price">
                 <p>Prezzo</p>
-                <input type="text" name="prezzo">
+                <input type="text" name="prezzo" required autocomplete="off">
             </div>
 
             <div class="sex">
@@ -38,11 +38,11 @@
 
             <div class="descrizione">
                 <p>Descrizione</p>
-                <textarea name="descrizione" required></textarea>
+                <textarea name="descrizione" required autocomplete="off"></textarea>
             </div>
 
             <div class="sconto">
-                <p>Sconto</p><input type="text" name="sconto" required>
+                <p>Sconto<small>(sconto in decimale)</small></p><input type="text" max="1" name="sconto" placeholder="es. 0.5 --> 50%" autocomplete="off" required>
             </div>
 
             <div class="categoria">
@@ -57,15 +57,18 @@
 
             <div class="nome">
                 <p>Nome</p>
-                <input type="text" name="nome" required>
+                <input type="text" name="nome" required autocomplete="off">
             </div>
 
             <div class="taglia">
                 <fieldset>
                     <legend>Taglie</legend>
                     <c:forEach items="${taglie}" var="taglia">
-                        <input type="hidden" name="taglia" value="${taglia.id_nome}"><label>${taglia.id_nome}</label>
-                        <input type="text" name="quantita" value="0" placeholder="Quantità" required><br>
+                        <div class="size">
+                            <input type="hidden" name="taglia" value="${taglia.id_nome}">
+                            <label>${taglia.id_nome}</label>
+                            <input type="text" name="quantita" value="0" placeholder="Quantità" required>
+                        </div>
                     </c:forEach>
                 </fieldset>
             </div>
@@ -81,7 +84,10 @@
 
             <div class="foto">
                 <p>Foto Articolo <small>(Inserire almeno due foto)</small></p>
-                <input type="file" min="2" name="path" id="fileToUpload" multiple required>
+                <input type="file" accept="image/*" name="path" id="fileToUpload" multiple required>
+                <c:if test="${not empty msgPath}">
+                    <label class="error">${msgPath}</label>
+                </c:if>
             </div>
             <button class="btn" type="submit">Aggiorna</button>
         </form>
