@@ -1,7 +1,6 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
-<html>
 <!DOCTYPE html>
+<html lang="it">
 <head>
     <jsp:include page="/WEB-INF/views/partials/admin/head.jsp">
         <jsp:param name="adminStyles" value="crmAdmin,adminGestioneArticoli,adminGestioneArticoliForm"/>
@@ -19,8 +18,11 @@
         <form enctype="multipart/form-data" class="input-form" name="input-form" method="post" action="${pageContext.request.contextPath}/adminServlet/adminGestioneArticoliFormInsert">
             <h1>Aggiunta Articolo</h1>
             <div class="idArticolo">
-                <p>ID</p>
-                <input type="text" name="idArticolo">
+                <p>ID <small>(ultimo ID inserito)${maxID}</small></p>
+                <input type="text" name="idArticolo" required>
+                <c:if test="${not empty msg}">
+                    <label class="error">${msg}</label>
+                </c:if>
             </div>
 
             <div class="price">
@@ -36,11 +38,11 @@
 
             <div class="descrizione">
                 <p>Descrizione</p>
-                <textarea name="descrizione"></textarea>
+                <textarea name="descrizione" required></textarea>
             </div>
 
             <div class="sconto">
-                <p>Sconto</p><input type="text" name="sconto">
+                <p>Sconto</p><input type="text" name="sconto" required>
             </div>
 
             <div class="categoria">
@@ -55,7 +57,7 @@
 
             <div class="nome">
                 <p>Nome</p>
-                <input type="text" name="nome">
+                <input type="text" name="nome" required>
             </div>
 
             <div class="taglia">
@@ -63,7 +65,7 @@
                     <legend>Taglie</legend>
                     <c:forEach items="${taglie}" var="taglia">
                         <input type="hidden" name="taglia" value="${taglia.id_nome}"><label>${taglia.id_nome}</label>
-                        <input type="text" name="quantita" value="0" placeholder="Quantità"><br>
+                        <input type="text" name="quantita" value="0" placeholder="Quantità" required><br>
                     </c:forEach>
                 </fieldset>
             </div>
@@ -78,9 +80,8 @@
             </div>
 
             <div class="foto">
-                <p>Foto Articolo</p>
-                <small>Inserire almeno due foto</small>
-                <input type="file" name="path" id="fileToUpload" multiple>
+                <p>Foto Articolo <small>(Inserire almeno due foto)</small></p>
+                <input type="file" min="2" name="path" id="fileToUpload" multiple required>
             </div>
             <button class="btn" type="submit">Aggiorna</button>
         </form>
@@ -88,7 +89,6 @@
     <%@include file="../partials/admin/dashboardFooter.jsp"%>
 </div>
 <%@include file="../partials/admin/dashboardLogout.jsp"%>
-
 </body>
 </html>
 

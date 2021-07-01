@@ -654,4 +654,17 @@ public class SQLArticoloDAO implements ArticoloDAO<SQLException>{
             }
         }
     }
+
+    @Override
+    public int maxID() throws SQLException {
+        try(Connection con = ConPool.getConnection()) {
+            try (PreparedStatement ps = con.prepareStatement("SELECT MAX(ID_articolo)" +
+                    "as id FROM articolo")) {
+                ResultSet rs = ps.executeQuery();
+                if (rs.next())
+                    return rs.getInt("id");
+            }
+            return 0;
+        }
+    }
 }

@@ -76,7 +76,7 @@ public class Controller extends HttpServlet implements ErrorHandler {
         }
         if (filesName.get(0).compareTo("") == 0) {
             return true;
-        }        System.out.println("856");
+        }
 
         SQLPathImgDAO sqlPathImgDAO = new SQLPathImgDAO();
         List<PathImg> pathImg = new ArrayList<>();
@@ -98,7 +98,6 @@ public class Controller extends HttpServlet implements ErrorHandler {
         articolo.setPaths(new ArrayList<>());
         for (PathImg p: pathImg)
             articolo.getPaths().add(p);
-        System.out.println("898");
         int i = 0;
         for (Part part: request.getParts()) {
             if (part.getName().compareTo("path") == 0) {

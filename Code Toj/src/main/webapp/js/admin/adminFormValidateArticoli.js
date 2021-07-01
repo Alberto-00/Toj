@@ -8,6 +8,9 @@ $(function() {
                 required: true,
                 digits: true,
             },
+            descrizione:{
+                required: true,
+            },
             prezzo: {
                 required: true,
                 number: true
@@ -32,6 +35,7 @@ $(function() {
             path:{
                 required: true,
                 extensions: "jpg|png|gif",
+                minValue: 2,
             }
         },
         // Specifichiamo i messaggi di errore
@@ -39,6 +43,9 @@ $(function() {
             idArticolo: {
                 required: "Campo necessario.",
                 digits: "Contiene solo numeri."
+            },
+            descrizione:{
+                required: "Campo necessario.",
             },
             prezzo : {
                 required: "Campo necessario.",
@@ -64,6 +71,7 @@ $(function() {
             path:{
                 required: "Inserisci almeno due foto.",
                 extensions: "Formato non valido",
+                minValue: "Inserisci almeno due foto",
             }
         },
         //Quando valido, ci assicuriamo che il form venga inviato

@@ -27,6 +27,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.*;
 
@@ -117,10 +118,12 @@ public class AdminServlet extends Controller {
                     if (request.isRequestedSessionIdValid() && accountSession.isAdmin()){
                         SQLColoreDAO sqlColoreDAO1 = new SQLColoreDAO();
                         SQLTagliaDAO sqlTagliaDAO = new SQLTagliaDAO();
+                        SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
                         SQLCategoriaDAO sqlCategoriaDAO = new SQLCategoriaDAO();
                         request.setAttribute("categorie", sqlCategoriaDAO.doRetrieveAll());
                         request.setAttribute("taglie", sqlTagliaDAO.doRetrieveAll());
                         request.setAttribute("colori", sqlColoreDAO1.doRetrieveAll());
+                        request.setAttribute("maxID", sqlArticoloDAO.maxID());
                         request.getRequestDispatcher(view("admin/adminGestioneArticoliAggiungi")).forward(request, response);
                     }
                     else
@@ -270,9 +273,8 @@ public class AdminServlet extends Controller {
                     Articolo tmp = articoloDao.doRetrieveProductById(articolo.getIDarticolo());
 
                     if(tmp != null){
-                        // TODO: 29/06/2021 Aggiunger alert "L'id e' gia presente"
-                        System.out.println("Uscito perchè articolo esiste già");
-                        response.sendRedirect("./adminHomepage");
+                        request.setAttribute("msg", "ID già presente.");
+                        request.getRequestDispatcher(view("admin/adminGestioneArticoliAggiungi")).forward(request, response);
                         break;
                     }
                     articolo.setPrezzo(Double.parseDouble(request.getParameter("prezzo")));
@@ -314,8 +316,22 @@ public class AdminServlet extends Controller {
                     for (String colorValue : colorValues) {
                         articolo.getColori().add(sqlColoreDAO.doRetrieveById(colorValue));
                     }
+
+                    int count = 0;
+                    for (Part part: request.getParts()) {
+                        if (part.getName().compareTo("path") == 0)
+                            count++;
+                    }
+                    if(count < 2){
+                        request.setAttribute("msg", "Caricamento fallito:" +
+                                "inserisci almeno due foto.");
+                        request.getRequestDispatcher(view("admin/adminGestioneArticoliAggiungi")).forward(request, response);
+                        break;
+                    }
                     if (!uploadImg(articolo, request)) {
-                        response.sendRedirect("./adminHomepage");
+                        request.setAttribute("msg", "Caricamento fallito: " +
+                                "foto già presente.");
+                        request.getRequestDispatcher(view("admin/adminGestioneArticoliAggiungi")).forward(request, response);
                         break;
                     }
                     articoloDao.doCreateArticolo(articolo);

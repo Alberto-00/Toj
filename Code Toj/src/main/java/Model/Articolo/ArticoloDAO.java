@@ -23,6 +23,8 @@ public interface ArticoloDAO <E extends Exception>{
 
     double minPrice() throws E;
 
+    int maxID() throws E;
+
     Articolo doRetrieveProductById(int id) throws E;
 
     Articolo doRetrieveProductById_Size(String size, int id) throws E;
