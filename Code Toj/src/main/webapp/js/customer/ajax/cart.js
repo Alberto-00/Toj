@@ -1,7 +1,6 @@
 $(document).ready(function() {
 
     $('#coupon').click(function () {
-        $("button + small").removeClass();
         const $coupon = $("#couponInput").val();
 
         $("#couponInput").keyup(function () {
@@ -23,13 +22,14 @@ $(document).ready(function() {
             success: function (response) {
                 var sconto = JSON.parse(response);
                 if (sconto.sconto === "") {
-                    $("button + small").addClass("errMsg").text("Coupon non valido.");
+                    $("button + small").text("Coupon non valido.");
                 } else if (sconto.sconto === "Carrello vuoto.") {
-                    $("button + small").addClass("errMsg").text(sconto.sconto);
-                } else if (sconto.sconto === "Sconto già applicato.")
-                    $("button + small").addClass("errMsg").text(sconto.sconto);
+                    $("button + small").text(sconto.sconto);
+                } else if (sconto.sconto === "Coupon già applicato.")
+                    $("button + small").text(sconto.sconto);
                 else {
                     location.reload();
+                    $("button + small").removeClass("errMsg")
                     $("button + small").addClass("successMsg").text("Coupon applicato!").fadeIn(500).delay(1200).fadeOut(500);
                 }
             }

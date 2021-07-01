@@ -26,21 +26,21 @@
         <div class="column-contact2">
             <div class="table_desc">
                 <div class="cart_page table-responsive">
-                        <table>
-                            <thead>
-                            <tr>
-                                <th class="product_remove">Cancella</th>
-                                <th class="product_thumb">Immagine</th>
-                                <th class="product_name">Prodotto</th>
-                                <th class="product-price">Prezzo</th>
-                                <th class="product_quantity">Quantità</th>
-                                <th class="product_size">Taglia</th>
-                                <th class="product_total">Totale</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <c:if test="${cartNotLog != null}">
-                                <% int i = 0; for (Articolo a: cart.getItems()){%>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th class="product_remove">Cancella</th>
+                            <th class="product_thumb">Immagine</th>
+                            <th class="product_name">Prodotto</th>
+                            <th class="product-price">Prezzo</th>
+                            <th class="product_quantity">Quantità</th>
+                            <th class="product_size">Taglia</th>
+                            <th class="product_total">Totale</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:if test="${cartNotLog != null}">
+                            <% int i = 0; for (Articolo a: cart.getItems()){%>
                             <tr>
                                 <td class="product_remove"><a href="${pageContext.request.contextPath}/carts/remove?id=<%=a.getIDarticolo()%>&size=<%=a.getChosenSize()%>"><i class="far fa-trash-alt"></i></a></td>
                                 <td class="product_thumb">
@@ -63,10 +63,10 @@
                                 <td class="product_total">€ <%=a.totalPrice()%></td>
                             </tr>
                             <%i++;}%>
-                            </c:if>
-                            </tbody>
-                        </table>
-                    </div>
+                        </c:if>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -81,7 +81,7 @@
                     <p>Inserisci il tuo codice coupon se ne possiedi uno.</p>
                     <input placeholder="Codice coupon" type="text" name="coupon" id="couponInput" maxlength="7">
                     <button data="${pageContext.request.contextPath}" type="submit" id="coupon">Applica coupon</button>
-                    <small></small>
+                    <small class="errMsg"></small>
                 </div>
             </div>
         </div>

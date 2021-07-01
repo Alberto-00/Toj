@@ -98,7 +98,7 @@ public class AjaxServlet extends Controller {
                             root.put("sconto", "");
                         }
                     } else
-                        root.put("sconto", "Sconto già applicato.");
+                        root.put("sconto", "Coupon già applicato.");
                     sendJson(response, root);
                     break;
                 }
