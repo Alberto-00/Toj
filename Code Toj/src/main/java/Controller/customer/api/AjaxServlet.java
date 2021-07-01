@@ -88,13 +88,17 @@ public class AjaxServlet extends Controller {
                     }
                     SQLScontoDAO sqlScontoDAO = new SQLScontoDAO();
                     Sconto sconto = sqlScontoDAO.doRetrieveByName(request.getParameter("coupon"));
+                    Sconto scontoSession = (Sconto) session.getAttribute("coupon");
                     JSONObject root = new JSONObject();
-                    if (sconto != null) {
-                        session.setAttribute("coupon", sconto);
-                        root.put("sconto", sconto.toJson());
-                    } else {
-                        root.put("sonto", "");
-                    }
+                    if (scontoSession == null){
+                        if (sconto != null) {
+                            session.setAttribute("coupon", sconto);
+                            root.put("sconto", sconto.toJson());
+                        } else {
+                            root.put("sconto", "");
+                        }
+                    } else
+                        root.put("sconto", "Sconto già applicato.");
                     sendJson(response, root);
                     break;
                 }

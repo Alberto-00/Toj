@@ -4,6 +4,7 @@
 <head>
     <jsp:include page="../partials/head.jsp">
         <jsp:param name="customerStyles" value="otherPage,contactUs"/>
+        <jsp:param name="customerScripts" value="validationContactUs"/>
         <jsp:param name="title" value="T&#x000F8;j - contact us"/>
     </jsp:include>
 </head>
@@ -47,22 +48,25 @@
         <div class="column-contact">
             <div class="contact-message">
                 <h1>Scrivici le tue idee</h1>
-                <form method="post" action="#">
+                <form method="post" name="form-contactUs" action="${pageContext.request.contextPath}/customers/contactUs">
                     <p>
-                        <label>Nome (richiesto)</label>
-                        <input class="input-text" name="name" placeholder="Nome *" type="text">
+                        <label>Nome</label>
+                        <input class="input-text" name="name" placeholder="Nome *" type="text" required autocomplete="off">
                     </p>
                     <p>
-                        <label>Email (richiesto)</label>
-                        <input name="email" placeholder="Email *" type="email">
+                        <label>Email</label>
+                        <input name="email" placeholder="Email *" type="email"  required autocomplete="off">
+                        <c:if test="${not empty msg}">
+                            <small class="errMsg">${msg}</small>
+                        </c:if>
                     </p>
                     <p>
                         <label>Oggetto</label>
-                        <input class="input-text" name="subject" placeholder="Subject *" type="text">
+                        <input class="input-text" name="subject" placeholder="Subject *" type="text"  required autocomplete="off">
                     </p>
                     <div class="contact_textarea">
                         <label>Messaggio</label>
-                        <textarea placeholder="Message *" name="message"></textarea>
+                        <textarea placeholder="Message *" name="message" required autocomplete="off"></textarea>
                     </div>
                     <input class="submit-button-log" type="submit" name="submitContact" value="INVIA">
                 </form>

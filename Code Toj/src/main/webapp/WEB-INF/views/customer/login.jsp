@@ -26,10 +26,10 @@
                 <form method="post" action="${pageContext.request.contextPath}/customers/sigin" name="formPopup3">
 
                     <label>Email *</label>
-                    <input name="email" type="email">
+                    <input name="email" type="email" required autocomplete="off">
 
                     <label class="block">Password *</label>
-                    <input name="password" type="password">
+                    <input name="password" type="password" required autocomplete="off" >
                     <c:if test="${not empty msg}">
                         <small class="errMsg">${msg}</small>
                     </c:if>
@@ -48,10 +48,10 @@
                 <form method="post" action="${pageContext.request.contextPath}/customers/registration" name="formPopup4">
 
                     <label>Email *</label>
-                    <input name="email" type="email">
+                    <input name="email" type="email" required autocomplete="off">
 
                     <label class="block">Password *</label>
-                    <input name="password" type="password">
+                    <input name="password" type="password" required autocomplete="off">
                     <c:if test="${not empty msg2}">
                         <small class="errMsg">${msg2}</small>
                     </c:if>

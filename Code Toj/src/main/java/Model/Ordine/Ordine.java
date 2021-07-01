@@ -99,7 +99,7 @@ public class Ordine {
 
     public double total(){
         for(Articolo a: this.articoli){
-            this.total += a.getPrezzo();
+            this.total += a.getQuantita_articolo_in_Ordine() * a.getPrezzo();
         }
         return getTotal();
     }

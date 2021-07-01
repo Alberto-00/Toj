@@ -14,3 +14,10 @@ a.color-fixed-navBottom{
     margin-left: 20px;
 }
 /*contact-area end*/
+
+
+.contact-message p{
+    padding-right: 0;
+    margin-bottom: 12px;
+    display: block;
+}

@@ -140,7 +140,7 @@
                     <div class="hide" id="hide<%=i%>">
                         <h1>Ordine #<%=o.getID_ordine()%></h1>
                         <div class="row">
-                           <%for(Articolo a: articoloMap.get(o.getID_ordine())){%>
+                           <%int j = 0; for(Articolo a: articoloMap.get(o.getID_ordine())){%>
                             <div class="column-product">
                                 <div class="product-box">
                                     <div class="double-img">
@@ -152,14 +152,14 @@
                                     <div class="product-details">
                                         <a href="${pageContext.request.contextPath}/customers/products?id=<%=a.getIDarticolo()%>&sex=<%=a.getSesso()%>" class="p-name"><%=a.getNome()%></a>
                                         <span class="p-price">€ <%=a.getPrezzo()%></span>
-                                        <span class="p-price">Quantità x<%=o.getQuantita()%></span>
+                                        <span class="p-price">Quantità x<%=ordini.get(i).getArticoli().get(j).getQuantita_articolo_in_Ordine()%></span>
                                     </div>
                                 </div>
                             </div>
-                            <%}%>
+                            <%j++;}%>
                         </div>
                     </div>
-                    <%i++;}%>
+                    <%i++; }%>
                     <%}%>
                 </div>
             </div>

@@ -20,6 +20,7 @@ public class Articolo implements JSONSerializable, Cloneable {
     private int IDarticolo, sconto;
     private Date data_inserimento;
     private int localQuantity;
+    private int quantita_articolo_in_Ordine;
     private String chosenSize;
     private Categoria categoria;
     private List<PathImg> paths;
@@ -32,10 +33,19 @@ public class Articolo implements JSONSerializable, Cloneable {
         this.paths = new ArrayList<>();
         this.colori = new ArrayList<>();
         this.taglie = new ArrayList<>();
+        quantita_articolo_in_Ordine = 0;
         localQuantity = 0;
     }
 
     //Getter & Setter
+    public int getQuantita_articolo_in_Ordine() {
+        return quantita_articolo_in_Ordine;
+    }
+
+    public void setQuantita_articolo_in_Ordine(int quantita_articolo_in_Ordine) {
+        this.quantita_articolo_in_Ordine = quantita_articolo_in_Ordine;
+    }
+
     public String getSesso() {
         return sesso;
     }

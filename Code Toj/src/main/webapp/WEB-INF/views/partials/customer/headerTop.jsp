@@ -51,14 +51,14 @@
                     <div class="login__box" id="firstLogin">
                         <label for="EmailInput">
                             <i class="fas fa-user"></i>
-                            <input type="text" id="EmailInput" name="email" placeholder="Email" class="login__input">
+                            <input type="text" id="EmailInput" name="email" placeholder="Email" required autocomplete="off" class="login__input">
                         </label>
                     </div>
 
                     <div class="login__box" id="secondLogin">
                         <label for="passwordInput">
                             <i class="fas fa-unlock-alt"></i>
-                            <input type="password" id="passwordInput" minlength="8" maxlength="30" name="password" placeholder="Password" class="login__input" autocomplete="off">
+                            <input type="password" id="passwordInput" minlength="8" maxlength="30" required name="password" placeholder="Password" class="login__input" autocomplete="off">
                         </label>
                     </div>
 
@@ -75,14 +75,14 @@
                     <div class="login__box">
                         <label for="email">
                             <i class="fas fa-at"></i>
-                            <input type="email" id="email" name="email" placeholder="Email" class="login__input">
+                            <input type="email" id="email" name="email" placeholder="Email" required autocomplete="off"  class="login__input">
                         </label>
                     </div>
 
                     <div class="login__box">
                         <label for="passwordOutput">
                             <i class="fas fa-unlock-alt"></i>
-                            <input type="password" id="passwordOutput" name="password" placeholder="Password" class="login__input" autocomplete="off">
+                            <input type="password" id="passwordOutput" name="password" placeholder="Password" required class="login__input" autocomplete="off">
                         </label>
                     </div>
 

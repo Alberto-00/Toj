@@ -54,7 +54,7 @@ public class SQLOrdineDAO implements OrdineDAO<SQLException> {
                     Ordine ordine = ordineExtractor.extract(rs);
                     ordine.setUser(accountExtractor.extract(rs));
                     ordine.setArticoli(new ArrayList<>());
-                    ordine.getArticoli().add(articoloExtractor.extract(rs));
+                    ordine.getArticoli().add(articoloExtractor.extract2(rs));
                     ordineMap.put(ordine.getID_ordine(), ordine);
 
                     while (rs.next()) {
@@ -63,10 +63,10 @@ public class SQLOrdineDAO implements OrdineDAO<SQLException> {
                             ordine = ordineExtractor.extract(rs);
                             ordine.setArticoli(new ArrayList<>());
                             ordineMap.put(ID_ordine, ordine);
-                            ordineMap.get(ID_ordine).getArticoli().add(articoloExtractor.extract(rs));
+                            ordineMap.get(ID_ordine).getArticoli().add(articoloExtractor.extract2(rs));
                         }
                         if (!ordineMap.get(ID_ordine).containsArticolo(rs.getInt("ID_articolo")))
-                            ordineMap.get(ID_ordine).getArticoli().add(articoloExtractor.extract(rs));
+                            ordineMap.get(ID_ordine).getArticoli().add(articoloExtractor.extract2(rs));
                     }
                 }
                 return new ArrayList<>(ordineMap.values());
@@ -135,8 +135,7 @@ public class SQLOrdineDAO implements OrdineDAO<SQLException> {
         int ordini = 0;
         try(Connection con = ConPool.getConnection()){
             Statement stm = con.createStatement();
-            ResultSet resultSet = stm.executeQuery("SELECT count(*)" +
-                    "FROM ordine");
+            ResultSet resultSet = stm.executeQuery("SELECT count(*) FROM ordine");
             if(resultSet.next()){
                 ordini=resultSet.getInt(1);
             }

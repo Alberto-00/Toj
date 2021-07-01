@@ -421,7 +421,6 @@ public class AccountServlet extends Controller {
                                 sqlAccountDAO.createAccount(email, tmp.getPassword(), false);
                                 AccountSession accountSession = new AccountSession(sqlAccountDAO.findAccount(email, tmp.getPassword(), false).get());
                                 session.setAttribute("userSession", accountSession);
-                                System.out.println("cii");
                                 DatiUtente datiUtente = new DatiUtente();
                                 if (appartamento != null)
                                     datiUtente.setAppartamento(appartamento);
@@ -496,6 +495,16 @@ public class AccountServlet extends Controller {
                     break;
                 }
 
+                case "/contactUs": {
+                    SQLAccountDAO sqlAccountDAO = new SQLAccountDAO();
+                    if(sqlAccountDAO.checkAccount(request.getParameter("email")).isPresent())
+                        response.sendRedirect("../index.jsp");
+                    else {
+                        request.setAttribute("msg", "Inserisci la tua e-mail di login.");
+                        request.getRequestDispatcher(view("customer/contactUs")).forward(request, response);
+                    }
+                    break;
+                }
                 default:
                     notFound();
             }

@@ -33,10 +33,6 @@ function hideElement (str) {
             t.style.display = 'block';
 }
 
-function apri(){
-
-}
-
 $(document).ready(function () {
     const btns = document.getElementsByClassName("show");
     for(let i = 0; i < btns.length; i++){
