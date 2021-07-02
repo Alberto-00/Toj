@@ -59,8 +59,10 @@ $(document).ready(function (){
                     })
 
                     if (parseInt(arr.products[i].sconto) > 0) {
-                        $('div.product_sale').children('span').text("- " + arr.products[i].sconto + "%");
-                    }
+                        $('#sconto' + i).children('span').text("- " + arr.products[i].sconto + "%");
+                    } else
+                        $('#sconto' + i).remove();
+
 
                     /*quarto blocco*/
                     $('#nameProduct' + i).attr({

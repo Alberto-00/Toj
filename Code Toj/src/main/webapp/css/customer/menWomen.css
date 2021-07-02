@@ -42,6 +42,13 @@ i.fa-plus{
     padding-left: 10px;
 }
 
+/*Sconto*/
+.product_sale {
+    top: 20px !important; /*altrimenti si prende quello di carousel.css*/
+    left: 10px !important;
+}
+
+
 .slidecontainer input:first-child{
     margin-top: 10px;
     width: 60%;

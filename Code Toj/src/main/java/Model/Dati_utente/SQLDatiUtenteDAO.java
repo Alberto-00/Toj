@@ -91,8 +91,7 @@ public class SQLDatiUtenteDAO implements DatiUtenteDAO{
     public boolean doDeleteDatiUtente(DatiUtente datiUtente) throws SQLException {
         try(Connection con = ConPool.getConnection()){
             PreparedStatement stm = con.prepareStatement("DELETE " +
-                    "FROM dati_cliente " +
-                    "WHERE dati_cliente.Email = " + datiUtente.getUser().getEmail());
+                    "FROM dati_cliente WHERE dati_cliente.Email = " + datiUtente.getUser().getEmail());
             stm.executeQuery();
         }
         return false;

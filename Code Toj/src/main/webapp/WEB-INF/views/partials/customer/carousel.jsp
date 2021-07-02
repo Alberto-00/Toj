@@ -37,8 +37,8 @@
                 </div>
                 <div class="double_base">
                     <%if (articoli.get(i).getSconto() > 0){%>
-                    <div class="product_sale">
-                        <span><%="- " + articoli.get(i).getSconto() + '%'%></span>
+                    <div class="product_sale" id="sconto<%=i%>">
+                        <span><%="- " + (int) (articoli.get(i).getSconto() * 100) + '%'%></span>
                     </div>
                     <%}%>
                     <div class="label_product">

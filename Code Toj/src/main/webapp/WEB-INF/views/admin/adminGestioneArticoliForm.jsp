@@ -108,7 +108,7 @@
             </div>
 
             <div class="foto">
-                <p>Aggiungi Articolo</p>
+                <p>Aggiungi Foto</p>
                 <input type="file" accept="image/*" name="path" id="fileToUpload" multiple>
                 <c:if test="${not empty msgPath}">
                     <label class="error">${msgPath}</label>
@@ -124,6 +124,9 @@
                             <label>${path.pathName}</label>
                         </div>
                     </c:forEach>
+                    <c:if test="${not empty msg}">
+                        <label class="error">${msg}</label>
+                    </c:if>
                 </fieldset>
             </div>
             <button class="btn" type="submit">Aggiorna</button>

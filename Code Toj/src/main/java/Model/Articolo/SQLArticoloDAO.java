@@ -1,8 +1,6 @@
 package Model.Articolo;
 
-import Model.Categoria.Categoria;
 import Model.Categoria.CategoriaExtractor;
-import Model.Colore.Colore;
 import Model.Colore.ColoreExtractor;
 import Model.Colore.SQLColoreDAO;
 import Model.Path_immagini.PathImgExtractor;

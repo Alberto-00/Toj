@@ -16,8 +16,8 @@ public class Articolo implements JSONSerializable, Cloneable {
 
     //Dati dell'articolo
     private String sesso, descrizione, nome;
-    private double prezzo;
-    private int IDarticolo, sconto;
+    private double prezzo, sconto;
+    private int IDarticolo;
     private Date data_inserimento;
     private int localQuantity;
     private int quantita_articolo_in_Ordine;
@@ -35,6 +35,7 @@ public class Articolo implements JSONSerializable, Cloneable {
         this.taglie = new ArrayList<>();
         quantita_articolo_in_Ordine = 0;
         localQuantity = 0;
+        sconto = 0;
     }
 
     //Getter & Setter
@@ -78,11 +79,11 @@ public class Articolo implements JSONSerializable, Cloneable {
         this.IDarticolo = IDarticolo;
     }
 
-    public int getSconto() {
+    public double getSconto() {
         return sconto;
     }
 
-    public void setSconto(int sconto) {
+    public void setSconto(double sconto) {
         this.sconto = sconto;
     }
 

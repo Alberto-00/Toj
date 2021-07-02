@@ -133,6 +133,13 @@ int count = (int) request.getAttribute("count");%>
                             <div class="quick_button">
                                 <a id="cartHref<%=i%>" href="${pageContext.request.contextPath}/customers/products?id=<%=articoli.get(i).getIDarticolo()%>&sex=<%=articoli.get(i).getSesso()%>">Vai ai Dettagli</a>
                             </div>
+                            <div class="double_base">
+                                <%if (articoli.get(i).getSconto() > 0){%>
+                                <div class="product_sale">
+                                    <span><%="- " + (int) (articoli.get(i).getSconto() * 100) + '%'%></span>
+                                </div>
+                                <%}%>
+                            </div>
                         </div>
                         <div class="product_content">
                             <h3><a id="nameProduct<%=i%>" href="${pageContext.request.contextPath}/customers/products?id=<%=articoli.get(i).getIDarticolo()%>&sex=<%=articoli.get(i).getSesso()%>"><%=articoli.get(i).getNome()%></a></h3>

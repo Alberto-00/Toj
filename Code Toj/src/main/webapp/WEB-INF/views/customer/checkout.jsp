@@ -35,17 +35,17 @@
                             <input placeholder="password" type="password" name="password">
                         </div>
                     </div>
-                    <div class="column-contact2">
+                   <!-- <div class="column-contact2">
                         <input id="address" type="checkbox" >
                         <label for="address" class="label">La spedizione coincide con la fatturazione?</label>
                     </div>
                     <div class="hide2">
-                        <%@include file="../partials/customer/formCheckout.jsp"%>
-                    </div>
+                        < %@include file="../partials/customer/formCheckout.jsp"%>
+                    </div>-->
                     <div class="column-contact2">
                         <div class="order-notes">
                             <label for="order_note">Note sull'Ordine</label>
-                            <textarea id="order_note" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                            <textarea id="order_note" autocomplete="off" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
                         </div>
                     </div>
                 </div>

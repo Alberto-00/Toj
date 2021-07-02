@@ -30,14 +30,9 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.Month;
-import java.time.Period;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 @WebServlet(name = "AccountServlet", value = "/customers/*")
-@MultipartConfig
 public class AccountServlet extends Controller {
 
     @Override
@@ -119,7 +114,6 @@ public class AccountServlet extends Controller {
                     request.setAttribute("pages", paginator.getPages(size));
                     int count = paginator.getCount();
                     List<Articolo> products = sqlArticoloDAO.searchPagination(conditions, paginator, latest);
-
                     request.setAttribute("productsList", products);
                     request.setAttribute("count", count);
                     request.getRequestDispatcher(view("customer/men_&_Women")).forward(request, response);
@@ -451,45 +445,47 @@ public class AccountServlet extends Controller {
                             else {
                                 request.setAttribute("msg2", "Email già esistente!");
                                 request.getRequestDispatcher(view("customer/checkout")).forward(request, response);
-                                throw new InvalidRequestException("Credenziali non valide", List.of("Credenziali non valide"), HttpServletResponse.SC_BAD_REQUEST);
                             }
                         } else {
                             request.setAttribute("msg2", "Usa la tua e-mail e password.");
                             request.getRequestDispatcher(view("customer/checkout")).forward(request, response);
-                            throw new InvalidRequestException("Credenziali non valide", List.of("Credenziali non valide"), HttpServletResponse.SC_BAD_REQUEST);
                         }
                     } else {
                         AccountSession accountSession = (AccountSession) session.getAttribute("userSession");
-                        if (accountSession.getEmail().compareTo(email) == 0){
-                            DatiUtente datiUtente = (DatiUtente) session.getAttribute("userInfSession");
-
-                            datiUtente.setPaese(paese); datiUtente.setCity(city); datiUtente.setNome(nome); datiUtente.setCognome(cognome);
-                            datiUtente.setNumeroTelefonico(telefono); datiUtente.setVia(indirizzo); datiUtente.setAppartamento(appartamento);
-                            datiUtente.setCAP(CAP);
-                            datiUtente.setUser(new Account());
-                            datiUtente.getUser().setEmail(email);
-
-                            sqlDatiUtenteDAO.updateDatiUtete(datiUtente);
-                            sqlDatiUtenteDAO.updateAddressUtente(datiUtente);
-
-                            Sconto coupon = (Sconto) session.getAttribute("coupon");
-                            if (coupon != null)
-                                sqlScontoDAO.doDeleteSconto(coupon.getCodice());
-
-                            Cart articoli = (Cart) session.getAttribute("cartNotLog");
-                            for (Articolo a: articoli.getItems())
-                                sqlArticoloDAO.reduceSize(a);
-                            session.removeAttribute("cartNotLog");
-
-                            Ordine ordine = new Ordine();
-                            ordine.getUser().setEmail(email);
-                            ordine.setArticoli(articoli.getItems());
-                            sqlOrdineDAO.doInsertOrdine(ordine);
-                            response.sendRedirect("../index.jsp");
-                        } else {
-                            request.setAttribute("msg2", "Usa la tua e-mail e password.");
+                        if(accountSession == null){
+                            request.setAttribute("msg2", "Clicca sul checkbox e inserisci la password.");
                             request.getRequestDispatcher(view("customer/checkout")).forward(request, response);
-                            throw new InvalidRequestException("Credenziali non valide", List.of("Credenziali non valide"), HttpServletResponse.SC_BAD_REQUEST);
+                        } else {
+                            if (accountSession.getEmail().compareTo(email) == 0){
+                                DatiUtente datiUtente = (DatiUtente) session.getAttribute("userInfSession");
+
+                                datiUtente.setPaese(paese); datiUtente.setCity(city); datiUtente.setNome(nome); datiUtente.setCognome(cognome);
+                                datiUtente.setNumeroTelefonico(telefono); datiUtente.setVia(indirizzo); datiUtente.setAppartamento(appartamento);
+                                datiUtente.setCAP(CAP);
+                                datiUtente.setUser(new Account());
+                                datiUtente.getUser().setEmail(email);
+
+                                sqlDatiUtenteDAO.updateDatiUtete(datiUtente);
+                                sqlDatiUtenteDAO.updateAddressUtente(datiUtente);
+
+                                Sconto coupon = (Sconto) session.getAttribute("coupon");
+                                if (coupon != null)
+                                    sqlScontoDAO.doDeleteSconto(coupon.getCodice());
+
+                                Cart articoli = (Cart) session.getAttribute("cartNotLog");
+                                for (Articolo a: articoli.getItems())
+                                    sqlArticoloDAO.reduceSize(a);
+                                session.removeAttribute("cartNotLog");
+
+                                Ordine ordine = new Ordine();
+                                ordine.getUser().setEmail(email);
+                                ordine.setArticoli(articoli.getItems());
+                                sqlOrdineDAO.doInsertOrdine(ordine);
+                                response.sendRedirect("../index.jsp");
+                            } else {
+                                request.setAttribute("msg2", "Usa la tua e-mail e password.");
+                                request.getRequestDispatcher(view("customer/checkout")).forward(request, response);
+                            }
                         }
                     }
                     break;

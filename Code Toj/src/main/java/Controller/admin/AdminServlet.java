@@ -225,7 +225,8 @@ public class AdminServlet extends Controller {
                         articolo2.getColori().add(colore);
                     }
                     if (!uploadImg(articolo2, request)) {
-                        response.sendRedirect("./adminHomepage");
+                        request.setAttribute("msgPath", "Foto già presente.");
+                        request.getRequestDispatcher(view("./adminServlet/adminGestioneArticoliAggiungi")).forward(request, response);
                         break;
                     }
                     String[] deletePath = request.getParameterValues("deletePath");
@@ -239,12 +240,13 @@ public class AdminServlet extends Controller {
                             deletePathArticolo.getPaths().add(pathImg);
                         }
                         if (!removeImg(deletePathArticolo)) {
-                            response.sendRedirect("./adminHomepage");
+                            request.setAttribute("msg", "Deseleziona almeno due foto.");
+                            request.getRequestDispatcher(view("./adminServlet/adminGestioneArticoliAggiungi")).forward(request, response);
                             break;
                         }
                     }
                     articoloDAO1.doUpdateArticolo(articolo2);
-                    response.sendRedirect("./adminHomepage");
+                    response.sendRedirect("./adminGestioneArticoli?page=1");
                     break;
                 }
 
@@ -254,7 +256,7 @@ public class AdminServlet extends Controller {
                     Articolo articoloDelete = sqlArticoloDAO.doRetrieveProductById(Integer.parseInt(request.getParameter("id")));
                     if (articoloDelete == null){
                         request.setAttribute("msgID", "ID non trovato.");
-                        request.getRequestDispatcher("/adminServlet/adminGestioneArticoliFormDelete?id=" + Integer.parseInt(request.getParameter("id")));
+                        request.getRequestDispatcher("/adminServlet/adminGestioneArticoliForm?id=" + Integer.parseInt(request.getParameter("id")));
                         break;
                     }
                     String deleteRoot = getUploadPath();
@@ -264,7 +266,7 @@ public class AdminServlet extends Controller {
                         foto.delete();
                     }
                     sqlArticoloDAO.doDeleteArticolo(articoloDelete);
-                    response.sendRedirect("./adminHomepage");
+                    response.sendRedirect("./adminGestioneArticoli?page=1");
                     break;
 
                 case "/adminGestioneArticoliFormInsert":
@@ -275,8 +277,7 @@ public class AdminServlet extends Controller {
                             count++;
                     }
                     if(count < 2){
-                        request.setAttribute("msgPath", "Caricamento fallito:" +
-                                "inserisci almeno due foto.");
+                        request.setAttribute("msgPath", "inserisci almeno due foto.");
                         request.getRequestDispatcher("/adminServlet/adminGestioneArticoliAggiungi").include(request, response);
                         break;
                     }
@@ -331,13 +332,12 @@ public class AdminServlet extends Controller {
                         articolo.getColori().add(sqlColoreDAO.doRetrieveById(colorValue));
                     }
                     if (!uploadImg(articolo, request)) {
-                        request.setAttribute("msg", "Caricamento fallito: " +
-                                "foto già presente.");
+                        request.setAttribute("msgPath", "Foto già presente.");
                         request.getRequestDispatcher(view("./adminServlet/adminGestioneArticoliAggiungi")).forward(request, response);
                         break;
                     }
                     articoloDao.doCreateArticolo(articolo);
-                    response.sendRedirect("./adminHomepage");
+                    response.sendRedirect("./adminGestioneArticoli?page=1");
                     break;
 
                 default:

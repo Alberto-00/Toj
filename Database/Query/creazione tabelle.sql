@@ -97,18 +97,6 @@ CREATE TABLE Applicato(
     PRIMARY KEY (codice)
 );
 
-CREATE TABLE Posseduto(
-	codice VARCHAR(10),
-    Email VARCHAR(100),
-    foreign key (codice) references Cod_sconto (codice)
-    ON UPDATE CASCADE
-    ON DELETE CASCADE,
-    foreign key (Email) references Account_User (Email)
-    ON UPDATE CASCADE
-    ON DELETE CASCADE,
-    PRIMARY KEY (codice)
-);
-
 CREATE TABLE Composizione(
 	ID_articolo INT UNSIGNED,
     ID_ordine VARCHAR(10),

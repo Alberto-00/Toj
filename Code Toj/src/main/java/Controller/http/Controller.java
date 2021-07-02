@@ -3,7 +3,6 @@ package Controller.http;
 import Model.Account.AccountSession;
 import Model.Articolo.Articolo;
 import Model.Cart.Cart;
-import Model.Ordine.Ordine;
 import Model.Path_immagini.PathImg;
 import Model.Path_immagini.SQLPathImgDAO;
 import org.json.simple.JSONObject;
@@ -90,9 +89,9 @@ public class Controller extends HttpServlet implements ErrorHandler {
                 return false;
             }
         }
-        for (int i = 0; i < fullPath.size(); i++){
+        for (String s : fullPath) {
             PathImg pathImg1 = new PathImg();
-            pathImg1.setPathName(fullPath.get(i));
+            pathImg1.setPathName(s);
             pathImg.add(pathImg1);
         }
         articolo.setPaths(new ArrayList<>());
@@ -125,5 +124,4 @@ public class Controller extends HttpServlet implements ErrorHandler {
         }
         return true;
     }
-
 }

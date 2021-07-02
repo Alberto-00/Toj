@@ -54,7 +54,7 @@ $(function() {
             },
             sconto : {
                 required: "Campo necessario.",
-                digits: "Contiene solo numeri.",
+                number: "Contiene solo numeri.",
                 max: "Valore troppo alto",
             },
             idCategoria: {
