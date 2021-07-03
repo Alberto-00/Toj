@@ -1,3 +1,4 @@
+<%@ page import="java.util.Map" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="it">
@@ -9,6 +10,7 @@
     </jsp:include>
 </head>
 <body>
+<%Map<String, String> errors = (Map<String, String>) request.getAttribute("errors");%>
 <%@include file="../partials/admin/dashboardNav.jsp"%>
 <div class="col-2">
     <%@include file="../partials/admin/dashboardHeader.jsp"%>
@@ -20,9 +22,14 @@
             <div class="idArticolo">
                 <p>ID <small>(ultimo ID inserito ${maxID})</small></p>
                 <input type="text" name="idArticolo" required autocomplete="off">
-                <c:if test="${not empty msg}">
-                    <label class="error">${msg}</label>
-                </c:if>
+                <%if (errors != null){
+                    for (Map.Entry<String, String> e: errors.entrySet()){
+                        if (e.getKey().compareTo("msg") == 0){
+                %>
+                <label class="error"><%=e.getValue()%></label>
+                <%}%>
+                <%}%>
+                <%}%>
             </div>
 
             <div class="price">
@@ -85,9 +92,16 @@
             <div class="foto">
                 <p>Foto Articolo <small>(Inserire almeno due foto)</small></p>
                 <input type="file" accept="image/*" name="path" id="fileToUpload" multiple required>
-                <c:if test="${not empty msgPath}">
-                    <label class="error">${msgPath}</label>
-                </c:if>
+                <%if (errors != null){
+                    for (Map.Entry<String, String> e: errors.entrySet()){
+                        if (e.getKey().compareTo("msgPath") == 0){
+                %>
+                <label class="error"><%=e.getValue()%></label>
+                <%} else if (e.getKey().compareTo("pathIsPresent") == 0){%>
+                <br><label class="error"><%=e.getValue()%></label>
+                <%}%>
+                <%}%>
+                <%}%>
             </div>
             <button class="btn" type="submit">Aggiorna</button>
         </form>

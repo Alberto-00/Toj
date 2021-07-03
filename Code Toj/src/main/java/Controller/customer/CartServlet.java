@@ -11,9 +11,6 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 @WebServlet(name = "CartServlet", value = "/carts/*")
 public class CartServlet extends Controller {
@@ -23,10 +20,10 @@ public class CartServlet extends Controller {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            HttpSession session = request.getSession(false);
             String path = getPath(request);
             switch (path) {
-                case "/add": {
-                    HttpSession session = request.getSession();
+                case "/add" -> {
                     int id = Integer.parseInt(request.getParameter("id"));
                     String taglia = request.getParameter("size");
                     Articolo optArticolo = productDao.doRetrieveProductById_Size(taglia, id);
@@ -48,25 +45,22 @@ public class CartServlet extends Controller {
                     } else {
                         notFound();
                     }
-                    break;
                 }
 
-               case "/remove":
-                   HttpSession session = request.getSession();
-                   int removeId = Integer.parseInt(request.getParameter("id"));
-                   String size = request.getParameter("size");
-                   synchronized (session) {
-                       Cart sessionCartNotLog = (Cart) session.getAttribute("cartNotLog");
-                       if (sessionCartNotLog != null) {
-                           sessionCartNotLog.removeProduct(removeId, size);
-                           session.setAttribute("cartNotLog", sessionCartNotLog);
-                       }
-                   }
-                   response.sendRedirect("../customers/cart");
-                   break;
+                case "/remove" -> {
+                    int removeId = Integer.parseInt(request.getParameter("id"));
+                    String size = request.getParameter("size");
+                    synchronized (session) {
+                        Cart sessionCartNotLog = (Cart) session.getAttribute("cartNotLog");
+                        if (sessionCartNotLog != null) {
+                            sessionCartNotLog.removeProduct(removeId, size);
+                            session.setAttribute("cartNotLog", sessionCartNotLog);
+                        }
+                    }
+                    response.sendRedirect("../customers/cart");
+                }
 
-                default:
-                    notFound();
+                default -> notFound();
             }
         }catch(SQLException ex){
             log(ex.getMessage());
