@@ -117,17 +117,17 @@ public class AdminServlet extends Controller {
                         SQLTagliaDAO sqlTagliaDAO = new SQLTagliaDAO();
                         SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
                         SQLCategoriaDAO sqlCategoriaDAO = new SQLCategoriaDAO();
-                        System.out.println("aa");
-                        if (session.getAttribute("errors") != null) {
+                        Map<String, String> errors = (Map<String, String>) session.getAttribute("errors");
+                        System.out.println("ss");
+                        if (errors != null) {
                             System.out.println("nn");
-                            request.setAttribute("errors", session.getAttribute("errors"));
+                            request.setAttribute("errors", errors);
                             session.removeAttribute("errors");
                         }
                         request.setAttribute("categorie", sqlCategoriaDAO.doRetrieveAll());
                         request.setAttribute("taglie", sqlTagliaDAO.doRetrieveAll());
                         request.setAttribute("colori", sqlColoreDAO1.doRetrieveAll());
                         request.setAttribute("maxID", sqlArticoloDAO.maxID());
-                        System.out.println("66");
                         request.getRequestDispatcher(view("admin/adminGestioneArticoliAggiungi")).forward(request, response);
                     }
                     else
@@ -253,28 +253,27 @@ public class AdminServlet extends Controller {
                     }
                     articoloDAO1.doUpdateArticolo(articolo2);
                     response.sendRedirect("./adminGestioneArticoli?page=1");
-                    break;
                 }
 
-                case "/adminGestioneArticoliFormDelete":
-                    request.setAttribute("back","/adminGestioneArticoli");
+                case "/adminGestioneArticoliFormDelete": {
+                    request.setAttribute("back", "/adminGestioneArticoli");
                     SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
                     Articolo articoloDelete = sqlArticoloDAO.doRetrieveProductById(Integer.parseInt(request.getParameter("id")));
 
-                    if (articoloDelete == null){
+                    if (articoloDelete == null) {
                         session.setAttribute("msgID", "ID non trovato.");
                         request.getRequestDispatcher("/adminServlet/adminGestioneArticoliForm?id=" + Integer.parseInt(request.getParameter("id")));
                         break;
                     }
                     String deleteRoot = getUploadPath();
-                    for(int i = 0; i < articoloDelete.getPaths().size(); i++){
+                    for (int i = 0; i < articoloDelete.getPaths().size(); i++) {
                         String pat2h = deleteRoot + articoloDelete.getPaths().get(i).getPathName();
                         File foto = new File(pat2h);
                         foto.delete();
                     }
                     sqlArticoloDAO.doDeleteArticolo(articoloDelete);
                     response.sendRedirect("./adminGestioneArticoli?page=1");
-                    break;
+                }
 
                 case "/adminGestioneArticoliFormInsert":
                     request.setAttribute("back","/adminGestioneArticoli");
@@ -331,16 +330,18 @@ public class AdminServlet extends Controller {
                         for (String colorValue : colorValues) {
                             articolo.getColori().add(sqlColoreDAO.doRetrieveById(colorValue));
                         }
-                        if (!uploadImg(articolo, request))
+                        if (!uploadImg(articolo, request)) {
                             errors.put("pathIsPresent", "Foto già presente.");
+                            session.setAttribute("errors", errors);
+                            response.sendRedirect("./adminServlet/adminGestioneArticoliAggiungi");
+                        }
                     } else {
                         errors.put("msg", "ID già presente.");
                         session.setAttribute("errors", errors);
-                        response.sendRedirect("./adminGestioneArticoliAggiungi");
+                        response.sendRedirect("./adminServlet/adminGestioneArticoliAggiungi");
                     }
                     articoloDao.doCreateArticolo(articolo);
                     response.sendRedirect("./adminGestioneArticoli?page=1");
-                    break;
 
                 default:
                     notFound();

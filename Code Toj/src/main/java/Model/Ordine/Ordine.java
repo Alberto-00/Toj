@@ -1,13 +1,8 @@
 package Model.Ordine;
-
 import Model.Articolo.Articolo;
-import Model.Colore.Colore;
 import Model.Sconto.Sconto;
 import Model.Account.Account;
-
-import java.nio.charset.Charset;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.sql.SQLException;
 import java.util.*;
 
 public class Ordine {
@@ -18,7 +13,7 @@ public class Ordine {
     private int quantita_articolo;
     private double total;
     private List<Articolo> articoli;
-    private List<Sconto> codSconto;
+    private Sconto codSconto;
     private Account user;
 
     public Ordine(){
@@ -65,11 +60,11 @@ public class Ordine {
         this.articoli = articoli;
     }
 
-    public List<Sconto> getCodSconto() {
+    public Sconto getCodSconto() {
         return codSconto;
     }
 
-    public void setCodSconto(List<Sconto> codSconto) {
+    public void setCodSconto(Sconto codSconto) {
         this.codSconto = codSconto;
     }
 
@@ -93,14 +88,24 @@ public class Ordine {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 
-    public double total(){
+    public void applySconto() throws SQLException {
+        SQLOrdineDAO sqlOrdineDAO = new SQLOrdineDAO();
+        Sconto sconto = sqlOrdineDAO.getOrdineSconto(getID_ordine());
+        if(sconto!=null) {
+            setTotal(Math.round((this.total * sconto.getSconto())*100.0)/100.00);
+        }
+        setTotal(getTotal()+4.5);
+    }
+
+    public double total() throws SQLException {
         for(Articolo a: this.articoli){
             this.total += a.getQuantita_articolo_in_Ordine() * a.getPrezzo();
         }
+        applySconto();
         return getTotal();
     }
 
@@ -113,7 +118,6 @@ public class Ordine {
             salt.append(SALTCHARS.charAt(index));
         }
         return salt.toString();
-
     }
 
     public boolean containsArticolo(int id){

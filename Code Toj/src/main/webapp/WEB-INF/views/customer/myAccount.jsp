@@ -145,8 +145,8 @@
                                 <div class="product-box">
                                     <div class="double-img">
                                         <a href="${pageContext.request.contextPath}/customers/products?id=<%=a.getIDarticolo()%>&sex=<%=a.getSesso()%>" >
-                                            <img src="${pageContext.request.contextPath}/covers/<%=a.getPaths().get(0).getPathName()%>" alt="">
-                                            <img src="${pageContext.request.contextPath}/covers/<%=a.getPaths().get(1).getPathName()%>" alt="" class="top-image">
+                                            <img src="${pageContext.request.contextPath}/covers/<%=a.getPaths().get(1).getPathName()%>" alt="">
+                                            <img src="${pageContext.request.contextPath}/covers/<%=a.getPaths().get(0).getPathName()%>" alt="" class="top-image">
                                         </a>
                                     </div>
                                     <div class="product-details">

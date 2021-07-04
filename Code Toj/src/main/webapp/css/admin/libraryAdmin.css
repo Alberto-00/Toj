@@ -49,10 +49,6 @@ input:focus, textarea:focus, select:focus{
     max-width: 100%;
 }
 
-.hide {
-    display: none !important;
-}
-
 .grid-x{
     display: flex;
     flex-flow: row wrap;

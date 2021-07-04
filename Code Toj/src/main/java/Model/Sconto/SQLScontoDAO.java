@@ -28,6 +28,19 @@ public class SQLScontoDAO implements ScontoDAO<SQLException>{
     }
 
     @Override
+    public boolean findSconto(String id) throws SQLException {
+        try(Connection con = ConPool.getConnection() ){
+            try (PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) as count " +
+                    "FROM applicato WHERE codice='" + id + "';")){
+                ResultSet rs = ps.executeQuery();
+                if(rs.next())
+                    return rs.getInt("count") > 0;
+                    return false;
+            }
+        }
+    }
+
+    @Override
     public Sconto doRetrieveByName(String id) throws SQLException {
         try(Connection con = ConPool.getConnection() ){
             QueryBuilder queryBuilder = new QueryBuilder("cod_sconto", "s");

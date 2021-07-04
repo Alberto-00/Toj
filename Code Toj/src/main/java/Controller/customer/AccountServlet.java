@@ -393,7 +393,6 @@ public class AccountServlet extends Controller {
                     SQLAccountDAO sqlAccountDAO = new SQLAccountDAO();
                     SQLDatiUtenteDAO sqlDatiUtenteDAO = new SQLDatiUtenteDAO();
                     SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
-                    SQLScontoDAO sqlScontoDAO = new SQLScontoDAO();
 
                     String email = request.getParameter("email");
                     String password = request.getParameter("password");
@@ -427,10 +426,6 @@ public class AccountServlet extends Controller {
                                 sqlDatiUtenteDAO.updateDatiUtete(datiUtente);
                                 session.setAttribute("userInfSession", datiUtente);
 
-                                Sconto coupon = (Sconto) session.getAttribute("coupon");
-                                if (coupon != null)
-                                    sqlScontoDAO.doDeleteSconto(coupon.getCodice());
-
                                 Cart articoli = (Cart) session.getAttribute("cartNotLog");
                                 for (Articolo a: articoli.getItems())
                                     sqlArticoloDAO.reduceSize(a);
@@ -439,6 +434,11 @@ public class AccountServlet extends Controller {
                                 Ordine ordine = new Ordine();
                                 ordine.getUser().setEmail(email);
                                 ordine.setArticoli(articoli.getItems());
+                                Sconto coupon = (Sconto) session.getAttribute("coupon");
+                                if (coupon != null) {
+                                    ordine.setCodSconto(coupon);
+                                    session.removeAttribute("coupon");
+                                }
                                 sqlOrdineDAO.doInsertOrdine(ordine);
                                 response.sendRedirect("../index.jsp");
                             }
@@ -468,10 +468,6 @@ public class AccountServlet extends Controller {
                                 sqlDatiUtenteDAO.updateDatiUtete(datiUtente);
                                 sqlDatiUtenteDAO.updateAddressUtente(datiUtente);
 
-                                Sconto coupon = (Sconto) session.getAttribute("coupon");
-                                if (coupon != null)
-                                    sqlScontoDAO.doDeleteSconto(coupon.getCodice());
-
                                 Cart articoli = (Cart) session.getAttribute("cartNotLog");
                                 for (Articolo a: articoli.getItems())
                                     sqlArticoloDAO.reduceSize(a);
@@ -480,6 +476,12 @@ public class AccountServlet extends Controller {
                                 Ordine ordine = new Ordine();
                                 ordine.getUser().setEmail(email);
                                 ordine.setArticoli(articoli.getItems());
+                                Sconto coupon = (Sconto) session.getAttribute("coupon");
+                                if (coupon != null) {
+                                    ordine.setCodSconto(coupon);
+                                    session.removeAttribute("coupon");
+                                }
+
                                 sqlOrdineDAO.doInsertOrdine(ordine);
                                 response.sendRedirect("../index.jsp");
                             } else {

@@ -2,7 +2,6 @@ package Controller.customer.api;
 
 import Controller.http.Controller;
 import Controller.http.InvalidRequestException;
-import Model.Account.SQLAccountDAO;
 import Model.Articolo.Articolo;
 import Model.Articolo.SQLArticoloDAO;
 import Model.Cart.Cart;
@@ -24,6 +23,7 @@ public class AjaxServlet extends Controller {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = getPath(request);
+        HttpSession session = request.getSession(false);
         try {
             switch (path) {
                 case "/api-product": {
@@ -78,7 +78,6 @@ public class AjaxServlet extends Controller {
                 }
 
                 case "/api-coupon": {
-                    HttpSession session = request.getSession();
                     Cart cart = (Cart) session.getAttribute("cartNotLog");
                     if (cart == null || cart.getItems().size() <= 0) {
                         JSONObject root = new JSONObject();
@@ -87,24 +86,24 @@ public class AjaxServlet extends Controller {
                         break;
                     }
                     SQLScontoDAO sqlScontoDAO = new SQLScontoDAO();
-                    Sconto sconto = sqlScontoDAO.doRetrieveByName(request.getParameter("coupon"));
-                    Sconto scontoSession = (Sconto) session.getAttribute("coupon");
+                    Sconto sconto = new Sconto();
+                    sconto.setCodice(request.getParameter("coupon"));
                     JSONObject root = new JSONObject();
-                    if (scontoSession == null){
-                        if (sconto != null) {
-                            session.setAttribute("coupon", sconto);
-                            root.put("sconto", sconto.toJson());
+                    if (sqlScontoDAO.findSconto(request.getParameter("coupon")))
+                        root.put("sconto", "Coupon già utilizzato.");
+                    else {
+                        if (sqlScontoDAO.doRetrieveByName(sconto.getCodice()) != null) {
+                            session.setAttribute("coupon", sqlScontoDAO.doRetrieveByName(sconto.getCodice()));
+                            root.put("sconto", sqlScontoDAO.doRetrieveByName(sconto.getCodice()).toJson());
                         } else {
                             root.put("sconto", "");
                         }
-                    } else
-                        root.put("sconto", "Coupon già applicato.");
+                    }
                     sendJson(response, root);
                     break;
                 }
 
                 case "/api-checkout": {
-                    HttpSession session = request.getSession();
                     Cart cart = (Cart) session.getAttribute("cartNotLog");
                     JSONObject root = new JSONObject();
                     if (cart == null || cart.getItems().size() <= 0)
@@ -116,7 +115,6 @@ public class AjaxServlet extends Controller {
                 }
 
                 case "/api-updateCart": {
-                    HttpSession session = request.getSession();
                     Cart cart = (Cart) session.getAttribute("cartNotLog");
                     String size = request.getParameter("size");
                     int quantity = Integer.parseInt(request.getParameter("quantity"));

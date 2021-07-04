@@ -1,3 +1,35 @@
+.hide {
+    display: none;
+}
+
+.products{
+    font-size: 15px;
+    align-items: center;
+    width: 100%;
+    padding: 5px 10px;
+    border-bottom: 1px solid #f3f3f3;
+}
+
+.content {
+    display: block;
+}
+
+td:last-child{
+    transition: .3s;
+}
+
+td:last-child:hover{
+    background-color: #2EE59D;
+    box-shadow: 0 15px 20px rgba(46, 229, 157, 0.4);
+    color: var(--black);
+}
+
+a.show{
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+}
+
 @media
 only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {

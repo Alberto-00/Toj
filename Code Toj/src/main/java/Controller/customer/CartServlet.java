@@ -54,7 +54,10 @@ public class CartServlet extends Controller {
                         Cart sessionCartNotLog = (Cart) session.getAttribute("cartNotLog");
                         if (sessionCartNotLog != null) {
                             sessionCartNotLog.removeProduct(removeId, size);
-                            session.setAttribute("cartNotLog", sessionCartNotLog);
+                            if (sessionCartNotLog.getItems().size() ==  0)
+                                session.removeAttribute("cartNotLog");
+                            else
+                                session.setAttribute("cartNotLog", sessionCartNotLog);
                         }
                     }
                     response.sendRedirect("../customers/cart");

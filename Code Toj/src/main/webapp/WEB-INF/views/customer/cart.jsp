@@ -39,7 +39,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:if test="${cartNotLog != null}">
+                        <c:if test="${not empty cartNotLog}">
                             <% int i = 0; for (Articolo a: cart.getItems()){%>
                             <tr>
                                 <td class="product_remove"><a href="${pageContext.request.contextPath}/carts/remove?id=<%=a.getIDarticolo()%>&size=<%=a.getChosenSize()%>"><i class="far fa-trash-alt"></i></a></td>

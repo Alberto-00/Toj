@@ -49,9 +49,12 @@
                 <td data-head="ID Categoria"><%= o.getCategoria().getNome()%></td>
                 <td data-head="Taglia">
                     <%int count = 0;
-                        for (int j = 0; j <o.getTaglie().size(); j++){%>
-                    <%=o.getTaglie().get(j).getId_nome()%>
-                    <%count+=o.getTaglie().get(j).getQuantita();}%>
+                        for (int j = 0; j <o.getTaglie().size(); j++){
+                            if (o.getTaglie().get(j).getQuantita() > 0){
+                                <%=o.getTaglie().get(j).getId_nome()%>
+                                <%count+=o.getTaglie().get(j).getQuantita();
+                            }
+                        }%>
                 </td>
                 <td data-head="Colore">
                     <%for (int j = 0; j <o.getColori().size(); j++){%>

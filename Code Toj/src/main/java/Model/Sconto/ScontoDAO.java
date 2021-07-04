@@ -8,6 +8,8 @@ public interface ScontoDAO <E extends Exception> {
 
     Sconto doRetrieveByName(String id) throws E;
 
+    boolean findSconto(String id) throws E;
+
     boolean doCreateSconto(Sconto sconto) throws E;
 
     boolean doUpdateSconto(Sconto sconto) throws E;

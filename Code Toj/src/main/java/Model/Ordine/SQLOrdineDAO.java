@@ -4,6 +4,8 @@ import Model.Account.Account;
 import Model.Account.AccountExtractor;
 import Model.Articolo.Articolo;
 import Model.Articolo.ArticoloExtractor;
+import Model.Articolo.SQLArticoloDAO;
+import Model.Sconto.Sconto;
 import Model.search.Paginator;
 import Model.storage.ConPool;
 import Model.storage.QueryBuilder;
@@ -78,16 +80,30 @@ public class SQLOrdineDAO implements OrdineDAO<SQLException> {
     public boolean doInsertOrdine(Ordine ordine) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            PreparedStatement ps = con.prepareStatement("INSERT INTO ordine (ID_ordine, data_acquisto, data_spedizione, Email) VALUES " +
+            try (PreparedStatement ps = con.prepareStatement("INSERT INTO ordine (ID_ordine, data_acquisto, data_spedizione, Email) VALUES " +
                     "('" + ordine.getID_ordine() +"','"+ formatter.format(ordine.getData_acquisto()) + "','" + formatter.format(ordine.getData_spedizione()) + "','"
-                    + ordine.getUser().getEmail() +"')");
-            int rows;
-            rows = ps.executeUpdate();
+                    + ordine.getUser().getEmail() +"')")){
+                int rows;
+                rows = ps.executeUpdate();
 
-            for (Articolo a: ordine.getArticoli()){
-                doInsertComposizione(a, ordine);
+                if (ordine.getCodSconto() != null)
+                    doInsertApplicato(ordine);
+
+                for (Articolo a: ordine.getArticoli()){
+                    doInsertComposizione(a, ordine);
+                }
+                return rows == 1;
             }
-            return rows == 1;
+        }
+    }
+
+    private boolean doInsertApplicato(Ordine o) throws SQLException{
+        try(Connection con = ConPool.getConnection()) {
+            try (PreparedStatement ps1 = con.prepareStatement("INSERT INTO applicato (codice, ID_ordine) VALUES " +
+                    "('" + o.getCodSconto().getCodice() +"','"+ o.getID_ordine() + "');")){
+                int rows = ps1.executeUpdate();
+                return rows == 1;
+            }
         }
     }
 
@@ -169,5 +185,43 @@ public class SQLOrdineDAO implements OrdineDAO<SQLException> {
             throwables.printStackTrace();
         }
         return ordini;
+    }
+
+    @Override
+    public List<Articolo> fetchArticoliOrdine(String idOrdine) throws SQLException {
+        try (Connection con = ConPool.getConnection()){
+            try (PreparedStatement ps = con.prepareStatement("SELECT ID_articolo, Quantita_articolo " +
+                    "FROM composizione c " +
+                    "WHERE ID_ordine = '" + idOrdine + "'")){
+                ResultSet rs = ps.executeQuery();
+                SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
+                ArrayList<Articolo> articoli = new ArrayList<>();
+                while (rs.next()) {
+                    Articolo articolo;
+                    articolo = sqlArticoloDAO.doRetrieveProductById(rs.getInt("ID_articolo"));
+                    articolo.setQuantita_articolo_in_Ordine(rs.getInt("Quantita_articolo"));
+                    articoli.add(articolo);
+                }
+                return articoli;
+            }
+        }
+    }
+
+    @Override
+    public Sconto getOrdineSconto(String s) throws SQLException{
+        try (Connection con = ConPool.getConnection()){
+            try (PreparedStatement ps = con.prepareStatement("SELECT s.* " +
+                    "FROM applicato a, cod_sconto s " +
+                    "WHERE a.ID_ordine = '"+s+"' AND a.codice=s.codice")) {
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    Sconto sconto = new Sconto();
+                    sconto.setSconto(rs.getDouble("s.sconto"));
+                    sconto.setCodice(rs.getString("s.codice"));
+                    return sconto;
+                }
+            }
+        }
+        return null;
     }
 }
