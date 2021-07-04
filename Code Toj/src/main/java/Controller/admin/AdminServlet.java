@@ -289,7 +289,7 @@ public class AdminServlet extends Controller {
                     articolo.setIDarticolo(Integer.parseInt(request.getParameter("idArticolo")));
                     Articolo tmp = articoloDao.doRetrieveProductById(articolo.getIDarticolo());
 
-                    if(tmp != null) {
+                    if(tmp == null) {
                         articolo.setPrezzo(Double.parseDouble(request.getParameter("prezzo")));
                         articolo.setSesso(request.getParameter("sesso").toUpperCase());
                         articolo.setDescrizione(request.getParameter("descrizione"));
