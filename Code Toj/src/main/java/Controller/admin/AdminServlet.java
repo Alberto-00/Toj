@@ -118,9 +118,7 @@ public class AdminServlet extends Controller {
                         SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
                         SQLCategoriaDAO sqlCategoriaDAO = new SQLCategoriaDAO();
                         Map<String, String> errors = (Map<String, String>) session.getAttribute("errors");
-                        System.out.println("ss");
                         if (errors != null) {
-                            System.out.println("nn");
                             request.setAttribute("errors", errors);
                             session.removeAttribute("errors");
                         }
