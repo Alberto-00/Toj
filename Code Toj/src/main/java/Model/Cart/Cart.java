@@ -59,6 +59,7 @@ public class Cart {
     }
 
     public boolean removeProduct(int id, String size){
+        count--;
         return items.removeIf(it -> it.getIDarticolo() == id && it.getChosenSize().compareTo(size) == 0);
     }
 

@@ -50,4 +50,5 @@ only screen and (max-width: 760px),
     td:nth-of-type(8):before { content: "Taglia"; }
     td:nth-of-type(9):before { content: "Colore"; }
     td:nth-of-type(10):before { content: "Quantità"; }
+    td:nth-of-type(11):before { content: "Gestione"; }
 }

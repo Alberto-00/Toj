@@ -31,6 +31,24 @@ td, th {
     font-size: 14px;
 }
 
+@media screen and (max-width: 425px) {
+    table {
+        width: 425px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    table {
+        width: 375px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    table{
+        width: 320px;
+    }
+}
+
 @media screen and (max-width: 1024px)  {
     table, thead, tbody, th, td, tr {
         display: block;

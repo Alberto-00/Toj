@@ -68,7 +68,13 @@ public class AdminServlet extends Controller {
                         int size = sqlOrdineDAO.countOrdini();
                         request.setAttribute("pages",paginator.getPages(size));
                         request.setAttribute("numPage", intPage);
-                        ArrayList<Ordine> ordini = sqlOrdineDAO.getOrders(paginator);
+                        List<Ordine> ordini = sqlOrdineDAO.getOrders(paginator);
+                        for (Ordine o: ordini) {
+                            List<Articolo> articoli = sqlOrdineDAO.fetchArticoliOrdine(o.getID_ordine());
+                            o.setArticoli(new ArrayList<>());
+                            for (Articolo a: articoli)
+                            o.getArticoli().add(a);
+                        }
                         request.setAttribute("ordini", ordini);
                         request.getRequestDispatcher(view("admin/adminGestioneOrdini")).forward(request, response);
                     } else

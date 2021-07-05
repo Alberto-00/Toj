@@ -92,7 +92,7 @@ public class Ordine {
         this.total = total;
     }
 
-    public void applySconto() throws SQLException {
+    private void applySconto() throws SQLException {
         SQLOrdineDAO sqlOrdineDAO = new SQLOrdineDAO();
         Sconto sconto = sqlOrdineDAO.getOrdineSconto(getID_ordine());
         if(sconto!=null) {
@@ -101,11 +101,14 @@ public class Ordine {
         setTotal(getTotal()+4.5);
     }
 
-    public double total() throws SQLException {
-        for(Articolo a: this.articoli){
-            this.total += a.getQuantita_articolo_in_Ordine() * a.getPrezzo();
+    public double total() {
+        try {
+            for(Articolo a: this.articoli)
+                this.total += a.getQuantita_articolo_in_Ordine() * a.getPrezzoScontato();
+            applySconto();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
-        applySconto();
         return getTotal();
     }
 
