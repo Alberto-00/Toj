@@ -119,15 +119,19 @@ public class AdminServlet extends Controller {
 
                 case "/adminGestioneArticoliAggiungi" :
                     if (request.isRequestedSessionIdValid() && accountSession.isAdmin()){
+                        System.out.println("aaaa");
                         SQLColoreDAO sqlColoreDAO1 = new SQLColoreDAO();
                         SQLTagliaDAO sqlTagliaDAO = new SQLTagliaDAO();
                         SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
                         SQLCategoriaDAO sqlCategoriaDAO = new SQLCategoriaDAO();
                         Map<String, String> errors = (Map<String, String>) session.getAttribute("errors");
+                        System.out.println("sssss");
                         if (errors != null) {
+                            System.out.println("ss");
                             request.setAttribute("errors", errors);
                             session.removeAttribute("errors");
-                        }
+                            errors.clear();
+                        } System.out.println("pp");
                         request.setAttribute("categorie", sqlCategoriaDAO.doRetrieveAll());
                         request.setAttribute("taglie", sqlTagliaDAO.doRetrieveAll());
                         request.setAttribute("colori", sqlColoreDAO1.doRetrieveAll());
@@ -174,8 +178,8 @@ public class AdminServlet extends Controller {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            HttpSession session = request.getSession(false);
             Map<String, String> errors = new LinkedHashMap<>();
+            HttpSession session = request.getSession(false);
             String path = getPath(request);
             switch (path){
                 case "/adminLogin":{

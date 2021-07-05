@@ -18,10 +18,11 @@ td:last-child{
     transition: .3s;
 }
 
-td:last-child:hover{
-    background-color: #2EE59D;
+td:last-child:hover, .selected-row{
+    background-color: #2EE59D !important;
     box-shadow: 0 15px 20px rgba(46, 229, 157, 0.4);
     color: var(--black);
+    font-weight: bold;
 }
 
 a.show{
@@ -37,4 +38,5 @@ only screen and (max-width: 760px),
     td:nth-of-type(2):before { content: "ID"; }
     td:nth-of-type(3):before { content: "Data Acquisto"; }
     td:nth-of-type(4):before { content: "Data Spedizione"; }
+    td:nth-of-type(5):before { content: "Dettagli"; }
 }

@@ -3,11 +3,11 @@ $(document).ready(function () {
     for (let i = 0; i < btns.length; i++) {
         $("#show" + i).click(function () {
             if ($("#hide" + i).css('display') === 'none') {
-                $("#hide" + i).show(400)
-                console.log("SI")
+                $("#hide" + i).show(400);
+                $("#show" + i).parents("tr").addClass("selected-row");
             } else {
                 $("#hide" + i).hide(400)
-                console.log("NO")
+                $("#show" + i).parents("tr").removeClass("selected-row");
             }
         })
     }

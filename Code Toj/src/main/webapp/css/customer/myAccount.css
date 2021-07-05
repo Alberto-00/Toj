@@ -215,9 +215,8 @@ th{
     text-align: center;
 }
 
-
-.selected{
-    background-color: red ;
+.selected-orange{
+    background-color: rgba(253, 126, 20, 0.38);
 }
 
 @media screen and (max-width: 812px){

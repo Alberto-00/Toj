@@ -38,9 +38,11 @@ $(document).ready(function () {
     for(let i = 0; i < btns.length; i++){
         $("#show" + i).click(function () {
             if ($("#hide" + i).css('display') === 'none') {
-                $("#hide" + i).show(400)
+                $("#hide" + i).show(400);
+                $("#show" + i).parents("tr").addClass("selected-orange");
             } else {
-                $("#hide" + i).hide(400)
+                $("#hide" + i).hide(400);
+                $("#show" + i).parents("tr").removeClass("selected-orange");
             }
         })
     }
