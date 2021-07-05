@@ -26,11 +26,12 @@ public class SQLOrdineDAO implements OrdineDAO<SQLException> {
     @Override
     public int doRetrieveAll() throws SQLException{
         try(Connection con = ConPool.getConnection()) {
-            Statement stm = con.createStatement();
-            ResultSet resultSet = stm.executeQuery("SELECT COUNT(*) as count FROM ordine;");
-            if (resultSet.next())
-                return resultSet.getInt("count");
-            return 0;
+            try (PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) as count FROM ordine;")){
+                ResultSet resultSet = ps.executeQuery();
+                if (resultSet.next())
+                    return resultSet.getInt("count");
+                return 0;
+            }
         }
     }
 
@@ -109,10 +110,11 @@ public class SQLOrdineDAO implements OrdineDAO<SQLException> {
 
     private boolean doInsertComposizione(Articolo a, Ordine o) throws SQLException{
         try(Connection con = ConPool.getConnection()) {
-            PreparedStatement ps1 = con.prepareStatement("INSERT INTO composizione (ID_ordine, ID_articolo, Quantita_articolo) VALUES " +
-                        "('" + o.getID_ordine() +"',"+ a.getIDarticolo() + "," + a.getLocalQuantity() + ")");
-            int rows = ps1.executeUpdate();
-            return rows == 1;
+            try (PreparedStatement ps1 = con.prepareStatement("INSERT INTO composizione (ID_ordine, ID_articolo, Quantita_articolo) VALUES " +
+                    "('" + o.getID_ordine() +"',"+ a.getIDarticolo() + "," + a.getLocalQuantity() + ")")){
+                int rows = ps1.executeUpdate();
+                return rows == 1;
+            }
         }
     }
 
@@ -149,42 +151,38 @@ public class SQLOrdineDAO implements OrdineDAO<SQLException> {
     @Override
     public int countOrdini() throws SQLException {
         int ordini = 0;
-        try(Connection con = ConPool.getConnection()){
-            Statement stm = con.createStatement();
-            ResultSet resultSet = stm.executeQuery("SELECT count(*) FROM ordine");
-            if(resultSet.next()){
-                ordini=resultSet.getInt(1);
+        try(Connection con = ConPool.getConnection()) {
+            try (PreparedStatement ps = con.prepareStatement("SELECT count(*) FROM ordine")) {
+                ResultSet resultSet = ps.executeQuery();
+                if (resultSet.next())
+                    ordini = resultSet.getInt(1);
+                return ordini;
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
         }
-        return ordini;
     }
 
     @Override
-    public ArrayList<Ordine> getOrders(Paginator paginator) throws SQLException {
+    public List<Ordine> getOrders(Paginator paginator) throws SQLException {
         ArrayList<Ordine> ordini = new ArrayList<>();
-        try(Connection con = ConPool.getConnection()){
-            PreparedStatement stm = con.prepareStatement("SELECT * " +
-                    "FROM ordine LIMIT ?,?");
-            stm.setInt(1,paginator.getOffset());
-            stm.setInt(2,paginator.getLimit());
-            ResultSet resultSet = stm.executeQuery();
+        try(Connection con = ConPool.getConnection()) {
+            try (PreparedStatement stm = con.prepareStatement("SELECT * " +
+                    "FROM ordine LIMIT ?,?")) {
+                stm.setInt(1, paginator.getOffset());
+                stm.setInt(2, paginator.getLimit());
+                ResultSet resultSet = stm.executeQuery();
 
-            while (resultSet.next()){
-                Ordine ordine =  new Ordine();
-                ordine.setID_ordine(resultSet.getString(1));
-                ordine.setData_acquisto(resultSet.getDate(2));
-                ordine.setData_spedizione(resultSet.getDate(3));
-                ordine.setUser(new Account());
-                ordine.getUser().setEmail(resultSet.getString(4));
-                ordini.add(ordine);
+                while (resultSet.next()) {
+                    Ordine ordine = new Ordine();
+                    ordine.setID_ordine(resultSet.getString(1));
+                    ordine.setData_acquisto(resultSet.getDate(2));
+                    ordine.setData_spedizione(resultSet.getDate(3));
+                    ordine.setUser(new Account());
+                    ordine.getUser().setEmail(resultSet.getString(4));
+                    ordini.add(ordine);
+                }
+                return ordini;
             }
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
         }
-        return ordini;
     }
 
     @Override

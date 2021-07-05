@@ -20,53 +20,55 @@ public class SQLColoreDAO implements ColoreDAO<SQLException> {
     @Override
     public List<Colore> doRetrieveAll() throws SQLException {
         try (Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("SELECT c.* " +
-                    "FROM colore c ORDER BY c.nome_colore;");
-            ResultSet rs = ps.executeQuery();
-            ColoreExtractor coloreExtractor = new ColoreExtractor();
-            List<Colore> colori = new ArrayList<>();
-            while (rs.next()){
-                colori.add(coloreExtractor.extract(rs));
+            try (PreparedStatement ps = con.prepareStatement("SELECT c.* " +
+                    "FROM colore c ORDER BY c.nome_colore;")){
+                ResultSet rs = ps.executeQuery();
+                ColoreExtractor coloreExtractor = new ColoreExtractor();
+                List<Colore> colori = new ArrayList<>();
+                while (rs.next()){
+                    colori.add(coloreExtractor.extract(rs));
+                }
+                return colori;
             }
-            return colori;
         }
     }
 
     @Override
     public Colore doRetrieveById (String hex) throws SQLException{
         try (Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("SELECT c.*" +
+            try (PreparedStatement ps = con.prepareStatement("SELECT c.*" +
                     "FROM colore c " +
-                    "WHERE cod_esadecimale = '" + hex + "';");
-            ResultSet rs = ps.executeQuery();
-            ColoreExtractor coloreExtractor = new ColoreExtractor();
-            Colore colore = new Colore();
-            if (rs.next()){
-                colore = coloreExtractor.extract(rs);
+                    "WHERE cod_esadecimale = '" + hex + "';")){
+                ResultSet rs = ps.executeQuery();
+                ColoreExtractor coloreExtractor = new ColoreExtractor();
+                Colore colore = new Colore();
+                if (rs.next()){
+                    colore = coloreExtractor.extract(rs);
+                }
+                return colore;
             }
-            return colore;
         }
     }
 
     @Override
     public List<Colore> doRetrieveBySex(String sex) throws SQLException {
         try (Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("SELECT DISTINCT c.* " +
+            try ( PreparedStatement ps = con.prepareStatement("SELECT DISTINCT c.* " +
                     "FROM colore c INNER JOIN tinta t on c.cod_esadecimale = t.cod_esadecimale " +
                     "INNER JOIN articolo a on t.ID_articolo = a.ID_articolo " +
                     "WHERE a.Sesso = '" + sex + "' " +
-                    "ORDER BY c.nome_colore;");
-            ResultSet rs = ps.executeQuery();
-            ColoreExtractor coloreExtractor = new ColoreExtractor();
-            List<Colore> colori = new ArrayList<>();
-            while (rs.next()){
-                colori.add(coloreExtractor.extract(rs));
+                    "ORDER BY c.nome_colore;")){
+
+                ResultSet rs = ps.executeQuery();
+                ColoreExtractor coloreExtractor = new ColoreExtractor();
+                List<Colore> colori = new ArrayList<>();
+                while (rs.next()){
+                    colori.add(coloreExtractor.extract(rs));
+                }
+                return colori;
             }
-            return colori;
         }
     }
-
-
 
     @Override
     public boolean createTinta(Articolo articolo) throws SQLException {

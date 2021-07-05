@@ -11,59 +11,62 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SQLTagliaDAO implements TagliaDao{
+public class SQLTagliaDAO implements TagliaDao<SQLException>{
 
     @Override
     public List<Taglia> doRetrieveAll() throws SQLException {
         try (Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("SELECT t.id_nome FROM taglia t " +
-                  " ORDER BY t.id_nome;");
-            ResultSet rs = ps.executeQuery();
-            List<Taglia> taglie = new ArrayList<>();
-            while (rs.next()){
-                Taglia taglia = new Taglia();
-                taglia.setId_nome(rs.getString("id_nome"));
-                taglie.add(taglia);
+            try (PreparedStatement ps = con.prepareStatement("SELECT t.id_nome FROM taglia t " +
+                    " ORDER BY t.id_nome;")){
+                ResultSet rs = ps.executeQuery();
+                List<Taglia> taglie = new ArrayList<>();
+                while (rs.next()){
+                    Taglia taglia = new Taglia();
+                    taglia.setId_nome(rs.getString("id_nome"));
+                    taglie.add(taglia);
+                }
+                return taglie;
             }
-            return taglie;
         }
     }
 
     @Override
     public List<Taglia> doRetrieveAllByID(Articolo articolo) throws SQLException {
         try (Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("SELECT t.id_nome, s.quantita FROM taglia t " +
+            try (PreparedStatement ps = con.prepareStatement("SELECT t.id_nome, s.quantita FROM taglia t " +
                     "INNER JOIN size s on s.id_nome = t.id_nome " +
                     "INNER JOIN articolo a on s.ID_articolo = a.ID_articolo " +
-                    "WHERE a.ID_articolo = ? ORDER BY t.id_nome;");
-            ps.setInt(1, articolo.getIDarticolo());
-            ResultSet rs = ps.executeQuery();
-            TagliaExtractor tagliaExtractor = new TagliaExtractor();
-            List<Taglia> taglie = new ArrayList<>();
-            while (rs.next()){
-                taglie.add(tagliaExtractor.extract(rs));
+                    "WHERE a.ID_articolo = ? ORDER BY t.id_nome;")){
+                ps.setInt(1, articolo.getIDarticolo());
+                ResultSet rs = ps.executeQuery();
+                TagliaExtractor tagliaExtractor = new TagliaExtractor();
+                List<Taglia> taglie = new ArrayList<>();
+                while (rs.next()){
+                    taglie.add(tagliaExtractor.extract(rs));
+                }
+                return taglie;
             }
-            return taglie;
         }
     }
 
     @Override
     public List<Taglia> doRetrieveBySex(String sex) throws SQLException {
         try (Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("SELECT t.id_nome " +
+            try ( PreparedStatement ps = con.prepareStatement("SELECT t.id_nome " +
                     "FROM taglia t INNER JOIN size s on s.id_nome = t.id_nome " +
                     "INNER JOIN articolo a on s.ID_articolo = a.ID_articolo " +
                     "WHERE a.Sesso = '" + sex + "' " +
                     "GROUP BY t.id_nome " +
-                    "ORDER BY t.id_nome;");
-            ResultSet rs = ps.executeQuery();
-            List<Taglia> taglie = new ArrayList<>();
-            while (rs.next()){
-                Taglia taglia = new Taglia();
-                taglia.setId_nome(rs.getString("id_nome"));
-                taglie.add(taglia);
+                    "ORDER BY t.id_nome;")){
+                ResultSet rs = ps.executeQuery();
+                List<Taglia> taglie = new ArrayList<>();
+                while (rs.next()){
+                    Taglia taglia = new Taglia();
+                    taglia.setId_nome(rs.getString("id_nome"));
+                    taglie.add(taglia);
+                }
+                return taglie;
             }
-            return taglie;
         }
     }
 

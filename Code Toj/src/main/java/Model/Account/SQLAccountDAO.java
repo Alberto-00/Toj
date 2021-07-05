@@ -8,42 +8,45 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class SQLAccountDAO implements AccountDAO{
+public class SQLAccountDAO implements AccountDAO<SQLException>{
 
     @Override
     public Optional<Account> findAccount(String email, String password, boolean admin) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
-            Statement stm = con.createStatement();
-            ResultSet resultSet = stm.executeQuery("SELECT a.* FROM account_user a " +
-                    "WHERE a.Email = '" + email + "'"+" AND a.Password_User = '" +password+ "'"+" AND a.Admin_user = " + admin +";");
-            Account account = null;
-            if(resultSet.next())
-                account = new AccountExtractor().extract(resultSet);
-            return Optional.ofNullable(account);
+            try (PreparedStatement ps = con.prepareStatement("SELECT a.* FROM account_user a " +
+                    "WHERE a.Email = '" + email + "'"+" AND a.Password_User = '" +password+ "'"+" AND a.Admin_user = " + admin +";")){
+                ResultSet resultSet = ps.executeQuery();
+                Account account = null;
+                if(resultSet.next())
+                    account = new AccountExtractor().extract(resultSet);
+                return Optional.ofNullable(account);
+            }
         }
     }
 
     @Override
     public int count() throws SQLException{
         try(Connection con = ConPool.getConnection()) {
-            Statement stm = con.createStatement();
-            ResultSet resultSet = stm.executeQuery("SELECT COUNT(*) as count FROM account_user;");
-            if (resultSet.next())
-               return resultSet.getInt("count");
-            return 0;
+            try (PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) as count FROM account_user;")){
+                ResultSet resultSet = ps.executeQuery();
+                if (resultSet.next())
+                    return resultSet.getInt("count");
+                return 0;
+            }
         }
     }
 
     @Override
     public Optional<Account> checkAccount(String email) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
-            Statement stm = con.createStatement();
-            ResultSet resultSet = stm.executeQuery("SELECT a.* FROM account_user a " +
-                    "WHERE a.Email = '" + email + "';");
-            Account account = null;
-            if(resultSet.next())
-                account = new AccountExtractor().extract(resultSet);
-            return Optional.ofNullable(account);
+            try(PreparedStatement ps = con.prepareStatement("SELECT a.* FROM account_user a " +
+                    "WHERE a.Email = '" + email + "';")){
+                ResultSet resultSet = ps.executeQuery();
+                Account account = null;
+                if(resultSet.next())
+                    account = new AccountExtractor().extract(resultSet);
+                return Optional.ofNullable(account);
+            }
         }
     }
 
@@ -98,14 +101,14 @@ public class SQLAccountDAO implements AccountDAO{
     public int countCustomers() throws SQLException {
         int customers = 0;
         try (Connection con = ConPool.getConnection()) {
-            Statement stm = con.createStatement();
-            ResultSet resultSet = stm.executeQuery("SELECT count(*)" +
-                    "FROM account_user " +
-                    "where Admin_user = false");
-            if (resultSet.next()) {
-                customers = resultSet.getInt(1);
+            try (PreparedStatement ps = con.prepareStatement("SELECT count(*)" +
+                    "FROM account_user WHERE Admin_user = false")){
+                ResultSet resultSet = ps.executeQuery();
+                if (resultSet.next()) {
+                    customers = resultSet.getInt(1);
+                }
+                return customers;
             }
-            return customers;
         }
     }
 }

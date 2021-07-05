@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SQLPathImgDAO implements PathImgDAO {
+public class SQLPathImgDAO implements PathImgDAO<SQLException> {
 
     @Override
     public boolean createPathImg(Articolo articolo) throws SQLException {
@@ -113,9 +113,10 @@ public class SQLPathImgDAO implements PathImgDAO {
     public boolean deletePath(String pathName) throws SQLException{
         try(Connection con = ConPool.getConnection()) {
             String tmp = pathName.replace("\\", "\\\\");
-            PreparedStatement ps = con.prepareStatement("DELETE FROM pathimg WHERE pathName = '" + tmp + "';");
-            int rows = ps.executeUpdate();
-            return rows == 1;
+            try (PreparedStatement ps = con.prepareStatement("DELETE FROM pathimg WHERE pathName = '" + tmp + "';")){
+                int rows = ps.executeUpdate();
+                return rows == 1;
+            }
         }
     }
 }
