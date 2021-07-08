@@ -37,3 +37,21 @@ $(document).ready(function (){
                 }
         }
 })
+
+/**
+ * Scroll Up
+ */
+/*Utilizziamo addEventListener per eseguire due onscroll senza che questi si sovrascrivessero*/
+window.addEventListener("scroll", scrollFunction);
+
+var scrollUp = document.getElementById("scrollUp");
+
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+        if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
+                scrollUp.style.display = "block";
+        } else {
+                scrollUp.style.display = "none";
+        }
+}

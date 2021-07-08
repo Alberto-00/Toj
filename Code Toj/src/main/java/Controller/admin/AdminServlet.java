@@ -38,67 +38,77 @@ public class AdminServlet extends Controller {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             HttpSession session = request.getSession(false);
-            AccountSession accountSession = (AccountSession) session.getAttribute("accountSession");
             String path = getPath(request);
             switch (path) {
-                case "/adminGestioneClienti":
-                    if (request.isRequestedSessionIdValid() && accountSession.isAdmin()){
-                        SQLAccountDAO sqlAccountDAO = new SQLAccountDAO();
-                        SQLDatiUtenteDAO sqlDatiUtenteDAO = new SQLDatiUtenteDAO();
+                case "/adminGestioneClienti": {
+                    AccountSession accountSession = (AccountSession) session.getAttribute("accountSession");
+                    if (accountSession != null) {
+                        if (request.isRequestedSessionIdValid() && accountSession.isAdmin()) {
+                            SQLAccountDAO sqlAccountDAO = new SQLAccountDAO();
+                            SQLDatiUtenteDAO sqlDatiUtenteDAO = new SQLDatiUtenteDAO();
 
-                        int intPage = parsePage(request);
-                        Paginator paginator = new Paginator(intPage,10);
-                        int size = sqlAccountDAO.countCustomers();
-                        request.setAttribute("pages",paginator.getPages(size));
-                        request.setAttribute("numPage", intPage);
-                        List<DatiUtente> datiUtenti = sqlDatiUtenteDAO.doRetriveAll(paginator);
-                        request.setAttribute("accounts", datiUtenti);
-                        request.getRequestDispatcher(view("admin/adminGestioneClienti")).forward(request, response);
-                    }
-                    else
-                        throw new InvalidRequestException("Non sei Autorizzato", List.of("Non sei Autorizzato"), HttpServletResponse.SC_FORBIDDEN);
-                    break;
-
-                case "/adminGestioneOrdini":
-                    if (request.isRequestedSessionIdValid() && accountSession.isAdmin()) {
-                        SQLOrdineDAO sqlOrdineDAO = new SQLOrdineDAO();
-
-                        int intPage = parsePage(request);
-                        Paginator paginator = new Paginator(intPage,10);
-                        int size = sqlOrdineDAO.countOrdini();
-                        request.setAttribute("pages",paginator.getPages(size));
-                        request.setAttribute("numPage", intPage);
-                        List<Ordine> ordini = sqlOrdineDAO.getOrders(paginator);
-                        for (Ordine o: ordini) {
-                            List<Articolo> articoli = sqlOrdineDAO.fetchArticoliOrdine(o.getID_ordine());
-                            o.setArticoli(new ArrayList<>());
-                            for (Articolo a: articoli)
-                            o.getArticoli().add(a);
+                            int intPage = parsePage(request);
+                            Paginator paginator = new Paginator(intPage, 10);
+                            int size = sqlAccountDAO.countCustomers();
+                            request.setAttribute("pages", paginator.getPages(size));
+                            request.setAttribute("numPage", intPage);
+                            List<DatiUtente> datiUtenti = sqlDatiUtenteDAO.doRetriveAll(paginator);
+                            request.setAttribute("accounts", datiUtenti);
+                            request.getRequestDispatcher(view("admin/adminGestioneClienti")).forward(request, response);
                         }
-                        request.setAttribute("ordini", ordini);
-                        request.getRequestDispatcher(view("admin/adminGestioneOrdini")).forward(request, response);
                     } else
                         throw new InvalidRequestException("Non sei Autorizzato", List.of("Non sei Autorizzato"), HttpServletResponse.SC_FORBIDDEN);
                     break;
+                }
 
-                case "/adminGestioneArticoli":
-                    if (request.isRequestedSessionIdValid() && accountSession.isAdmin()){
-                        SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
+                case "/adminGestioneOrdini": {
+                    AccountSession accountSession = (AccountSession) session.getAttribute("accountSession");
+                    if (accountSession != null){
+                        if (request.isRequestedSessionIdValid() && accountSession.isAdmin()) {
+                            SQLOrdineDAO sqlOrdineDAO = new SQLOrdineDAO();
 
-                        int size = sqlArticoloDAO.getArticoli().size();
-                        int intPage = parsePage(request);
-                        request.setAttribute("numPage", intPage);
-                        Paginator paginator = new Paginator(intPage, 10, false);
-                        request.setAttribute("pages", paginator.getPages(size));
-                        int count = paginator.getCount();
-                        List<Articolo> products = sqlArticoloDAO.getArticoliPage(paginator);
-                        request.setAttribute("productsList", products);
-                        request.setAttribute("count", count);
-                        request.getRequestDispatcher(view("admin/adminGestioneArticoli")).forward(request, response);
+                            int intPage = parsePage(request);
+                            Paginator paginator = new Paginator(intPage, 10);
+                            int size = sqlOrdineDAO.countOrdini();
+                            request.setAttribute("pages", paginator.getPages(size));
+                            request.setAttribute("numPage", intPage);
+                            List<Ordine> ordini = sqlOrdineDAO.getOrders(paginator);
+                            for (Ordine o : ordini) {
+                                List<Articolo> articoli = sqlOrdineDAO.fetchArticoliOrdine(o.getID_ordine());
+                                o.setArticoli(new ArrayList<>());
+                                for (Articolo a : articoli)
+                                    o.getArticoli().add(a);
+                            }
+                            request.setAttribute("ordini", ordini);
+                            request.getRequestDispatcher(view("admin/adminGestioneOrdini")).forward(request, response);
+                        }
                     }
                     else
                         throw new InvalidRequestException("Non sei Autorizzato", List.of("Non sei Autorizzato"), HttpServletResponse.SC_FORBIDDEN);
                     break;
+                }
+
+                case "/adminGestioneArticoli": {
+                    AccountSession accountSession = (AccountSession) session.getAttribute("accountSession");
+                    if (accountSession != null) {
+                        if (request.isRequestedSessionIdValid() && accountSession.isAdmin()) {
+                            SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
+
+                            int size = sqlArticoloDAO.getArticoli().size();
+                            int intPage = parsePage(request);
+                            request.setAttribute("numPage", intPage);
+                            Paginator paginator = new Paginator(intPage, 10, false);
+                            request.setAttribute("pages", paginator.getPages(size));
+                            int count = paginator.getCount();
+                            List<Articolo> products = sqlArticoloDAO.getArticoliPage(paginator);
+                            request.setAttribute("productsList", products);
+                            request.setAttribute("count", count);
+                            request.getRequestDispatcher(view("admin/adminGestioneArticoli")).forward(request, response);
+                        }
+                    } else
+                        throw new InvalidRequestException("Non sei Autorizzato", List.of("Non sei Autorizzato"), HttpServletResponse.SC_FORBIDDEN);
+                    break;
+                }
 
                 case "/adminGestioneArticoliForm": {
                     int id = Integer.parseInt(request.getParameter("id"));
@@ -108,6 +118,12 @@ public class AdminServlet extends Controller {
                     SQLCategoriaDAO sqlCategoriaDAO = new SQLCategoriaDAO();
                     SQLPathImgDAO sqlPathImgDAO = new SQLPathImgDAO();
                     Articolo articolo = sqlArticoloDAO2.doRetrieveProductById(id);
+
+                    Map<String, String> errors = (Map<String, String>) session.getAttribute("errors");
+                    if (errors != null) {
+                        request.setAttribute("errors", errors);
+                        session.removeAttribute("errors");
+                    }
                     request.setAttribute("articolo", articolo);
                     request.setAttribute("colori", sqlColoreDAO.doRetrieveAll());
                     request.setAttribute("categorie", sqlCategoriaDAO.doRetrieveAll());
@@ -117,58 +133,65 @@ public class AdminServlet extends Controller {
                     break;
                 }
 
-                case "/adminGestioneArticoliAggiungi" :
-                    if (request.isRequestedSessionIdValid() && accountSession.isAdmin()){
-                        System.out.println("aaaa");
-                        SQLColoreDAO sqlColoreDAO1 = new SQLColoreDAO();
-                        SQLTagliaDAO sqlTagliaDAO = new SQLTagliaDAO();
-                        SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
-                        SQLCategoriaDAO sqlCategoriaDAO = new SQLCategoriaDAO();
-                        Map<String, String> errors = (Map<String, String>) session.getAttribute("errors");
-                        System.out.println("sssss");
-                        if (errors != null) {
-                            System.out.println("ss");
-                            request.setAttribute("errors", errors);
-                            session.removeAttribute("errors");
-                            errors.clear();
-                        } System.out.println("pp");
-                        request.setAttribute("categorie", sqlCategoriaDAO.doRetrieveAll());
-                        request.setAttribute("taglie", sqlTagliaDAO.doRetrieveAll());
-                        request.setAttribute("colori", sqlColoreDAO1.doRetrieveAll());
-                        request.setAttribute("maxID", sqlArticoloDAO.maxID());
-                        request.getRequestDispatcher(view("admin/adminGestioneArticoliAggiungi")).forward(request, response);
+                case "/adminGestioneArticoliAggiungi" : {
+                    AccountSession accountSession = (AccountSession) session.getAttribute("accountSession");
+                    if (accountSession != null){
+                        if (request.isRequestedSessionIdValid() && accountSession.isAdmin()) {
+                            SQLColoreDAO sqlColoreDAO1 = new SQLColoreDAO();
+                            SQLTagliaDAO sqlTagliaDAO = new SQLTagliaDAO();
+                            SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
+                            SQLCategoriaDAO sqlCategoriaDAO = new SQLCategoriaDAO();
+
+                            Map<String, String> errors = (Map<String, String>) session.getAttribute("errors");
+                            if (errors != null) {
+                                request.setAttribute("errors", errors);
+                                session.removeAttribute("errors");
+                            }
+                            request.setAttribute("categorie", sqlCategoriaDAO.doRetrieveAll());
+                            request.setAttribute("taglie", sqlTagliaDAO.doRetrieveAll());
+                            request.setAttribute("colori", sqlColoreDAO1.doRetrieveAll());
+                            request.setAttribute("maxID", sqlArticoloDAO.maxID());
+                            request.getRequestDispatcher(view("admin/adminGestioneArticoliAggiungi")).forward(request, response);
+                        }
                     }
                     else
                         throw new InvalidRequestException("Non sei Autorizzato", List.of("Non sei Autorizzato"), HttpServletResponse.SC_FORBIDDEN);
                     break;
+                }
 
-                case "/adminHomepage":
-                    if (request.isRequestedSessionIdValid() && accountSession.isAdmin()){
-                        SQLAccountDAO sqlAccountDAO = new SQLAccountDAO();
-                        SQLOrdineDAO sqlOrdineDAO = new SQLOrdineDAO();
-                        SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
-                        request.setAttribute("customers",sqlAccountDAO.countCustomers());
-                        request.setAttribute("ordini",sqlOrdineDAO.countOrdini());
-                        request.setAttribute("articoli",sqlArticoloDAO.countArticoli());
-                        request.getRequestDispatcher(view("admin/adminHomepage")).forward(request, response);
-                    }
-                    else
+                case "/adminHomepage": {
+                    AccountSession accountSession = (AccountSession) session.getAttribute("accountSession");
+                    if (accountSession != null) {
+                        if (request.isRequestedSessionIdValid() && accountSession.isAdmin()) {
+                            SQLAccountDAO sqlAccountDAO = new SQLAccountDAO();
+                            SQLOrdineDAO sqlOrdineDAO = new SQLOrdineDAO();
+                            SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
+                            request.setAttribute("customers", sqlAccountDAO.countCustomers());
+                            request.setAttribute("ordini", sqlOrdineDAO.countOrdini());
+                            request.setAttribute("articoli", sqlArticoloDAO.countArticoli());
+                            request.getRequestDispatcher(view("admin/adminHomepage")).forward(request, response);
+                        }
+                    } else
                         throw new InvalidRequestException("Non sei Autorizzato", List.of("Non sei Autorizzato"), HttpServletResponse.SC_FORBIDDEN);
                     break;
+                }
 
-                case "/adminProfilo":
-                    if (request.isRequestedSessionIdValid() && accountSession.isAdmin())
-                        request.getRequestDispatcher(view("admin/adminProfilo")).forward(request, response);
-                   else
+                case "/adminProfilo": {
+                    AccountSession accountSession = (AccountSession) session.getAttribute("accountSession");
+                    if (accountSession != null) {
+                        if (request.isRequestedSessionIdValid() && accountSession.isAdmin())
+                            request.getRequestDispatcher(view("admin/adminProfilo")).forward(request, response);
+                    } else
                         throw new InvalidRequestException("Non sei Autorizzato", List.of("Non sei Autorizzato"), HttpServletResponse.SC_FORBIDDEN);
                     break;
+                }
 
                 case "/adminLogin":
                     request.getRequestDispatcher(view("admin/adminLogin")).forward(request, response);
                     break;
 
                 default:
-                    response.sendError(HttpServletResponse.SC_NOT_FOUND, "Risorsa non trovata");
+                    notFound();
             }
         }catch (InvalidRequestException | SQLException e) {
             e.printStackTrace();
@@ -183,7 +206,6 @@ public class AdminServlet extends Controller {
             String path = getPath(request);
             switch (path){
                 case "/adminLogin":{
-                    request.setAttribute("back",view("/adminServlet/adminLogin"));
                     validate(AccountValidator.validateSigin(request));
                     Account tmpAccount = new Account();
                     tmpAccount.setEmail(request.getParameter("email"));
@@ -202,11 +224,15 @@ public class AdminServlet extends Controller {
                     break;
                 }
 
-                case "/adminLogout":
-                    session.removeAttribute("accountSession");
-                    session.invalidate();
-                    response.sendRedirect("./adminLogin");
+                case "/adminLogout": {
+                    AccountSession accountSession = (AccountSession) session.getAttribute("accountSession");
+                    if (accountSession != null) {
+                        session.removeAttribute("accountSession");
+                        session.invalidate();
+                        response.sendRedirect("./adminLogin");
+                    }
                     break;
+                }
 
                 case "/adminGestioneArticoliFormModify": {
                     SQLArticoloDAO articoloDAO1 = new SQLArticoloDAO();
@@ -215,7 +241,7 @@ public class AdminServlet extends Controller {
                     articolo2.setPrezzo(Double.parseDouble(request.getParameter("prezzo")));
                     articolo2.setSesso(request.getParameter("sesso").toUpperCase());
                     articolo2.setDescrizione(request.getParameter("descrizione"));
-                    articolo2.setSconto(Integer.parseInt(request.getParameter("sconto")));
+                    articolo2.setSconto(Double.parseDouble(request.getParameter("sconto")));
 
                     Categoria categoria2 = new Categoria();
                     categoria2.setId_categoria(Integer.parseInt(request.getParameter("idCategoria")));
@@ -238,11 +264,9 @@ public class AdminServlet extends Controller {
                         colore.setCod_esadecimale(s);
                         articolo2.getColori().add(colore);
                     }
-                    if (!uploadImg(articolo2, request)) {
-                        request.setAttribute("msgPath", "Foto già presente.");
-                        request.getRequestDispatcher(view("./adminServlet/adminGestioneArticoliAggiungi")).forward(request, response);
-                        break;
-                    }
+                    if (!uploadImg(articolo2, request))
+                        errors.put("pathModify", "Foto già presente.");
+
                     String[] deletePath = request.getParameterValues("deletePath");
                     if (deletePath != null && deletePath.length > 0) {
                         Articolo deletePathArticolo = new Articolo();
@@ -253,24 +277,29 @@ public class AdminServlet extends Controller {
                             pathImg.setPathName(deletePath[i]);
                             deletePathArticolo.getPaths().add(pathImg);
                         }
-                        if (!removeImg(deletePathArticolo)) {
-                            request.setAttribute("msg", "Deseleziona almeno due foto.");
-                            request.getRequestDispatcher(view("./adminServlet/adminGestioneArticoliAggiungi")).forward(request, response);
-                            break;
-                        }
+                        if (!removeImg(deletePathArticolo))
+                            errors.put("pathRemove", "Lascia almeno due foto.");
+                    }
+                    if (errors.size() > 0){
+                        session.setAttribute("errors", errors);
+                        response.sendRedirect("./adminGestioneArticoliForm?id=" + request.getParameter("idArticolo"));
+                        break;
                     }
                     articoloDAO1.doUpdateArticolo(articolo2);
                     response.sendRedirect("./adminGestioneArticoli?page=1");
+                    break;
                 }
 
                 case "/adminGestioneArticoliFormDelete": {
-                    request.setAttribute("back", "/adminGestioneArticoli");
                     SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
-                    Articolo articoloDelete = sqlArticoloDAO.doRetrieveProductById(Integer.parseInt(request.getParameter("id")));
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    int idDelete = Integer.parseInt(request.getParameter("idDelete"));
+                    Articolo articoloDelete = sqlArticoloDAO.doRetrieveProductById(idDelete);
 
                     if (articoloDelete == null) {
-                        session.setAttribute("msgID", "ID non trovato.");
-                        request.getRequestDispatcher("/adminServlet/adminGestioneArticoliForm?id=" + Integer.parseInt(request.getParameter("id")));
+                        errors.put("msgID", "ID non trovato.");
+                        session.setAttribute("errors", errors);
+                        response.sendRedirect("./adminGestioneArticoliForm?id=" + id);
                         break;
                     }
                     String deleteRoot = getUploadPath();
@@ -281,16 +310,16 @@ public class AdminServlet extends Controller {
                     }
                     sqlArticoloDAO.doDeleteArticolo(articoloDelete);
                     response.sendRedirect("./adminGestioneArticoli?page=1");
+                    break;
                 }
 
-                case "/adminGestioneArticoliFormInsert":
-                    request.setAttribute("back","/adminGestioneArticoli");
+                case "/adminGestioneArticoliFormInsert": {
                     int count = 0;
-                    for (Part part: request.getParts()) {
+                    for (Part part : request.getParts()) {
                         if (part.getName().compareTo("path") == 0)
                             count++;
                     }
-                    if(count < 2)
+                    if (count < 2)
                         errors.put("msgPath", "Inserisci almeno due foto.");
 
                     SQLArticoloDAO articoloDao = new SQLArticoloDAO();
@@ -299,11 +328,11 @@ public class AdminServlet extends Controller {
                     articolo.setIDarticolo(Integer.parseInt(request.getParameter("idArticolo")));
                     Articolo tmp = articoloDao.doRetrieveProductById(articolo.getIDarticolo());
 
-                    if(tmp == null) {
+                    if (tmp == null) {
                         articolo.setPrezzo(Double.parseDouble(request.getParameter("prezzo")));
                         articolo.setSesso(request.getParameter("sesso").toUpperCase());
                         articolo.setDescrizione(request.getParameter("descrizione"));
-                        articolo.setSconto(Integer.parseInt(request.getParameter("sconto")));
+                        articolo.setSconto(Double.parseDouble(request.getParameter("sconto")));
 
                         Categoria categoria = new Categoria();
                         categoria.setId_categoria(Integer.parseInt(request.getParameter("idCategoria")));
@@ -335,21 +364,23 @@ public class AdminServlet extends Controller {
                         SQLColoreDAO sqlColoreDAO = new SQLColoreDAO();
                         articolo.setColori(new ArrayList<>());
 
-                        for (String colorValue : colorValues) {
+                        for (String colorValue : colorValues)
                             articolo.getColori().add(sqlColoreDAO.doRetrieveById(colorValue));
-                        }
-                        if (!uploadImg(articolo, request)) {
+
+                        if (!uploadImg(articolo, request))
                             errors.put("pathIsPresent", "Foto già presente.");
-                            session.setAttribute("errors", errors);
-                            response.sendRedirect("./adminServlet/adminGestioneArticoliAggiungi");
-                        }
-                    } else {
+                    } else
                         errors.put("msg", "ID già presente.");
+
+                    if (errors.size() > 0) {
                         session.setAttribute("errors", errors);
-                        response.sendRedirect("./adminServlet/adminGestioneArticoliAggiungi");
+                        response.sendRedirect("./adminGestioneArticoliAggiungi");
+                        break;
                     }
                     articoloDao.doCreateArticolo(articolo);
                     response.sendRedirect("./adminGestioneArticoli?page=1");
+                    break;
+                }
 
                 default:
                     notFound();

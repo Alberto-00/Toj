@@ -38,8 +38,36 @@ td:last-child:hover{
 }
 
 @media
-only screen and (max-width: 760px),
-(min-device-width: 768px) and (max-device-width: 1024px)  {
+only screen and (max-width: 1110px),
+(min-device-width: 768px) and (max-device-width: 1110px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    tr { border: 1px solid #ccc; }
+    td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+    }
+    td:before {
+        position: absolute;
+        top: 15px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        color: var(--black);
+        font-weight: bold;
+    }
+}
+
+@media screen and (max-width: 1110px){
     td:nth-of-type(1):before { content: "Id"; }
     td:nth-of-type(2):before { content: "Prezzo"; }
     td:nth-of-type(3):before { content: "Sesso"; }

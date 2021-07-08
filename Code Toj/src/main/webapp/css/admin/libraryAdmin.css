@@ -132,10 +132,6 @@ button.primary:hover{
     text-transform: uppercase;
 }
 
-.paginator{
-    list-style-type: none;
-}
-
 .paginator > li{
     border: 1px solid;
     padding: .5rem;

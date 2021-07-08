@@ -1,6 +1,5 @@
 <%@ page import="Model.Ordine.Ordine" %><%@ page import="java.util.List" %>
 <%@ page import="Model.Articolo.Articolo" %>
-<%@ page import="Model.Ordine.SQLOrdineDAO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -8,9 +7,8 @@
 <head>
     <jsp:include page="/WEB-INF/views/partials/admin/head.jsp">
         <jsp:param name="adminStyles" value="crmAdmin,table,adminGestioneOrdini"/>
-        <jsp:param name="adminScripts" value="ordini"/>
+        <jsp:param name="adminScripts" value="crm,ordini"/>
         <jsp:param name="title" value="T&#x000F8;j | Admin Dashboard"/>
-        <jsp:param name="adminScripts" value="crm"/>
     </jsp:include>
 </head>
 <body>
@@ -59,9 +57,12 @@
             </div>
         </div>
         <%i++; }%>
-        <jsp:include page="/WEB-INF/views/partials/admin/pagination.jsp">
-            <jsp:param name="servlet" value="adminGestioneOrdini"/>
-        </jsp:include><!-- Fine Tables -->
+        <div class="container-paginator">
+            <jsp:include page="/WEB-INF/views/partials/admin/pagination.jsp">
+                <jsp:param name="servlet" value="adminGestioneOrdini"/>
+            </jsp:include>
+        </div>
+        <!-- Fine Tables -->
     </main>
     <%@include file="../partials/admin/dashboardFooter.jsp"%>
 

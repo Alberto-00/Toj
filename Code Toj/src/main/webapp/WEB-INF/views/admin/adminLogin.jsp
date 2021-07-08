@@ -4,7 +4,7 @@
 <html lang="it">
 <head>
     <jsp:include page="/WEB-INF/views/partials/admin/head.jsp">
-        <jsp:param name="adminStyles" value="adminLogin"/>
+        <jsp:param name="adminStyles" value="adminLogin,table"/>
         <jsp:param name="title" value="T&#x000F8;j | Admin Login"/>
         <jsp:param name="adminScripts" value="adminFormValidate"/>
     </jsp:include>

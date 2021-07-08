@@ -1,4 +1,5 @@
 <%@ page import="Model.Articolo.Articolo" %>
+<%@ page import="java.util.Map" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="it">
@@ -10,13 +11,14 @@
     </jsp:include>
 </head>
 <body>
+<%Map<String, String> errors = (Map<String, String>) request.getAttribute("errors");%>
 <%@include file="../partials/admin/dashboardNav.jsp"%>
 <div class="col-2">
     <%@include file="../partials/admin/dashboardHeader.jsp"%>
     <%Articolo articolo = (Articolo) request.getAttribute("articolo");%>
     <main class="content">
         <h1>Gestione Articoli</h1><br>
-        <form enctype="multipart/form-data" class="modify-form" name="input-form" method="post" action="${pageContext.request.contextPath}/adminServlet/adminGestioneArticoliFormModify">
+        <form enctype="multipart/form-data" class="modify-form" name="modify-form" method="post" action="${pageContext.request.contextPath}/adminServlet/adminGestioneArticoliFormModify">
             <h2>Modifica Articolo</h2>
 
             <div class="idArticolo">
@@ -30,7 +32,7 @@
 
             <div class="price">
                 <p>Prezzo</p>
-                <input type="text" name="prezzo" value="${articolo.prezzo}" autocomplete="off">
+                <input type="text" name="prezzo" value="${articolo.prezzo}" required autocomplete="off">
             </div>
 
             <div class="sex">
@@ -50,7 +52,7 @@
 
             <div class="descrizione">
                 <p>Descrizione</p>
-                <textarea name="descrizione" required>${articolo.descrizione}</textarea></textarea>
+                <textarea name="descrizione" required>${articolo.descrizione}</textarea>
             </div>
 
             <div class="sconto">
@@ -61,8 +63,8 @@
             <div class="categoria">
                 <p>Categoria</p>
                 <select name="idCategoria">
-                    <option value="default" disabled selected>Scegli la categoria</option>
-                    <option value="<%=articolo.getCategoria().getId_categoria()%>"><%=articolo.getCategoria().getNome()%></option>
+                    <option value="default" disabled>Scegli la categoria</option>
+                    <option value="<%=articolo.getCategoria().getId_categoria()%>" selected><%=articolo.getCategoria().getNome()%></option>
                     <c:forEach items="${categorie}" var="categoria">
                         <c:if test="${articolo.categoria.nome != categoria.nome}">
                             <option value="${categoria.id_categoria}">${categoria.nome}</option>
@@ -91,7 +93,7 @@
 
             <div class="colore">
                 <p>Nuovi Colori <small>(Selezione multipla)</small></p>
-                <select name="colore" multiple>
+                <select name="colore" required multiple>
                     <c:forEach items="${colori}" var="colore">
                         <option value="${colore.cod_esadecimale}">${colore.nome}</option>
                     </c:forEach>
@@ -110,9 +112,14 @@
             <div class="foto">
                 <p>Aggiungi Foto</p>
                 <input type="file" accept="image/*" name="path" id="fileToUpload" multiple>
-                <c:if test="${not empty msgPath}">
-                    <label class="error">${msgPath}</label>
-                </c:if>
+                <%if (errors != null){
+                    for (Map.Entry<String, String> e: errors.entrySet()){
+                        if (e.getKey().compareTo("pathModify") == 0){
+                %>
+                <label class="error"><%=e.getValue()%></label>
+                <%}%>
+                <%}%>
+                <%}%>
             </div>
 
             <div class="deleteImg">
@@ -124,9 +131,14 @@
                             <label>${path.pathName}</label>
                         </div>
                     </c:forEach>
-                    <c:if test="${not empty msg}">
-                        <label class="error">${msg}</label>
-                    </c:if>
+                    <%if (errors != null){
+                        for (Map.Entry<String, String> e: errors.entrySet()){
+                            if (e.getKey().compareTo("pathRemove") == 0){
+                    %>
+                    <label class="error"><%=e.getValue()%></label>
+                    <%}%>
+                    <%}%>
+                    <%}%>
                 </fieldset>
             </div>
             <button class="btn" type="submit">Aggiorna</button>
@@ -136,10 +148,16 @@
             <h2>Eliminazione Articolo</h2>
             <div class="idArticolo">
                 <p>Inserisci ID</p>
-                <input type="text" name="id" value="${articolo.IDarticolo}" autocomplete="off">
-                <c:if test="${not empty msgID}">
-                    <label class="error">${msgID}</label>
-                </c:if>
+                <input type="hidden" name="id" value="${articolo.IDarticolo}">
+                <input type="text" name="idDelete" value="${articolo.IDarticolo}" required autocomplete="off">
+                <%if (errors != null){
+                    for (Map.Entry<String, String> e: errors.entrySet()){
+                        if (e.getKey().compareTo("msgID") == 0){
+                %>
+                <label class="error"><%=e.getValue()%></label>
+                <%}%>
+                <%}%>
+                <%}%>
             </div>
             <button class="btn" type="submit">Elimina</button>
         </form>

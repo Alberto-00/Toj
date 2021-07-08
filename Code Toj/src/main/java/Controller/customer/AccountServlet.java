@@ -16,7 +16,6 @@ import Model.Dati_utente.DatiUtente;
 import Model.Dati_utente.SQLDatiUtenteDAO;
 import Model.Ordine.Ordine;
 import Model.Ordine.SQLOrdineDAO;
-import Model.Sconto.SQLScontoDAO;
 import Model.Sconto.Sconto;
 import Model.Taglia.SQLTagliaDAO;
 import Model.search.Condition;
@@ -481,7 +480,6 @@ public class AccountServlet extends Controller {
                                     ordine.setCodSconto(coupon);
                                     session.removeAttribute("coupon");
                                 }
-
                                 sqlOrdineDAO.doInsertOrdine(ordine);
                                 response.sendRedirect("../index.jsp");
                             } else {
@@ -503,6 +501,7 @@ public class AccountServlet extends Controller {
                     }
                     break;
                 }
+
                 default:
                     notFound();
             }

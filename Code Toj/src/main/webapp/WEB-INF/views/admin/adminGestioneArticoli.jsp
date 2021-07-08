@@ -52,7 +52,10 @@
                         for (int j = 0; j <o.getTaglie().size(); j++){
                             if (o.getTaglie().get(j).getQuantita() > 0){%>
                                 <%=o.getTaglie().get(j).getId_nome()%>
-                                <%count+=o.getTaglie().get(j).getQuantita();
+                                <%if (j < o.getTaglie().size() - 1){%>
+                                    <%=" - "%>
+                                <%}
+                                    count+=o.getTaglie().get(j).getQuantita();
                             }
                         }%>
                 </td>
@@ -67,9 +70,11 @@
             <%}%>
             </tbody>
         </table>
-        <jsp:include page="/WEB-INF/views/partials/admin/pagination.jsp">
-            <jsp:param name="servlet" value="adminGestioneArticoli"/>
-        </jsp:include>
+        <div class="container-paginator">
+            <jsp:include page="/WEB-INF/views/partials/admin/pagination.jsp">
+                <jsp:param name="servlet" value="adminGestioneArticoli"/>
+            </jsp:include>
+        </div>
         <!-- Fine Tables -->
     </main>
     <%@include file="../partials/admin/dashboardFooter.jsp"%>

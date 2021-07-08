@@ -1,18 +1,18 @@
 .content {
-    justify-items:  flex-start;
+    justify-content: normal;
     align-items: flex-start;
 }
 
 .input-form, .delete-form, .modify-form {
-    margin-right: 100px;
     border: solid 5px var(--greenS);
     margin-left: 20px;
     padding: 10px;
     width: 350px;
 }
 
-.delete-form{
-    margin-top: 50px;
+.modify-form{
+    margin-right: 100px;
+    margin-bottom: 50px;
 }
 
 h1 {

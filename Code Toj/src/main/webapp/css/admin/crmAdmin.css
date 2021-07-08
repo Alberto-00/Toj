@@ -49,7 +49,7 @@ body {
     background-color: var(--green);
     flex-wrap: wrap;
     align-items: center;
-    /*justify-content: center;*/
+    justify-content: center;
 }
 
 .content > article {
@@ -63,7 +63,7 @@ header {
 
 footer {
     background: var(--green);
-    height: 6vh;
+    height: 3vh;
     font-size: 14px;
     align-content: flex-end;
     text-align: right;
@@ -147,9 +147,11 @@ nav > a:hover{
 
 /* Content */
 .modal-content {
-    position: relative;
+    position: fixed;
     background-color: #fefefe;
     margin: auto;
+    left: 50%;
+    transform: translate(-50%, 0);
     padding: 0;
     border: 1px solid #888;
     width: 80%;
@@ -268,5 +270,62 @@ nav > a:hover{
 @media screen and (max-width: 769px){
     header .account{
         display: none;
+    }
+}
+
+/*Scroll up*/
+/*Arrow top homepage*/
+#scrollUp {
+    background: var(--black) none repeat scroll 0 0;
+    bottom: 85px;
+    color: var(--white);
+    cursor: pointer;
+    font-size: 20px;
+    height: 45px;
+    line-height: 43px;
+    right: 12px;
+    text-align: center;
+    width: 45px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    transition: 0.3s;
+    position: fixed;
+    z-index: 99;
+    display: none;
+    -moz-animation: fadeIn 0.7s; /* Firefox */
+    -webkit-animation: fadeIn 0.7s; /* Safari and Chrome */
+    -o-animation: fadeIn 0.7s; /* Opera */
+}
+
+#scrollUp:hover i{
+    animation-name: fadeInUp;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes fadeInUp {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
     }
 }

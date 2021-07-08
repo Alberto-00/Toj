@@ -16,3 +16,9 @@
     text-align: center;
     font-size: 6em;
 }
+
+@media screen and (max-width: 994px){
+    .content{
+        display: block;
+    }
+}

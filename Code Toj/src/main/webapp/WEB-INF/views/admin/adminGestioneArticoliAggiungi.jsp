@@ -26,7 +26,7 @@
                     for (Map.Entry<String, String> e: errors.entrySet()){
                         if (e.getKey().compareTo("msg") == 0){
                 %>
-                <label class="error"><%=e.getValue()%></label>
+                <label id="1" class="error"><%=e.getValue()%></label>
                 <%}%>
                 <%}%>
                 <%}%>
@@ -81,7 +81,7 @@
             </div>
 
             <div class="colore">
-                <p>Colore</p>
+                <p>Colore <small>(Selezione multipla)</small></p>
                 <select name="colore" multiple>
                     <c:forEach items="${colori}" var="colore">
                         <option value="${colore.cod_esadecimale}">${colore.nome}</option>
@@ -103,7 +103,7 @@
                 <%}%>
                 <%}%>
             </div>
-            <button class="btn" type="submit">Aggiorna</button>
+            <button class="btn" type="submit">Crea</button>
         </form>
     </main>
     <%@include file="../partials/admin/dashboardFooter.jsp"%>

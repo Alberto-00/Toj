@@ -20,7 +20,6 @@ public class SQLPathImgDAO implements PathImgDAO<SQLException> {
                 try (PreparedStatement ps = con.prepareStatement("INSERT INTO pathimg " + "VALUES (?,?)")) {
                     ps.setString(1, p.getPathName());
                     ps.setInt(2, articolo.getIDarticolo());
-                    System.out.println(ps);
                     rows = ps.executeUpdate();
                 }
             }

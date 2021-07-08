@@ -1,6 +1,5 @@
 .content {
     align-content: flex-start;
-    justify-content: flex-start;
 }
 
 span.empty{
@@ -8,8 +7,15 @@ span.empty{
     color:  #e38e00;;
 }
 
+.container-paginator{
+    width: 100%;
+    display: block;
+}
+
 table {
     width: 100%;
+    margin-right: auto;
+    margin-left: auto;
     border-collapse: collapse;
 }
 
@@ -22,16 +28,18 @@ th {
     background: #333;
     color: white;
     font-weight: bold;
+    text-transform: uppercase;
 }
 
 td, th {
     padding: 15px;
     border: 1px solid #ccc;
     text-align: left;
-    font-size: 14px;
+    font-size: 13px;
 }
 
-@media screen and (max-width: 425px) {
+
+@media screen and (max-width: 500px) {
     table {
         width: 425px;
     }
@@ -46,33 +54,5 @@ td, th {
 @media screen and (max-width: 320px) {
     table{
         width: 320px;
-    }
-}
-
-@media screen and (max-width: 1024px)  {
-    table, thead, tbody, th, td, tr {
-        display: block;
-    }
-    thead tr {
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
-    }
-    tr { border: 1px solid #ccc; }
-    td {
-        border: none;
-        border-bottom: 1px solid #eee;
-        position: relative;
-        padding-left: 50%;
-    }
-    td:before {
-        position: absolute;
-        top: 15px;
-        left: 6px;
-        width: 45%;
-        padding-right: 10px;
-        white-space: nowrap;
-        color: var(--black);
-        font-weight: bold;
     }
 }

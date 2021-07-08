@@ -1,6 +1,4 @@
-//Aspettiamo che il file sia pronto
 $(function() {
-    // Inizializziamo la validazione sul form con name = "admin-login"
     $("form[name='input-form']").validate({
         // Specifichiamo le regole di valdazione
         rules: {
@@ -35,8 +33,7 @@ $(function() {
             },
             path:{
                 required: true,
-                extensions: "png|jpeg|gif",
-                accept: "image/*",
+                extension: "jpg|jpeg|gif|png",
             }
         },
         // Specifichiamo i messaggi di errore
@@ -71,9 +68,8 @@ $(function() {
                 digits: "Contiene solo numeri."
             },
             path:{
+                extension: "Formato non valido.",
                 required: "Inserisci almeno due foto.",
-                extensions: "Formato non valido",
-                accept: "Formato non valido.",
             }
         },
         //Quando valido, ci assicuriamo che il form venga inviato
@@ -82,14 +78,8 @@ $(function() {
         }
     });
 
-
-    $("form[name='modify-form']").validate({
-        // Specifichiamo le regole di valdazione
+   $("form[name='modify-form']").validate({
         rules: {
-            idArticolo: {
-                required: true,
-                digits: true,
-            },
             descrizione:{
                 required: true,
             },
@@ -103,7 +93,7 @@ $(function() {
                 max: 1,
             },
             idCategoria: {
-                required: true
+                required: true,
             },
             nome: {
                 required: true,
@@ -116,16 +106,10 @@ $(function() {
                 digits: true,
             },
             path:{
-                extensions: "png|jpeg|gif",
-                accept: "image/*",
+                extension: "jpg|jpeg|gif|png",
             }
         },
-        // Specifichiamo i messaggi di errore
         messages: {
-            idArticolo: {
-                required: "Campo necessario.",
-                digits: "Contiene solo numeri."
-            },
             descrizione:{
                 required: "Campo necessario.",
             },
@@ -152,11 +136,9 @@ $(function() {
                 digits: "Contiene solo numeri."
             },
             path:{
-                extensions: "Formato non valido",
-                accept: "Formato non valido.",
+                extension: "Formato non valido.",
             }
         },
-        //Quando valido, ci assicuriamo che il form venga inviato
         submitHandler: function(form) {
             form.submit();
         }
@@ -164,13 +146,15 @@ $(function() {
 
     $("form[name='delete-form']").validate({
         rules: {
-            id: {
-                digits: true
+            idDelete: {
+                required: true,
+                digits: true,
             },
         },
         messages: {
-            id: {
-                digits: "ID non valido",
+            idDelete: {
+                required: "Inserisci ID.",
+                digits: "ID non valido.",
             }
         },
         submitHandler: function(form) {
