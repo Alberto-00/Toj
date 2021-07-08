@@ -26,7 +26,7 @@
                     for (Map.Entry<String, String> e: errors.entrySet()){
                         if (e.getKey().compareTo("msg") == 0){
                 %>
-                <label id="1" class="error"><%=e.getValue()%></label>
+                <label id="errorID" class="error"><%=e.getValue()%></label>
                 <%}%>
                 <%}%>
                 <%}%>

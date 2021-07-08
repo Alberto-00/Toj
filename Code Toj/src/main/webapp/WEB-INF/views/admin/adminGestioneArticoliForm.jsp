@@ -41,11 +41,11 @@
                     <c:when test="${articolo.sesso eq 'M'}">
                         <input type="radio" name="sesso" checked value="M">
                         <label>M</label>
-                        <input type="radio"name="sesso" value="F"><label>F</label>
+                        <input type="radio" name="sesso" value="F"><label>F</label>
                     </c:when>
                     <c:otherwise>
                         <input type="radio" name="sesso" checked value="F"><label>F</label>
-                        <input type="radio"name="sesso" value="M"><label>M</label>
+                        <input type="radio" name="sesso" value="M"><label>M</label>
                     </c:otherwise>
                 </c:choose>
             </div>
@@ -154,7 +154,7 @@
                     for (Map.Entry<String, String> e: errors.entrySet()){
                         if (e.getKey().compareTo("msgID") == 0){
                 %>
-                <label class="error"><%=e.getValue()%></label>
+                <label id="errorID" class="error"><%=e.getValue()%></label>
                 <%}%>
                 <%}%>
                 <%}%>

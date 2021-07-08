@@ -161,4 +161,9 @@ $(function() {
             form.submit();
         }
     });
+
+    setTimeout(function () {
+        $("#errorID").fadeOut("slow");
+    }, 2000);
+
 });
