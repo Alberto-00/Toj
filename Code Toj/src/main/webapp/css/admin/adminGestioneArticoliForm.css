@@ -7,12 +7,29 @@
     border: solid 5px var(--greenS);
     margin-left: 20px;
     padding: 10px;
-    width: 350px;
+    width: 400px;
+}
+
+@media screen and (max-width: 640px){
+    .input-form, .modify-form, .delete-form{
+        width: 85%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .modify-form{
+        margin-right: auto;
+    }
 }
 
 .modify-form{
-    margin-right: 100px;
     margin-bottom: 50px;
+}
+
+@media screen and (min-width: 1059px){
+    .delete-form{
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 h1 {
