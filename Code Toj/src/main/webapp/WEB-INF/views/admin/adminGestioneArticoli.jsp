@@ -70,13 +70,13 @@
             <%}%>
             </tbody>
         </table>
-        <div class="container-paginator">
-            <jsp:include page="/WEB-INF/views/partials/admin/pagination.jsp">
-                <jsp:param name="servlet" value="adminGestioneArticoli"/>
-            </jsp:include>
-        </div>
         <!-- Fine Tables -->
     </main>
+    <div class="container-paginator">
+        <jsp:include page="/WEB-INF/views/partials/admin/pagination.jsp">
+            <jsp:param name="servlet" value="adminGestioneArticoli"/>
+        </jsp:include>
+    </div>
     <%@include file="../partials/admin/dashboardFooter.jsp"%>
 </div>
 <%@include file="../partials/admin/dashboardLogout.jsp"%>

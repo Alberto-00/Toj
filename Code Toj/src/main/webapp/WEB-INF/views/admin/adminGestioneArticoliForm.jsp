@@ -52,7 +52,7 @@
 
             <div class="descrizione">
                 <p>Descrizione</p>
-                <textarea name="descrizione" required>${articolo.descrizione}</textarea>
+                <textarea name="descrizione" required autocomplete="off">${articolo.descrizione}</textarea>
             </div>
 
             <div class="sconto">
@@ -85,7 +85,7 @@
                         <div class="size">
                             <input type="checkbox" name="taglia" value="${taglia.id_nome}" checked disabled>
                             <label>${taglia.id_nome}</label>
-                            <input type="text" name="quantita" value="${taglia.quantita}" placeholder="Quantità" required>
+                            <input type="text" name="quantita" value="${taglia.quantita}" placeholder="Quantità" autocomplete="off" required>
                         </div>
                     </c:forEach>
                 </fieldset>

@@ -9,7 +9,7 @@
                 <a href="${pageContext.request.contextPath}/customers/privacy" class="hover">Privacy Policy</a>
                 <a href="${pageContext.request.contextPath}/customers/termsCondition" class="hover">Termini e condizioni</a>
                 <a href="${pageContext.request.contextPath}/customers/contactUs" class="hover">Contattaci</a>
-                <a href="${pageContext.request.contextPath}/index.jsp" class="hover">Ritorna all'HomePage</a>
+                <a href="${pageContext.request.contextPath}/HomePage" class="hover">Ritorna all'HomePage</a>
             </div>
             <div class="column2">
                 <h3>Contattaci</h3>

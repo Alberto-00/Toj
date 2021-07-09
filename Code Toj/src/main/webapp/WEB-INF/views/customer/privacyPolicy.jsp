@@ -53,7 +53,6 @@
     </div>
 </div>
 
-
 <!-- footer-->
 <%@include file="../partials/customer/footer.jsp"%>
 </body>

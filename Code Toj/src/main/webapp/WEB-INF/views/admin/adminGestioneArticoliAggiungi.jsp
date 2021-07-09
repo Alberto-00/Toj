@@ -74,7 +74,7 @@
                         <div class="size">
                             <input type="hidden" name="taglia" value="${taglia.id_nome}">
                             <label>${taglia.id_nome}</label>
-                            <input type="text" name="quantita" value="0" placeholder="Quantità" required>
+                            <input type="text" name="quantita" value="0" placeholder="Quantità" required autocomplete="off">
                         </div>
                     </c:forEach>
                 </fieldset>

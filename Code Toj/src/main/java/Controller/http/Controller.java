@@ -1,8 +1,6 @@
 package Controller.http;
 
-import Model.Account.AccountSession;
 import Model.Articolo.Articolo;
-import Model.Cart.Cart;
 import Model.Path_immagini.PathImg;
 import Model.Path_immagini.SQLPathImgDAO;
 import org.json.simple.JSONObject;
@@ -38,24 +36,12 @@ public class Controller extends HttpServlet implements ErrorHandler {
         }
     }
 
-    protected String back(HttpServletRequest request){
-        return request.getServletPath() + request.getPathInfo();
-    }
-
     protected String getUploadPath(){
         return System.getenv("CATALINA_HOME") + File.separator + "uploads" + File.separator;
     }
 
     protected int parsePage(HttpServletRequest request){
         return Integer.parseInt(request.getParameter("page"));
-    }
-
-    protected AccountSession getAccountSession(HttpSession session){
-        return (AccountSession) session.getAttribute("accountSession");
-    }
-
-    protected Cart getSessionCart(HttpSession session){
-        return (Cart) session.getAttribute("accountCart");
     }
 
     protected void sendJson(HttpServletResponse response, JSONObject object) throws IOException{

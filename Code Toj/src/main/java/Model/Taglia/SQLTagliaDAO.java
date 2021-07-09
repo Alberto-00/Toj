@@ -85,19 +85,6 @@ public class SQLTagliaDAO implements TagliaDao<SQLException>{
     }
 
     @Override
-    public boolean doDeleteTaglia(Taglia taglia) throws SQLException {
-        try(Connection con = ConPool.getConnection()) {
-            QueryBuilder queryBuilder = new QueryBuilder("taglia", "t");
-            queryBuilder.delete().where("t.id_nome = " + taglia.getId_nome());
-            try (PreparedStatement ps = con.prepareStatement(queryBuilder.generateQuery())) {
-                ps.setString(1,taglia.getId_nome());
-                int rows = ps.executeUpdate();
-                return rows == 1;
-            }
-        }
-    }
-
-    @Override
     public boolean createSize(Articolo articolo) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
             try (PreparedStatement ps = con.prepareStatement("INSERT INTO size " + "VALUES (?,?,?)")) {

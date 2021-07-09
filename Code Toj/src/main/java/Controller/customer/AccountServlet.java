@@ -138,7 +138,7 @@ public class AccountServlet extends Controller {
                     SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
 
                     SimpleDateFormat myFormat = new SimpleDateFormat("dd-MM-yyyy");
-                    String dateBeforeString = "20-06-2021";
+                    String dateBeforeString = "8-07-2021";
                     LocalDate date = LocalDate.now();
                     String dateAfterString = date.getDayOfMonth() + "-" + date.getMonthValue() + "-" + date.getYear();
                     Date dateBefore = myFormat.parse(dateBeforeString);
@@ -149,15 +149,19 @@ public class AccountServlet extends Controller {
                     if (daysBetween > 0)
                         request.setAttribute("daysOfOpen",daysBetween);
                     else request.setAttribute("daysOfOpen", 0);
+
                     if (sqlAccountDAO.count() > 0)
                         request.setAttribute("account", sqlAccountDAO.count());
                     else request.setAttribute("account", 0);
+
                     if (sqlOrdineDAO.doRetrieveAll() > 0)
                         request.setAttribute("ordini", sqlOrdineDAO.doRetrieveAll());
                     else request.setAttribute("ordini", 0);
+
                     if (sqlArticoloDAO.countArticoli() > 0)
                         request.setAttribute("articoli", sqlArticoloDAO.countArticoli());
                     else request.setAttribute("articoli", 0);
+
                     request.getRequestDispatcher(view("customer/aboutUs")).forward(request, response);
                     break;
                 }
@@ -167,7 +171,7 @@ public class AccountServlet extends Controller {
                     break;
 
                 case "/account": // show user's account (cliente)
-                    HttpSession session1 = request.getSession();
+                    HttpSession session1 = request.getSession(false);
                     SQLOrdineDAO sqlOrdineDAO = new SQLOrdineDAO();
                     SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
                     AccountSession accountSession = (AccountSession) session1.getAttribute("userSession");
@@ -231,7 +235,7 @@ public class AccountServlet extends Controller {
                     SQLDatiUtenteDAO sqlDatiUtenteDAO = new SQLDatiUtenteDAO();
                     Optional<Account> accounts = sqlAccountDAO.findAccount(tmpAccount.getEmail(), tmpAccount.getPassword(), false);
                     Optional<DatiUtente> datiUtenteOptional = sqlDatiUtenteDAO.findUserData(tmpAccount.getEmail());
-                    HttpSession session = request.getSession();
+                    HttpSession session = request.getSession(false);
 
                     if(accounts.isPresent()){
                         synchronized (session){
@@ -276,7 +280,7 @@ public class AccountServlet extends Controller {
                     tmpAccount.setEmail(request.getParameter("email"));
                     tmpAccount.setPassword(request.getParameter("password"));
                     SQLAccountDAO sqlAccountDAO = new SQLAccountDAO();
-                    HttpSession session = request.getSession();
+                    HttpSession session = request.getSession(false);
 
                     if (sqlAccountDAO.checkAccount(tmpAccount.getEmail()).isEmpty()){
                         sqlAccountDAO.createAccount(tmpAccount.getEmail(), tmpAccount.getPassword(), false);
@@ -346,7 +350,7 @@ public class AccountServlet extends Controller {
 
                 case "/updateAddessUser": {
                     validate(AccountValidator.updateAddress(request));
-                    HttpSession session = request.getSession();
+                    HttpSession session = request.getSession(false);
                     String indirizzo = request.getParameter("indirizzo");
                     String appartamento = request.getParameter("appartamento");
                     String city = request.getParameter("city");
@@ -387,7 +391,7 @@ public class AccountServlet extends Controller {
                     validate(AccountValidator.updateAddress(request));
                     validate(AccountValidator.updateData(request));
 
-                    HttpSession session = request.getSession();
+                    HttpSession session = request.getSession(false);
                     SQLOrdineDAO sqlOrdineDAO = new SQLOrdineDAO();
                     SQLAccountDAO sqlAccountDAO = new SQLAccountDAO();
                     SQLDatiUtenteDAO sqlDatiUtenteDAO = new SQLDatiUtenteDAO();

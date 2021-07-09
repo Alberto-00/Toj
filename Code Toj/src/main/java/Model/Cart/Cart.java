@@ -10,7 +10,7 @@ public class Cart {
     private List<Articolo> items;
     private final static double spedizione = 4.5;
     private int count;
-    private int subtotal;
+    private double subtotal;
 
     public Cart (){
         this.items = new ArrayList<>();
@@ -27,7 +27,7 @@ public class Cart {
     }
 
     public double subTotal(){
-        int sum = 0;
+        double sum = 0;
         for (Articolo a: this.items)
             sum += a.totalPrice();
         return this.subtotal = sum;

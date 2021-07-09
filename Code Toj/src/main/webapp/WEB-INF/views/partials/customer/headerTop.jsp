@@ -98,7 +98,7 @@
         <div class="container-top">
             <div class="row">
                 <div class="columnLogo">
-                    <a href="${pageContext.request.contextPath}/index.jsp">
+                    <a href="${pageContext.request.contextPath}/HomePage">
                         <img src="${pageContext.request.contextPath}/icons/logo.png" alt="" width="100" height="100">
                     </a>
                 </div>
@@ -132,7 +132,7 @@
                     </form>
 
                     <div class="sidenav-btn">
-                        <a href="${pageContext.request.contextPath}/index.jsp" style="border-bottom: 1px solid #747474;">
+                        <a href="${pageContext.request.contextPath}/HomePage" style="border-bottom: 1px solid #747474;">
                             Home<i class="fas fa-home"></i>
                         </a>
 
@@ -240,7 +240,7 @@
         <div class="nav-bottom" id="nav-bottom">
             <ul>
                 <li class="dropdown">
-                        <a href="${pageContext.request.contextPath}/index.jsp">Home</a>
+                        <a href="${pageContext.request.contextPath}/HomePage">Home</a>
                 </li>
                 <li class="dropdown">
                     <a href="${pageContext.request.contextPath}/customers/shop?page=1&Sesso=M" class="dropbtn">Uomo<i class="fas fa-angle-down icon-left"></i></a>

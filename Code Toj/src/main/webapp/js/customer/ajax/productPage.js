@@ -30,10 +30,19 @@ function callAjax(){
             }
 
             $('#productForm > h1').text(arr.articolo.nome);
-            $('.current_price').text("€ " + arr.articolo.prezzo);
+            if (parseFloat(arr.articolo.sconto) > 0.0) {
+
+                $('.sale').text("€ " + sale(arr.articolo.prezzo, arr.articolo.sconto).toFixed(2).replace('.', ','));
+            }
+            else
+                $('.sale').text("€ " + (parseFloat(arr.articolo.prezzo)).toFixed(2).replace('.', ','));
             $('.product_desc > p').text(arr.articolo.descrizione);
         }
     })
+}
+
+function sale(price, sale){
+    return price - (parseFloat(price) * parseFloat(sale));
 }
 
 function modifyURL(){

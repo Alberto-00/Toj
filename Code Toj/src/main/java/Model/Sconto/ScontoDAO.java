@@ -10,9 +10,4 @@ public interface ScontoDAO <E extends Exception> {
 
     boolean findSconto(String id) throws E;
 
-    boolean doCreateSconto(Sconto sconto) throws E;
-
-    boolean doUpdateSconto(Sconto sconto) throws E;
-
-    boolean doDeleteSconto(String sconto) throws E;
 }

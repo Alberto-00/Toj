@@ -119,36 +119,6 @@ public class SQLOrdineDAO implements OrdineDAO<SQLException> {
     }
 
     @Override
-    public boolean doUpdateOrdine(Ordine ordine) throws SQLException {
-        try(Connection con = ConPool.getConnection()) {
-            QueryBuilder queryBuilder = new QueryBuilder("ordine", "o");
-            queryBuilder.update("ID_ordine", "data_acquisto", "data_spedizione", "Email").where("o.ID_ordine=?");
-            try (PreparedStatement ps = con.prepareStatement(queryBuilder.generateQuery())) {
-                ps.setString(1, ordine.getID_ordine());
-                ps.setDate(2, (Date) ordine.getData_acquisto());
-                ps.setDate(3, (Date) ordine.getData_spedizione());
-                ps.setString(4, ordine.getUser().getEmail());
-                ps.setString(5, ordine.getID_ordine());
-                int rows = ps.executeUpdate();
-                return rows == 1;
-            }
-        }
-    }
-
-    @Override
-    public boolean doDeleteOrdine(Ordine ordine) throws SQLException {
-        try(Connection con = ConPool.getConnection()) {
-            QueryBuilder queryBuilder = new QueryBuilder("ordine", "o");
-            queryBuilder.delete().where("o.ID_ordine=?");
-            try (PreparedStatement ps = con.prepareStatement(queryBuilder.generateQuery())) {
-                ps.setString(1, ordine.getID_ordine());
-                int rows = ps.executeUpdate();
-                return rows == 1;
-            }
-        }
-    }
-
-    @Override
     public int countOrdini() throws SQLException {
         int ordini = 0;
         try(Connection con = ConPool.getConnection()) {

@@ -24,7 +24,7 @@ $(document).ready(function (){
             success: function (response) {
                 var arr = JSON.parse(response);
 
-                for (let i = 0; i < parseInt(arr.products.length) && i < 10; i++){
+                for (let i = 0; i < parseInt(arr.products.length) && i < 15; i++){
                     createItem(i);
                 }
 
@@ -58,10 +58,15 @@ $(document).ready(function (){
                         'href': "./customers/products?id="  + arr.products[i].IDarticolo + "&sex=" + arr.products[i].sesso,
                     })
 
-                    if (parseInt(arr.products[i].sconto) > 0) {
-                        $('#sconto' + i).children('span').text("- " + arr.products[i].sconto + "%");
-                    } else
-                        $('#sconto' + i).remove();
+                    if (parseFloat(arr.products[i].sconto) > 0.0) {
+                        if ($('#sconto' + i).children('.product_sale').length == 0) {
+                            var text = '<div class="product_sale">' +
+                                '<span>- ' + (parseFloat(arr.products[i].sconto) * 100) + '%</span>' +
+                                '</div>'
+                            $('#sconto' + i).append(text);
+                        }
+                    }else if($('#sconto' + i).children('.product_sale').length > 0)
+                        $('#sconto' + i).children('.product_sale').remove();
 
 
                     /*quarto blocco*/
@@ -72,7 +77,7 @@ $(document).ready(function (){
 
                     $('#price' + i).attr({
                         'id' : "price" + i
-                    }).text("€ " + arr.products[i].prezzo);
+                    }).text("€ " + (parseFloat(arr.products[i].prezzo)).toFixed(2).replace('.', ','));
                 }
             }
         })

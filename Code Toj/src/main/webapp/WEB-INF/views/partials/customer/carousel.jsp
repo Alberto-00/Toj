@@ -1,9 +1,10 @@
 <%@ page import="Model.Articolo.Articolo" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.text.DecimalFormat" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%List<Articolo> articoliWomen = (List<Articolo>) request.getServletContext().getAttribute("articoli");
+<%List<Articolo> articoliWomen = (List<Articolo>) request.getAttribute("articoli");
     List<Articolo> nuoviArriviBySex = (List<Articolo>) request.getAttribute("nuoviArrivi");
     List<Articolo> articoli;
 
@@ -17,7 +18,7 @@
     <div class="carousel owl-carousel">
 
         <%if(articoli.size() > 0){
-            for (int i = 0; i < articoli.size() && i < 10; i++){
+            for (int i = 0; i < articoli.size() && i < 15; i++){
                 request.setAttribute("pathImgFirst",articoli.get(i).getPaths().get(0).getPathName());
                 request.setAttribute("pathImgSecond", articoli.get(i).getPaths().get(1).getPathName());
                 request.setAttribute("articolo", articoli.get(i));%>
@@ -35,9 +36,9 @@
                 <div class="quick_button">
                     <a id="cartHref<%=i%>" href="${pageContext.request.contextPath}/customers/products?id=${articolo.IDarticolo}&sex=${articolo.sesso}">Vai ai Dettagli</a>
                 </div>
-                <div class="double_base">
+                <div class="double_base" id="sconto<%=i%>">
                     <%if (articoli.get(i).getSconto() > 0){%>
-                    <div class="product_sale" id="sconto<%=i%>">
+                    <div class="product_sale">
                         <span><%="- " + (int) (articoli.get(i).getSconto() * 100) + '%'%></span>
                     </div>
                     <%}%>
@@ -48,7 +49,9 @@
             </div>
             <div class="product_content">
                 <h3><a id="nameProduct<%=i%>" href="${pageContext.request.contextPath}/customers/products?id=${articolo.IDarticolo}&sex=${articolo.sesso}">${articolo.nome}</a></h3>
-                <span id="price<%=i%>" class="current_price"><%="€ " + articoli.get(i).getPrezzo()%></span>
+                <%DecimalFormat df = new DecimalFormat("#.00");
+                    String priceFormatted = df.format(articoli.get(i).getPrezzo());%>
+                <span id="price<%=i%>" class="current_price"><%="€ " + priceFormatted%></span>
             </div>
         </div>
         <%}%>

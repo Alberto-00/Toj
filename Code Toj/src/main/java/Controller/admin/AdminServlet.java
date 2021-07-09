@@ -193,8 +193,11 @@ public class AdminServlet extends Controller {
                 default:
                     notFound();
             }
-        }catch (InvalidRequestException | SQLException e) {
-            e.printStackTrace();
+        } catch(SQLException ex){
+            log(ex.getMessage());
+        } catch(InvalidRequestException e){
+            log(e.getMessage());
+            e.handle(request, response);
         }
     }
 

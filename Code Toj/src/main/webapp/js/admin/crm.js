@@ -43,15 +43,11 @@ $(document).ready(function (){
  */
 /*Utilizziamo addEventListener per eseguire due onscroll senza che questi si sovrascrivessero*/
 window.addEventListener("scroll", scrollFunction);
-
 var scrollUp = document.getElementById("scrollUp");
-
 window.onscroll = function() {scrollFunction()};
-
 function scrollFunction() {
-        if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
+        if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250)
                 scrollUp.style.display = "block";
-        } else {
+        else
                 scrollUp.style.display = "none";
-        }
 }

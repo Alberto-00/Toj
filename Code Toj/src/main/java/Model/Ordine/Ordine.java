@@ -1,4 +1,5 @@
 package Model.Ordine;
+
 import Model.Articolo.Articolo;
 import Model.Sconto.Sconto;
 import Model.Account.Account;

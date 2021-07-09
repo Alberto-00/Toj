@@ -2,7 +2,6 @@ package Model.Path_immagini;
 
 import Model.Articolo.Articolo;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface PathImgDAO <E extends Exception>{

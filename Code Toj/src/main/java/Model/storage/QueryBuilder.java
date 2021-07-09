@@ -1,7 +1,6 @@
 package Model.storage;
 
 import Model.search.Condition;
-import Model.search.Operator;
 
 import java.util.List;
 import java.util.StringJoiner;
@@ -70,7 +69,7 @@ public class QueryBuilder {
         return this;
     }
 
-    public QueryBuilder delete(String... fields){
+    public QueryBuilder delete(){
         QUERY.append("DELETE FROM ").append(TABLE);
         return this;
     }
@@ -89,25 +88,10 @@ public class QueryBuilder {
         return this;
     }
 
-    public QueryBuilder outerJoin(boolean isLeft, String joinedTable, String joinedAlias){
-        String direction = isLeft ? " LEFT JOIN" : " RIGHT JOIN";
-        QUERY.append(direction).append(' ').append(joinedAlias).append(' ').append(joinedAlias);
-        return this;
-    }
-
     public QueryBuilder on(String condition){
         QUERY.append(" ON ").append(condition);
         return this;
     }
-
-    /*public QueryBuilder search(List<Condition> conditions){
-        StringJoiner searchJoiner = new StringJoiner(" AND ");
-        for (Condition cn : conditions){
-            searchJoiner.add(String.format("%s.%s%s", ALIAS_TABLE, cn.toString(), QM));
-        }
-        QUERY.append(searchJoiner);
-        return this;
-    }*/
 
     public QueryBuilder search(List<Condition> conditions) {
         int i = 0, j = 0, k = 0, z = 0;
@@ -156,13 +140,5 @@ public class QueryBuilder {
         for(String field: fields)
             commaJoiner.add(String.format("%s.%s", ALIAS_TABLE, field));
         QUERY.append(commaJoiner.toString());
-    }
-
-    public void asc(){
-        QUERY.append(" ASC ");
-    }
-
-    public void desc(){
-        QUERY.append(" DESC ");
     }
 }

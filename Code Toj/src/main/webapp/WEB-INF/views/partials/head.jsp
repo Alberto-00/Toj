@@ -28,12 +28,6 @@
     </c:forTokens>
 </c:if>
 
-<c:if test="${not empty param.adminStyles}">
-    <c:forTokens items="${param.adminStyles}" delims="," var="adminStyle">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin/${adminStyle}.css">
-    </c:forTokens>
-</c:if>
-
 <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery-validate-plugin.js"></script>
@@ -42,16 +36,9 @@
 <script src="${pageContext.request.contextPath}/js/customer/ajax/liveSearchBar.js" defer></script>
 <script src="${pageContext.request.contextPath}/js/customer/login.js" defer></script>
 
-
 <c:if test="${not empty param.customerScripts}">
     <c:forTokens items="${param.customerScripts}" delims="," var="customerScript">
         <script src="${pageContext.request.contextPath}/js/customer/${customerScript}.js" defer></script>
-    </c:forTokens>
-</c:if>
-
-<c:if test="${not empty param.adminScripts}">
-    <c:forTokens items="${param.adminScripts}" delims="," var="adminScript">
-        <script src="${pageContext.request.contextPath}/js/admin/${adminScript}.js" defer></script>
     </c:forTokens>
 </c:if>
 

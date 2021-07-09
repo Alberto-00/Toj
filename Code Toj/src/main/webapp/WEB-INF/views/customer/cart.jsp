@@ -1,5 +1,6 @@
 <%@ page import="Model.Articolo.Articolo" %>
 <%@ page import="Model.Sconto.Sconto" %>
+<%@ page import="java.text.DecimalFormat" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -52,7 +53,10 @@
                                     <a href="${pageContext.request.contextPath}/customers/products?id=<%=a.getIDarticolo()%>&sex=<%=a.getSesso()%>" class="hover">
                                         <%=a.getNome()%></a>
                                 </td>
-                                <td class="product-price">€ <%=a.getPrezzoScontato()%></td>
+                                <%DecimalFormat df2 = new DecimalFormat("#.00");
+                                String price = df2.format(a.getPrezzoScontato());
+                                String total = df2.format(a.totalPrice());%>
+                                <td class="product-price">€ <%=price%></td>
                                 <td class="product_quantity">
                                     <input id="<%=i%>" class="update" data="<%=a.getChosenSize()%>" data1="<%=a.getIDarticolo()%>" min="1"
                                            max="<%=a.getOneTaglia(a.getChosenSize()).getQuantita()%>" value="<%=a.getLocalQuantity()%>"
@@ -60,7 +64,7 @@
                                     <small></small>
                                 </td>
                                 <td class="product_size"><%=a.getChosenSize()%></td>
-                                <td class="product_total">€ <%=a.totalPrice()%></td>
+                                <td class="product_total">€ <%=total%></td>
                             </tr>
                             <%i++;}%>
                         </c:if>
@@ -85,7 +89,7 @@
                 </div>
             </div>
         </div>
-        <% double total =  0.0, subTotal = 0.0, spedizione = 0.0, coupon = 0;
+        <% double total =  0.00, subTotal = 0.00, spedizione = 0.00, coupon = 0;
         if(session.getAttribute("coupon") != null) {
             Sconto sconto = (Sconto) session.getAttribute("coupon");
             coupon = sconto.getSconto();
@@ -104,16 +108,20 @@
                 <div class="coupon_inner">
                     <div class="cart_subtotal">
                         <p>Subtotal</p>
-                        <p class="cart_amount">€ <%=subTotal%></p>
+                        <%DecimalFormat df2 = new DecimalFormat("#.00");
+                            String priceSubTotal = df2.format(subTotal);%>
+                        <p class="cart_amount">€ <%=priceSubTotal%></p>
                     </div>
                     <div class="cart_subtotal">
                         <p>Spedizione</p>
-                        <p class="cart_amount">€ <%=spedizione%></p>
+                        <%String spedition = df2.format(spedizione);%>
+                        <p class="cart_amount">€ <%=spedition%></p>
                     </div>
                     <hr class="border3-hr">
                     <div class="cart_subtotal">
                         <p>Totale</p>
-                        <p class="cart_amount">€ <%=total%></p>
+                        <%String tot = df2.format(total);%>
+                        <p class="cart_amount">€ <%=tot%></p>
                     </div>
                     <div class="checkout_btn">
                         <a href="javascript:void(0)" id="checkout-btn">Procedi al Checkout</a>

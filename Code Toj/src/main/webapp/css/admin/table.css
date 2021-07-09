@@ -10,6 +10,7 @@ span.empty{
 .container-paginator{
     width: 100%;
     display: block;
+    background-color: var(--greenS);
 }
 
 table {

@@ -1,5 +1,6 @@
 <%@ page import="Model.Articolo.Articolo" %>
 <%@ page import="Model.Sconto.Sconto" %>
+<%@ page import="java.text.DecimalFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="it">
@@ -60,10 +61,12 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <%for (Articolo a: cart.getItems()){%>
+                            <%DecimalFormat df2 = new DecimalFormat("#.00");
+                                for (Articolo a: cart.getItems()){%>
                             <tr>
                                 <td><p><%=a.getNome()%><strong> × <%=a.getLocalQuantity()%></strong></p></td>
-                                <td>€ <%=a.totalPrice()%></td>
+                                <%String price = df2.format(a.totalPrice());%>
+                                <td>€ <%=price%></td>
                             </tr>
                             <%}%>
                             </tbody>
@@ -87,7 +90,7 @@
                                         subtotal = cart.subTotal();
                                     } total = subtotal + Cart.getSpedizione();
                                 %>
-                                <td><strong>€ <%=subtotal%></strong></td>
+                                <td><strong>€ <%=df2.format(subtotal)%></strong></td>
                             </tr>
                             <tr>
                                 <th>Spedizione</th>
@@ -95,7 +98,7 @@
                             </tr>
                             <tr class="order_total">
                                 <th>Ordine Totale</th>
-                                <td><strong>€ <%=total%></strong></td>
+                                <td><strong>€ <%=df2.format(total)%></strong></td>
                             </tr>
                             </tfoot>
                         </table>

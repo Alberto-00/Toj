@@ -4,10 +4,6 @@ $(document).ready(function (){
         rewind: false, /* use rewind if you don't want loop */
         margin: 20,
         dots: false,
-        /*
-        animateOut: 'fadeOut',
-        animateIn: 'fadeIn',
-        */
         responsiveClass: true,
         autoHeight: true,
         smartSpeed: 800,

@@ -3,9 +3,7 @@ package Model.Articolo;
 import Model.search.Condition;
 import Model.search.Paginator;
 
-import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 
 public interface ArticoloDAO <E extends Exception>{
 

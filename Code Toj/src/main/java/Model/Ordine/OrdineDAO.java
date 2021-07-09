@@ -21,8 +21,4 @@ public interface OrdineDAO  <E extends Exception>{
     int countOrdini() throws E;
 
     List<Ordine> getOrders(Paginator paginator) throws E;
-
-    boolean doUpdateOrdine(Ordine ordine) throws E;
-
-    boolean doDeleteOrdine(Ordine ordine) throws E;
 }

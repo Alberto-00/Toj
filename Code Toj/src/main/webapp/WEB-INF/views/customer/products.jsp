@@ -54,7 +54,9 @@ List<Articolo> articoliColor = (List<Articolo>) request.getAttribute("filterColo
                 <form id="productForm" action="${pageContext.request.contextPath}/carts/add" name="formProduct">
                     <h1><%=articolo.getNome()%></h1>
                     <div class="product_price">
-                        <span class="current_price">€ <%=articolo.getPrezzo()%></span>
+                        <%DecimalFormat df2 = new DecimalFormat("#.00");
+                            String price = df2.format(articolo.getPrezzoScontato());%>
+                        <span class="current_price sale">€ <%=price%></span>
                         <input type="hidden" name="price" value="<%=articolo.getPrezzo()%>">
                     </div>
                     <div class="product_desc">
