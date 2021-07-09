@@ -129,7 +129,7 @@ public class AccountServlet extends Controller {
                     session.removeAttribute("userSession");
                     session.removeAttribute("userInfSession");
                     session.invalidate();
-                    response.sendRedirect("../index.jsp");
+                    response.sendRedirect(request.getContextPath() + "/HomePage");
                     break;
 
                 case "/aboutUs": {
@@ -255,7 +255,7 @@ public class AccountServlet extends Controller {
                             datiUtenteOptional.ifPresent(utente -> session.setAttribute("userInfSession", utente));
 
                             session.setAttribute("userSession", accountSession);
-                            response.sendRedirect("../index.jsp");
+                            response.sendRedirect(request.getContextPath() + "/HomePage");
                         }
                     } else {
                         request.setAttribute("msg", "Credenziali errate!");
@@ -270,7 +270,7 @@ public class AccountServlet extends Controller {
                     session.removeAttribute("userSession");
                     session.removeAttribute("userInfSession");
                     session.invalidate();
-                    response.sendRedirect("../index.jsp");
+                    response.sendRedirect(request.getContextPath() + "/HomePage");
                     break;
                 }
 
@@ -293,7 +293,7 @@ public class AccountServlet extends Controller {
                                 session.setAttribute("userInfSession", datiUtente);
                             }
                         }
-                        response.sendRedirect("../index.jsp");
+                        response.sendRedirect(request.getContextPath() + "/HomePage");
                     } else {
                         request.setAttribute("msg2", "Email già esistente!");
                         request.getRequestDispatcher(view("customer/login")).forward(request, response);
@@ -443,7 +443,7 @@ public class AccountServlet extends Controller {
                                     session.removeAttribute("coupon");
                                 }
                                 sqlOrdineDAO.doInsertOrdine(ordine);
-                                response.sendRedirect("../index.jsp");
+                                response.sendRedirect(request.getContextPath() + "/HomePage");
                             }
                             else {
                                 request.setAttribute("msg2", "Email già esistente!");
@@ -485,7 +485,7 @@ public class AccountServlet extends Controller {
                                     session.removeAttribute("coupon");
                                 }
                                 sqlOrdineDAO.doInsertOrdine(ordine);
-                                response.sendRedirect("../index.jsp");
+                                response.sendRedirect(request.getContextPath() + "/HomePage");
                             } else {
                                 request.setAttribute("msg2", "Usa la tua e-mail e password.");
                                 request.getRequestDispatcher(view("customer/checkout")).forward(request, response);
@@ -498,7 +498,7 @@ public class AccountServlet extends Controller {
                 case "/contactUs": {
                     SQLAccountDAO sqlAccountDAO = new SQLAccountDAO();
                     if(sqlAccountDAO.checkAccount(request.getParameter("email")).isPresent())
-                        response.sendRedirect("../index.jsp");
+                        response.sendRedirect(request.getContextPath() + "/HomePage");
                     else {
                         request.setAttribute("msg", "Inserisci la tua e-mail di login.");
                         request.getRequestDispatcher(view("customer/contactUs")).forward(request, response);
