@@ -25,7 +25,7 @@ $(document).ready(function() {
                     $("button + small").text("Coupon non valido.");
                 } else if (sconto.sconto === "Carrello vuoto.") {
                     $("button + small").text(sconto.sconto);
-                } else if (sconto.sconto === "Coupon già applicato.")
+                } else if (sconto.sconto === "Coupon già utilizzato.")
                     $("button + small").text(sconto.sconto);
                 else {
                     location.reload();

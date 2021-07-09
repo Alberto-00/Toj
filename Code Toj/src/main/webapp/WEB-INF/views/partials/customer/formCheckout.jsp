@@ -41,7 +41,7 @@
 <div class="row">
     <div class="column-contact">
         <label>Telefono<span>*</span></label>
-        <input type="tel" placeholder="3569541658" autocomplete="off" name="telefono" maxlength="10" value="<c:if test="${not empty userInfSession.numeroTelefonico}">${userInfSession.numeroTelefonico}</c:if>" required>
+        <input type="tel" placeholder="3569541658" autocomplete="off" name="telefono" maxlength="14" value="<c:if test="${not empty userInfSession.numeroTelefonico}">${userInfSession.numeroTelefonico}</c:if>" required>
     </div>
     <div class="column-contact padding-right0">
         <label>Email <span>*</span></label>

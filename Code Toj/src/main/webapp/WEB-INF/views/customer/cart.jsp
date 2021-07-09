@@ -58,10 +58,18 @@
                                 String total = df2.format(a.totalPrice());%>
                                 <td class="product-price">€ <%=price%></td>
                                 <td class="product_quantity">
+                                    <%if (a.getLocalQuantity() > a.getOneTaglia(a.getChosenSize()).getQuantita()){%>
+                                    <input id="<%=i%>" class="update" data="<%=a.getChosenSize()%>" data1="<%=a.getIDarticolo()%>" min="1"
+                                           max="<%=a.getOneTaglia(a.getChosenSize()).getQuantita()%>"
+                                           value="<%=a.getOneTaglia(a.getChosenSize()).getQuantita()%>"
+                                           name="quantity" type="number">
+                                    <small></small>
+                                    <%} else {%>
                                     <input id="<%=i%>" class="update" data="<%=a.getChosenSize()%>" data1="<%=a.getIDarticolo()%>" min="1"
                                            max="<%=a.getOneTaglia(a.getChosenSize()).getQuantita()%>" value="<%=a.getLocalQuantity()%>"
                                            name="quantity" type="number">
                                     <small></small>
+                                    <%}%>
                                 </td>
                                 <td class="product_size"><%=a.getChosenSize()%></td>
                                 <td class="product_total">€ <%=total%></td>
