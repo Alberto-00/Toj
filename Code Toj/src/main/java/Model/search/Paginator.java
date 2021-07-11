@@ -9,24 +9,7 @@ import java.util.List;
 
 public class Paginator {
 
-    private int limit, firstId, offset;
-    private int lastId, count;
-
-    public int getLimit() {
-        return limit;
-    }
-
-    public void setLimit(int limit) {
-        this.limit = limit;
-    }
-
-    public int getOffset() {
-        return offset;
-    }
-
-    public void setOffset(int offset) {
-        this.offset = offset;
-    }
+    private int limit, firstId, offset, lastId, count;
 
     public Paginator(int page, int itemsPerPage){
         this.limit = itemsPerPage;
@@ -75,6 +58,22 @@ public class Paginator {
 
     public int getFirstId() {
         return firstId;
+    }
+
+    public int getLimit() {
+        return limit;
+    }
+
+    public void setLimit(int limit) {
+        this.limit = limit;
+    }
+
+    public int getOffset() {
+        return offset;
+    }
+
+    public void setOffset(int offset) {
+        this.offset = offset;
     }
 
     public int getPages(int size) {

@@ -303,7 +303,7 @@ public class AccountServlet extends Controller {
 
                 case "/updateAnagraphicalDates":{
                     validate(AccountValidator.updateData(request));
-                    HttpSession session = request.getSession();
+                    HttpSession session = request.getSession(false);
                     String nome = request.getParameter("nome");
                     String cognome = request.getParameter("cognome");
                     String telefono = request.getParameter("telefono");
