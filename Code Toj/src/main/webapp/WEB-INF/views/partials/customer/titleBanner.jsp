@@ -2,7 +2,7 @@
 <!--middle-->
 <div class = middle-top>
     <div class ="container-top">
-        <a href="${pageContext.request.contextPath}/index.jsp">Home</a>
+        <a href="${pageContext.request.contextPath}/HomePage">Home</a>
         <span>/</span>
         <span>${param.title}</span>
     </div>
