@@ -110,7 +110,7 @@ public class AdminServlet extends Controller {
                     break;
                 }
 
-                case "/adminGestioneArticoliForm": {
+                case "/adminGestioneArticoliForm": { /*view of page Modify-Product and Delete-Product*/
                     int id = Integer.parseInt(request.getParameter("id"));
                     SQLArticoloDAO sqlArticoloDAO2 = new SQLArticoloDAO();
                     SQLColoreDAO sqlColoreDAO = new SQLColoreDAO();
@@ -171,16 +171,6 @@ public class AdminServlet extends Controller {
                             request.setAttribute("articoli", sqlArticoloDAO.countArticoli());
                             request.getRequestDispatcher(view("admin/adminHomepage")).forward(request, response);
                         }
-                    } else
-                        throw new InvalidRequestException("Non sei Autorizzato", List.of("Non sei Autorizzato"), HttpServletResponse.SC_FORBIDDEN);
-                    break;
-                }
-
-                case "/adminProfilo": {
-                    AccountSession accountSession = (AccountSession) session.getAttribute("accountSession");
-                    if (accountSession != null) {
-                        if (request.isRequestedSessionIdValid() && accountSession.isAdmin())
-                            request.getRequestDispatcher(view("admin/adminProfilo")).forward(request, response);
                     } else
                         throw new InvalidRequestException("Non sei Autorizzato", List.of("Non sei Autorizzato"), HttpServletResponse.SC_FORBIDDEN);
                     break;

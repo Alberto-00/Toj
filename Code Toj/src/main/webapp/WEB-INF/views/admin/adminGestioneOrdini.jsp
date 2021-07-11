@@ -65,7 +65,6 @@
         <!-- Fine Tables -->
     </main>
     <%@include file="../partials/admin/dashboardFooter.jsp"%>
-
 </div>
 <%@include file="../partials/admin/dashboardLogout.jsp"%>
 </body>

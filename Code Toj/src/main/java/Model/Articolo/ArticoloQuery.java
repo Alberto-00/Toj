@@ -22,7 +22,8 @@ final class ArticoloQuery {
                 innerJoin("pathimg", "p").on("a.ID_articolo = p.ID_articolo");
         if (!conditionList.isEmpty()){
             if(latest) {
-                builder.where("(a.data_inserimento >= date_sub(current_date, INTERVAL  1 month)) AND ").search(conditionList).orderBy("ID_Articolo");
+                builder.where("(a.data_inserimento >= date_sub(current_date, INTERVAL  1 month)) AND ").
+                        search(conditionList).orderBy("ID_Articolo");
             } else {
                 builder.where().search(conditionList).orderBy("ID_Articolo");
             }

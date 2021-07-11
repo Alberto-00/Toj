@@ -13,6 +13,7 @@ import java.util.List;
 
 @WebServlet(name = "HomePage", value = "/HomePage")
 public class HomePage extends Controller {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -24,5 +25,4 @@ public class HomePage extends Controller {
             throwables.printStackTrace();
         }
     }
-
 }

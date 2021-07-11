@@ -58,7 +58,7 @@
                     <div class="login__box" id="secondLogin">
                         <label for="passwordInput">
                             <i class="fas fa-unlock-alt"></i>
-                            <input type="password" id="passwordInput" minlength="8" maxlength="30" required name="password" placeholder="Password" class="login__input" autocomplete="off">
+                            <input type="password" id="passwordInput" minlength="8" required name="password" placeholder="Password" class="login__input" autocomplete="off">
                         </label>
                     </div>
 

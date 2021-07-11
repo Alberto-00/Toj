@@ -7,13 +7,15 @@ $(function() {
             },
             password: {
                 required: true,
-                minlength: 8
+                minlength: 8,
+                maxlength: 30,
             }
         },
         messages: {
             password: {
                 required: "Inserire la password.",
-                minlength: "La password deve avere almeno 8 caratteri."
+                minlength: "La password deve avere almeno 8 caratteri.",
+                maxlength: "La password deve essere al più 30 caratteri."
             },
             email: {
                 required: "Inserire l'e-mail.",
@@ -36,13 +38,15 @@ $(function() {
             },
             password: {
                 required: true,
-                minlength: 8
+                minlength: 8,
+                maxlength: 30,
             }
         },
         messages: {
             password: {
                 required: "Inserire la password.",
-                minlength: "La password deve avere almeno 8 caratteri."
+                minlength: "La password deve avere almeno 8 caratteri.",
+                maxlength: "La password deve essere al più 30 caratteri."
             },
             email: {
                 email: "Inserire un'e-mail valida.",
@@ -65,13 +69,15 @@ $(function() {
             },
             password: {
                 required: true,
-                minlength: 8
+                minlength: 8,
+                maxlength: 30,
             }
         },
         messages: {
             password: {
                 required: "Inserire la password.",
-                minlength: "La password deve avere almeno 8 caratteri."
+                minlength: "La password deve avere almeno 8 caratteri.",
+                maxlength: "La password deve essere al più 30 caratteri.",
             },
             email: {
                 required: "Inserire l'e-mail.",
@@ -94,13 +100,15 @@ $(function() {
             },
             password: {
                 required: true,
-                minlength: 8
+                minlength: 8,
+                maxlength: 30,
             }
         },
         messages: {
             password: {
                 required: "Inserire la password.",
-                minlength: "La password deve avere almeno 8 caratteri."
+                minlength: "La password deve avere almeno 8 caratteri.",
+                maxlength: "La password deve essere al più 30 caratteri.",
             },
             email: {
                 required: "Inserire l'e-mail.",

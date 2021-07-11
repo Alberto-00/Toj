@@ -11,6 +11,7 @@ $(document).ready(function (){
             password: {
                 required: true,
                 minlength: 8,
+                maxlength: 30,
             }
         },
         // Specifichiamo i messaggi di errore
@@ -18,6 +19,7 @@ $(document).ready(function (){
             password: {
                 required: "Inserire la password.",
                 minlength: "La password deve essere almeno di 8 caratteri.",
+                maxlength: "La password deve essere al più 30 caratteri",
             },
             email: {
                 required: "Inserire l'e-mail.",

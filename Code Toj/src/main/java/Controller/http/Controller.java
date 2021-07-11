@@ -68,7 +68,7 @@ public class Controller extends HttpServlet implements ErrorHandler {
         List<String> fullPath = new ArrayList<>();
         String uploadRoot = getUploadPath();
         for (String str: filesName)
-            fullPath.add(sqlPathImgDAO.writePath(articolo) + str);
+            fullPath.add(PathImg.writePath(articolo) + str);
 
         for (String pathFile: fullPath){
             if (sqlPathImgDAO.findPath(pathFile)){

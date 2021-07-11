@@ -10,8 +10,6 @@ public interface PathImgDAO <E extends Exception>{
 
     boolean findPath (String pathName) throws E;
 
-    String writePath(Articolo articolo) throws E;
-
     int countByID(Articolo articolo) throws E;
 
     List<PathImg> doRetrieveByID(Articolo articolo) throws E;

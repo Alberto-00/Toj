@@ -51,6 +51,7 @@ $(document).ready(function (){
             },
             password: {
                 minlength: 8,
+                maxlength: 30,
             },
             indirizzo:{
                 required: true,
@@ -115,6 +116,7 @@ $(document).ready(function (){
             },
             password: {
                 minlength: "La password deve avere almeno 8 caratteri.",
+                maxlength: "La password deve essere al più 30 caratteri."
             },
             email: {
                 required: "Inserire un'email valida.",

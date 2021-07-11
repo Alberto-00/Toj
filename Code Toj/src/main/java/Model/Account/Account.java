@@ -4,10 +4,10 @@ import Model.Dati_utente.DatiUtente;
 import Model.Ordine.Ordine;
 import Model.Sconto.Sconto;
 
-import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;import java.util.List;
+import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 public class Account {
 

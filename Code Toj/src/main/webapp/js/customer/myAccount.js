@@ -50,7 +50,7 @@ $(document).ready(function () {
     $("#details-account input").css("color", "var(--black)");
     $("#address-account input").css("color", "var(--black)");
 
-    $("form[name='formData']").validate({
+    $('form[name="formData"]').validate({
         rules: {
             nome: {
                 alphabetsnspace: true,
@@ -69,7 +69,8 @@ $(document).ready(function () {
                 email: true,
             },
             password: {
-                minlength: 8
+                minlength: 8,
+                maxlength: 30,
             }
         },
         messages: {
@@ -86,7 +87,8 @@ $(document).ready(function () {
                 minAge: "Devi essere maggiorenne",
             },
             password: {
-                minlength: "La password deve avere almeno 8 caratteri."
+                minlength: "La password deve avere almeno 8 caratteri.",
+                maxlength: "La password deve essere al più 30 caratteri."
             },
             email: {
                 required: "Inserire un'email valida.",
