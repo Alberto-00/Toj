@@ -5,6 +5,7 @@
 <%@ page import="Model.Taglia.Taglia" %>
 <%@ page import="Model.Colore.Colore" %>
 <%@ page import="Model.search.Condition" %>
+<%@ page import="java.text.DecimalFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="it">
@@ -143,7 +144,9 @@ int count = (int) request.getAttribute("count");%>
                         </div>
                         <div class="product_content">
                             <h3><a id="nameProduct<%=i%>" href="${pageContext.request.contextPath}/customers/products?id=<%=articoli.get(i).getIDarticolo()%>&sex=<%=articoli.get(i).getSesso()%>"><%=articoli.get(i).getNome()%></a></h3>
-                            <span id="price<%=i%>" class="current_price"><%="€ " + articoli.get(i).getPrezzo()%></span>
+                            <%DecimalFormat df2 = new DecimalFormat("#.00");
+                                String price = df2.format(articoli.get(i).getPrezzo());%>
+                            <span id="price<%=i%>" class="current_price"><%="€ " + price%></span>
                         </div>
                     </div>
                 <%}%>

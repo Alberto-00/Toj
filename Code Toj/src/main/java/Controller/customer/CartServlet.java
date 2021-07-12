@@ -35,9 +35,18 @@ public class CartServlet extends Controller {
                                 sessionCartNotLog = new Cart();
 
                             int quantity = Integer.parseInt(request.getParameter("quantity"));
-                            if (quantity <= optArticolo.getTaglie().get(0).getQuantita())
+                            if (quantity <= optArticolo.getTaglie().get(0).getQuantita()){
+                                Articolo tmpArt = sessionCartNotLog.find(id, taglia);
+                                if (tmpArt != null){
+                                    if (quantity + tmpArt.getLocalQuantity() > tmpArt.getTaglie().get(0).getQuantita()) {
+                                        session.setAttribute("msgQuantity", "Quantità non disponibile.");
+                                        response.sendRedirect("../customers/products?id=" + optArticolo.getIDarticolo() + "&sex=" +
+                                                optArticolo.getSesso());
+                                        break;
+                                    }
+                                }
                                 sessionCartNotLog.addProduct(optArticolo, quantity, taglia);
-
+                            }
                             session.setAttribute("cartNotLog", sessionCartNotLog);
                         }
                         response.sendRedirect("../customers/products?id=" + optArticolo.getIDarticolo() + "&sex=" +

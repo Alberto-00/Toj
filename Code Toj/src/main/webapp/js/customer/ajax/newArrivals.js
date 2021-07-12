@@ -1,7 +1,7 @@
 $(document).ready(function (){
 
     $("a.ajax").click(function () {
-        var sex = $(this).attr("id");
+        const sex = $(this).attr("id");
 
         if(sex === 'M'){
             $('#M').css("color", "var(--hover)");
@@ -22,7 +22,7 @@ $(document).ready(function (){
             contentType: "application/json; charset=utf-8",
             url: './ajax/api',
             success: function (response) {
-                var arr = JSON.parse(response);
+                const arr = JSON.parse(response);
 
                 for (let i = 0; i < parseInt(arr.products.length) && i < 15; i++){
                     createItem(i);
@@ -59,13 +59,10 @@ $(document).ready(function (){
                     })
 
                     if (parseFloat(arr.products[i].sconto) > 0.0) {
-                        if ($('#sconto' + i).children('.product_sale').length == 0) {
-                            var text = '<div class="product_sale">' +
-                                '<span>- ' + (parseFloat(arr.products[i].sconto) * 100) + '%</span>' +
-                                '</div>'
-                            $('#sconto' + i).append(text);
-                        }
-                    }else if($('#sconto' + i).children('.product_sale').length > 0)
+                        const text = '<div class="product_sale">' +
+                            '<span>- ' + (parseFloat(arr.products[i].sconto) * 100) + '%</span>' + '</div>';
+                        $('#sconto' + i).append(text);
+                    }else
                         $('#sconto' + i).children('.product_sale').remove();
 
 

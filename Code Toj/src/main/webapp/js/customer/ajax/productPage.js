@@ -30,19 +30,27 @@ function callAjax(){
             }
 
             $('#productForm > h1').text(arr.articolo.nome);
-            if (parseFloat(arr.articolo.sconto) > 0.0) {
 
-                $('.sale').text("€ " + sale(arr.articolo.prezzo, arr.articolo.sconto).toFixed(2).replace('.', ','));
+            const $sale = $('.sale');
+            if (parseFloat(arr.articolo.sconto) > 0.0){
+                if ($sale.length === 0){
+                    const text = '<span class="current_price sale">€ ' +
+                        arr.articolo.prezzo.toFixed(2).replace('.', ',') + '</span>';
+                     $(text).insertBefore('#priceReal');
+                } else
+                    $sale.text("€ " + arr.articolo.prezzo.toFixed(2).replace('.', ','));
             }
-            else
-                $('.sale').text("€ " + (parseFloat(arr.articolo.prezzo)).toFixed(2).replace('.', ','));
+            else if ($sale.length > 0)
+                $sale.remove();
+
+            $('#priceReal').text("€ " + sale(arr.articolo.prezzo, arr.articolo.sconto).toFixed(2).replace('.', ','));
             $('.product_desc > p').text(arr.articolo.descrizione);
         }
     })
 }
 
 function sale(price, sale){
-    return price - (parseFloat(price) * parseFloat(sale));
+    return parseFloat(price)  - (parseFloat(price) * parseFloat(sale));
 }
 
 function modifyURL(){

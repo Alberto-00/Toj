@@ -17,6 +17,12 @@
     width: 100%;
 }
 
+.sale{
+    text-decoration: line-through;
+    color: var(--grey) !important;
+    margin-right: 10px;
+}
+
 
 /*Colonna di destra
 */

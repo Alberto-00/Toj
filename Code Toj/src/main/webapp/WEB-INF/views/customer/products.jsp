@@ -55,8 +55,12 @@ List<Articolo> articoliColor = (List<Articolo>) request.getAttribute("filterColo
                     <h1><%=articolo.getNome()%></h1>
                     <div class="product_price">
                         <%DecimalFormat df2 = new DecimalFormat("#.00");
-                            String price = df2.format(articolo.getPrezzoScontato());%>
+                            String priceSale = df2.format(articolo.getPrezzoScontato());
+                            String price = df2.format(articolo.getPrezzo());
+                            if (articolo.getSconto() > 0){%>
                         <span class="current_price sale">€ <%=price%></span>
+                        <%}%>
+                        <span id="priceReal" class="current_price">€ <%=priceSale%></span>
                         <input type="hidden" name="price" value="<%=articolo.getPrezzo()%>">
                     </div>
                     <div class="product_desc">
@@ -89,6 +93,10 @@ List<Articolo> articoliColor = (List<Articolo>) request.getAttribute("filterColo
                     <div class="product_variant quantity">
                         <label>quantità</label>
                         <input id="input_quantita" name="quantity" min="1" max="100"  value="1" type="number">
+                        <%String msg = (String) request.getAttribute("msg");
+                        if (msg != null){%>
+                        <span id="errorID" class="error"><%=msg%></span>
+                        <%}%>
                         <button class="btn-add-cart" type="submit">Aggiungi al carrello</button>
                     </div>
                 </form>

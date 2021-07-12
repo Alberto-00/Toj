@@ -53,6 +53,14 @@ public class AccountServlet extends Controller {
                         request.setAttribute("articolo", articolo);
                         request.setAttribute("nuoviArrivi", newArrivalBySex);
                     }
+                    HttpSession session = request.getSession(false);
+                    synchronized (session){
+                        String msg = (String) session.getAttribute("msgQuantity");
+                        if (msg!= null) {
+                            request.setAttribute("msg", msg);
+                            session.removeAttribute("msgQuantity");
+                        }
+                    }
                     request.getRequestDispatcher(view("customer/products")).forward(request, response);
                     break;
                 }
