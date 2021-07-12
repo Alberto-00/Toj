@@ -1,4 +1,5 @@
-<%@ page import="Model.Ordine.Ordine" %><%@ page import="java.util.List" %>
+<%@ page import="Model.Ordine.Ordine" %>
+<%@ page import="java.util.List" %>
 <%@ page import="Model.Articolo.Articolo" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
