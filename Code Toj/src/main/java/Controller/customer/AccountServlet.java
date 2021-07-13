@@ -38,6 +38,7 @@ public class AccountServlet extends Controller {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{
             String path = getPath(request);
+            HttpSession session = request.getSession();
             switch (path) {
                 case "/products": {
                     String id = request.getParameter("id");
@@ -53,7 +54,7 @@ public class AccountServlet extends Controller {
                         request.setAttribute("articolo", articolo);
                         request.setAttribute("nuoviArrivi", newArrivalBySex);
                     }
-                    HttpSession session = request.getSession(false);
+
                     synchronized (session){
                         String msg = (String) session.getAttribute("msgQuantity");
                         if (msg!= null) {
@@ -132,7 +133,6 @@ public class AccountServlet extends Controller {
                     break;
 
                 case "/logout":
-                    HttpSession session = request.getSession(false);
                     authenticate(session);
                     session.removeAttribute("userSession");
                     session.removeAttribute("userInfSession");
@@ -179,10 +179,9 @@ public class AccountServlet extends Controller {
                     break;
 
                 case "/account": // show user's account (cliente)
-                    HttpSession session1 = request.getSession(false);
                     SQLOrdineDAO sqlOrdineDAO = new SQLOrdineDAO();
                     SQLArticoloDAO sqlArticoloDAO = new SQLArticoloDAO();
-                    AccountSession accountSession = (AccountSession) session1.getAttribute("userSession");
+                    AccountSession accountSession = (AccountSession) session.getAttribute("userSession");
                     if (accountSession != null){
                         List<Ordine> ordini = sqlOrdineDAO.fetchOrdine(accountSession.getEmail());
                         Map<String, List<Articolo>> articoli = new LinkedHashMap<>();
@@ -233,6 +232,7 @@ public class AccountServlet extends Controller {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         try {
             String path = getPath(request);
+            HttpSession session = request.getSession();
             switch (path){
                 case "/sigin":{
                     validate(AccountValidator.validateSigin(request));
@@ -243,7 +243,6 @@ public class AccountServlet extends Controller {
                     SQLDatiUtenteDAO sqlDatiUtenteDAO = new SQLDatiUtenteDAO();
                     Optional<Account> accounts = sqlAccountDAO.findAccount(tmpAccount.getEmail(), tmpAccount.getPassword(), false);
                     Optional<DatiUtente> datiUtenteOptional = sqlDatiUtenteDAO.findUserData(tmpAccount.getEmail());
-                    HttpSession session = request.getSession(false);
 
                     if(accounts.isPresent()){
                         synchronized (session){
@@ -273,7 +272,6 @@ public class AccountServlet extends Controller {
                 }
 
                 case "/logout": {
-                    HttpSession session = request.getSession(false);
                     authenticate(session);
                     session.removeAttribute("userSession");
                     session.removeAttribute("userInfSession");
@@ -288,7 +286,6 @@ public class AccountServlet extends Controller {
                     tmpAccount.setEmail(request.getParameter("email"));
                     tmpAccount.setPassword(request.getParameter("password"));
                     SQLAccountDAO sqlAccountDAO = new SQLAccountDAO();
-                    HttpSession session = request.getSession(false);
 
                     if (sqlAccountDAO.checkAccount(tmpAccount.getEmail()).isEmpty()){
                         sqlAccountDAO.createAccount(tmpAccount.getEmail(), tmpAccount.getPassword(), false);
@@ -311,7 +308,6 @@ public class AccountServlet extends Controller {
 
                 case "/updateAnagraphicalDates":{
                     validate(AccountValidator.updateData(request));
-                    HttpSession session = request.getSession(false);
                     String nome = request.getParameter("nome");
                     String cognome = request.getParameter("cognome");
                     String telefono = request.getParameter("telefono");
@@ -358,7 +354,6 @@ public class AccountServlet extends Controller {
 
                 case "/updateAddessUser": {
                     validate(AccountValidator.updateAddress(request));
-                    HttpSession session = request.getSession(false);
                     String indirizzo = request.getParameter("indirizzo");
                     String appartamento = request.getParameter("appartamento");
                     String city = request.getParameter("city");
@@ -400,7 +395,6 @@ public class AccountServlet extends Controller {
                     validate(AccountValidator.updateData(request));
                     validate(AccountValidator.payCard(request));
 
-                    HttpSession session = request.getSession(false);
                     SQLOrdineDAO sqlOrdineDAO = new SQLOrdineDAO();
                     SQLAccountDAO sqlAccountDAO = new SQLAccountDAO();
                     SQLDatiUtenteDAO sqlDatiUtenteDAO = new SQLDatiUtenteDAO();

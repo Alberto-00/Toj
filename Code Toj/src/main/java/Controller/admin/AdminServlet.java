@@ -37,7 +37,7 @@ public class AdminServlet extends Controller {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            HttpSession session = request.getSession(false);
+            HttpSession session = request.getSession();
             String path = getPath(request);
             switch (path) {
                 case "/adminGestioneClienti": {
@@ -195,7 +195,7 @@ public class AdminServlet extends Controller {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Map<String, String> errors = new LinkedHashMap<>();
-            HttpSession session = request.getSession(false);
+            HttpSession session = request.getSession();
             String path = getPath(request);
             switch (path){
                 case "/adminLogin":{
