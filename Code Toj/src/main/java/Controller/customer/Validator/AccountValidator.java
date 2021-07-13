@@ -42,21 +42,6 @@ public class AccountValidator {
         return validator;
     }
 
-    public static RequestValidator payCard(HttpServletRequest request){
-        RequestValidator validator = new RequestValidator(request);
-        if (request.getParameter("nomeCard") != null && request.getParameter("nomeCard").compareTo("") != 0)
-            validator.assertMatch("nomeCard", Pattern.compile("^[a-zA-Z ]*$"), "Inseririsci il tuo nome reale.");
-        if (request.getParameter("cognomeCard") != null && request.getParameter("cognomeCard").compareTo("") != 0)
-            validator.assertMatch("cognomeCard", Pattern.compile("^[a-zA-Z ]*$"), "Inseririsci il tuo cognome reale.");
-        if (request.getParameter("cvv") != null && request.getParameter("cvv").compareTo("") != 0) {
-            validator.assertMatch("cvv", Pattern.compile("^\\d+$"), "CVV errato.");
-            validator.assertSize("3", "4", "CVV errato.");
-        }
-        if (request.getParameter("dataCarta") != null && request.getParameter("dataCarta").compareTo("") != 0)
-            validator.assertMatch("dataCarta", Pattern.compile("^(0[1-9]|1[0-2])\\/?([0-9]{4}|[0-9]{2})$"), "Data non corretta.");
-        return validator;
-    }
-
     public static RequestValidator contactUs(HttpServletRequest request){
         RequestValidator validator = new RequestValidator(request);
         if (request.getParameter("name") != null && request.getParameter("name").compareTo("") != 0)

@@ -347,7 +347,7 @@ public class AccountServlet extends Controller {
 
                         session.setAttribute("userInfSession", datiUtente);
                         session.setAttribute("userSession", accountSession);
-                        request.getRequestDispatcher(view("customer/myAccount")).forward(request, response);
+                        response.sendRedirect("./account");
                     }
                     break;
                 }
@@ -385,7 +385,7 @@ public class AccountServlet extends Controller {
                         datiUtenteDAO.updateAddressUtente(datiUtente);
 
                         session.setAttribute("userInfSession", datiUtente);
-                        request.getRequestDispatcher(view("customer/myAccount")).forward(request, response);
+                        response.sendRedirect("./account");
                         break;
                     }
                 }
@@ -393,7 +393,6 @@ public class AccountServlet extends Controller {
                 case "/checkout":{
                     validate(AccountValidator.updateAddress(request));
                     validate(AccountValidator.updateData(request));
-                    validate(AccountValidator.payCard(request));
 
                     SQLOrdineDAO sqlOrdineDAO = new SQLOrdineDAO();
                     SQLAccountDAO sqlAccountDAO = new SQLAccountDAO();
