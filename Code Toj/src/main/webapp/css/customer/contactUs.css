@@ -21,3 +21,7 @@ a.color-fixed-navBottom{
     margin-bottom: 12px;
     display: block;
 }
+
+.contact-message textarea {
+    margin-bottom: 0;
+}
