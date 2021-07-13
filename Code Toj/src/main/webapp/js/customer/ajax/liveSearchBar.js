@@ -7,7 +7,7 @@ $(document).ready(function(){
             $('#filter-records').html('');
             return;
         }
-        var regex = new RegExp(searchField, "i");
+        var regex = new RegExp(searchField, "i"); /*i -> not case sensitive*/
         var output = '<div class="container-search">';
         output += '<div class="row">';
         var count = 1;
