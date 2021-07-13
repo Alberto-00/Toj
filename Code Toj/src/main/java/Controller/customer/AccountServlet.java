@@ -398,6 +398,7 @@ public class AccountServlet extends Controller {
                 case "/checkout":{
                     validate(AccountValidator.updateAddress(request));
                     validate(AccountValidator.updateData(request));
+                    validate(AccountValidator.payCard(request));
 
                     HttpSession session = request.getSession(false);
                     SQLOrdineDAO sqlOrdineDAO = new SQLOrdineDAO();
@@ -504,6 +505,7 @@ public class AccountServlet extends Controller {
                 }
 
                 case "/contactUs": {
+                    validate(AccountValidator.contactUs(request));
                     SQLAccountDAO sqlAccountDAO = new SQLAccountDAO();
                     if(sqlAccountDAO.checkAccount(request.getParameter("email")).isPresent())
                         response.sendRedirect(request.getContextPath() + "/HomePage");

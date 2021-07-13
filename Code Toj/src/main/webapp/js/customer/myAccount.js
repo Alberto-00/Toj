@@ -1,5 +1,5 @@
-var header = document.getElementById("dashboard-Account");
-var btns = header.getElementsByClassName("btn-Account");
+const header = document.getElementById("dashboard-Account");
+const btns = header.getElementsByClassName("btn-Account");
 for (var i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", function() {
         var current = document.getElementsByClassName("active-btn");
@@ -8,7 +8,7 @@ for (var i = 0; i < btns.length; i++) {
     });
 }
 
-var elements = document.getElementsByClassName("account-content");
+const elements = document.getElementsByClassName("account-content");
 function hide (elements, t) {
     for (var index = 0; index < elements.length; index++) {
         if(elements[index]===t){
@@ -21,12 +21,12 @@ function hide (elements, t) {
 }
 
 function showhide(str) {
-    var t = document.getElementById(str);
+    const t = document.getElementById(str);
     hide(elements, t);
 }
 
 function hideElement (str) {
-    var t = document.getElementById(str);
+    const t = document.getElementById(str);
         if(t.style.display === 'block')
             t.style.display ='none';
         else
@@ -106,6 +106,12 @@ $(document).ready(function () {
                 minlength: 5,
                 maxlength: 5,
             },
+            citta:{
+                alphabetsnspace: true,
+            },
+            stato:{
+                alphabetsnspace: true,
+            }
         },
         messages: {
             cap:{
@@ -113,6 +119,12 @@ $(document).ready(function () {
                 minlength: "CAP non completo",
                 maxlength: "CAP non completo",
             },
+            citta:{
+                alphabetsnspace: "Inserisci una città valida."
+            },
+            stato:{
+                alphabetsnspace: "Inserisci uno Stato valido."
+            }
         },
         submitHandler: function(form) {
             form.submit();

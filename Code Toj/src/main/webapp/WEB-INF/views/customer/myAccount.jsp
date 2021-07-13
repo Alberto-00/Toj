@@ -73,13 +73,13 @@
                         </div>
                         <div class="columnAlt-50 padding-right0">
                             <label>Email</label>
-                            <input type="email" name="email" placeholder="example@gmail.com" value="${userSession.email}">
+                            <input type="email" name="email" placeholder="example@gmail.com" value="${userSession.email}" disabled autocomplete="off">
                         </div>
                     </div>
                     <div class="row">
                         <div class="columnAlt-100">
                             <label>Password</label>
-                            <input type="password" name="password">
+                            <input type="password" name="password" autocomplete="off">
                         </div>
                     </div>
                     <div class="row">

@@ -84,6 +84,7 @@ $(document).ready(function (){
             },
             cvv:{
                 required: true,
+                digits: true,
                 minlength: 3,
                 maxlength: 4,
             },
@@ -147,6 +148,7 @@ $(document).ready(function (){
             },
             cvv: {
                 required: "Inserisci il CVV.",
+                digits: "CVV errato",
                 minlength: "CVV errato.",
                 maxlength: "CVV errato.",
             },
