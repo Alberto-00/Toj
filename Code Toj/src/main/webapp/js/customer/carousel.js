@@ -7,7 +7,7 @@ $(document).ready(function (){
         responsiveClass: true,
         autoHeight: true,
         smartSpeed: 800,
-        nav: true,
+        nav: true, /*show prev - next buttons*/
         responsive: {
             0: {
                 items: 1
