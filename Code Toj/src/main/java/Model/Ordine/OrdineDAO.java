@@ -14,8 +14,6 @@ public interface OrdineDAO  <E extends Exception>{
 
     Sconto getOrdineSconto(String sconto) throws E;
 
-    int doRetrieveAll() throws E;
-
     boolean doInsertOrdine(Ordine ordine) throws E;
 
     int countOrdini() throws E;

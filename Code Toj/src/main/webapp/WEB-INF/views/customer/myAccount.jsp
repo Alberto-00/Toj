@@ -151,7 +151,7 @@
                                     </div>
                                     <div class="product-details">
                                         <a href="${pageContext.request.contextPath}/customers/products?id=<%=a.getIDarticolo()%>&sex=<%=a.getSesso()%>" class="p-name"><%=a.getNome()%></a>
-                                        <span class="p-price">€ <%=a.getPrezzo()%></span>
+                                        <span class="p-price">€ <%=a.getPrezzoScontato()%></span>
                                         <span class="p-price">Quantità x<%=ordini.get(i).getArticoli().get(j).getQuantita_articolo_in_Ordine()%></span>
                                     </div>
                                 </div>

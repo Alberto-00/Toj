@@ -162,8 +162,8 @@ public class AccountServlet extends Controller {
                         request.setAttribute("account", sqlAccountDAO.count());
                     else request.setAttribute("account", 0);
 
-                    if (sqlOrdineDAO.doRetrieveAll() > 0)
-                        request.setAttribute("ordini", sqlOrdineDAO.doRetrieveAll());
+                    if (sqlOrdineDAO.countOrdini() > 0)
+                        request.setAttribute("ordini", sqlOrdineDAO.countOrdini());
                     else request.setAttribute("ordini", 0);
 
                     if (sqlArticoloDAO.countArticoli() > 0)

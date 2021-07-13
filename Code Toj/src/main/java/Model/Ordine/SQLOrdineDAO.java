@@ -24,18 +24,6 @@ public class SQLOrdineDAO implements OrdineDAO<SQLException> {
     }
 
     @Override
-    public int doRetrieveAll() throws SQLException{
-        try(Connection con = ConPool.getConnection()) {
-            try (PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) as count FROM ordine;")){
-                ResultSet resultSet = ps.executeQuery();
-                if (resultSet.next())
-                    return resultSet.getInt("count");
-                return 0;
-            }
-        }
-    }
-
-    @Override
     public List<Ordine> fetchOrdine(String email) throws SQLException {
         try(Connection con = ConPool.getConnection()) {
             QueryBuilder queryBuilder = new QueryBuilder("ordine", "o");
@@ -120,13 +108,12 @@ public class SQLOrdineDAO implements OrdineDAO<SQLException> {
 
     @Override
     public int countOrdini() throws SQLException {
-        int ordini = 0;
         try(Connection con = ConPool.getConnection()) {
             try (PreparedStatement ps = con.prepareStatement("SELECT count(*) FROM ordine")) {
                 ResultSet resultSet = ps.executeQuery();
                 if (resultSet.next())
-                    ordini = resultSet.getInt(1);
-                return ordini;
+                    return resultSet.getInt(1);
+                return 0;
             }
         }
     }

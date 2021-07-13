@@ -59,11 +59,11 @@ $(document).ready(function() {
 
     $(".update").change(function (){
         const $url = $("#coupon").attr("data");
-        var $quantity = $(this).val();
-        var $size = $(this).attr("data");
-        var $id = $(this).attr("data1");
-        var value = $(this).attr("id");
-        if ($quantity === ""){
+        const $quantity = $(this).val();
+        const $size = $(this).attr("data");
+        const $id = $(this).attr("data1");
+        const value = $(this).attr("id");
+        if ($quantity === "" || parseInt($quantity) < 0){
             $("#" + value + " + small").removeClass("successMsg");
             $("#" + value + " + small").addClass("errMsg").text("Aggiornamento fallito.").fadeIn(500).delay(2000).fadeOut(500);
             return;
@@ -82,7 +82,7 @@ $(document).ready(function() {
             contentType: "application/json; charset=utf-8",
             url: $url + '/ajax/api-updateCart?id=' + $id + "&size=" + $size + "&quantity=" + $quantity,
             success: function (response) {
-                var pass = JSON.parse(response);
+                const pass = JSON.parse(response);
                 if (pass.msg === "true"){
                     location.reload();
                     $("#" + value + " + small").addClass("successMsg").text("Aggiornato!").fadeIn(500).delay(1200).fadeOut(500);

@@ -122,7 +122,10 @@ public class AjaxServlet extends Controller {
                     Articolo articolo = cart.find(id, size);
                     JSONObject root = new JSONObject();
                     if (articolo != null) {
-                        articolo.lessLocalQuantity(quantity);
+                        if (quantity == 0)
+                            cart.removeProduct(id, size);
+                        else
+                            articolo.lessLocalQuantity(quantity);
                         root.put("msg", "true");
                     } else {
                         root.put("msg", "false");
