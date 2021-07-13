@@ -25,7 +25,8 @@ public class SQLAccountDAO implements AccountDAO<SQLException>{
     @Override
     public int count() throws SQLException{
         try(Connection con = ConPool.getConnection()) {
-            try (PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) as count FROM account_user;")){
+            try (PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) as count " +
+                    "FROM account_user WHERE Admin_user = 0;")){
                 ResultSet resultSet = ps.executeQuery();
                 if (resultSet.next())
                     return resultSet.getInt("count");
