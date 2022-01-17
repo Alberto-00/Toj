@@ -5,7 +5,7 @@
   👗 Web App for shopping clothes online 👗<br>
   A project for<br>
   Software Technologies for the Web<br> 
-  courses at University of Salerno.
+  course at University of Salerno.
 </p>
 <h1 dir="auto">
   <a id="user-content-project-description-and-introduction" class="anchor" aria-hidden="true" href="#project-description-and-introduction">
