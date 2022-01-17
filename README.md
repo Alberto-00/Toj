@@ -85,8 +85,9 @@
   Built With
   </h2>
 <ul dir="auto">
-<li><a href="https://jdk.java.net/15/" rel="nofollow">Java</a> - The programming language used for the back-end development.</li>
-<li><a href="https://spring.io/" rel="nofollow">Tomcat</a> - Open source web server.</li>
+<li><a href="https://jdk.java.net/17/" rel="nofollow">Java</a> - The programming language used for the back-end development.</li>
+<li><a href="https://tomcat.apache.org/index.html" rel="nofollow">Tomcat</a> - Open source web server.</li>
+<li><a href="https://www.mysql.com/it/" rel="nofollow">MySQL</a> - RDB management system.</li>
 <li><a href="https://maven.apache.org/" rel="nofollow">Maven</a> - Dependency Management.</li>
 <li><a href="https://www.w3schools.com/html/default.asp" rel="nofollow">HTML5</a> - The programming language used for the front-end development.</li>
 <li><a href="https://getboostrap.com/" rel="nofollow">JQuery</a> - Front-end JavaScript library.</li>
