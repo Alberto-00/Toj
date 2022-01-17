@@ -25,7 +25,7 @@
   Introduction
 </h2>
 <p dir="auto">
-  🎓 Web App for shopping clothes online. Produced for the Software Technologies for the Web courses of Computer Science at University of Salerno.
+  🎓 Web App for shopping clothes online. Produced for the Software Technologies for the Web course of Computer Science at University of Salerno.
 </p>
 <h2 dir="auto">
   <a id="user-content-authors" class="anchor" aria-hidden="true" href="#authors">
