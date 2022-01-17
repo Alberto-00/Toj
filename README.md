@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./Code Toj/src/main/webapp/icons/logo.png"/>
+  <img src="./Toj/src/main/webapp/icons/logo.png"/>
 </p>
 <p align="center" dir="auto">
   👗 Web App for shopping clothes online 👗<br>
